@@ -4,15 +4,20 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Hello!
+My name is Khoi Nguyen
+and I am currently a mathematics teacher at the
+[British School of Brussels](https://britishschool.be).
+Previously, I worked in academia but also as a web developer.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+## Software projects
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+### [Mathnuggets](https://github.com/khoi-nguyen/mathsnuggets)
 
-
-[jekyll-organization]: https://github.com/jekyll
+[Mathsnuggets](https://mathsnuggets.co.uk) is an alternative to LaTeX beamer and PowerPoint
+to create teaching resources.
+Its particularity is that it uses a mathematical Python library
+([Sympy](https://sympy.org))
+to help teachers create highly interactive resources more easily.
+It is easily extensible and is licensed under the
+[AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html).
