@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 title: Alternative proof of the Spectral Theorem in dimension 2
 tags: maths teaching
 ---
