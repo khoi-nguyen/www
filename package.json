@@ -48,6 +48,6 @@
     "node": ">=18"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,scss,css,md}": "prettier --write"
+    "*.{ts,tsx,js,json,scss,css,md}": "prettier --write"
   }
 }

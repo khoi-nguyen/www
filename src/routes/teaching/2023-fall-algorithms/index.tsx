@@ -1,8 +1,4 @@
-export const meta = {
-  title: 'Algorithms',
-  subtitle: 'NYU/CS-UY 2413 (Fall 2023)',
-  description: 'An introduction to classical algorithms for computer science students',
-};
+import meta from './index.json';
 
 export default () => {
   const location = useLocation();
@@ -25,7 +21,7 @@ export default () => {
         <dd>TBD</dd>
       </dl>
       <h2>Teaching resources</h2>
-      <Explorer pattern={`${location.pathname}/?[0-9]+-.*tsx$`} />
+      <Explorer pattern={`${location.pathname}/?[0-9]+-.*json$`} />
     </Page>
   );
 };

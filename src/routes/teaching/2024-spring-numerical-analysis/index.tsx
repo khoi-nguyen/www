@@ -1,9 +1,4 @@
-export const meta = {
-  title: 'Numerical Analysis',
-  subtitle: 'NYU/MATH-UA 9252 (Spring 2024)',
-  description:
-    'An introduction to numerical methods such as interpolation, integration and eigenvalue problems.',
-};
+import meta from './index.json';
 
 export default () => {
   const location = useLocation();
@@ -18,7 +13,7 @@ export default () => {
         <dt>Office Hour</dt>
         <dd>TBD</dd>
       </dl>
-      <Explorer pattern={`${location.pathname}[0-9]+-.*tsx$`} />
+      <Explorer pattern={`${location.pathname}[0-9]+-.*json$`} />
     </Page>
   );
 };

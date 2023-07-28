@@ -1,9 +1,4 @@
-export const meta = {
-  title: 'Chapter 1: Introduction',
-  subtitle: 'Algorithms',
-  description: 'Definition of algorithms',
-  slideshow: true,
-};
+import meta from './1-introduction.json';
 
 export default () => (
   <Slideshow meta={meta}>

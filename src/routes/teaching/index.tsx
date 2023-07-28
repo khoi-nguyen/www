@@ -1,11 +1,8 @@
-export const meta = {
-  title: 'Teaching',
-  description: "List of all the courses I've taught since September 2023",
-};
+import meta from './index.json';
 
 export default () => (
   <Page meta={meta}>
     <h2>Courses</h2>
-    <Explorer pattern="teaching/.*/index.tsx$" />
+    <Explorer pattern="teaching/.*/index.json$" />
   </Page>
 );

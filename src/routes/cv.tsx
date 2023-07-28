@@ -1,7 +1,4 @@
-export const meta = {
-  title: 'Curriculum Vitæ',
-  description: "Khôi Nguyễn's Curriculum Vitæ",
-};
+import meta from './cv.json';
 
 export default () => (
   <Page meta={meta}>

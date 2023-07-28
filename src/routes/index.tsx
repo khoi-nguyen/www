@@ -1,7 +1,4 @@
-export const meta = {
-  title: 'Welcome',
-  description: 'My personal webpage, which mostly contains my teaching resources',
-};
+import meta from './index.json';
 
 export default () => (
   <Page meta={meta}>
