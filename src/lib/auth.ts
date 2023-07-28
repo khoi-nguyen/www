@@ -7,7 +7,7 @@ const storage = createCookieSessionStorage({
     name: 'session',
     path: '/',
     sameSite: 'lax',
-    secrets: [process.env.SECRET_KEY || 'secret_key'], // TODO
+    secrets: [process.env.SECRET_KEY || 'secret_key'],
     secure: process.env.NODE_END === 'production',
   },
 });
