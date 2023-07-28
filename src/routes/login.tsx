@@ -3,17 +3,17 @@ import { createServerData$, createServerAction$ } from 'solid-start/server';
 import { login, logout, isLoggedIn } from '~/lib/server/auth';
 
 export default () => {
-  const [loggingIn, { Form }] = createServerAction$(async (data: FormData, { request }) => {
+  const [loggingIn, { Form }] = createServerAction$(async (data: FormData, event) => {
     const password = data.get('password') as string;
-    return login(request, password);
+    return login(event.request, password);
   });
 
   const isAdmin = createServerData$(async (_, event) => {
     return await isLoggedIn(event.request);
   });
 
-  const [_, handleLogout] = createServerAction$(async (_, { request }) => {
-    return await logout(request);
+  const [_, handleLogout] = createServerAction$(async (_, event) => {
+    return await logout(event.request);
   });
 
   return (
