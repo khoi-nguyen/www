@@ -1,6 +1,6 @@
 import meta from './login.json';
 import { createServerData$, createServerAction$ } from 'solid-start/server';
-import { login, logout, isLoggedIn } from '~/lib/auth';
+import { login, logout, isLoggedIn } from '~/lib/server/auth';
 
 export default () => {
   const [loggingIn, { Form }] = createServerAction$(async (data: FormData, { request }) => {
