@@ -1,8 +1,8 @@
 import { Meta as SolidMeta, Title } from 'solid-start';
 
 interface MetaProps {
-  subtitle?: JSX.Element | string;
-  title: JSX.Element | string;
+  subtitle?: string;
+  title: string;
   description: string;
 }
 

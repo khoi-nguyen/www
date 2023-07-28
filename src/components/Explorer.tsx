@@ -1,4 +1,5 @@
 interface ExplorerProps {
+  filter?: string;
   pattern: string;
 }
 
@@ -21,10 +22,22 @@ export default function Explorer(props: ExplorerProps) {
         }),
     );
   });
+  const filtered = () => {
+    return (pages() || []).filter((page) => {
+      return (
+        Object.entries(page).filter(([_, value]) => {
+          return value
+            .toString()
+            .toLowerCase()
+            .includes((props.filter || '').toLowerCase());
+        }).length > 0
+      );
+    });
+  };
 
   return (
     <div class="grid">
-      <For each={pages()}>
+      <For each={filtered()}>
         {(page) => (
           <article class="card" onClick={() => navigate(page.path)} style={{ cursor: 'pointer' }}>
             <hgroup>
