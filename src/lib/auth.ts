@@ -1,4 +1,4 @@
-import { createCookieSessionStorage, redirect } from 'solid-start';
+import { createCookieSessionStorage } from 'solid-start';
 
 const storage = createCookieSessionStorage({
   cookie: {
@@ -34,7 +34,7 @@ export async function isLoggedIn(request: Request) {
 
 export async function logout(request: Request) {
   const session = await fromRequest(request);
-  return redirect('/', {
+  return new Response('Logged out', {
     headers: {
       'Set-Cookie': await storage.destroySession(session),
     },
