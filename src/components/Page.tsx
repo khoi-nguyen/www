@@ -29,11 +29,6 @@ export default function Page(props: PageProps) {
               <Fa icon={faChalkboardUser} /> Teaching
             </A>
           </li>
-          <li>
-            <A href="/teaching/2023-fall-algorithms">
-              <Fa icon={faComputer} /> Algorithms
-            </A>
-          </li>
         </ul>
       </nav>
       <Breadcrumbs />
