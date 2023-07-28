@@ -23,7 +23,9 @@ export default function Breadcrumbs() {
       <nav id="breadcrumbs">
         <ul>
           <li>
-            <A href="/">nguyen.me.uk</A>
+            <A href="/">
+              <strong>nguyen.me.uk</strong>
+            </A>
           </li>
           <For each={links()}>
             {(link) => (
