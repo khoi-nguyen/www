@@ -1,8 +1,4 @@
-import {
-  faAddressCard,
-  faChalkboardUser,
-  faComputer,
-} from '@fortawesome/free-solid-svg-icons/index.js';
+import { faAddressCard, faChalkboardUser } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface PageProps {
   children: JSX.Element;
