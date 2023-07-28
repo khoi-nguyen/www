@@ -19,7 +19,7 @@ export default function Breadcrumbs() {
   });
 
   return (
-    <Show when={links}>
+    <Show when={!links.loading && links()!.length}>
       <nav id="breadcrumbs">
         <ul>
           <li>
