@@ -195,7 +195,8 @@ pre,
     margin-top: 0;
     padding: 0.4em 0.6em;
 
-    &.definition {
+    &.definition,
+    &.exercise {
       background: #01802b;
     }
 

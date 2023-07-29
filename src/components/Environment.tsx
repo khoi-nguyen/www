@@ -1,5 +1,10 @@
 import type { IconDefinition } from '@fortawesome/fontawesome-common-types';
-import { faBook, faCircleQuestion, faPen } from '@fortawesome/free-solid-svg-icons/index.js';
+import {
+  faBook,
+  faCircleQuestion,
+  faPen,
+  faPenToSquare,
+} from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface SpecificEnvironmentProps {
   children?: JSX.Element;
@@ -36,6 +41,10 @@ export function Definition(props: SpecificEnvironmentProps) {
 
 export function Example(props: SpecificEnvironmentProps) {
   return <Environment name="Example" icon={faPen} {...props} />;
+}
+
+export function Exercise(props: SpecificEnvironmentProps) {
+  return <Environment name="Exercise" icon={faPenToSquare} {...props} />;
 }
 
 export function Proposition(props: SpecificEnvironmentProps) {
