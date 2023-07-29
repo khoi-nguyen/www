@@ -21,7 +21,7 @@ export default () => (
     <p>
       The main purpose of this website is to host my <A href="/teaching">teaching resources</A> for
       my students. It is <strong>under construction</strong>. <A href="/stack">This page</A> gives
-      more details about how the websitet works technically.
+      more details about how the website works technically.
     </p>
     <h2>Useful Links</h2>
     <ul>
