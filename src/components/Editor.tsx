@@ -11,6 +11,7 @@ interface EditorProps {
 }
 
 export default function Editor(props: EditorProps) {
+  props = mergeProps({ lang: 'python' }, props);
   let textArea: HTMLElement;
   let editor: CodeJar;
 
@@ -38,7 +39,7 @@ export default function Editor(props: EditorProps) {
   });
 
   return (
-    <pre class="language-python clickable">
+    <pre class={`language-${props.lang} clickable`}>
       <code ref={textArea!} />
     </pre>
   );
