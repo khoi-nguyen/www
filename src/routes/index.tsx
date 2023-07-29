@@ -37,12 +37,5 @@ export default () => (
         <a href="https://www.linkedin.com/in/binh-khoi-nguyen/">My LinkedIn page</a>
       </li>
     </ul>
-    <Python>
-      {py`
-        from sympy import *
-        x = Symbol("x")
-        solve(x**2 - 5*x + 6)
-      `}
-    </Python>
   </Page>
 );
