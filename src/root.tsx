@@ -2,6 +2,7 @@
 import './root.scss';
 import { Suspense } from 'solid-js';
 import { Body, ErrorBoundary, FileRoutes, Head, Html, Meta, Routes, Scripts } from 'solid-start';
+import { SessionProvider } from 'src/stores/session';
 
 export default function Root() {
   return (
@@ -13,9 +14,11 @@ export default function Root() {
       <Body>
         <Suspense>
           <ErrorBoundary>
-            <Routes>
-              <FileRoutes />
-            </Routes>
+            <SessionProvider>
+              <Routes>
+                <FileRoutes />
+              </Routes>
+            </SessionProvider>
           </ErrorBoundary>
         </Suspense>
         <Scripts />

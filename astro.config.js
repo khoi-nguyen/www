@@ -16,6 +16,7 @@ export default defineConfig({
       imports: [
         {
           '~/lib/literals': ['py', 'tex'],
+          '~/stores/session': ['useSession'],
           'solid-js': [
             'createEffect',
             'createResource',
