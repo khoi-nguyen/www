@@ -106,11 +106,11 @@ export default () => (
               # Conquer
               result = []
               while L and R:
-                  if L[0] <= R[0]:
-                      result.append(L.pop(0))
-                  else:
-                      result.append(R.pop(0))
+                  smallest = L.pop(0) if L[0] <= R[0] else R.pop(0)
+                  result.append(smallest)
               return result + L + R
+
+          merge_sort([2, -1, 3, -4, 7, 3, 1])
         `}
       </Jupyter>
     </Slide>
