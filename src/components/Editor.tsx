@@ -1,8 +1,6 @@
 import type { CodeJar } from 'codejar';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-python';
-import 'prismjs/plugins/line-numbers/prism-line-numbers';
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/themes/prism-coy.css';
 
 interface EditorProps {
@@ -40,7 +38,7 @@ export default function Editor(props: EditorProps) {
   });
 
   return (
-    <pre class="language-python clickable line-numbers">
+    <pre class="language-python clickable">
       <code ref={textArea!} />
     </pre>
   );
