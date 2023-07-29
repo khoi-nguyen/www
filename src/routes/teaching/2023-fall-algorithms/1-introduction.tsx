@@ -114,5 +114,22 @@ export default () => (
         `}
       </Jupyter>
     </Slide>
+    <Slide title={<>{tex`\bigo`}-notation</>} cite={['clrs', 'p. 54-55']}>
+      <Definition title={<>{tex`\bigo(g)`}</>}>
+        {tex`f \in \bigo(g)`} if there exist positive constant {tex`C`} and {tex`N`} such that
+        {tex`
+          \abs {f(n)} \leq C g(n)
+        `}
+        for every {tex`n \in \N`}.
+      </Definition>
+      <Remark>
+        <ul>
+          <li>
+            {tex`f \in \bigo(g(n))`}: {tex`f`} is big-oh of {tex`g`} of {tex`n`}
+          </li>
+          <li>As an abuse of notation, we'll write {tex`f(n) = \bigo(g(n))`}.</li>
+        </ul>
+      </Remark>
+    </Slide>
   </Slideshow>
 );
