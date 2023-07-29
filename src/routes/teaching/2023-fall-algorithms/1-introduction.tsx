@@ -46,6 +46,42 @@ export default () => (
           A
         `}
       </Jupyter>
+      <p>For every algorithm, we shall study the following properties.</p>
+      <ul>
+        <li>
+          <strong>Termination:</strong> Does the algorithm terminate?
+        </li>
+        <li>
+          <strong>Correctness:</strong> Does it yield the desired result?
+        </li>
+        <li>
+          <strong>Running time:</strong> Does it yield the desired result?
+        </li>
+      </ul>
+    </Slide>
+    <Slide title="Correctess and Loop invariants of insertion sort" cite={['clrs', 'pp. 19-21']}>
+      <Definition title="Loop invariant">
+        <p>Property which is true before each iteration of a loop.</p>
+      </Definition>
+      <p>
+        Loop invariants are important tools to show <strong>correctness.</strong>
+      </p>
+      <Editor>
+        {py`
+          for i, key in enumerate(A):
+              j = i - 1
+              while j >= 0 and key < A[j]:
+                  A[j + 1] = A[j]
+                  j -= 1
+              A[j + 1] = key
+        `}
+      </Editor>
+      <Proposition title="Insertion's sort loop invariant">
+        <p>
+          The subarray <code>A[:i]</code> contains the first <code>i</code> elements of the original
+          array in <strong>sorted order</strong>.
+        </p>
+      </Proposition>
     </Slide>
   </Slideshow>
 );
