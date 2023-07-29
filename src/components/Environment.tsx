@@ -26,6 +26,10 @@ export function Environment(props: EnvironmentProps) {
   );
 }
 
+export function Corollary(props: SpecificEnvironmentProps) {
+  return <Environment name="Corollary" icon={faBook} {...props} />;
+}
+
 export function Definition(props: SpecificEnvironmentProps) {
   return <Environment name="Definition" icon={faBook} {...props} />;
 }
