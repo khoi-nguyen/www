@@ -1,11 +1,11 @@
 import meta from './1-introduction.json';
 
-const insertionSort = String.raw`for i, key in enumerate(A):
+const insertionSort = String.raw`for i in range(1, len(A)):
     j = i - 1
-    while j >= 0 and key < A[j]:
+    while j >= 0 and A[i] < A[j]:
         A[j + 1] = A[j]
         j -= 1
-    A[j + 1] = key`;
+    A[j + 1] = A[i]`;
 
 export default () => (
   <Slideshow meta={meta}>
@@ -76,6 +76,19 @@ export default () => (
           array in <strong>sorted order</strong>.
         </p>
       </Proposition>
+    </Slide>
+    <Slide title="Running time">
+      <Editor>{insertionSort}</Editor>
+      <Question title="Running time?">
+        Assume that {tex`A`} has {tex`n`} elements. If the cost of the {tex`i`}-th line is{' '}
+        {tex`c_i`}, what is <strong>total running cost</strong>?
+      </Question>
+      <p>
+        Let's consider the <strong>best</strong> and <strong>worst</strong> case scenarios
+      </p>
+      {tex`
+        \sum_{i = 1}^n i = \frac {n (n + 1)} 2
+      `}
     </Slide>
   </Slideshow>
 );
