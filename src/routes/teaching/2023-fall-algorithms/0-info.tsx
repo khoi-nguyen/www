@@ -69,8 +69,9 @@ export default () => (
         </li>
       </ul>
       <p>
-        During lectures, you'll be able to edit and run code cells directly from the browser.
-        Double-click on the code below to edit it.
+        During lectures, you'll be able to edit and run code cells directly from the browser (kind
+        of like in Jupyter). When editing the code, you can press <code>Shift+Enter</code> to run it
+        or click the icon on the left.
       </p>
       <Jupyter>
         {py`
