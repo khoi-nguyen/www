@@ -12,6 +12,14 @@ a {
   color: $link;
   text-decoration: none;
   z-index: 2;
+
+  &[href^="http://"]:after,
+  &[href^="https://"]:after
+  {
+    content: '↗️';
+    font-size: 0.5em;
+    vertical-align: super;
+  }
 }
 
 abbr {
