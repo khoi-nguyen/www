@@ -42,6 +42,10 @@ export function Proposition(props: SpecificEnvironmentProps) {
   return <Environment name="Proposition" icon={faBook} {...props} />;
 }
 
+export function Remark(props: SpecificEnvironmentProps) {
+  return <Environment name="Remark" icon={faBook} {...props} />;
+}
+
 export function Question(props: SpecificEnvironmentProps) {
   return <Environment name="Question" icon={faCircleQuestion} {...props} />;
 }
