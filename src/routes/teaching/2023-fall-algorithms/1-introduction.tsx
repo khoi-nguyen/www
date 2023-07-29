@@ -80,8 +80,10 @@ export default () => (
     <Slide title="Running time">
       <Editor>{insertionSort}</Editor>
       <Question title="Running time?">
-        Assume that {tex`A`} has {tex`n`} elements. If the cost of the {tex`i`}-th line is{' '}
-        {tex`c_i`}, what is <strong>total running cost</strong>?
+        <p>
+          Assume that {tex`A`} has {tex`n`} elements. If the cost of the {tex`i`}-th line is{' '}
+          {tex`c_i`}, what is <strong>total running cost</strong>?
+        </p>
       </Question>
       <p>
         Let's consider the <strong>best</strong> and <strong>worst</strong> case scenarios
