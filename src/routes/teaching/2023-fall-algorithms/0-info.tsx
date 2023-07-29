@@ -68,6 +68,13 @@ export default () => (
           <strong>Recommended setup:</strong> Visual Studio Code + Jupyter extension
         </li>
       </ul>
+      <Question title="Why Python?">
+        <ul>
+          <li>Free/Open Source</li>
+          <li>Easy to read and learn</li>
+          <li>Ubiquitous, can even run on your browser</li>
+        </ul>
+      </Question>
       <p>
         During lectures, you'll be able to edit and run code cells directly from the browser (kind
         of like in Jupyter). When editing the code, you can press <code>Shift+Enter</code> to run it
@@ -80,6 +87,9 @@ export default () => (
           Eq(A, integrate(4 * sqrt(r**2 - x**2), (x, 0, r)))
         `}
       </Jupyter>
+      <p>
+        Go to <A href="/teaching/2023-fall-algorithms/1-introduction">Chapter 1</A>.
+      </p>
     </Slide>
   </Slideshow>
 );
