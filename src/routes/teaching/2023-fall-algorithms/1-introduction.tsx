@@ -92,5 +92,27 @@ export default () => (
         \sum_{i = 1}^n i = \frac {n (n + 1)} 2
       `}
     </Slide>
+    <Slide title="Merge sort">
+      <Jupyter>
+        {py`
+          from math import floor
+
+          def merge_sort(A):
+              if len(A) <= 1:
+                  return A
+              # Divide
+              n = floor(len(A) / 2)
+              L, R = merge_sort(A[:n]), merge_sort(A[n:])
+              # Conquer
+              result = []
+              while L and R:
+                  if L[0] <= R[0]:
+                      result.append(L.pop(0))
+                  else:
+                      result.append(R.pop(0))
+              return result + L + R
+        `}
+      </Jupyter>
+    </Slide>
   </Slideshow>
 );
