@@ -131,5 +131,27 @@ export default () => (
         </ul>
       </Remark>
     </Slide>
+    <Slide title={<>Exercises: {tex`\bigo`}-notation</>}>
+      <Exercise title="True or False">
+        <ol>
+          <li>
+            If {tex`f = \bigo(g)`} then {tex`g = \bigo(f).`}
+          </li>
+          <li>
+            If {tex`f = \bigo(g)`} and {tex`g = \bigo(h)`} then {tex`f = \bigo(h)`}.
+          </li>
+          <li>
+            If {tex`f = \bigo(g)`}, {tex`g = \bigo(f)`} and {tex`f(n) > g(n)`}, then{' '}
+            {tex`f - g = \bigo(1)`}
+          </li>
+          <li>
+            If {tex`f = \bigo(g)`} and {tex`g = \bigo(h)`} then {tex`\frac f g = \bigo(1)`}.
+          </li>
+          <li>
+            If {tex`f = \bigo(g)`} and {tex`h = \bigo(g)`} then {tex`f = \bigo(h)`}.
+          </li>
+        </ol>
+      </Exercise>
+    </Slide>
   </Slideshow>
 );
