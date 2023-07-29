@@ -9,6 +9,7 @@ const macros = {
   '\\Z': '\\mathbb{Z}',
   '\\abs': '\\left|#1\\right|',
   '\\bigo': '\\mathcal{O}',
+  '\\bigtheta': '\\mathcal{\\Theta}',
   '\\dd': '\\,\\mathrm{d}',
   '\\defeq': '\\stackrel{\\mathsf{def}}{=}',
   '\\e': '\\mathrm{e}',
