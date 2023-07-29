@@ -1,5 +1,12 @@
 import meta from './1-introduction.json';
 
+const insertionSort = String.raw`for i, key in enumerate(A):
+    j = i - 1
+    while j >= 0 and key < A[j]:
+        A[j + 1] = A[j]
+        j -= 1
+    A[j + 1] = key`;
+
 export default () => (
   <Slideshow meta={meta}>
     <Slide title="What is an algorithm?" cite={['clrs', 'p. 3']}>
@@ -37,14 +44,10 @@ export default () => (
       <Jupyter>
         {py`
           A = [3, 7, 8, 1, 2, 7, 3]
-          for i, key in enumerate(A):
-              j = i - 1
-              while j >= 0 and key < A[j]:
-                  A[j + 1] = A[j]
-                  j -= 1
-              A[j + 1] = key
-          A
-        `}
+          ` +
+          '\n' +
+          insertionSort +
+          '\nA'}
       </Jupyter>
       <p>For every algorithm, we shall study the following properties.</p>
       <ul>
@@ -66,16 +69,7 @@ export default () => (
       <p>
         Loop invariants are important tools to show <strong>correctness.</strong>
       </p>
-      <Editor>
-        {py`
-          for i, key in enumerate(A):
-              j = i - 1
-              while j >= 0 and key < A[j]:
-                  A[j + 1] = A[j]
-                  j -= 1
-              A[j + 1] = key
-        `}
-      </Editor>
+      <Editor>{insertionSort}</Editor>
       <Proposition title="Insertion's sort loop invariant">
         <p>
           The subarray <code>A[:i]</code> contains the first <code>i</code> elements of the original
