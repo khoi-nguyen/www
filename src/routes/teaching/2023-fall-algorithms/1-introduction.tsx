@@ -1,11 +1,12 @@
 import meta from './1-introduction.json';
 
 const insertionSort = String.raw`for i in range(1, len(A)):
+    key = A[i]
     j = i - 1
-    while j >= 0 and A[i] < A[j]:
+    while j >= 0 and key < A[j]:
         A[j + 1] = A[j]
         j -= 1
-    A[j + 1] = A[i]`;
+    A[j + 1] = key`;
 
 export default () => (
   <Slideshow meta={meta}>
