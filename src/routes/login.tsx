@@ -8,7 +8,7 @@ export default () => {
     return login(event.request, password);
   });
 
-  const [admin, { logout }] = useSession()!;
+  const [admin, { logout }] = useSession();
 
   return (
     <Page meta={meta}>

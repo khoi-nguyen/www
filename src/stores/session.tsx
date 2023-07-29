@@ -27,7 +27,7 @@ export function makeContext() {
 
 type SessionContextType = ReturnType<typeof makeContext>;
 const SessionContext = createContext<SessionContextType>();
-export const useSession = () => useContext(SessionContext);
+export const useSession = () => useContext(SessionContext)!;
 
 export function SessionProvider(props: SessionProviderProps) {
   return <SessionContext.Provider value={makeContext()}>{props.children}</SessionContext.Provider>;
