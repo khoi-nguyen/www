@@ -7,6 +7,7 @@ const macros = {
   '\\R': '\\mathbb{R}',
   '\\N': '\\mathbb{N}',
   '\\Z': '\\mathbb{Z}',
+  '\\abs': '\\left|#1\\right|',
   '\\bigo': '\\mathcal{O}',
   '\\dd': '\\,\\mathrm{d}',
   '\\defeq': '\\stackrel{\\mathsf{def}}{=}',
