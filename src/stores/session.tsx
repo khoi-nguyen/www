@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'solid-js';
 import { createServerData$, createServerAction$ } from 'solid-start/server';
-import { logout, isLoggedIn } from '~/lib/server/auth';
+import { login, logout, isLoggedIn } from '~/lib/server/auth';
 
 interface SessionProviderProps {
   children?: JSX.Element;
@@ -15,12 +15,20 @@ export function makeContext() {
     return await logout(event.request);
   });
 
+  const PasswordField = () => <input type="password" name="password" />;
+  const [__, { Form }] = createServerAction$(async (data: FormData, event) => {
+    const password = data.get('password') as string;
+    return login(event.request, password);
+  });
+
   return [
     () => admin() === true,
     {
       logout: () => {
         handleLogout();
       },
+      PasswordField,
+      Form,
     },
   ] as const;
 }
