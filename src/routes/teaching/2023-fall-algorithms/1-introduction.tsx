@@ -117,16 +117,27 @@ export default () => (
     </Slide>
     <Slide title={<>{tex`\bigo`}-notation</>} cite={['clrs', 'p. 54-55']}>
       <Definition title={<>{tex`\bigo(g)`}</>}>
-        {tex`f \in \bigo(g)`} if there exist positive constant {tex`C`} and {tex`N`} such that
+        {tex`f \in \bigo(g)`} if there exist positive constants {tex`C`} and {tex`N`} such that
         {tex`
-          \abs {f(n)} \leq C g(n)
+          \abs {f(n)} \leq C g(n),
+          \quad n \geq N.
         `}
-        for every {tex`n \in \N`}.
+      </Definition>
+      <Definition title={<>{tex`\bigtheta(g)`}</>}>
+        {tex`f \in \bigtheta(g)`} if there exist positive constants {tex`c, C`} and {tex`N`} such
+        that
+        {tex`
+          c g(n) \leq \abs {f(n)} \leq C g(n),
+          \quad n \geq N.
+        `}
       </Definition>
       <Remark>
         <ul>
           <li>
-            {tex`f \in \bigo(g(n))`}: {tex`f`} is big-oh of {tex`g`} of {tex`n`}
+            {tex`f \in \bigo(g(n))`}: {tex`f`} is big-oh of {tex`g`} of {tex`n`},
+          </li>
+          <li>
+            {tex`f \in \bigo(g(n))`}: {tex`f`} is big-theta of {tex`g`} of {tex`n`},
           </li>
           <li>As an abuse of notation, we'll write {tex`f(n) = \bigo(g(n))`}.</li>
         </ul>
