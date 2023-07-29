@@ -43,10 +43,14 @@ export default function Slideshow(props: SlideshowProps) {
         <For each={slides}>
           {(slide, i) => (
             <section>
-              <section class="slide" ref={slideRef}>
-                {slide}
-                <Whiteboard container={slideRef} strokes={boards[i()][0]} {...dimensions} />
-              </section>
+              <For each={[...Array(boards[i()].length).keys()]}>
+                {(j) => (
+                  <section class="slide" ref={slideRef}>
+                    {slide}
+                    <Whiteboard container={slideRef} strokes={boards[i()][j]} {...dimensions} />
+                  </section>
+                )}
+              </For>
             </section>
           )}
         </For>
