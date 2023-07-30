@@ -22,5 +22,5 @@ const macros = {
 };
 
 export default function render(tex: string, displayMode = false) {
-  return katex.renderToString(dedent(tex), { macros, displayMode });
+  return katex.renderToString(dedent(tex), { macros, displayMode, output: 'html' });
 }
