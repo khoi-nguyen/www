@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash-es';
 import 'reveal.js/dist/reveal.css';
-import { children } from 'solid-js';
+import { children, createMemo } from 'solid-js';
 import { createServerAction$, createServerData$ } from 'solid-start/server';
 import type { Stroke } from '~/lib/Whiteboard';
 import { loadBoard, writeBoard } from '~/lib/server/boards';
@@ -38,15 +38,13 @@ export default function Slideshow(props: SlideshowProps) {
       return await loadBoard(url, slideCount).json();
     },
     {
+      initialValue: slides.map(() => [[]]),
       key: () => ['boards', useLocation().pathname, slides.length],
     },
   );
 
-  const [boards, setBoards] = createSignal<Stroke[][][]>(slides.map(() => [[]]));
-  createEffect(() => {
-    if (receivedBoards.state === 'ready') {
-      setBoards(cloneDeep(receivedBoards()!));
-    }
+  const boards = createMemo<Stroke[][][]>(() => {
+    return cloneDeep(receivedBoards()!);
   });
 
   const [, saveAction] = createServerAction$(
