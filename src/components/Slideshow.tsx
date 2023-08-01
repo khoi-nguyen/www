@@ -3,7 +3,7 @@ import 'reveal.js/dist/reveal.css';
 import { children } from 'solid-js';
 import { createServerAction$, createServerData$ } from 'solid-start/server';
 import type { Stroke } from '~/lib/Whiteboard';
-import { loadBoard, writeBoard } from '~/routes/api/boards';
+import { loadBoard, writeBoard } from '~/lib/server/boards';
 
 interface SlideshowProps {
   children: JSX.Element;
