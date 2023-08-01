@@ -16,6 +16,11 @@ export default (props: WhiteboardProps) => {
     whiteboard.init(canvas!);
   });
 
+  createEffect(() => {
+    whiteboard.strokes = props.strokes;
+    whiteboard.redraw();
+  });
+
   return (
     <>
       {canvas}
