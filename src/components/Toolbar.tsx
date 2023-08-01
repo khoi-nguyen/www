@@ -1,8 +1,14 @@
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons/index.js';
-import { faBlackboard, faPen, faHighlighter } from '@fortawesome/free-solid-svg-icons/index.js';
+import {
+  faBlackboard,
+  faPen,
+  faHighlighter,
+  faSave,
+} from '@fortawesome/free-solid-svg-icons/index.js';
 import type Whiteboard from '~/lib/Whiteboard';
 
 interface ToolbarProps {
+  save: () => void;
   whiteboard: Whiteboard;
 }
 
@@ -45,6 +51,9 @@ export default function Toolbar(props: ToolbarProps) {
       </For>
       <button class="is-secondary" onClick={() => props.whiteboard.clearBoard(true)}>
         <Fa icon={faBlackboard} />
+      </button>
+      <button class="is-secondary" onClick={props.save}>
+        <Fa icon={faSave} />
       </button>
     </div>
   );

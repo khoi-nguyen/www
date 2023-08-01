@@ -74,7 +74,12 @@ export default function Slideshow(props: SlideshowProps) {
                 {(j) => (
                   <section class="slide" ref={slideRef}>
                     {slide}
-                    <Whiteboard container={slideRef} strokes={boards()[i()][j]} {...dimensions} />
+                    <Whiteboard
+                      container={slideRef}
+                      strokes={boards()[i()][j]}
+                      {...dimensions}
+                      save={save}
+                    />
                   </section>
                 )}
               </For>
