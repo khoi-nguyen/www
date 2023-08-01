@@ -9,12 +9,13 @@ const fileFromUrl = (url: string) => {
   return prefix + url.replace(/^\/?(.*?)\/?$/, '$1').replaceAll('/', '--') + '.json';
 };
 
-export function loadBoard(url: string) {
+export function loadBoard(url: string, slideCount: number) {
   const path = fileFromUrl(url);
-  if (!existsSync(path)) {
-    return json([]);
+  const data = JSON.parse(existsSync(path) ? readFileSync(path, 'utf-8') : '[]');
+  while (data.length < slideCount) {
+    data.push([[]]);
   }
-  return json(JSON.parse(readFileSync(path, 'utf-8')));
+  return json(data);
 }
 
 export async function writeBoard(url: string, contents: Stroke[][][], event: APIEvent) {
