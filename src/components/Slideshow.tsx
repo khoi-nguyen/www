@@ -1,9 +1,9 @@
 import { cloneDeep } from 'lodash';
 import 'reveal.js/dist/reveal.css';
 import { children } from 'solid-js';
-import server$, { createServerData$ } from 'solid-start/server';
+import { createServerData$ } from 'solid-start/server';
 import type { Stroke } from '~/lib/Whiteboard';
-import { loadBoard } from '~/lib/server/boards';
+import { loadBoard } from '~/routes/api/boards';
 
 interface SlideshowProps {
   children: JSX.Element;
