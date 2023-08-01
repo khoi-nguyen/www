@@ -33,7 +33,7 @@ export default function Slideshow(props: SlideshowProps) {
   let slideRef: HTMLElement;
   const slides = children(() => props.children).toArray();
 
-  const receivedBoards = createServerData$<Stroke[][][]>(
+  const receivedBoards = createServerData$<Stroke[][][], [string, string, number]>(
     async ([, url, slideCount]) => {
       return await loadBoard(url, slideCount).json();
     },
