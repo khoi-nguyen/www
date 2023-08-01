@@ -9,9 +9,9 @@ $radius: 12px;
 @import '@fontsource/fira-sans/300.css';
 
 a {
+  @extend .clickable;
   color: $link;
   text-decoration: none;
-  z-index: 2;
 
   &[href^="http://"]:after,
   &[href^="https://"]:after
@@ -33,6 +33,7 @@ body {
 }
 
 button {
+  @extend .clickable;
   background: transparent;
 
   &.is-secondary {
