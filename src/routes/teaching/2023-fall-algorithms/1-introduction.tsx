@@ -93,28 +93,6 @@ export default () => (
         \sum_{i = 1}^n i = \frac {n (n + 1)} 2
       `}
     </Slide>
-    <Slide title="Merge sort">
-      <Jupyter>
-        {py`
-          from math import floor
-
-          def merge_sort(A):
-              if len(A) <= 1:
-                  return A
-              # Divide
-              n = floor(len(A) / 2)
-              L, R = merge_sort(A[:n]), merge_sort(A[n:])
-              # Conquer
-              result = []
-              while L and R:
-                  smallest = L.pop(0) if L[0] <= R[0] else R.pop(0)
-                  result.append(smallest)
-              return result + L + R
-
-          merge_sort([2, -1, 3, -4, 7, 3, 1])
-        `}
-      </Jupyter>
-    </Slide>
     <Slide title={<>{tex`\bigo`}-notation</>} cite={['clrs', 'p. 54-55']}>
       <Definition title={<>{tex`\bigo(g)`}</>}>
         {tex`f \in \bigo(g)`} if there exist positive constants {tex`C`} and {tex`N`} such that
@@ -165,5 +143,41 @@ export default () => (
         </ol>
       </Exercise>
     </Slide>
+    <Slide title="Divide et impera">
+      <p>
+        A common stategy is <strong>divide-and-conquer</strong>.
+      </p>
+      <dl>
+        <dt>Divide</dt>
+        <dd>into subproblems that are similar to the initial one</dd>
+        <dt>Conquer</dt>
+        <dd>them by solving them recursively</dd>
+        <dt>Combine</dt>
+        <dd>the subproblem solutions to solve the original problem</dd>
+      </dl>
+    </Slide>
+    <Slide title="Merge sort">
+      <Jupyter>
+        {py`
+          from math import floor
+
+          def merge_sort(A):
+              if len(A) <= 1:
+                  return A
+              # Divide
+              n = floor(len(A) / 2)
+              L, R = merge_sort(A[:n]), merge_sort(A[n:])
+              # Conquer
+              result = []
+              while L and R:
+                  smallest = L.pop(0) if L[0] <= R[0] else R.pop(0)
+                  result.append(smallest)
+              return result + L + R
+
+          merge_sort([2, -1, 3, -4, 7, 3, 1])
+        `}
+      </Jupyter>
+    </Slide>
+    <Slide title="Running time of merge sort"></Slide>
   </Slideshow>
 );
