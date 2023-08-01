@@ -1,6 +1,9 @@
+import { cloneDeep } from 'lodash';
 import 'reveal.js/dist/reveal.css';
 import { children } from 'solid-js';
+import server$, { createServerData$ } from 'solid-start/server';
 import type { Stroke } from '~/lib/Whiteboard';
+import { loadBoard } from '~/lib/server/boards';
 
 interface SlideshowProps {
   children: JSX.Element;
@@ -30,7 +33,21 @@ export default function Slideshow(props: SlideshowProps) {
   let slideRef: HTMLElement;
   const slides = children(() => props.children).toArray();
 
-  const boards: Stroke[][][] = slides.map(() => [[]]);
+  const receivedBoards = createServerData$<Stroke[][][]>(
+    async ([, url, slideCount]) => {
+      return await loadBoard(url, slideCount).json();
+    },
+    {
+      key: () => ['boards', useLocation().pathname, slides.length],
+    },
+  );
+
+  const [boards, setBoards] = createSignal<Stroke[][][]>(slides.map(() => [[]]));
+  createEffect(() => {
+    if (receivedBoards.state === 'ready') {
+      setBoards(cloneDeep(receivedBoards()!));
+    }
+  });
 
   return (
     <div class="reveal">
@@ -43,11 +60,11 @@ export default function Slideshow(props: SlideshowProps) {
         <For each={slides}>
           {(slide, i) => (
             <section>
-              <For each={[...Array(boards[i()].length).keys()]}>
+              <For each={[...Array(boards()[i()].length).keys()]}>
                 {(j) => (
                   <section class="slide" ref={slideRef}>
                     {slide}
-                    <Whiteboard container={slideRef} strokes={boards[i()][j]} {...dimensions} />
+                    <Whiteboard container={slideRef} strokes={boards()[i()][j]} {...dimensions} />
                   </section>
                 )}
               </For>
