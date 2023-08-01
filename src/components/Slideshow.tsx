@@ -11,25 +11,6 @@ interface SlideshowProps {
 }
 
 export default function Slideshow(props: SlideshowProps) {
-  const dimensions = { width: 1920, height: 1080 };
-  let deck: InstanceType<typeof import('reveal.js')>;
-  onMount(async () => {
-    const Reveal = (await import('reveal.js')).default;
-    deck = new Reveal({
-      ...dimensions,
-      center: false,
-      hash: true,
-      margin: 0,
-      slideNumber: true,
-      touch: false,
-      transition: 'none',
-    });
-    deck.initialize();
-  });
-  onCleanup(() => {
-    deck.destroy();
-  });
-
   let slideRef: HTMLElement;
   const slides = children(() => props.children).toArray();
 
@@ -56,6 +37,26 @@ export default function Slideshow(props: SlideshowProps) {
   const save = () => {
     saveAction({ url, contents: boards() });
   };
+
+  const dimensions = { width: 1920, height: 1080 };
+  let deck: InstanceType<typeof import('reveal.js')>;
+  onMount(async () => {
+    const Reveal = (await import('reveal.js')).default;
+    deck = new Reveal({
+      ...dimensions,
+      center: false,
+      hash: true,
+      margin: 0,
+      slideNumber: true,
+      touch: false,
+      transition: 'none',
+    });
+    deck.on('slidechanged', save);
+    deck.initialize();
+  });
+  onCleanup(() => {
+    deck.destroy();
+  });
 
   return (
     <div class="reveal">
