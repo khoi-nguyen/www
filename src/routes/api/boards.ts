@@ -1,6 +1,6 @@
 import { writeFileSync, existsSync, readFileSync } from 'fs';
 import { json } from 'solid-start';
-import type { APIEvent } from 'solid-start';
+import type { Stroke } from '~/lib/Whiteboard';
 import { isLoggedIn } from '~/lib/server/auth';
 
 const prefix = './src/data/';
@@ -18,17 +18,11 @@ export function loadBoard(url: string, slideCount: number) {
   return json(data);
 }
 
-interface ResponseBody {
-  contents: string;
-  url: string;
-}
-
-export async function POST(event: APIEvent) {
-  const body = (await new Response(event.request.body).json()) as ResponseBody;
-  const path = fileFromUrl(body.url);
-  if (!isLoggedIn(event.request)) {
+export function writeBoard(url: string, contents: Stroke[][][], request: Request) {
+  const path = fileFromUrl(url);
+  if (!isLoggedIn(request)) {
     throw new Error('You need to be logged in to edit a board.');
   }
-  writeFileSync(path, JSON.stringify(body.contents), 'utf-8');
-  return json(body.contents);
+  writeFileSync(path, JSON.stringify(contents), 'utf-8');
+  return json(contents);
 }

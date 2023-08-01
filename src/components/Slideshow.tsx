@@ -1,9 +1,9 @@
 import { cloneDeep } from 'lodash';
 import 'reveal.js/dist/reveal.css';
 import { children } from 'solid-js';
-import { createServerData$ } from 'solid-start/server';
+import { createServerAction$, createServerData$ } from 'solid-start/server';
 import type { Stroke } from '~/lib/Whiteboard';
-import { loadBoard } from '~/routes/api/boards';
+import { loadBoard, writeBoard } from '~/routes/api/boards';
 
 interface SlideshowProps {
   children: JSX.Element;
@@ -48,6 +48,16 @@ export default function Slideshow(props: SlideshowProps) {
       setBoards(cloneDeep(receivedBoards()!));
     }
   });
+
+  const [, saveAction] = createServerAction$(
+    async (data: { url: string; contents: Stroke[][][] }, event) => {
+      return writeBoard(data.url, data.contents, event.request);
+    },
+  );
+  const url = useLocation().pathname;
+  const save = () => {
+    saveAction({ url, contents: boards() });
+  };
 
   return (
     <div class="reveal">
