@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import 'reveal.js/dist/reveal.css';
 import { children } from 'solid-js';
 import { createServerAction$, createServerData$ } from 'solid-start/server';
