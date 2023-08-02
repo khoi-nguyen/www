@@ -147,14 +147,17 @@ export default () => (
       <p>
         A common stategy is <strong>divide-and-conquer</strong>.
       </p>
-      <dl>
-        <dt>Divide</dt>
-        <dd>into subproblems that are similar to the initial one</dd>
-        <dt>Conquer</dt>
-        <dd>them by solving them recursively</dd>
-        <dt>Combine</dt>
-        <dd>the subproblem solutions to solve the original problem</dd>
-      </dl>
+      <ul>
+        <li>
+          <strong>Divide</strong> into similar subproblems
+        </li>
+        <li>
+          <strong>Conquer</strong> by solving them recursively
+        </li>
+        <li>
+          <strong>Combine</strong> the subproblem solutions to solve the original problem
+        </li>
+      </ul>
     </Slide>
     <Slide title="Merge sort">
       <Jupyter>
