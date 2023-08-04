@@ -1,18 +1,26 @@
 import { cloneDeep } from 'lodash-es';
 import 'reveal.js/dist/reveal.css';
-import { children, createMemo } from 'solid-js';
+import { createMemo } from 'solid-js';
 import { createServerAction$, createServerData$ } from 'solid-start/server';
 import type { Stroke } from '~/lib/Whiteboard';
 import { loadBoard, writeBoard } from '~/lib/server/boards';
 
 interface SlideshowProps {
-  children: JSX.Element;
+  children: JSX.Element[];
   meta: Parameters<typeof Meta>[0];
+}
+
+function getSlides(props: SlideshowProps) {
+  const results = [];
+  for (let i = 0; i < props.children.length; i++) {
+    results[i] = () => props.children[i];
+  }
+  return results;
 }
 
 export default function Slideshow(props: SlideshowProps) {
   let slideRef: HTMLElement;
-  const slides = children(() => props.children).toArray();
+  const slides = getSlides(props);
 
   const receivedBoards = createServerData$<Stroke[][][], [string, string, number]>(
     async ([, url, slideCount]) => {
@@ -86,7 +94,7 @@ export default function Slideshow(props: SlideshowProps) {
               <For each={[...Array(vboardCount()[i()]).keys()]}>
                 {(j) => (
                   <section class="slide" ref={slideRef}>
-                    {slide}
+                    {slide()}
                     <Whiteboard
                       container={slideRef}
                       strokes={boards()[i()][j]}
