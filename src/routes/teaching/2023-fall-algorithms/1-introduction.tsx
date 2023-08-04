@@ -183,15 +183,10 @@ export default () => (
     </Slide>
     <Slide title="Running time of merge sort">
       <Proposition title="Running time of merge sort">
-        <p>The running time of merge sort is {tex`\bigo(n \log n)`}.</p>
+        {tex`
+          T(n) = \bigo(n \log n)
+        `}
       </Proposition>
-      <p>
-        Let {tex`T(n)`} be the running time of <em>merge sort</em>. By definition of the algorithm,{' '}
-        {tex`T`} satisfies
-      </p>
-      {tex`
-        T(n) = 2 T\left(\frac n 2\right) + n.
-      `}
     </Slide>
   </Slideshow>
 );
