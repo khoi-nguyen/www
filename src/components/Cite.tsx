@@ -1,4 +1,3 @@
-import { Component } from 'solid-js';
 import bibliography from '~/bibliography';
 
 interface CiteProps {
@@ -8,7 +7,7 @@ interface CiteProps {
   reference?: boolean;
 }
 
-type BibEntry = [string, Component];
+type BibEntry = [string, () => JSX.Element];
 
 export default function Cite(props: CiteProps) {
   const entry = bibliography[props.key] as BibEntry;
@@ -20,7 +19,7 @@ export default function Cite(props: CiteProps) {
         <Show when={props.children}>, {props.children}</Show>
         {props.narrative || ')'}
       </Show>
-      <Show when={props.reference}>{entry[1]}</Show>
+      <Show when={props.reference}>{entry[1]()}</Show>
     </>
   );
 }
