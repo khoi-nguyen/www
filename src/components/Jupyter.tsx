@@ -18,7 +18,6 @@ export default function Jupyter(props: JupyterProps) {
     setCode(value);
   };
   const handleKeyDown = (event: KeyboardEvent) => {
-    setCode((event.target as HTMLTextAreaElement).value);
     if (event.shiftKey && event.code === 'Enter') {
       event.preventDefault();
       run();
