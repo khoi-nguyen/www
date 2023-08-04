@@ -272,10 +272,6 @@ pre,
     position: relative;
     text-align: left;
 
-    &[hidden] {
-      display: none !important;
-    }
-
     &.title-slide > div {
       @extend .is-vcentered;
       text-align: center;
