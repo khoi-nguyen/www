@@ -58,6 +58,20 @@ export default function Slideshow(props: SlideshowProps) {
     deck.destroy();
   });
 
+  const [vboardCount, setVboardCount] = createSignal<number[]>(slides.map(() => 1));
+  createEffect(() => {
+    const count = boards().map((vboards: Stroke[][]) => vboards.length);
+    setVboardCount(count);
+  });
+  const addBoard = (i: number) => {
+    return () => {
+      boards()[i].push([]);
+      const newCount = vboardCount().map((count, j) => (i === j ? count + 1 : count));
+      setVboardCount(newCount);
+      deck.sync();
+    };
+  };
+
   return (
     <div class="reveal">
       <div class="slides">
@@ -69,7 +83,7 @@ export default function Slideshow(props: SlideshowProps) {
         <For each={slides}>
           {(slide, i) => (
             <section>
-              <For each={[...Array(boards()[i()].length).keys()]}>
+              <For each={[...Array(vboardCount()[i()]).keys()]}>
                 {(j) => (
                   <section class="slide" ref={slideRef}>
                     {slide}
