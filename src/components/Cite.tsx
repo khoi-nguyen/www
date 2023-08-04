@@ -11,7 +11,7 @@ interface CiteProps {
 type BibEntry = [string, Component];
 
 export default function Cite(props: CiteProps) {
-  const entry: BibEntry = bibliography[props.key];
+  const entry = bibliography[props.key] as BibEntry;
   return (
     <>
       <Show when={!props.reference}>
