@@ -4,7 +4,6 @@ import type { Stroke } from '~/lib/Whiteboard';
 interface WhiteboardProps {
   container: HTMLElement;
   height: number;
-  save: () => void;
   strokes: Stroke[];
   width: number;
 }
@@ -24,7 +23,7 @@ export default (props: WhiteboardProps) => {
   return (
     <>
       {canvas}
-      <Toolbar whiteboard={whiteboard} save={props.save} />
+      <Toolbar whiteboard={whiteboard} />
     </>
   );
 };
