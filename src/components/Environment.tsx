@@ -2,6 +2,7 @@ import type { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import {
   faBook,
   faCircleQuestion,
+  faInfoCircle,
   faPen,
   faPenToSquare,
 } from '@fortawesome/free-solid-svg-icons/index.js';
@@ -48,6 +49,10 @@ export function Example(props: SpecificEnvironmentProps) {
 
 export function Exercise(props: SpecificEnvironmentProps) {
   return <Environment name="Exercise" icon={faPenToSquare} {...props} />;
+}
+
+export function Information(props: SpecificEnvironmentProps) {
+  return <Environment name="Information" icon={faInfoCircle} {...props} />;
 }
 
 export function Proposition(props: SpecificEnvironmentProps) {
