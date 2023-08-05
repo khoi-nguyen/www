@@ -78,6 +78,10 @@ hgroup {
   @extend .hgroup;
 }
 
+iframe {
+  @extend .clickable;
+}
+
 input {
   border: 1px $light solid;
   border-radius: 0.2em;
