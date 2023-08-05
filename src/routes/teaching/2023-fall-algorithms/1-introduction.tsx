@@ -71,7 +71,7 @@ export default () => (
         Loop invariants are important tools to show <strong>correctness.</strong>
       </p>
       <Editor>{insertionSort}</Editor>
-      <Proposition title="Insertion's sort loop invariant">
+      <Proposition title="Insertion sort's loop invariant">
         <p>
           The subarray <code>A[:i]</code> contains the first <code>i</code> elements of the original
           array in <strong>sorted order</strong>.
