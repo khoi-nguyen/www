@@ -15,11 +15,12 @@ export default () => (
     <h2>Mathematics formulae</h2>
     <p>
       {tex`\LaTeX`} formulae (e.g. {tex`x^2`}) are rendered via{' '}
-      <a href="https://katex.org">KaTeX</a>. Formulae that start with a newline are shown in{' '}
-      <em>display mode</em>:
-      {tex`
-        \int_a^b f'(x) \dd x = f(b) - f(a).
-      `}
+      <a href="https://katex.org">KaTeX</a>.
+    </p>
+    <h2>Python code</h2>
+    <p>
+      Python code is executed <strong>client-side</strong> via{' '}
+      <a href="https://pyodide.org">Pyodide</a>.
     </p>
   </Page>
 );
