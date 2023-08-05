@@ -18,6 +18,7 @@ export default defineConfig({
           '~/lib/literals': ['py', 'tex'],
           '~/stores/session': ['useSession'],
           'solid-js': [
+            'children',
             'createEffect',
             'createResource',
             'createSignal',
