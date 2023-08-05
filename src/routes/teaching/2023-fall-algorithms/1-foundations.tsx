@@ -103,8 +103,10 @@ export default () => (
         `}
       </Definition>
       <Definition title={() => <>{tex`\bigtheta(g)`}</>}>
-        {tex`f \in \bigtheta(g)`} if there exist positive constants {tex`c, C`} and {tex`N`} such
-        that
+        <p>
+          {tex`f \in \bigtheta(g)`} if there exist positive constants {tex`c, C`} and {tex`N`} such
+          that
+        </p>
         {tex`
           c g(n) \leq f(n) \leq C g(n),
           \quad n \geq N.
