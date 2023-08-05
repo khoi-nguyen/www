@@ -49,6 +49,11 @@ export default function Slideshow(props: SlideshowProps) {
 
   const dimensions = { width: 1920, height: 1080 };
   let deck: InstanceType<typeof import('reveal.js')>;
+  const [vboardCount, setVboardCount] = createSignal<number[]>(slides.map(() => 1));
+  createEffect(() => {
+    const count = boards().map((vboards: Stroke[][]) => vboards.length);
+    setVboardCount(count);
+  });
   onMount(async () => {
     const Reveal = (await import('reveal.js')).default;
     deck = new Reveal({
@@ -62,24 +67,29 @@ export default function Slideshow(props: SlideshowProps) {
     });
     deck.on('slidechanged', save);
     deck.initialize();
+    const addBoard = (i: number) => {
+      return () => {
+        boards()[i].push([]);
+        const newCount = vboardCount().map((count, j) => (i === j ? count + 1 : count));
+        setVboardCount(newCount);
+        deck.sync();
+      };
+    };
+    deck.addKeyBinding('40', () => {
+      const { h, v } = deck.getIndices();
+      if (v === boards()[h - 1].length - 1) {
+        if (boards()[h - 1][v].length <= 1) {
+          return;
+        }
+        addBoard(h - 1)();
+      }
+      deck.sync();
+      deck.down();
+    });
   });
   onCleanup(() => {
     deck.destroy();
   });
-
-  const [vboardCount, setVboardCount] = createSignal<number[]>(slides.map(() => 1));
-  createEffect(() => {
-    const count = boards().map((vboards: Stroke[][]) => vboards.length);
-    setVboardCount(count);
-  });
-  const addBoard = (i: number) => {
-    return () => {
-      boards()[i].push([]);
-      const newCount = vboardCount().map((count, j) => (i === j ? count + 1 : count));
-      setVboardCount(newCount);
-      deck.sync();
-    };
-  };
 
   return (
     <div class="reveal">
