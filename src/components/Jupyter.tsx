@@ -5,7 +5,9 @@ interface JupyterProps {
 }
 
 export default function Jupyter(props: JupyterProps) {
-  const [code, setCode] = createSignal(String(props.children));
+  const [code, setCode] = createSignal(
+    Array.isArray(props.children) ? props.children.join('\n') : String(props.children),
+  );
   const [codeToRun, setCodeToRun] = createSignal('');
   const [isLoading, setIsLoading] = createSignal<boolean>(false);
 
