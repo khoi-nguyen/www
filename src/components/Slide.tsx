@@ -5,7 +5,7 @@ interface SlideProps {
   cite?: [keyof typeof bibliography, JSX.Element | string];
   columns?: boolean;
   split?: boolean;
-  title?: JSX.Element | string;
+  title?: string | (() => JSX.Element);
 }
 
 export default function Slide(props: SlideProps) {
@@ -19,7 +19,7 @@ export default function Slide(props: SlideProps) {
     <div>
       <Show when={props.title}>
         <h1>
-          {props.title}
+          {typeof props.title === 'function' ? props.title() : props.title}
           <Show when={props.cite}>
             {' '}
             <small>

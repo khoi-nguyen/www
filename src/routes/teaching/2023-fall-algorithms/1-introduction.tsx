@@ -93,15 +93,15 @@ export default () => (
         \sum_{i = 1}^n i = \frac {n (n + 1)} 2
       `}
     </Slide>
-    <Slide title={<>{tex`\bigo`}-notation</>} cite={['clrs', 'p. 54-55']}>
-      <Definition title={<>{tex`\bigo(g)`}</>}>
+    <Slide title={() => <>{tex`\bigo`}-notation</>} cite={['clrs', 'p. 54-55']}>
+      <Definition title={() => <>{tex`\bigo(g)`}</>}>
         {tex`f \in \bigo(g)`} if there exist positive constants {tex`C`} and {tex`N`} such that
         {tex`
           \abs {f(n)} \leq C g(n),
           \quad n \geq N.
         `}
       </Definition>
-      <Definition title={<>{tex`\bigtheta(g)`}</>}>
+      <Definition title={() => <>{tex`\bigtheta(g)`}</>}>
         {tex`f \in \bigtheta(g)`} if there exist positive constants {tex`c, C`} and {tex`N`} such
         that
         {tex`
@@ -121,7 +121,7 @@ export default () => (
         </ul>
       </Remark>
     </Slide>
-    <Slide title={<>Exercises: {tex`\bigo`}-notation</>}>
+    <Slide title={() => <>Exercises: {tex`\bigo`}-notation</>}>
       <Exercise title="True or False">
         <ol>
           <li>

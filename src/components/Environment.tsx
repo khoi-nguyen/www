@@ -9,7 +9,7 @@ import {
 interface SpecificEnvironmentProps {
   children?: JSX.Element;
   icon?: IconDefinition;
-  title?: JSX.Element;
+  title?: string | (() => JSX.Element);
 }
 
 interface EnvironmentProps extends SpecificEnvironmentProps {
@@ -24,7 +24,10 @@ export function Environment(props: EnvironmentProps) {
           <Fa icon={props.icon!} />{' '}
         </Show>
         {props.name}
-        <Show when={props.title}> ({props.title})</Show>
+        <Show when={props.title}>
+          {' '}
+          ({typeof props.title === 'function' ? props.title() : props.title})
+        </Show>
       </h3>
       <div>{props.children}</div>
     </div>
