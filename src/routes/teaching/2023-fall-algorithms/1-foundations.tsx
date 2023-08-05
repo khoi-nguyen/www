@@ -92,10 +92,13 @@ export default () => (
       `}
     </Slide>
     <Slide title={() => <>{tex`\bigo`}-notation</>} cite={['clrs', 'p. 54-55']}>
+      <p>Let {tex`f, g : \N \to \R^+`}.</p>
       <Definition title={() => <>{tex`\bigo(g)`}</>}>
-        {tex`f \in \bigo(g)`} if there exist positive constants {tex`C`} and {tex`N`} such that
+        <p>
+          {tex`f \in \bigo(g)`} if there exist positive constants {tex`C`} and {tex`N`} such that
+        </p>
         {tex`
-          \abs {f(n)} \leq C g(n),
+          f(n) \leq C g(n),
           \quad n \geq N.
         `}
       </Definition>
@@ -103,7 +106,7 @@ export default () => (
         {tex`f \in \bigtheta(g)`} if there exist positive constants {tex`c, C`} and {tex`N`} such
         that
         {tex`
-          c g(n) \leq \abs {f(n)} \leq C g(n),
+          c g(n) \leq f(n) \leq C g(n),
           \quad n \geq N.
         `}
       </Definition>
