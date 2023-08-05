@@ -75,6 +75,15 @@ export default function Slideshow(props: SlideshowProps) {
         deck.sync();
       };
     };
+    deck.addKeyBinding('38', () => {
+      const { h, v } = deck.getIndices();
+      const emptyBoard = boards()[h - 1][v].length <= 1;
+      if (emptyBoard && v >= 1) {
+        boards()[h - 1].splice(v, 1);
+        setVboardCount(vboardCount().map((count, j) => (j === h - 1 ? count - 1 : count)));
+      }
+      deck.up();
+    });
     deck.addKeyBinding('40', () => {
       const { h, v } = deck.getIndices();
       if (v === boards()[h - 1].length - 1) {
