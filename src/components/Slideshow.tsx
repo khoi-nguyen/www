@@ -12,8 +12,9 @@ interface SlideshowProps {
 
 function getSlides(props: SlideshowProps) {
   const results = [];
-  for (let i = 0; i < props.children.length; i++) {
-    results[i] = () => props.children[i];
+  const { children } = props;
+  for (let i = 0; i < children.length; i++) {
+    results[i] = (j: number) => (j === 0 ? children[i] : props.children[i]);
   }
   return results;
 }
@@ -94,7 +95,7 @@ export default function Slideshow(props: SlideshowProps) {
               <For each={[...Array(vboardCount()[i()]).keys()]}>
                 {(j) => (
                   <section class="slide" ref={slideRef}>
-                    {slide()}
+                    {slide(j)}
                     <Whiteboard container={slideRef} strokes={boards()[i()][j]} {...dimensions} />
                   </section>
                 )}
