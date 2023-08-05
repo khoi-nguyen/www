@@ -1,12 +1,14 @@
 import meta from './1-introduction.json';
 
-const insertionSort = String.raw`for i in range(1, len(A)):
-    key = A[i]
-    j = i - 1
-    while j >= 0 and key < A[j]:
-        A[j + 1] = A[j]
-        j -= 1
-    A[j + 1] = key`;
+const insertionSort = py`
+  for i in range(1, len(A)):
+      key = A[i]
+      j = i - 1
+      while j >= 0 and key < A[j]:
+          A[j + 1] = A[j]
+          j -= 1
+      A[j + 1] = key
+`;
 
 export default () => (
   <Slideshow meta={meta}>
@@ -43,12 +45,8 @@ export default () => (
         Here is a more standard implementation of <strong>insertion sort</strong>
       </p>
       <Jupyter>
-        {py`
-          A = [3, 7, 8, 1, 2, 7, 3]
-          ` +
-          '\n' +
-          insertionSort +
-          '\nA'}
+        A = [3, 7, 8, 1, 2, 7, 3]
+        {insertionSort}A
       </Jupyter>
       <p>For every algorithm, we shall study the following properties.</p>
       <ul>
