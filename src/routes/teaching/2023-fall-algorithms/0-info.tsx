@@ -49,9 +49,7 @@ export default () => (
       </p>
       <Jupyter>
         {py`
-          from sympy import *
-          A, x, r = symbols("A, x, r", real=True, positive=True)
-          Eq(A, integrate(4 * sqrt(r**2 - x**2), (x, 0, r)))
+          0.1 * 0.1 == 0.01
         `}
       </Jupyter>
       <p>
