@@ -19,7 +19,7 @@ export default function Poll(props: PollProps) {
   return (
     <>
       {props.children}
-      <p>
+      <p class={'poll ' + status()}>
         <input
           type="text"
           value={value()}

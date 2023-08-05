@@ -1,8 +1,10 @@
+$danger: darkred;
 $dark: #363636;
 $link: #485fc7;
 $light: #cccccc;
 $grey: #666666;
 $primary: #255994;
+$success: green;
 $radius: 12px;
 
 @import 'normalize.css/normalize.css';
@@ -183,6 +185,14 @@ pre,
   margin: auto;
   max-width: 1344px;
   padding: 0 0.5em;
+}
+
+.correct {
+  color: $success;
+}
+
+.incorrect {
+  color: $danger;
 }
 
 .cv-line {
