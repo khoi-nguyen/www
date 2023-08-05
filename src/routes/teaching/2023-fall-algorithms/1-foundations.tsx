@@ -186,6 +186,54 @@ export default () => (
         `}
       </Proposition>
     </Slide>
+    <Slide title="Solving recurrences" cite={['clrs', 'p. 90']}>
+      <Information title="Substitution method">
+        <ul>
+          <li>Guess the form of the solution using symbolic constants</li>
+          <li>Proof by induction</li>
+        </ul>
+      </Information>
+      <Example>
+        <p>
+          Show that the recurrence
+          {tex`
+            T(n) = 2 T( \lfloor n / 2 \rfloor) + \bigtheta(n)
+          `}
+          has solution {tex`T(n) = \bigo(n \log n)`}.
+        </p>
+      </Example>
+    </Slide>
+    <Slide title="Exercises: solving recurrences" cite={['clrs', 'pp. 94-95']}>
+      <Exercise>
+        <p>
+          Use the substitution method to show that each of the following recurrences has the
+          asymptotic solution specified:
+        </p>
+        <ol>
+          <li>
+            {tex`T(n) = T(n - 1) + n`} has solution {tex`T(n) = \bigo(n^2)`}
+          </li>
+          <li>
+            {tex`T(n) = T(n / 2) + \bigtheta(1)`} has solution {tex`T(n) = \bigo(\log n)`}
+          </li>
+          <li>
+            {tex`T(n) = 2 T(n / 2) + n`} has solution {tex`T(n) = \bigo(n \log n)`}
+          </li>
+          <li>
+            {tex`T(n) = 2 T(n / 2 + 17) + n`} has solution {tex`T(n) = \bigo(n \log n)`}
+          </li>
+          <li>
+            {tex`T(n) = 2 T(n / 3) + \bigtheta(n)`} has solution {tex`T(n) = \bigtheta(n)`}
+          </li>
+          <li>
+            {tex`T(n) = 4 T(n / 2) + \bigtheta(n)`} has solution {tex`T(n) = \bigtheta(n^2)`}
+          </li>
+        </ol>
+      </Exercise>
+    </Slide>
+    <Slide title="Recurrences: Avoiding pitfalls" cite={['clrs', 'pp. 93-94']}>
+      <Exercise>Find the mistake in the reasoning below:</Exercise>
+    </Slide>
     <Slide title="Quicksort">
       <Jupyter>
         {py`
