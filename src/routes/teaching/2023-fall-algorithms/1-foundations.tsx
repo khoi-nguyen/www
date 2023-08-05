@@ -1,4 +1,4 @@
-import meta from './1-introduction.json';
+import meta from './1-foundations.json';
 
 const insertionSort = py`
   for i in range(1, len(A)):
