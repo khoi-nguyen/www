@@ -29,11 +29,8 @@ export default function Poll(props: PollProps) {
         <Show when={status() === 'pending'}>
           <input type="submit" onClick={handleSubmit} />
         </Show>
-        <Show when={status() === 'correct'}>
-          <Fa icon={faCheck} />
-        </Show>
-        <Show when={status() === 'incorrect'}>
-          <Fa icon={faXmark} />
+        <Show when={status() !== 'pending'}>
+          <Fa icon={status() === 'correct' ? faCheck : faXmark} />
         </Show>
       </p>
     </>
