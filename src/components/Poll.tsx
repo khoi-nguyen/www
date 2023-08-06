@@ -26,10 +26,10 @@ export default function Poll(props: PollProps) {
           onInput={handleInput}
           readonly={status() !== 'pending'}
         />{' '}
-        <Show when={status() === 'pending'}>
-          <input type="submit" onClick={handleSubmit} />
-        </Show>
-        <Show when={status() !== 'pending'}>
+        <Show
+          when={status() !== 'pending'}
+          fallback={<input type="submit" onClick={handleSubmit} />}
+        >
           <Fa icon={status() === 'correct' ? faCheck : faXmark} />
         </Show>
       </p>
