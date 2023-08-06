@@ -6,7 +6,8 @@ export default () => (
       Hi everyone! My name is <strong>Khôi Nguyễn</strong> and I'm a mathematician and a programmer
       who is passionate about education. Currently, I work at{' '}
       <abbr title="New York University">NYU</abbr> as a part-time lecturer, where I teach{' '}
-      <em>Algorithms</em> and <em>Numerical Analysis</em>.
+      <A href="/teaching/2023-fall-algorithms">Algorithms</A> and{' '}
+      <A href="/teaching/2024-spring-numerical-analysis">Numerical Analysis</A>.
     </p>
     <p>
       Previously, I taught Mathematics and Computer Science in international schools such as the{' '}
