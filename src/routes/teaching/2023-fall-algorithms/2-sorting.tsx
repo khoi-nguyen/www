@@ -19,6 +19,16 @@ const CountTable = (props: { max: number }) => (
   </table>
 );
 
+const countingSort = py`
+  def counting_sort(A, max):
+      count, result = [0] * max, []
+      for element in A:
+          count[element] += 1
+      for value, frequency in enumerate(count):
+          result += [value] * frequency
+      return result
+`;
+
 export default () => (
   <Slideshow meta={meta}>
     <Slide title="Why is sorting important?"></Slide>
@@ -47,18 +57,21 @@ export default () => (
     </Slide>
     <Slide title="Counting sort: Python implementation">
       <Jupyter>
+        {countingSort}
         {py`
-          def counting_sort(A, max):
-              count, result = [0] * max, []
-              for element in A:
-                  count[element] += 1
-              for value, frequency in enumerate(count):
-                  result += [value] * frequency
-              return result
 
           counting_sort([0, 4, 3, 2, 7, 3, 4], 10)
         `}
       </Jupyter>
+    </Slide>
+    <Slide title="Counting sort: running time">
+      <Editor>{countingSort}</Editor>
+      <Proposition>
+        <p>
+          The running time of counting sort is {tex`\bigo(n + k)`}, where {tex`k`} is the number of
+          admissible elements.
+        </p>
+      </Proposition>
     </Slide>
   </Slideshow>
 );
