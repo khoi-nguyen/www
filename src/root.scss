@@ -148,6 +148,18 @@ nav#navbar {
   }
 }
 
+table {
+  @extend .block, .container;
+  width: 100%;
+
+  td,
+  th {
+    border: 1px $light solid;
+    margin: 0;
+    padding: 0.4em;
+  }
+}
+
 pre,
 .editor pre[class*='language-'] {
   background: white;
