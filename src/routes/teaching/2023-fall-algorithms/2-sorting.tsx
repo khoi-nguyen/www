@@ -40,6 +40,21 @@ export default () => (
         </p>
       </Theorem>
     </Slide>
+    <Slide title="Quicksort">
+      <Jupyter>
+        {py`
+          def quicksort(A):
+              if len(A) <= 1:
+                  return A
+              pivots = [x for x in A if x == A[0]]
+              L = quicksort([x for x in A if x < A[0]])
+              G = quicksort([x for x in A if x > A[0]])
+              return L + pivots + G
+
+          quicksort([-5, 3, 2, -1, 7, 5, 3])
+        `}
+      </Jupyter>
+    </Slide>
     <Slide title="Counting sort: an example">
       <Example>
         Sort the list
@@ -53,7 +68,12 @@ export default () => (
           </tbody>
         </table>
       </Example>
-      <CountTable max={10} />
+      <ol>
+        <li>
+          Keep a running tally <CountTable max={10} />
+        </li>
+        <li>Recontruct the sorted list</li>
+      </ol>
     </Slide>
     <Slide title="Counting sort: Python implementation">
       <Jupyter>

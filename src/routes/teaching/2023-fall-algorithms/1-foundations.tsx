@@ -239,20 +239,5 @@ export default () => (
     <Slide title="Recurrences: Avoiding pitfalls" cite={['clrs', 'pp. 93-94']}>
       <Exercise>Find the mistake in the reasoning below:</Exercise>
     </Slide>
-    <Slide title="Quicksort">
-      <Jupyter>
-        {py`
-          def quicksort(A):
-              if len(A) <= 1:
-                  return A
-              pivots = [x for x in A if x == A[0]]
-              L = quicksort([x for x in A if x < A[0]])
-              G = quicksort([x for x in A if x > A[0]])
-              return L + pivots + G
-
-          quicksort([-5, 3, 2, -1, 7, 5, 3])
-        `}
-      </Jupyter>
-    </Slide>
   </Slideshow>
 );
