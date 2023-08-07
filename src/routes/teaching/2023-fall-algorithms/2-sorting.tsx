@@ -1,3 +1,4 @@
+import { insertionSort, mergeSort } from './1-foundations';
 import meta from './2-sorting.json';
 
 const CountTable = (props: { max: number }) => (
@@ -41,6 +42,46 @@ export default () => (
       </ol>
     </Slide>
     <Slide title="Why is sorting important?"></Slide>
+    <Slide title="Sorting olympics" columns>
+      <div>
+        <h2>Insertion sort</h2>
+        <Jupyter>
+          {py`
+            import time
+            start = time.time()
+
+          `}
+          {insertionSort}
+          {py`
+
+            for i in range(10**6):
+                A = [1, 4, 3, 2, 7, 3, 6]
+                insertion_sort(A)
+
+            time.time() - start
+          `}
+        </Jupyter>
+      </div>
+      <div>
+        <h2>Merge sort</h2>
+        <Jupyter>
+          {py`
+            import time
+            start = time.time()
+
+          `}
+          {mergeSort}
+          {py`
+
+            for i in range(10**6):
+                A = [1, 4, 3, 2, 7, 3, 6]
+                merge_sort(A)
+
+            time.time() - start
+          `}
+        </Jupyter>
+      </div>
+    </Slide>
     <Slide title={() => <>Optimality of {tex`\bigo(n \log n)`} for comparison sorts</>}>
       <Theorem>
         <p>
