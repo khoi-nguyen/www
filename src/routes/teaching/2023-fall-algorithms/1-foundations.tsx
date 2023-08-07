@@ -12,6 +12,19 @@ export const insertionSort = py`
       return A
 `;
 
+export const mergeSort = py`
+  def merge_sort(A):
+      if len(A) <= 1:
+          return A
+      n = len(A) // 2
+      L, R = merge_sort(A[:n]), merge_sort(A[n:])
+      result = []
+      while L and R:
+          smallest = L.pop(0) if L[0] <= R[0] else R.pop(0)
+          result.append(smallest)
+      return result + L + R
+`;
+
 export default () => (
   <Slideshow meta={meta}>
     <Slide title="What is an algorithm?" cite={['clrs', 'p. 3']}>
@@ -168,21 +181,8 @@ export default () => (
     </Slide>
     <Slide title="Merge sort">
       <Jupyter>
+        {mergeSort}
         {py`
-          from math import floor
-
-          def merge_sort(A):
-              if len(A) <= 1:
-                  return A
-              # Divide
-              n = floor(len(A) / 2)
-              L, R = merge_sort(A[:n]), merge_sort(A[n:])
-              # Conquer
-              result = []
-              while L and R:
-                  smallest = L.pop(0) if L[0] <= R[0] else R.pop(0)
-                  result.append(smallest)
-              return result + L + R
 
           merge_sort([2, -1, 3, -4, 7, 3, 1])
         `}
