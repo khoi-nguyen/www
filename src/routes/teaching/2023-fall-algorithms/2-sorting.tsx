@@ -31,6 +31,15 @@ const countingSort = py`
 
 export default () => (
   <Slideshow meta={meta}>
+    <Slide title="Outline">
+      <ol>
+        <li>Motivations</li>
+        <li>Quadratic sorts (e.g. insertion sort): {tex`\bigo(n^2)`}</li>
+        <li>Comparison sorts (insertion sort) {tex`\bigo(n \log n)`}</li>
+        <li>Optimality of {tex`\bigo(n \log n)`}</li>
+        <li>Counting/radix sort</li>
+      </ol>
+    </Slide>
     <Slide title="Why is sorting important?"></Slide>
     <Slide title={() => <>Optimality of {tex`\bigo(n \log n)`} for comparison sorts</>}>
       <Theorem>
