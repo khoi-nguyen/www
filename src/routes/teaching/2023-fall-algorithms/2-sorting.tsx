@@ -1,9 +1,51 @@
 import meta from './2-sorting.json';
 
+const CountTable = (props: { max: number }) => (
+  <table>
+    <thead>
+      <tr>
+        {[...Array(props.max).keys()].map((i) => (
+          <th>{i}</th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {[...Array(props.max).keys()].map((_) => (
+          <td>&nbsp;</td>
+        ))}
+      </tr>
+    </tbody>
+  </table>
+);
+
 export default () => (
   <Slideshow meta={meta}>
     <Slide title="Why is sorting important?"></Slide>
-    <Slide title="Counting sort">
+    <Slide title={() => <>Optimality of {tex`\bigo(n \log n)`} for comparison sorts</>}>
+      <Theorem>
+        <p>
+          The running time of a <strong>comparison sorting algorithm</strong> is at best{' '}
+          {tex`\bigo(n \log n)`}.
+        </p>
+      </Theorem>
+    </Slide>
+    <Slide title="Counting sort: an example">
+      <Example>
+        Sort the list
+        <table>
+          <tbody>
+            <tr>
+              {[3, 2, 2, 7, 2, 4, 6, 1, 8, 1].map((i) => (
+                <td>{i}</td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </Example>
+      <CountTable max={10} />
+    </Slide>
+    <Slide title="Counting sort: Python implementation">
       <Jupyter>
         {py`
           def counting_sort(A, max):
