@@ -1,13 +1,15 @@
 import meta from './1-foundations.json';
 
-const insertionSort = py`
-  for i in range(1, len(A)):
-      key = A[i]
-      j = i - 1
-      while j >= 0 and key < A[j]:
-          A[j + 1] = A[j]
-          j -= 1
-      A[j + 1] = key
+export const insertionSort = py`
+  def insertion_sort(A):
+      for i in range(1, len(A)):
+          key = A[i]
+          j = i - 1
+          while j >= 0 and key < A[j]:
+              A[j + 1] = A[j]
+              j -= 1
+          A[j + 1] = key
+      return A
 `;
 
 export default () => (
@@ -45,8 +47,10 @@ export default () => (
         Here is a more standard implementation of <strong>insertion sort</strong>
       </p>
       <Jupyter>
-        A = [3, 7, 8, 1, 2, 7, 3]
-        {insertionSort}A
+        {insertionSort}
+        {py`
+          insertion_sort([3, 7, 8, 1, 2, 7, 3])
+        `}
       </Jupyter>
       <p>For every algorithm, we shall study the following properties.</p>
       <ul>
