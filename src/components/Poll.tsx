@@ -2,6 +2,7 @@ import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface BasicPollProps<T> {
   children: JSX.Element | JSX.Element[] | string;
+  fallback?: JSX.Element;
   mark: (value: T) => Promise<boolean> | boolean;
   value: T;
 }
@@ -21,8 +22,11 @@ export const BasicPoll: Component<BasicPollProps<any>> = (props) => {
   return (
     <>
       <div class={'poll ' + status()}>
-        {props.children}
+        <Show when={props.fallback && status() !== 'pending'} fallback={props.children}>
+          {props.fallback}
+        </Show>
         <Show when={status() !== 'pending'}>
+          {' '}
           <Fa icon={status() === 'correct' ? faCheck : faXmark} />
         </Show>
       </div>
@@ -31,7 +35,7 @@ export const BasicPoll: Component<BasicPollProps<any>> = (props) => {
 };
 
 interface PollProps {
-  children: JSX.Element | JSX.Element[] | string;
+  children?: JSX.Element | JSX.Element[] | string;
   mark: (value: string) => Promise<boolean> | boolean;
 }
 
@@ -45,9 +49,33 @@ export default function Poll(props: PollProps) {
   return (
     <>
       {props.children}
-      <BasicPoll mark={props.mark} value={submittedValue()}>
+      <BasicPoll mark={props.mark} value={submittedValue()} fallback={value()}>
         <input type="text" value={value()} onInput={handleInput} />
         <input type="submit" onClick={() => setSubmittedValue(value())} />
+      </BasicPoll>
+    </>
+  );
+}
+
+interface MultipleChoiceProps {
+  children?: JSX.Element | JSX.Element[] | string;
+  choices: (Component<{}> | string)[];
+  correct: number;
+}
+
+export function MultipleChoice(props: MultipleChoiceProps) {
+  const [value, setValue] = createSignal<number | undefined>(undefined);
+  return (
+    <>
+      {props.children}
+      <BasicPoll value={value()} mark={(val) => val === props.correct}>
+        <For each={props.choices}>
+          {(choice, i) => (
+            <button onClick={() => setValue(i)}>
+              {typeof choice === 'function' ? choice({}) : choice}
+            </button>
+          )}
+        </For>
       </BasicPoll>
     </>
   );
