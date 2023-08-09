@@ -1,9 +1,10 @@
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons/index.js';
 import {
-  faBlackboard,
+  faBroom,
+  faEyeSlash,
   faPen,
   faHighlighter,
-  faSave,
+  faLayerGroup,
 } from '@fortawesome/free-solid-svg-icons/index.js';
 import type Whiteboard from '~/lib/Whiteboard';
 
@@ -32,6 +33,19 @@ export default function Toolbar(props: ToolbarProps) {
     setLineWidth(brush[1]);
     props.whiteboard.changeBrush(...brush);
   };
+
+  const [zIndex, setZIndex] = createSignal<number>(1);
+  createEffect(() => {
+    props.whiteboard.canvas.style.zIndex = String(zIndex());
+    props.whiteboard.canvas.style.display = zIndex() < 0 ? 'none' : 'block';
+  });
+  const toggleZIndex = () => {
+    setZIndex(zIndex() <= 1 ? 3 : 1);
+  };
+  const toggleVisibility = () => {
+    setZIndex(zIndex() < 0 ? 1 : -1);
+  };
+
   return (
     <div class="toolbar">
       <A href="../" class="active">
@@ -49,7 +63,13 @@ export default function Toolbar(props: ToolbarProps) {
         )}
       </For>
       <button class="is-secondary" onClick={() => props.whiteboard.clearBoard(true)}>
-        <Fa icon={faBlackboard} />
+        <Fa icon={faBroom} />
+      </button>
+      <button class="is-secondary" onClick={toggleZIndex}>
+        <Fa icon={faLayerGroup} />
+      </button>
+      <button class="is-secondary" onClick={toggleVisibility}>
+        <Fa icon={faEyeSlash} />
       </button>
     </div>
   );
