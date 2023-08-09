@@ -7,7 +7,7 @@ interface BasicPollProps<T> {
   value: T;
 }
 
-export const BasicPoll: Component<BasicPollProps<any>> = (props) => {
+export function BasicPoll<T>(props: BasicPollProps<T>) {
   const [status, setStatus] = createSignal<'pending' | 'correct' | 'incorrect'>('pending');
   createEffect(
     on(
@@ -32,7 +32,7 @@ export const BasicPoll: Component<BasicPollProps<any>> = (props) => {
       </div>
     </>
   );
-};
+}
 
 interface PollProps {
   children?: JSX.Element | JSX.Element[] | string;
