@@ -5,7 +5,7 @@ import 'prismjs/themes/prism-coy.css';
 
 interface EditorProps {
   children?: JSX.Element;
-  lang?: string;
+  lang?: keyof typeof Prism.languages;
   onUpdate?: (code: string) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
 }
