@@ -2,11 +2,9 @@ import type { IconDefinition } from '@fortawesome/fontawesome-common-types';
 
 interface FaProps {
   icon: IconDefinition;
-  color?: string;
 }
 
 export default function Fa(props: FaProps) {
-  props = mergeProps({ color: 'black' }, props);
   const i = () => props.icon.icon;
   return (
     <svg
