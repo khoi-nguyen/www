@@ -6,11 +6,10 @@ interface YoutubeProps {
 }
 
 export default function Youtube(props: YoutubeProps) {
-  props = mergeProps({ width: 560, height: 315, zoom: 1 }, props);
   return (
     <iframe
-      width={props.width}
-      height={props.height}
+      width={(props.width || 560) * (props.zoom || 1)}
+      height={(props.height || 315) * (props.zoom || 1)}
       src={props.src.replace('watch?v=', 'embed/')}
       allow="autoplay; encrypted-media"
       allowfullscreen
