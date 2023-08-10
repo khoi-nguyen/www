@@ -21,10 +21,12 @@ export default function Slide(props: SlideProps) {
         <h1>
           {typeof props.title === 'function' ? props.title() : props.title}
           <Show when={props.cite}>
-            {' '}
-            <small>
-              <Cite key={props.cite![0]}>{props.cite![1]}</Cite>
-            </small>
+            {(cite) => (
+              <small>
+                {' '}
+                <Cite key={cite()[0]}>{cite()[1]}</Cite>
+              </small>
+            )}
           </Show>
         </h1>
       </Show>

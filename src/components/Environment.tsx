@@ -22,7 +22,11 @@ export function Environment(props: EnvironmentProps) {
     <div class="environment">
       <h3 class={props.name.toLowerCase()}>
         <Show when={props.icon}>
-          <Fa icon={props.icon!} />{' '}
+          {(icon) => (
+            <>
+              <Fa icon={icon()} />{' '}
+            </>
+          )}
         </Show>
         {props.name}
         <Show when={props.title}>
