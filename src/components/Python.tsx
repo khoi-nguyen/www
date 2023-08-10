@@ -21,20 +21,21 @@ export default function Python(props: PythonProps) {
   createEffect(updateCode);
   return (
     <div class="block">
-      <Show when={result.state === 'pending'}>
-        <Spinner />
-      </Show>
-      <Show when={result.state === 'ready'}>
-        <Show when={result()!.format === 'latex'}>
-          <Maths tex={result()!.output} display />
-        </Show>
-        <Show when={result()!.format === 'matplotlib'}>
-          <img src={result()!.output} alt="Matplotlib plot" />
-        </Show>
-        <Show when={result()!.format === 'error'}>{result()!.output}</Show>
-        <Show when={result()!.format === 'string'}>
-          <pre>{result()!.output}</pre>
-        </Show>
+      <Show when={result.state === 'ready' && result()} fallback={<Spinner />}>
+        {(rslt) => (
+          <>
+            <Show when={rslt().format === 'latex'}>
+              <Maths tex={rslt().output} display />
+            </Show>
+            <Show when={rslt().format === 'matplotlib'}>
+              <img src={rslt().output} alt="Matplotlib plot" />
+            </Show>
+            <Show when={rslt().format === 'error'}>{rslt().output}</Show>
+            <Show when={rslt().format === 'string'}>
+              <pre>{rslt().output}</pre>
+            </Show>
+          </>
+        )}
       </Show>
     </div>
   );
