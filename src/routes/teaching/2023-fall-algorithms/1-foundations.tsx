@@ -74,7 +74,7 @@ export default () => (
           <strong>Correctness:</strong> Does it yield the desired result?
         </li>
         <li>
-          <strong>Running time:</strong> Does it yield the desired result?
+          <strong>Running time:</strong> How fast is the algorithm?
         </li>
       </ul>
     </Slide>
