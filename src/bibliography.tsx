@@ -7,7 +7,7 @@ export default {
         <a href="https://en.wikipedia.org/wiki/Introduction_to_Algorithms">
           <em>Introduction to algorithms</em>
         </a>
-        . MIT press.
+        . <Abbr key="MIT" /> press.
       </>
     ),
   ],
