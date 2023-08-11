@@ -9,7 +9,7 @@ const abbreviations = {
 };
 
 interface AbbrProps {
-  key: string & keyof typeof abbreviations;
+  key: keyof typeof abbreviations;
 }
 
 export default function Abbr(props: AbbrProps) {
