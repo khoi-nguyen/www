@@ -35,7 +35,9 @@ export default function Editor(props: EditorProps) {
   });
 
   onCleanup(() => {
-    editor.destroy();
+    if (editor) {
+      editor.destroy();
+    }
   });
 
   return <pre class={`language-${props.lang} clickable`}>{textArea}</pre>;

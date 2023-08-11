@@ -1,15 +1,9 @@
-import node from '@astrojs/node';
-import { defineConfig } from 'astro/config';
-import start from 'solid-start/astro';
-import AutoImport from 'unplugin-auto-import/astro';
+import solid from 'solid-start/vite';
+import AutoImport from 'unplugin-auto-import/vite';
+import { defineConfig } from 'vite';
 
-// https://astro.build/config
 export default defineConfig({
-  output: 'server',
-  adapter: node({
-    mode: 'standalone',
-  }),
-  integrations: [
+  plugins: [
     AutoImport({
       include: [/\.[tj]sx?$/],
       dirs: ['./src/components'],
@@ -42,11 +36,9 @@ export default defineConfig({
         },
       ],
     }),
-    start(),
+    solid(),
   ],
-  vite: {
-    worker: {
-      format: 'es',
-    },
+  worker: {
+    format: 'es',
   },
 });

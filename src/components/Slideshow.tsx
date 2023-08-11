@@ -97,7 +97,9 @@ export default function Slideshow(props: SlideshowProps) {
     });
   });
   onCleanup(() => {
-    deck.destroy();
+    if (deck) {
+      deck.destroy();
+    }
   });
 
   return (
