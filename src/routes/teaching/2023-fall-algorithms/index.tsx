@@ -19,6 +19,9 @@ export const Info = () => (
         <li>
           <Cite key="clrs" reference />
         </li>
+        <li>
+          <Cite key="clrss" reference />
+        </li>
       </ul>
     </dd>
     <dt>Email</dt>
