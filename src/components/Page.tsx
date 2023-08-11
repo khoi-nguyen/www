@@ -17,7 +17,7 @@ export default function Page(props: PageProps) {
           </li>
           <li>
             <A href="/cv">
-              <Fa icon={faAddressCard} /> <abbr title="Curriculum Vitæ">CV</abbr>
+              <Fa icon={faAddressCard} /> <Abbr key="CV" />
             </A>
           </li>
           <li>

@@ -9,8 +9,8 @@ export default () => (
       <a href="https://start.solidjs.com/">Solid Start</a> (its associated <em>meta-framework</em>).
       In a nutshell, they are kind of like <a href="https://react.dev">React</a> and{' '}
       <a href="https://nextjs.org">Next.js</a>, in a sense that there are Components-based and use{' '}
-      <abbr title="JavaScript Syntax Extension">JSX</abbr>. The big difference is that Solid does
-      not use a Virtual <abbr title="Document Object Model">DOM</abbr> and is actually reactive.
+      <Abbr key="JSX" />. The big difference is that Solid does not use a Virtual <Abbr key="DOM" />{' '}
+      and is actually reactive.
     </p>
     <h2>Mathematics formulae</h2>
     <p>

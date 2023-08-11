@@ -4,9 +4,8 @@ export default () => (
   <Page meta={meta}>
     <p>
       Hi everyone! My name is <strong>Khôi Nguyễn</strong> and I'm a mathematician and a programmer
-      who is passionate about education. Currently, I work at{' '}
-      <abbr title="New York University">NYU</abbr> as a part-time lecturer, where I teach{' '}
-      <A href="/teaching/2023-fall-algorithms">Algorithms</A> and{' '}
+      who is passionate about education. Currently, I work at <Abbr key="NYU" /> as a part-time
+      lecturer, where I teach <A href="/teaching/2023-fall-algorithms">Algorithms</A> and{' '}
       <A href="/teaching/2024-spring-numerical-analysis">Numerical Analysis</A>.
     </p>
     <p>
@@ -15,7 +14,7 @@ export default () => (
       <a href="https://www.kingscollegeschools.org/">
         King's College, The British School of Madrid
       </a>
-      . And before that, I worked as a <abbr title="Philosophiæ Doctor">PhD</abbr> student at{' '}
+      . And before that, I worked as a <Abbr key="PhD" /> student at{' '}
       <a href="https://imperial.ac.uk">Imperial College</a>. My focus was on developing global
       Pseudo-Differential Calculus on Lie groups.
     </p>

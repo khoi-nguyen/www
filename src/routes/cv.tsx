@@ -7,7 +7,7 @@ export default () => (
     <Line
       title={
         <>
-          <abbr title="Postgraduate Certificate in Education">PGCE</abbr> in Mathematics
+          <Abbr key="PGCE" /> in Mathematics
         </>
       }
       employer={<a href="https://ox.ac.uk">University of Oxford</a>}
@@ -27,7 +27,7 @@ export default () => (
     <Line
       title={
         <>
-          <abbr title="Philosophiæ Doctor">PhD</abbr> in Mathematics
+          <Abbr key="PhD" /> in Mathematics
         </>
       }
       employer={<a href="https://imperial.ac.uk">Imperial College London</a>}
@@ -49,7 +49,7 @@ export default () => (
     <Line
       title={
         <>
-          <abbr title="Master of Advanced Study">MASt</abbr> in Mathematics (Part III)
+          <Abbr key="MASt" /> in Mathematics (Part III)
         </>
       }
       employer={<a href="https://cam.ac.uk">University of Cambridge</a>}
