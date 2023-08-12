@@ -1,8 +1,8 @@
 interface PdfProps {
   page?: number;
   src: string;
-  width: string | number;
-  height: string | number;
+  width?: string | number;
+  height?: string | number;
 }
 
 export default function Pdf(props: PdfProps) {
