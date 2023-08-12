@@ -241,7 +241,20 @@ export default () => (
       </Exercise>
     </Slide>
     <Slide title="Recurrences: Avoiding pitfalls" cite={['clrs', 'pp. 93-94']}>
-      <Exercise>Find the mistake in the reasoning below:</Exercise>
+      <Exercise>
+        <p>Find the mistake in the reasoning below:</p>
+      </Exercise>
+      {tex`
+        T(n) = 2 T \left(\left\lfloor \frac n 2 \right\rfloor\right) + \bigtheta(n).
+      `}
+      <p>We can check that {tex`T(n) = O(n)`} satisfies the recurrence relation, as</p>
+      {tex`
+        \begin{align}
+          T(n) &\leq 2 \bigo \left(\left\lfloor \frac n 2 \right\rfloor\right) + \bigtheta(n)\\
+          &= 2 \bigo(n) + \bigtheta(n)\\
+          &= O(n).
+        \end{align}
+      `}
     </Slide>
   </Slideshow>
 );
