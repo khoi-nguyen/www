@@ -1,6 +1,5 @@
 // @refresh reload
 import './root.scss';
-import 'dotenv/config';
 import { Suspense } from 'solid-js';
 import { Body, ErrorBoundary, FileRoutes, Head, Html, Meta, Routes, Scripts } from 'solid-start';
 import { SessionProvider } from '~/stores/session';
