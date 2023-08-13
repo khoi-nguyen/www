@@ -26,7 +26,7 @@ export default () => {
   });
   const data = useRouteData<typeof routeData>();
 
-  const input = (<input style={{ width: '100%' }} />) as HTMLInputElement;
+  const input = (<input style={{ width: '100%' }} placeholder="Task..." />) as HTMLInputElement;
   const [todos, setTodos] = createStore<TodoItem[]>([]);
   createEffect(() => {
     if (data.state === 'ready') {
