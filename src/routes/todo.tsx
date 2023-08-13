@@ -52,7 +52,9 @@ export default () => {
     saveAction({ tasks: todos });
   };
   const submit = () => {
-    addTodo(input.value);
+    if (input.value) {
+      addTodo(input.value);
+    }
     input.value = '';
   };
   return (
