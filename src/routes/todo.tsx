@@ -84,7 +84,7 @@ export default () => {
           <tr>
             <td></td>
             <td>
-              <form action="#" onSubmit={submit}>
+              <form action="javascript:void(0)" onSubmit={submit}>
                 {input}
               </form>
             </td>
