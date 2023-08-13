@@ -1,4 +1,8 @@
-import { faAddressCard, faChalkboardUser } from '@fortawesome/free-solid-svg-icons/index.js';
+import {
+  faAddressCard,
+  faChalkboardUser,
+  faRightFromBracket,
+} from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface PageProps {
   children: JSX.Element;
@@ -6,6 +10,7 @@ interface PageProps {
 }
 
 export default function Page(props: PageProps) {
+  const [admin, { logout }] = useSession();
   return (
     <>
       <nav id="navbar">
@@ -25,6 +30,13 @@ export default function Page(props: PageProps) {
               <Fa icon={faChalkboardUser} /> Teaching
             </A>
           </li>
+          <Show when={admin()}>
+            <li>
+              <A href="#" onclick={logout}>
+                <Fa icon={faRightFromBracket} /> Log out
+              </A>
+            </li>
+          </Show>
         </ul>
       </nav>
       <Breadcrumbs />
