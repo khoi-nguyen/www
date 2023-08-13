@@ -7,10 +7,8 @@ interface CiteProps {
   reference?: boolean;
 }
 
-type BibEntry = [string, string, () => JSX.Element];
-
 export default function Cite(props: CiteProps) {
-  const entry = bibliography[props.key] as BibEntry;
+  const entry = bibliography[props.key];
   return (
     <>
       <Show when={!props.reference} fallback={entry[2]()}>
