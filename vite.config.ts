@@ -27,6 +27,7 @@ export default defineConfig({
             'Suspense',
             'Switch',
           ],
+          'solid-js/store': ['createStore'],
           'solid-start': ['A', 'useLocation', 'useNavigate'],
         },
         {
