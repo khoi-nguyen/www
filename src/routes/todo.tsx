@@ -26,7 +26,7 @@ export default () => {
   });
   const data = useRouteData<typeof routeData>();
 
-  const input = (<input />) as HTMLInputElement;
+  const input = (<input style={{ width: '100%' }} />) as HTMLInputElement;
   const [todos, setTodos] = createStore<TodoItem[]>([]);
   createEffect(() => {
     if (data.state === 'ready') {
@@ -58,33 +58,39 @@ export default () => {
   return (
     <Page meta={meta}>
       <table class="borderless">
-        <For each={todos}>
-          {(todo) => (
-            <tr>
-              <td class="actions">
-                <button onClick={[deleteTodo, todo.text]}>
-                  <Fa icon={faTrash} />
-                </button>
-              </td>
-              <td>
-                <span
-                  style={{
-                    'text-decoration': todo.completed ? 'line-through' : 'none',
-                    cursor: 'pointer',
-                  }}
-                  onClick={[toggleTodo, todo.text]}
-                >
-                  {todo.text}
-                </span>
-              </td>
-            </tr>
-          )}
-        </For>
+        <tbody>
+          <For each={todos}>
+            {(todo) => (
+              <tr>
+                <td class="actions">
+                  <button onClick={[deleteTodo, todo.text]}>
+                    <Fa icon={faTrash} />
+                  </button>
+                </td>
+                <td>
+                  <span
+                    style={{
+                      'text-decoration': todo.completed ? 'line-through' : 'none',
+                      cursor: 'pointer',
+                    }}
+                    onClick={[toggleTodo, todo.text]}
+                  >
+                    {todo.text}
+                  </span>
+                </td>
+              </tr>
+            )}
+          </For>
+          <tr>
+            <td></td>
+            <td>
+              <form action="#" onSubmit={submit}>
+                {input}
+              </form>
+            </td>
+          </tr>
+        </tbody>
       </table>
-      <form action="#" onSubmit={submit}>
-        {input}
-        <input type="submit" />
-      </form>
     </Page>
   );
 };
