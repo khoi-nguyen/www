@@ -67,14 +67,16 @@ export default () => {
                   checked={todo.completed}
                   onchange={[toggleTodo, todo.text]}
                 />{' '}
-                <button onClick={[deleteTodo, todo.text]}>
-                  <Fa icon={faTrash} />
-                </button>
               </td>
               <td>
                 <span style={{ 'text-decoration': todo.completed ? 'line-through' : 'none' }}>
                   {todo.text}
                 </span>
+              </td>
+              <td class="is-narrow">
+                <button onClick={[deleteTodo, todo.text]}>
+                  <Fa icon={faTrash} />
+                </button>
               </td>
             </tr>
           )}
