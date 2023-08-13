@@ -43,8 +43,8 @@ export default function Slideshow(props: SlideshowProps) {
     },
   );
   const url = useLocation().pathname;
-  const save = () => {
-    saveAction({ url, contents: boards() });
+  const save = async () => {
+    await saveAction({ url, contents: boards() });
   };
 
   const dimensions = { width: 1920, height: 1080 };
@@ -65,7 +65,6 @@ export default function Slideshow(props: SlideshowProps) {
       touch: false,
       transition: 'none',
     });
-    deck.on('slidechanged', save);
     deck.initialize();
     const addBoard = (i: number) => {
       return () => {
@@ -95,10 +94,12 @@ export default function Slideshow(props: SlideshowProps) {
       deck.sync();
       deck.down();
     });
+    window.addEventListener('beforeunload', save);
   });
-  onCleanup(() => {
+  onCleanup(async () => {
     if (deck) {
       deck.destroy();
+      await save();
     }
   });
 
