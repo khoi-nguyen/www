@@ -47,8 +47,17 @@ export default function Page(props: PageProps) {
       </nav>
       <Breadcrumbs />
       <main>
-        <Meta {...props.meta} />
-        {props.children}
+        <Show
+          when={admin() || !props.meta.adminOnly}
+          fallback={
+            <p>
+              You need to <A href="/login">log in</A>.
+            </p>
+          }
+        >
+          <Meta {...props.meta} />
+          {props.children}
+        </Show>
       </main>
     </>
   );
