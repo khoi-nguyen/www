@@ -1,15 +1,40 @@
 import meta from './todo.json';
+import { faTrash } from '@fortawesome/free-solid-svg-icons/index.js';
+import { createServerAction$, createServerData$ } from 'solid-start/server';
+import { getTasks, writeTasks } from '~/lib/server/todo';
 
-interface TodoItem {
+export interface TodoItem {
   text: string;
   completed: boolean;
 }
 
 export default () => {
+  const [, saveAction] = createServerAction$(async (data: { tasks: TodoItem[] }, event) => {
+    writeTasks(data.tasks, event.request);
+  });
+  const savedTodos = createServerData$<TodoItem[]>(
+    async () => {
+      return await getTasks().json();
+    },
+    {
+      initialValue: [],
+    },
+  );
+
   const input = (<input />) as HTMLInputElement;
   const [todos, setTodos] = createStore<TodoItem[]>([]);
+  createEffect(() => {
+    setTodos(savedTodos()!);
+  });
+
   const addTodo = (text: string) => {
     setTodos([...todos, { text, completed: false }]);
+    saveAction({ tasks: todos });
+  };
+  const deleteTodo = (text: string) => {
+    const tasks = todos.filter((task) => task.text !== text);
+    setTodos(tasks);
+    saveAction({ tasks });
   };
   const toggleTodo = (text: string) => {
     setTodos(
@@ -17,6 +42,7 @@ export default () => {
       'completed',
       (completed) => !completed,
     );
+    saveAction({ tasks: todos });
   };
   const submit = () => {
     addTodo(input.value);
@@ -31,6 +57,9 @@ export default () => {
             <span style={{ 'text-decoration': todo.completed ? 'line-through' : 'none' }}>
               {todo.text}
             </span>
+            <button onClick={() => deleteTodo(todo.text)}>
+              <Fa icon={faTrash} />
+            </button>
           </li>
         )}
       </For>
