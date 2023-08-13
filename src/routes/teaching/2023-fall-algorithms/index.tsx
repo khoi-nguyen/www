@@ -29,7 +29,7 @@ export const Info = () => (
       <a href="mailto:nguyen.khoi@nyu.edu">nguyen.khoi@nyu.edu</a>
     </dd>
     <dt>Office hour</dt>
-    <dd>Send me an email</dd>
+    <dd>Wednesday 5:00pm (online)</dd>
     <dt>Evaluation</dt>
     <dd>
       <ul>
@@ -48,7 +48,7 @@ export default () => {
       <h2>Practical information</h2>
       <Info />
       <h2>Teaching resources</h2>
-      <Explorer pattern={`${location.pathname}/?[0-9]+-.*json$`} />
+      <Explorer pattern={`${location.pathname}/?[0-9]+-.*json$`} sortBy={(page) => page.title} />
     </Page>
   );
 };
