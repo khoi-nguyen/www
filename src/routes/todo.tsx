@@ -61,6 +61,11 @@ export default () => {
         <For each={todos}>
           {(todo) => (
             <tr>
+              <td class="actions">
+                <button onClick={[deleteTodo, todo.text]}>
+                  <Fa icon={faTrash} />
+                </button>
+              </td>
               <td>
                 <span
                   style={{
@@ -71,11 +76,6 @@ export default () => {
                 >
                   {todo.text}
                 </span>
-              </td>
-              <td class="actions">
-                <button onClick={[deleteTodo, todo.text]}>
-                  <Fa icon={faTrash} />
-                </button>
               </td>
             </tr>
           )}
