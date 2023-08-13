@@ -7,18 +7,24 @@ interface PythonProps {
 }
 
 export default function Python(props: PythonProps) {
-  const [code, setCode] = createSignal<undefined | string>(undefined);
-  const [result] = createResource(code, runPython);
-  const updateCode = () => {
-    setCode(props.children ? String(props.children) : props.code);
+  const [mounted, setMounted] = createSignal(false);
+  onMount(() => {
+    setMounted(true);
+  });
+
+  const code = () => {
+    if (!mounted()) {
+      return undefined;
+    }
+    return props.children ? String(props.children) : props.code;
   };
+
+  const [result] = createResource(code, runPython);
   createEffect(() => {
     if (!result.loading && props.onExecuted) {
       props.onExecuted();
     }
   });
-  onMount(updateCode);
-  createEffect(updateCode);
   return (
     <div class="block">
       <Show when={result.state === 'ready' && result()} fallback={<Spinner />}>
