@@ -16,7 +16,7 @@ export function makeContext() {
   });
 
   const PasswordField = () => <input type="password" name="password" />;
-  const [__, { Form }] = createServerAction$(async (data: FormData, event) => {
+  const [loggingIn, { Form }] = createServerAction$(async (data: FormData, event) => {
     const password = data.get('password') as string;
     return login(event.request, password);
   });
@@ -27,6 +27,7 @@ export function makeContext() {
       logout: () => {
         handleLogout();
       },
+      loggingIn,
       PasswordField,
       Form,
     },

@@ -1,4 +1,4 @@
-import { createCookieSessionStorage } from 'solid-start';
+import { createCookieSessionStorage, FormError } from 'solid-start';
 
 const storage = createCookieSessionStorage({
   cookie: {
@@ -19,8 +19,11 @@ const fromRequest = (request: Request) => {
 export async function login(request: Request, password: string) {
   const session = await fromRequest(request);
   const admin = password === (process.env.ADMIN_PASSWORD || 'admin');
+  if (!admin) {
+    throw new FormError('The password you have entered is incorrect.');
+  }
   session.set('admin', admin);
-  return new Response(admin ? 'Logged in' : 'Authentication failed', {
+  return new Response('Logged in', {
     headers: {
       'Set-Cookie': await storage.commitSession(session),
     },
