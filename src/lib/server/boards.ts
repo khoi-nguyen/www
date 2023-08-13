@@ -4,7 +4,7 @@ import { json } from 'solid-start';
 import type { Stroke } from '~/lib/Whiteboard';
 import { isLoggedIn } from '~/lib/server/auth';
 
-const prefix = './src/data/';
+const prefix = './data/';
 
 const fileFromUrl = (url: string) => {
   return prefix + url.replace(/^\/?(.*?)\/?$/, '$1') + '.json';
