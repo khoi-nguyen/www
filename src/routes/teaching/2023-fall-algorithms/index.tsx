@@ -38,6 +38,14 @@ export const Info = () => (
         <li>Final: 25%</li>
       </ul>
     </dd>
+    <dt>Useful documents</dt>
+    <dd>
+      <ul>
+        <li>
+          <A href="./syllabus">Syllabus</A>
+        </li>
+      </ul>
+    </dd>
   </dl>
 );
 
