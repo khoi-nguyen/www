@@ -162,6 +162,20 @@ table {
       width: 1px;
       white-space: nowrap;
     }
+
+    &.actions {
+      @extend .is-narrow;
+
+      button {
+        visibility: hidden;
+      }
+    }
+  }
+
+  tr {
+    &:hover .actions button {
+      visibility: visible !important;
+    }
   }
 
   &.borderless {

@@ -72,7 +72,7 @@ export default () => {
                   {todo.text}
                 </span>
               </td>
-              <td class="is-narrow">
+              <td class="actions">
                 <button onClick={[deleteTodo, todo.text]}>
                   <Fa icon={faTrash} />
                 </button>
