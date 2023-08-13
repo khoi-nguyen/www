@@ -13,13 +13,12 @@ export default function Cite(props: CiteProps) {
   const entry = bibliography[props.key] as BibEntry;
   return (
     <>
-      <Show when={!props.reference}>
+      <Show when={!props.reference} fallback={entry[2]()}>
         <Show when={!props.narrative} fallback={entry[1]}>
           ({entry[0]}
           <Show when={props.children}>, {props.children}</Show>)
         </Show>
       </Show>
-      <Show when={props.reference}>{entry[2]()}</Show>
     </>
   );
 }
