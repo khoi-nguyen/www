@@ -1,5 +1,6 @@
 import meta from './todo.json';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/index.js';
+import { useRouteData } from 'solid-start';
 import { createServerAction$, createServerData$ } from 'solid-start/server';
 import { getTasks, writeTasks } from '~/lib/server/todo';
 
@@ -8,11 +9,8 @@ export interface TodoItem {
   completed: boolean;
 }
 
-export default () => {
-  const [, saveAction] = createServerAction$(async (data: { tasks: TodoItem[] }, event) => {
-    writeTasks(data.tasks, event.request);
-  });
-  const savedTodos = createServerData$<TodoItem[]>(
+export function routeData() {
+  return createServerData$<TodoItem[]>(
     async () => {
       return await getTasks().json();
     },
@@ -20,11 +18,20 @@ export default () => {
       initialValue: [],
     },
   );
+}
+
+export default () => {
+  const [, saveAction] = createServerAction$(async (data: { tasks: TodoItem[] }, event) => {
+    writeTasks(data.tasks, event.request);
+  });
+  const data = useRouteData<typeof routeData>();
 
   const input = (<input />) as HTMLInputElement;
   const [todos, setTodos] = createStore<TodoItem[]>([]);
   createEffect(() => {
-    setTodos(savedTodos()!);
+    if (data.state === 'ready') {
+      setTodos(data());
+    }
   });
 
   const addTodo = (text: string) => {
