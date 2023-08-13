@@ -1,5 +1,6 @@
 import {
   faAddressCard,
+  faList,
   faChalkboardUser,
   faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons/index.js';
@@ -31,6 +32,11 @@ export default function Page(props: PageProps) {
             </A>
           </li>
           <Show when={admin()}>
+            <li>
+              <A href="/todo">
+                <Fa icon={faList} /> Todo
+              </A>
+            </li>
             <li>
               <A href="#" onclick={logout}>
                 <Fa icon={faRightFromBracket} /> Log out
