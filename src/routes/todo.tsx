@@ -61,15 +61,14 @@ export default () => {
         <For each={todos}>
           {(todo) => (
             <tr>
-              <td class="is-narrow">
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  onchange={[toggleTodo, todo.text]}
-                />{' '}
-              </td>
               <td>
-                <span style={{ 'text-decoration': todo.completed ? 'line-through' : 'none' }}>
+                <span
+                  style={{
+                    'text-decoration': todo.completed ? 'line-through' : 'none',
+                    cursor: 'pointer',
+                  }}
+                  onClick={[toggleTodo, todo.text]}
+                >
                   {todo.text}
                 </span>
               </td>
