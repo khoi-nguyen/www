@@ -1,8 +1,6 @@
-import { writeFileSync, existsSync, mkdirSync, readFileSync } from 'fs';
-import * as path from 'path';
 import { json } from 'solid-start';
 import type { Stroke } from '~/lib/Whiteboard';
-import { isLoggedIn } from '~/lib/server/auth';
+import { readJSONFile, writeJSONFile } from '~/lib/server/utils';
 
 const prefix = './data/';
 
@@ -12,7 +10,7 @@ const fileFromUrl = (url: string) => {
 
 export function loadBoard(url: string, slideCount: number) {
   const path = fileFromUrl(url);
-  const data = JSON.parse(existsSync(path) ? readFileSync(path, 'utf-8') : '[]');
+  const data = readJSONFile(path, '[]', false);
   while (data.length < slideCount) {
     data.push([[]]);
   }
@@ -21,13 +19,5 @@ export function loadBoard(url: string, slideCount: number) {
 
 export function writeBoard(url: string, contents: Stroke[][][], request: Request) {
   const boardFile = fileFromUrl(url);
-  const dirname = path.dirname(boardFile);
-  if (!existsSync(dirname)) {
-    mkdirSync(dirname, { recursive: true });
-  }
-  if (!isLoggedIn(request)) {
-    throw new Error('You need to be logged in to edit a board.');
-  }
-  writeFileSync(boardFile, JSON.stringify(contents), 'utf-8');
-  return json(contents);
+  writeJSONFile(boardFile, contents, request);
 }
