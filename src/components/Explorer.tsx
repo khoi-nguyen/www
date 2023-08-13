@@ -1,7 +1,17 @@
+import { sortBy } from 'lodash-es';
+
+type Metadata = Parameters<typeof Meta>[0];
+interface Page extends Metadata {
+  path: string;
+}
+type SortFunction = (page: Page) => string | number;
 interface ExplorerProps {
   filter?: string;
   pattern: string;
+  sortBy?: SortFunction;
 }
+
+const defaultSort: SortFunction = (page) => page.path;
 
 export default function Explorer(props: ExplorerProps) {
   const navigate = useNavigate();
@@ -18,21 +28,24 @@ export default function Explorer(props: ExplorerProps) {
           return {
             path: path.replace(/\/src\/routes(.*?)(index)?\.json$/, '$1'),
             ...meta,
-          };
+          } as Page;
         }),
     );
   });
   const filtered = () => {
-    return (pages() || []).filter((page) => {
-      return (
-        Object.entries(page).filter(([_, value]) => {
-          return value
-            .toString()
-            .toLowerCase()
-            .includes((props.filter || '').toLowerCase());
-        }).length > 0
-      );
-    });
+    return sortBy(
+      (pages() || []).filter((page) => {
+        return (
+          Object.entries(page).filter(([_, value]) => {
+            return value
+              .toString()
+              .toLowerCase()
+              .includes((props.filter || '').toLowerCase());
+          }).length > 0
+        );
+      }),
+      props.sortBy || defaultSort,
+    );
   };
 
   return (
