@@ -81,8 +81,10 @@ export default () => {
           )}
         </For>
       </table>
-      {input}
-      <input type="submit" onClick={submit} />
+      <form action="#" onSubmit={submit}>
+        {input}
+        <input type="submit" />
+      </form>
     </Page>
   );
 };
