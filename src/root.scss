@@ -157,6 +157,18 @@ table {
     border: 1px $light solid;
     margin: 0;
     padding: 0.4em;
+
+    &.is-narrow {
+      width: 1px;
+      white-space: nowrap;
+    }
+  }
+
+  &.borderless {
+    td,
+    th {
+      border-width: 0;
+    }
   }
 }
 

@@ -57,19 +57,29 @@ export default () => {
   };
   return (
     <Page meta={meta}>
-      <For each={todos}>
-        {(todo) => (
-          <li>
-            <input type="checkbox" checked={todo.completed} onchange={[toggleTodo, todo.text]} />{' '}
-            <span style={{ 'text-decoration': todo.completed ? 'line-through' : 'none' }}>
-              {todo.text}
-            </span>
-            <button onClick={() => deleteTodo(todo.text)}>
-              <Fa icon={faTrash} />
-            </button>
-          </li>
-        )}
-      </For>
+      <table class="borderless">
+        <For each={todos}>
+          {(todo) => (
+            <tr>
+              <td class="is-narrow">
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onchange={[toggleTodo, todo.text]}
+                />{' '}
+                <button onClick={[deleteTodo, todo.text]}>
+                  <Fa icon={faTrash} />
+                </button>
+              </td>
+              <td>
+                <span style={{ 'text-decoration': todo.completed ? 'line-through' : 'none' }}>
+                  {todo.text}
+                </span>
+              </td>
+            </tr>
+          )}
+        </For>
+      </table>
       {input}
       <input type="submit" onClick={submit} />
     </Page>
