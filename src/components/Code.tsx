@@ -10,10 +10,10 @@ interface CodeProps {
 
 export default function Code(props: CodeProps) {
   props = mergeProps({ lang: 'python' }, props);
-  const code = <code>{props.children}</code>;
+  const code = (<code>{props.children}</code>) as HTMLElement;
 
   onMount(() => {
-    Prism.highlightElement(code as HTMLElement);
+    Prism.highlightElement(code);
   });
 
   return <pre class={`language-${props.lang}`}>{code}</pre>;
