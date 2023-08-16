@@ -1,5 +1,6 @@
 import meta from './0-info.json';
 import { Info } from './index.jsx';
+import { chapters } from './syllabus';
 
 export default () => (
   <Slideshow meta={meta}>
@@ -7,24 +8,15 @@ export default () => (
       <p>Hello everyone! Welcome to Paris, I hope you'll have a fantastic term here.</p>
       <Info />
     </Slide>
-    <Slide title="Syllabus">
-      <dl>
-        <dt>Chapter 1</dt>
-        <dd>
-          <ul>
-            <li>
-              What's an algorithm? What's a <strong>good</strong> algorithm?
-            </li>
-            <li>Termination, complexity, big-{tex`\bigo`} notation</li>
-          </ul>
-          <p>
-            Reference:{' '}
-            <Cite key="clrs" narrative>
-              Chapters 1 and 2
-            </Cite>
-          </p>
-        </dd>
-      </dl>
+    <Slide title="Syllabus" columns>
+      <div>
+        {chapters[0]()}
+        {chapters[1]()}
+      </div>
+      <div>
+        {chapters[2]()}
+        {chapters[3]()}
+      </div>
     </Slide>
     <Slide title="Notes about code">
       <ul>
