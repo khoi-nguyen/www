@@ -1,4 +1,3 @@
-import { json } from 'solid-start';
 import type { Stroke } from '~/lib/Whiteboard';
 import { readJSONFile, writeJSONFile } from '~/lib/server/utils';
 
@@ -8,16 +7,19 @@ const fileFromUrl = (url: string) => {
   return prefix + url.replace(/^\/?(.*?)\/?$/, '$1') + '.json';
 };
 
-export function loadBoard(url: string, slideCount: number) {
+export function loadBoard(key: [string, string, number]) {
+  const [, url, slideCount] = key;
   const path = fileFromUrl(url);
-  const data = readJSONFile(path, '[]', false);
+  const data = readJSONFile(path, '[]');
   while (data.length < slideCount) {
     data.push([[]]);
   }
-  return json(data);
+  return data;
 }
 
-export function writeBoard(url: string, contents: Stroke[][][], request: Request) {
-  const boardFile = fileFromUrl(url);
-  writeJSONFile(boardFile, contents, request);
+export async function writeBoard(
+  data: { url: string; contents: Stroke[][][] },
+  event: ServerFunctionEvent,
+) {
+  writeJSONFile(fileFromUrl(data.url), data.contents, event);
 }

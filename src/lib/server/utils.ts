@@ -1,6 +1,5 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import * as path from 'path';
-import { json } from 'solid-start';
 import { isAdmin } from '~/lib/server/auth';
 
 function createDirs(file: string) {
@@ -10,19 +9,14 @@ function createDirs(file: string) {
   }
 }
 
-export function readJSONFile(file: string, defaultValue = '[]', returnJson = true) {
+export function readJSONFile(file: string, defaultValue = '[]') {
   createDirs(file);
-  const data = JSON.parse(existsSync(file) ? readFileSync(file, 'utf-8') : defaultValue);
-  if (returnJson) {
-    return json(data);
-  } else {
-    return data;
-  }
+  return JSON.parse(existsSync(file) ? readFileSync(file, 'utf-8') : defaultValue);
 }
 
-export function writeJSONFile(file: string, contents: any, request: Request) {
+export function writeJSONFile(file: string, contents: any, event: ServerFunctionEvent) {
   createDirs(file);
-  if (!isAdmin(undefined, { request } as ServerFunctionEvent)) {
+  if (!isAdmin(undefined, event)) {
     throw new Error('You need to be logged in');
   }
   writeFileSync(file, JSON.stringify(contents), 'utf-8');

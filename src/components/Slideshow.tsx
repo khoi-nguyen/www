@@ -22,25 +22,13 @@ export default function Slideshow(props: SlideshowProps) {
   let slideRef: HTMLElement;
   const slides = getSlides(props);
 
-  const receivedBoards = createServerData$<Stroke[][][], [string, string, number]>(
-    async ([, url, slideCount]) => {
-      return await loadBoard(url, slideCount).json();
-    },
-    {
-      initialValue: slides.map(() => [[]]),
-      key: () => ['boards', useLocation().pathname, slides.length],
-    },
-  );
-
-  const boards = createMemo<Stroke[][][]>(() => {
-    return cloneDeep(receivedBoards()!);
+  const receivedBoards = createServerData$<Stroke[][][], [string, string, number]>(loadBoard, {
+    initialValue: slides.map(() => [[]]),
+    key: () => ['boards', useLocation().pathname, slides.length],
   });
+  const boards = createMemo<Stroke[][][]>(() => cloneDeep(receivedBoards()!));
 
-  const [, saveAction] = createServerAction$(
-    async (data: { url: string; contents: Stroke[][][] }, event) => {
-      return writeBoard(data.url, data.contents, event.request);
-    },
-  );
+  const [, saveAction] = createServerAction$(writeBoard);
   const url = useLocation().pathname;
   const save = async () => {
     await saveAction({ url, contents: boards() });
