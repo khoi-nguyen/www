@@ -23,17 +23,31 @@ export default () => (
         Reference: <Cite key="clrs">Chapters 7, 8, 9</Cite>
       </p>
     </hgroup>
+    <ul>
+      <li>Comparison sorts</li>
+      <li>Counting Sort, Radix sort</li>
+      <li>Median and order statistics</li>
+    </ul>
     <hgroup>
       <h2>Chapter 3: Advanced Design and Analysis Techniques</h2>
       <p>
         Reference: <Cite key="clrs">Chapters 14, 15, 16</Cite>
       </p>
     </hgroup>
+    <ul>
+      <li>Dynamic Programming: RodCutting, Longest Common Subsequence, Knapsack</li>
+      <li>Greedy: Interval scheduling, Huffman Code</li>
+    </ul>
     <hgroup>
       <h2>Chapter 4: Graph Algorithms</h2>
       <p>
         Reference: <Cite key="clrs">Chapters 22, 23, 24, 25</Cite>
       </p>
     </hgroup>
+    <ul>
+      <li>Graph: basics</li>
+      <li>Classical algorithms: Kruskal, Prim, Dijkstra, Floyd-Warshall, etc.</li>
+      <li>P vs NP, NP completeness</li>
+    </ul>
   </Page>
 );
