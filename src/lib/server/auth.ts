@@ -1,4 +1,4 @@
-import { createCookieSessionStorage, FormError, ServerFunctionEvent } from 'solid-start';
+import { createCookieSessionStorage, FormError } from 'solid-start';
 
 const storage = createCookieSessionStorage({
   cookie: {

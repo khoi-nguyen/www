@@ -36,6 +36,11 @@ export default defineConfig({
           imports: ['Component', 'JSX'],
           type: true,
         },
+        {
+          from: 'solid-start',
+          imports: ['ServerFunctionEvent'],
+          type: true,
+        },
       ],
     }),
     solid(),

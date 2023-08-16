@@ -1,4 +1,3 @@
-import { ServerFunctionEvent } from 'solid-start';
 import { readJSONFile, writeJSONFile } from '~/lib/server/utils';
 import type { TodoItem } from '~/routes/todo';
 

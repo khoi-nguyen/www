@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import * as path from 'path';
-import { json, ServerFunctionEvent } from 'solid-start';
+import { json } from 'solid-start';
 import { isAdmin } from '~/lib/server/auth';
 
 function createDirs(file: string) {
