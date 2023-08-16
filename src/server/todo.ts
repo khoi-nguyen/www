@@ -1,5 +1,5 @@
-import { readJSONFile, writeJSONFile } from '~/lib/server/utils';
 import type { TodoItem } from '~/routes/todo';
+import { readJSONFile, writeJSONFile } from '~/server/utils';
 
 const file = './data/todo.json';
 

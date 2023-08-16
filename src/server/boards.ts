@@ -1,5 +1,5 @@
 import type { Stroke } from '~/lib/Whiteboard';
-import { readJSONFile, writeJSONFile } from '~/lib/server/utils';
+import { readJSONFile, writeJSONFile } from '~/server/utils';
 
 const prefix = './data/';
 

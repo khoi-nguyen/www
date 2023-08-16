@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'solid-js';
-import { login, logout, isAdmin } from '~/lib/server/auth';
+import { login, logout, isAdmin } from '~/server/auth';
 
 interface SessionProviderProps {
   children?: JSX.Element;
