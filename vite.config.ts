@@ -29,6 +29,7 @@ export default defineConfig({
           ],
           'solid-js/store': ['createStore'],
           'solid-start': ['A', 'useLocation', 'useNavigate'],
+          'solid-start/server': ['createServerAction$', 'createServerData$'],
         },
         {
           from: 'solid-js',
