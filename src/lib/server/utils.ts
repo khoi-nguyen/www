@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import * as path from 'path';
-import { json } from 'solid-start';
-import { isLoggedIn } from '~/lib/server/auth';
+import { json, ServerFunctionEvent } from 'solid-start';
+import { isAdmin } from '~/lib/server/auth';
 
 function createDirs(file: string) {
   const dirname = path.dirname(file);
@@ -22,7 +22,7 @@ export function readJSONFile(file: string, defaultValue = '[]', returnJson = tru
 
 export function writeJSONFile(file: string, contents: any, request: Request) {
   createDirs(file);
-  if (!isLoggedIn(request)) {
+  if (!isAdmin(undefined, { request } as ServerFunctionEvent)) {
     throw new Error('You need to be logged in');
   }
   writeFileSync(file, JSON.stringify(contents), 'utf-8');
