@@ -2,7 +2,7 @@ import meta from './todo.json';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/index.js';
 import { useRouteData } from 'solid-start';
 import { createServerAction$, createServerData$ } from 'solid-start/server';
-import { getTasks, writeTasks } from '~/lib/server/todo';
+import { getTasks, saveTasks } from '~/lib/server/todo';
 
 export interface TodoItem {
   text: string;
@@ -10,20 +10,13 @@ export interface TodoItem {
 }
 
 export function routeData() {
-  return createServerData$<TodoItem[]>(
-    async () => {
-      return await getTasks().json();
-    },
-    {
-      initialValue: [],
-    },
-  );
+  return createServerData$<TodoItem[]>(getTasks, {
+    initialValue: [],
+  });
 }
 
 export default () => {
-  const [, saveAction] = createServerAction$(async (data: { tasks: TodoItem[] }, event) => {
-    writeTasks(data.tasks, event.request);
-  });
+  const [, save] = createServerAction$<TodoItem[], void>(saveTasks);
   const data = useRouteData<typeof routeData>();
 
   const input = (<input style={{ width: '100%' }} placeholder="Task..." />) as HTMLInputElement;
@@ -36,12 +29,12 @@ export default () => {
 
   const addTodo = (text: string) => {
     setTodos([...todos, { text, completed: false }]);
-    saveAction({ tasks: todos });
+    save(todos);
   };
   const deleteTodo = (text: string) => {
     const tasks = todos.filter((task) => task.text !== text);
     setTodos(tasks);
-    saveAction({ tasks });
+    save(tasks);
   };
   const toggleTodo = (text: string) => {
     setTodos(
@@ -49,7 +42,7 @@ export default () => {
       'completed',
       (completed) => !completed,
     );
-    saveAction({ tasks: todos });
+    save(todos);
   };
   const submit = () => {
     if (input.value) {
