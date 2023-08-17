@@ -1,6 +1,5 @@
 import meta from './todo.json';
 import { faTrash } from '@fortawesome/free-solid-svg-icons/index.js';
-import { useRouteData } from 'solid-start';
 import { getTasks, saveTasks } from '~/server/todo';
 
 export interface TodoItem {

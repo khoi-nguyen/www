@@ -29,7 +29,7 @@ export default defineConfig({
             'Switch',
           ],
           'solid-js/store': ['createStore'],
-          'solid-start': ['A', 'useLocation', 'useNavigate'],
+          'solid-start': ['A', 'useLocation', 'useNavigate', 'useRouteData'],
           'solid-start/server': ['createServerAction$', 'createServerData$'],
         },
         {
