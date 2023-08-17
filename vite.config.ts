@@ -14,6 +14,7 @@ export default defineConfig({
           'solid-js': [
             'children',
             'createEffect',
+            'createMemo',
             'createResource',
             'createSignal',
             'mergeProps',

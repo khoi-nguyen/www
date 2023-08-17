@@ -1,6 +1,5 @@
 import { cloneDeep } from 'lodash-es';
 import 'reveal.js/dist/reveal.css';
-import { createMemo } from 'solid-js';
 import type { Stroke } from '~/lib/Whiteboard';
 import { loadBoard, writeBoard } from '~/server/boards';
 
