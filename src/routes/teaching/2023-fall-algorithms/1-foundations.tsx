@@ -60,7 +60,7 @@ export default () => (
       <Question>
         <p>What is an algorithm?</p>
       </Question>
-      <Definition title="Algorithm">
+      <Definition title="Algorithm" fragment>
         <p>Sequence of computational steps that transform the input into an output</p>
       </Definition>
     </Slide>
