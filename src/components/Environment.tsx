@@ -11,6 +11,7 @@ interface SpecificEnvironmentProps {
   children?: JSX.Element;
   icon?: IconDefinition;
   title?: string | (() => JSX.Element);
+  fragment?: boolean;
 }
 
 interface EnvironmentProps extends SpecificEnvironmentProps {
@@ -19,7 +20,7 @@ interface EnvironmentProps extends SpecificEnvironmentProps {
 
 export function Environment(props: EnvironmentProps) {
   return (
-    <div class="environment">
+    <div classList={{ environment: true, fragment: props.fragment }}>
       <h3 class={props.name.toLowerCase()}>
         <Show when={props.icon}>
           {(icon) => (
