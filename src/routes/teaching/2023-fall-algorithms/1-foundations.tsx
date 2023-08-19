@@ -60,9 +60,11 @@ export default () => (
       <Question>
         <p>What is an algorithm?</p>
       </Question>
-      <Definition title="Algorithm" fragment>
-        <p>Sequence of computational steps that transform the input into an output</p>
-      </Definition>
+      <Fragment>
+        <Definition title="Algorithm">
+          <p>Sequence of computational steps that transform the input into an output</p>
+        </Definition>
+      </Fragment>
     </Slide>
     <Slide title="Example: Insertion sort" cite={['clrs', 'p. 17']}>
       <Question>

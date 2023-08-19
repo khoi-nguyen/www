@@ -11,12 +11,6 @@ interface SpecificEnvironmentProps {
   children?: JSX.Element;
   icon?: IconDefinition;
   title?: string | (() => JSX.Element);
-
-  /**
-   * Apply 'fragment' class to the surrounding div (see RevealJS doc).
-   * If given an integer value, supply a value to the 'data-fragment-index' value.
-   */
-  fragment?: boolean | number;
 }
 
 interface EnvironmentProps extends SpecificEnvironmentProps {
@@ -24,10 +18,8 @@ interface EnvironmentProps extends SpecificEnvironmentProps {
 }
 
 export function Environment(props: EnvironmentProps) {
-  const attrs = () =>
-    typeof props.fragment === 'number' ? { 'data-fragment-index': props.fragment } : {};
   return (
-    <div classList={{ environment: true, fragment: props.fragment !== undefined }} {...attrs()}>
+    <div class="environment">
       <h3 class={props.name.toLowerCase()}>
         <Show when={props.icon}>
           {(icon) => (
