@@ -1,7 +1,41 @@
 import meta from './cv.json';
+import {
+  faBirthdayCake,
+  faEnvelope,
+  faGlobe,
+  faPhone,
+} from '@fortawesome/free-solid-svg-icons/index.js';
+
+function calculateAge(dob: Date): number {
+  const currentDate = new Date();
+  const birthDate = new Date(dob);
+  let age = currentDate.getFullYear() - birthDate.getFullYear();
+  if (
+    currentDate.getMonth() < birthDate.getMonth() ||
+    (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+  return age;
+}
 
 export default () => (
   <Page meta={meta}>
+    <ul class="cv-info">
+      <li>
+        <Fa icon={faBirthdayCake} /> {calculateAge(new Date('1991-01-24'))} years old
+      </li>
+      <li>
+        <Fa icon={faPhone} /> +32 499 19 24 02
+      </li>
+      <li>
+        <Fa icon={faEnvelope} /> <a href="mailto:khoi@nguyen.me.uk">khoi@nguyen.me.uk</a>
+      </li>
+      <li>
+        <Fa icon={faGlobe} /> <A href="/">https://nguyen.me.uk</A>
+      </li>
+    </ul>
+
     <h2>Education</h2>
 
     <Line
@@ -80,6 +114,9 @@ export default () => (
         <li>
           <strong>Taught courses:</strong> Numerical Analysis, Algorithms
         </li>
+        <li>
+          <strong>Programming languages used:</strong> Python, Julia
+        </li>
       </ul>
     </Line>
 
@@ -100,7 +137,20 @@ export default () => (
       title="Teacher of Mathematics and Computer Science"
       employer={<a href="https://britishschool.be">The British School of Brussels</a>}
       dates={[new Date('2021-08'), new Date('2023-01')]}
-    />
+    >
+      <ul>
+        <li>
+          <strong>Taught courses</strong>: <Abbr key="IGCSE" />, <Abbr key="IBDP" />, A Levels
+        </li>
+        <li>
+          Supervision of <Abbr key="IBDP" /> Extended Essays
+        </li>
+        <li>Oxbridge entrance exams and mock interview preparation</li>
+        <li>
+          <strong>Extra-Curricular:</strong> First LEGO League
+        </li>
+      </ul>
+    </Line>
 
     <Line
       title="Teacher of Mathematics and Computer Science"
@@ -110,7 +160,14 @@ export default () => (
         </a>
       }
       dates={[new Date('2020-08'), new Date('2021-08')]}
-    />
+    >
+      <ul>
+        <li>
+          <strong>Taught courses</strong>: <Abbr key="IGCSE" />, A Levels
+        </li>
+        <li>Oxbridge entrance exams and mock interview preparation</li>
+      </ul>
+    </Line>
 
     <Line
       title="Teacher of Mathematics"

@@ -229,6 +229,13 @@ pre,
   color: $success;
 }
 
+.cv-info {
+  color: $grey;
+  float: right;
+  list-style-type: none;
+  margin: 0;
+}
+
 .incorrect {
   color: $danger;
 }
