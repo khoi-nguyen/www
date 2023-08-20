@@ -54,12 +54,9 @@ export default () => (
       dates={[new Date('2019-10'), new Date('2020-06')]}
     >
       <ul>
+        <li>Funding: scholarship from the British government</li>
         <li>
-          <strong>Funding:</strong> scholarship from the British government
-        </li>
-        <li>
-          <strong>Extra-curricular:</strong> Half-blue for playing the Table Tennis Varsity match
-          against Cambridge
+          Extra-curricular: Half-blue for playing the Table Tennis Varsity match against Cambridge
         </li>
       </ul>
     </Line>
@@ -74,16 +71,11 @@ export default () => (
       dates={[new Date('2012-10'), new Date('2016-10')]}
     >
       <ul>
+        <li>Thesis: Pseudo-Differential Calculus on Generalized Motion Groups</li>
         <li>
-          <strong>Thesis:</strong> Pseudo-Differential Calculus on Generalized Motion Groups
+          Supervisor: Professor <a href="https://ruzhansky.org">Michael Ruzhansky</a>
         </li>
-        <li>
-          <strong>Supervisor:</strong> Professor{' '}
-          <a href="https://ruzhansky.org">Michael Ruzhansky</a>
-        </li>
-        <li>
-          <strong>Funding:</strong> Competitive departmental scolarship
-        </li>
+        <li>Funding: Competitive departmental scolarship</li>
       </ul>
     </Line>
 
@@ -97,16 +89,12 @@ export default () => (
       dates={[new Date('2011-10'), new Date('2012-06')]}
     >
       <ul>
+        <li>Thesis: Energy-minimizing maps</li>
         <li>
-          <strong>Thesis:</strong> Energy-minimizing maps
-        </li>
-        <li>
-          <strong>Supervisor:</strong> Professor{' '}
+          Supervisor: Professor{' '}
           <a href="https://www.maths.cam.ac.uk/person/ngw24">Neshan Wickramasekera</a>
         </li>
-        <li>
-          <strong>Grade:</strong> distinction (highest passing grade)
-        </li>
+        <li>Grade: distinction (highest passing grade)</li>
       </ul>
     </Line>
 
@@ -119,12 +107,8 @@ export default () => (
       dates={[new Date('2023-01')]}
     >
       <ul>
-        <li>
-          <strong>Taught courses:</strong> Numerical Analysis, Algorithms
-        </li>
-        <li>
-          <strong>Programming languages used:</strong> Python, Julia
-        </li>
+        <li>Taught courses: Numerical Analysis, Algorithms</li>
+        <li>Programming languages used: Python, Julia</li>
       </ul>
     </Line>
 
@@ -135,9 +119,7 @@ export default () => (
       dates={[new Date('2023-05'), new Date('2023-06')]}
     >
       <ul>
-        <li>
-          <strong>Taught course:</strong> Differential Equations (for engineering students)
-        </li>
+        <li>Taught course: Differential Equations (for engineering students)</li>
       </ul>
     </Line>
 
@@ -148,15 +130,13 @@ export default () => (
     >
       <ul>
         <li>
-          <strong>Taught courses</strong>: <Abbr key="IGCSE" />, <Abbr key="IBDP" />, A Levels
+          Taught courses: <Abbr key="IGCSE" />, <Abbr key="IBDP" />, A Levels
         </li>
         <li>
           Supervision of <Abbr key="IBDP" /> Extended Essays
         </li>
         <li>Oxbridge entrance exams and mock interview preparation</li>
-        <li>
-          <strong>Extra-Curricular:</strong> First LEGO League
-        </li>
+        <li>Extra-Curricular: First LEGO League</li>
       </ul>
     </Line>
 
@@ -171,7 +151,7 @@ export default () => (
     >
       <ul>
         <li>
-          <strong>Taught courses</strong>: <Abbr key="IGCSE" />, A Levels
+          Taught courses: <Abbr key="IGCSE" />, A Levels
         </li>
         <li>Oxbridge entrance exams and mock interview preparation</li>
       </ul>
