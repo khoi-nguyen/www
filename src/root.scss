@@ -209,6 +209,12 @@ pre,
   display: flex;
   gap: 1em;
 
+  @for $c from 1 to 12 {
+    .is-#{$c} {
+      flex-grow: $c;
+    }
+  }
+
   > * {
     flex-basis: 0;
     flex-grow: 1;

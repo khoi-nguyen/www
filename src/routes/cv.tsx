@@ -206,11 +206,11 @@ function Line(props: LineProps) {
   };
   return (
     <div class="cv-line block">
-      <hgroup>
-        <h4>
+      <hgroup class="columns">
+        <h4 class="is-8">
           {props.title}, {props.employer} <Show when={props.location}>({props.location})</Show>
         </h4>
-        <p>
+        <p class="is-4">
           {props.dates.length === 1 && 'Since '}
           {props.dates.map(showDate).join(' — ')}
         </p>
