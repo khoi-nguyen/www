@@ -72,7 +72,8 @@ export default () => (
           <strong>Thesis:</strong> Pseudo-Differential Calculus on Generalized Motion Groups
         </li>
         <li>
-          <strong>Supervisor:</strong> Professor Michael Ruzhansky
+          <strong>Supervisor:</strong> Professor{' '}
+          <a href="https://ruzhansky.org">Michael Ruzhansky</a>
         </li>
         <li>
           <strong>Funding:</strong> Competitive departmental scolarship
@@ -94,7 +95,8 @@ export default () => (
           <strong>Thesis:</strong> Energy-minimizing maps
         </li>
         <li>
-          <strong>Supervisor:</strong> Professor Neshan Wickramasekera
+          <strong>Supervisor:</strong> Professor{' '}
+          <a href="https://www.maths.cam.ac.uk/person/ngw24">Neshan Wickramasekera</a>
         </li>
         <li>
           <strong>Grade:</strong> distinction (highest passing grade)
