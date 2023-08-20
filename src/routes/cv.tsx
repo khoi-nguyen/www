@@ -70,6 +70,7 @@ export default () => (
     <Line
       title="Lecturer in Mathematics and Computer Science"
       employer={<a href="https://nyu.edu">New York University</a>}
+      location="Paris"
       dates={[new Date('2023-01')]}
     >
       <ul>
@@ -82,6 +83,7 @@ export default () => (
     <Line
       title="Lecturer in Mathematics"
       employer={<a href="https://ceastudyabroad.com/">CEA Study Abroad</a>}
+      location="Paris"
       dates={[new Date('2023-05'), new Date('2023-06')]}
     >
       <ul>
@@ -121,6 +123,7 @@ interface LineProps {
   children?: JSX.Element;
   dates: Date[];
   employer: string | JSX.Element;
+  location?: string | JSX.Element;
   title: string | JSX.Element;
 }
 
@@ -131,9 +134,9 @@ function Line(props: LineProps) {
   return (
     <div class="cv-line block">
       <hgroup>
-        <h3>
-          {props.title}, {props.employer}
-        </h3>
+        <h4>
+          {props.title}, {props.employer} <Show when={props.location}>({props.location})</Show>
+        </h4>
         <p>
           {props.dates.length === 1 && 'Since '}
           {props.dates.map(showDate).join(' — ')}
