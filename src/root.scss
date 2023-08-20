@@ -413,6 +413,12 @@ pre,
 @media print {
   a {
     color: $dark;
+
+    &[href^="http://"]:after,
+    &[href^="https://"]:after
+    {
+      content: '';
+    }
   }
 
   abbr {
