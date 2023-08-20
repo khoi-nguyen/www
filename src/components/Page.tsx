@@ -8,9 +8,13 @@ import {
 interface PageProps {
   children: JSX.Element;
   meta: Parameters<typeof Meta>[0];
+  header?: Component<{ children: JSX.Element }>;
 }
 
+const header: Component<{ children: JSX.Element }> = (props) => <>{props.children}</>;
+
 export default function Page(props: PageProps) {
+  const Wrapper = props.header || header;
   const [admin, { logout }] = useSession();
   return (
     <>
@@ -55,7 +59,9 @@ export default function Page(props: PageProps) {
             </p>
           }
         >
-          <Meta {...props.meta} />
+          <Wrapper>
+            <Meta {...props.meta} />
+          </Wrapper>
           {props.children}
         </Show>
       </main>

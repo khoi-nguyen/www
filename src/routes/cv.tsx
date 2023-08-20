@@ -20,22 +20,28 @@ function calculateAge(dob: Date): number {
 }
 
 export default () => (
-  <Page meta={meta}>
-    <ul class="cv-info">
-      <li>
-        <Fa icon={faBirthdayCake} /> {calculateAge(new Date('1991-01-24'))} years old
-      </li>
-      <li>
-        <Fa icon={faPhone} /> +32 499 19 24 02
-      </li>
-      <li>
-        <Fa icon={faEnvelope} /> <a href="mailto:khoi@nguyen.me.uk">khoi@nguyen.me.uk</a>
-      </li>
-      <li>
-        <Fa icon={faGlobe} /> <A href="/">https://nguyen.me.uk</A>
-      </li>
-    </ul>
-
+  <Page
+    meta={meta}
+    header={(props) => (
+      <div class="columns is-vcentered">
+        <div class="is-8">{props.children}</div>
+        <ul class="cv-info is-4">
+          <li>
+            <Fa icon={faBirthdayCake} /> {calculateAge(new Date('1991-01-24'))} years old
+          </li>
+          <li>
+            <Fa icon={faPhone} /> +32 499 19 24 02
+          </li>
+          <li>
+            <Fa icon={faEnvelope} /> <a href="mailto:khoi@nguyen.me.uk">khoi@nguyen.me.uk</a>
+          </li>
+          <li>
+            <Fa icon={faGlobe} /> <A href="/">https://nguyen.me.uk</A>
+          </li>
+        </ul>
+      </div>
+    )}
+  >
     <h2>Education</h2>
 
     <Line
