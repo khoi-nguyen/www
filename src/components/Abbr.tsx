@@ -1,6 +1,9 @@
 const abbreviations = {
   CV: 'Curriculum Vitæ',
   DOM: 'Document Object Model',
+  GCSE: 'General Certificate of Secondary Education',
+  IBDP: 'International Baccalaureate Diploma Programme',
+  IGCSE: 'International General Certificate of Secondary Education',
   JSX: 'JavaScript Syntax Extension',
   MASt: 'Master of Advanced Study',
   MIT: 'Massachusetts Institute of Technology',
