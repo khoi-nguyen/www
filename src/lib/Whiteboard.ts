@@ -23,20 +23,10 @@ export interface Stroke {
 export default class Whiteboard {
   private container: HTMLElement;
   private isActive: boolean = false;
-  private _ctx?: CanvasRenderingContext2D;
-  private _canvas?: HTMLCanvasElement;
 
+  public canvas: HTMLCanvasElement;
   get ctx() {
-    if (!this._ctx) {
-      throw new Error('Whiteboard not initialized!');
-    }
-    return this._ctx;
-  }
-  get canvas() {
-    if (!this._canvas) {
-      throw new Error('Whiteboard not initialized!');
-    }
-    return this._canvas;
+    return this.canvas.getContext('2d')!;
   }
 
   public color: Color = '#255994';
@@ -86,18 +76,17 @@ export default class Whiteboard {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  constructor(container: HTMLElement, strokes: Stroke[] = []) {
+  constructor(container: HTMLElement, canvas: HTMLCanvasElement, strokes: Stroke[] = []) {
     this.container = container;
+    this.canvas = canvas;
     this.strokes = strokes;
   }
 
   /**
    * Set up listeners on a canvas
-   * @param canvas
    * @param container Used to calculate the offset
    */
-  init(canvas: HTMLCanvasElement) {
-    this._canvas = canvas;
+  init() {
     this.canvas.oncontextmenu = () => false;
     Object.assign(this.canvas.style, {
       position: 'absolute',
@@ -106,8 +95,6 @@ export default class Whiteboard {
       cursor: 'crosshair',
       zIndex: 1,
     });
-    this._ctx = this.canvas.getContext('2d')!;
-
     this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
     this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
     this.canvas.addEventListener('mouseup', this.onMouseUp.bind(this));

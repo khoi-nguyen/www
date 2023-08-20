@@ -10,9 +10,9 @@ interface WhiteboardProps {
 
 export default (props: WhiteboardProps) => {
   const canvas = (<canvas width={props.width} height={props.height} />) as HTMLCanvasElement;
-  const whiteboard = new Whiteboard(props.container, props.strokes);
+  const whiteboard = new Whiteboard(props.container, canvas, props.strokes);
   onMount(() => {
-    whiteboard.init(canvas);
+    whiteboard.init();
   });
 
   createEffect(() => {
