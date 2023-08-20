@@ -62,6 +62,9 @@ export default () => (
         <li>
           <strong>Supervisor:</strong> Professor Neshan Wickramasekera
         </li>
+        <li>
+          <strong>Grade:</strong> distinction (highest passing grade)
+        </li>
       </ul>
     </Line>
 
