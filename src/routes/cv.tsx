@@ -119,6 +119,17 @@ export default () => (
       }
       dates={[new Date('2017-01'), new Date('2020-06')]}
     />
+
+    <h2>Skills</h2>
+
+    <dl>
+      <dt>Languages</dt>
+      <dd>English (C2), French (C2), Spanish (C1)</dd>
+      <dt>Programming</dt>
+      <dd>TypeScript (React, Vue, Svelte), Python, Julia, PHP, SQL</dd>
+      <dt>Typesetting</dt>
+      <dd>{tex`\LaTeX`}, LibreOffice</dd>
+    </dl>
   </Page>
 );
 
