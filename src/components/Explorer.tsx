@@ -6,11 +6,12 @@ interface Page extends Metadata {
 }
 type SortFunction = (page: Page) => string | number;
 interface ExplorerProps {
-  filter?: string;
+  filter?: (page: Page) => boolean;
   pattern: string;
   sortBy?: SortFunction;
 }
 
+const defaultFilter = () => true;
 const defaultSort: SortFunction = (page) => page.path;
 
 export default function Explorer(props: ExplorerProps) {
@@ -34,16 +35,7 @@ export default function Explorer(props: ExplorerProps) {
   });
   const filtered = () => {
     return sortBy(
-      (pages() || []).filter((page) => {
-        return (
-          Object.entries(page).filter(([_, value]) => {
-            return value
-              .toString()
-              .toLowerCase()
-              .includes((props.filter || '').toLowerCase());
-          }).length > 0
-        );
-      }),
+      (pages() || []).filter(props.filter || defaultFilter),
       props.sortBy || defaultSort,
     );
   };

@@ -1,6 +1,7 @@
 import { Meta as SolidMeta, Title } from 'solid-start';
 
 interface MetaProps {
+  current?: boolean;
   adminOnly?: boolean;
   subtitle?: string;
   title: string;

@@ -3,8 +3,10 @@ import meta from './index.json';
 export default () => {
   return (
     <Page meta={meta}>
-      <h2>Courses</h2>
-      <Explorer pattern="teaching/.*/index.json$" />
+      <h2>Current Courses</h2>
+      <Explorer pattern="teaching/.*/index.json$" filter={(page) => page.current === true} />
+      <h2>Archive</h2>
+      <Explorer pattern="teaching/.*/index.json$" filter={(page) => !page.current} />
     </Page>
   );
 };
