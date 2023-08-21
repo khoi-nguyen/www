@@ -219,7 +219,7 @@ export default () => (
         `}
       </Jupyter>
     </Slide>
-    <Slide title="Running time of merge sort">
+    <Slide title="Running time of merge sort" cite={['clrs', 'pp. 42-43']}>
       <Proposition title="Running time of merge sort">
         {tex`
           T(n) = \bigo(n \log n)
@@ -227,9 +227,19 @@ export default () => (
       </Proposition>
       {dot`
         digraph {
-          0 [label = "T(n)"];
-          00 [label = "T(n/2)"];
-          01 [label = "T(n/2)"];
+          A [label = "O(n)"];
+          B [label = "T(n/2)"];
+          C [label = "T(n/2)"];
+          A -> B;
+          A -> C;
+          label = "Divide and conquer once"
+        }
+      `}
+      {dot`
+        digraph {
+          0 [label = "O(n)"];
+          00 [label = "O(n/2)"];
+          01 [label = "O(n/2)"];
           000 [label = "T(n/4)"];
           001 [label = "T(n/4)"];
           010 [label = "T(n/4)"];
@@ -240,6 +250,7 @@ export default () => (
           00 -> 001;
           01 -> 010;
           01 -> 011;
+          label = "Divide and conquer twice"
         }
       `}
     </Slide>
