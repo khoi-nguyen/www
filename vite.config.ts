@@ -9,7 +9,7 @@ export default defineConfig({
       dirs: ['./src/components'],
       imports: [
         {
-          '~/lib/literals': ['py', 'tex'],
+          '~/lib/literals': ['dot', 'py', 'tex'],
           '~/stores/session': ['useSession'],
           'solid-js': [
             'children',

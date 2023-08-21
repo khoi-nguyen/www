@@ -8,6 +8,11 @@ export const tex: Tag<JSX.Element> = (strings, ...values) => {
   return <Maths {...{ tex, display }} />;
 };
 
+export const dot: Tag<JSX.Element> = (strings, ...values) => {
+  const dot = String.raw(strings, ...values);
+  return <Graphviz>{dot}</Graphviz>;
+};
+
 export const py: Tag<string> = (strings, ...values) => {
   return dedent(String.raw(strings, ...values));
 };
