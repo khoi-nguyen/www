@@ -225,6 +225,23 @@ export default () => (
           T(n) = \bigo(n \log n)
         `}
       </Proposition>
+      {dot`
+        digraph {
+          0 [label = "T(n)"];
+          00 [label = "T(n/2)"];
+          01 [label = "T(n/2)"];
+          000 [label = "T(n/4)"];
+          001 [label = "T(n/4)"];
+          010 [label = "T(n/4)"];
+          011 [label = "T(n/4)"];
+          0 -> 00;
+          0 -> 01;
+          00 -> 000;
+          00 -> 001;
+          01 -> 010;
+          01 -> 011;
+        }
+      `}
     </Slide>
     <Slide title="Solving recurrences" cite={['clrs', 'p. 90']}>
       <Information title="Substitution method">
