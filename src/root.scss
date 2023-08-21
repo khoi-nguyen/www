@@ -205,22 +205,24 @@ pre,
   padding: 1.5em;
 }
 
-.columns {
-  display: flex;
-  gap: 1em;
+@media screen and (min-width: 800px) {
+  .columns {
+    display: flex;
+    gap: 1em;
 
-  @for $c from 1 to 12 {
-    .is-#{$c} {
-      flex-grow: $c;
+    @for $c from 1 to 12 {
+      .is-#{$c} {
+        flex-grow: $c;
+      }
     }
-  }
 
-  > * {
-    flex-basis: 0;
-    flex-grow: 1;
+    > * {
+      flex-basis: 0;
+      flex-grow: 1;
 
-    &.is-narrow {
-      flex-grow: 0;
+      &.is-narrow {
+        flex-grow: 0;
+      }
     }
   }
 }
