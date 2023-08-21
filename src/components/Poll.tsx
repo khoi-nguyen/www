@@ -3,7 +3,9 @@ import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons/index.js';
 interface BasicPollProps<T> {
   children: JSX.Element | JSX.Element[] | string;
   fallback?: JSX.Element;
+  id?: string;
   mark: (value: T) => Promise<boolean> | boolean;
+  setValue: (newValue: T) => void;
   value: T;
 }
 
@@ -13,11 +15,21 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
     on(
       () => props.value,
       async () => {
+        localStorage.setItem('poll-' + props.id, JSON.stringify(props.value));
         setStatus((await props.mark(props.value)) ? 'correct' : 'incorrect');
       },
       { defer: true },
     ),
   );
+
+  onMount(async () => {
+    const storedValue = localStorage.getItem('poll-' + props.id);
+    if (storedValue !== null) {
+      const value = JSON.parse(storedValue) as T;
+      props.setValue(value);
+      setStatus((await props.mark(value)) ? 'correct' : 'incorrect');
+    }
+  });
 
   return (
     <>
@@ -36,6 +48,7 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
 
 interface PollProps {
   children?: JSX.Element | JSX.Element[] | string;
+  id: string;
   mark: (value: string) => Promise<boolean> | boolean;
 }
 
@@ -49,7 +62,13 @@ export default function Poll(props: PollProps) {
   return (
     <>
       {props.children}
-      <BasicPoll mark={props.mark} value={submittedValue()} fallback={value()}>
+      <BasicPoll
+        id={props.id}
+        mark={props.mark}
+        value={submittedValue()}
+        setValue={setValue}
+        fallback={value()}
+      >
         <input type="text" value={value()} onInput={handleInput} />
         <input type="submit" onClick={() => setSubmittedValue(value())} />
       </BasicPoll>
@@ -61,6 +80,7 @@ interface MultipleChoiceProps {
   children?: JSX.Element | JSX.Element[] | string;
   choices: (Component<{}> | string)[];
   correct: number;
+  id: string;
 }
 
 export function MultipleChoice(props: MultipleChoiceProps) {
@@ -68,7 +88,12 @@ export function MultipleChoice(props: MultipleChoiceProps) {
   return (
     <>
       {props.children}
-      <BasicPoll value={value()} mark={(val) => val === props.correct}>
+      <BasicPoll
+        id={props.id}
+        value={value()}
+        setValue={setValue}
+        mark={(val) => val === props.correct}
+      >
         <For each={props.choices}>
           {(choice, i) => (
             <button onClick={() => setValue(i)}>
