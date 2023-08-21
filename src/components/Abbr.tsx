@@ -1,4 +1,5 @@
 const abbreviations = {
+  BSc: 'Bachelor of Science',
   CV: 'Curriculum Vitæ',
   DOM: 'Document Object Model',
   GCSE: 'General Certificate of Secondary Education',
