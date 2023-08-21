@@ -106,6 +106,7 @@ export default () => (
       }
       employer={<a href="https://uclouvain.be">UCLouvain</a>}
       dates={[new Date('2008-09'), new Date('2011-06')]}
+      location="Belgium"
     >
       <ul>
         <li>Grade: summa cum laude (highest passing grade)</li>
