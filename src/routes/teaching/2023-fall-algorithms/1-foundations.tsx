@@ -225,18 +225,22 @@ export default () => (
           T(n) = \bigo(n \log n)
         `}
       </Proposition>
+      <ol>
+        <li>Guess an expression for {tex`T(n)`}</li>
+        <li>Rigorous proof by induction</li>
+      </ol>
       {dot`
-        digraph {
+        graph {
           A [label = "O(n)"];
           B [label = "T(n/2)"];
           C [label = "T(n/2)"];
-          A -> B;
-          A -> C;
+          A -- B;
+          A -- C;
           label = "Divide and conquer once"
         }
       `}
       {dot`
-        digraph {
+        graph {
           0 [label = "O(n)"];
           00 [label = "O(n/2)"];
           01 [label = "O(n/2)"];
@@ -244,12 +248,12 @@ export default () => (
           001 [label = "T(n/4)"];
           010 [label = "T(n/4)"];
           011 [label = "T(n/4)"];
-          0 -> 00;
-          0 -> 01;
-          00 -> 000;
-          00 -> 001;
-          01 -> 010;
-          01 -> 011;
+          0 -- 00;
+          0 -- 01;
+          00 -- 000;
+          00 -- 001;
+          01 -- 010;
+          01 -- 011;
           label = "Divide and conquer twice"
         }
       `}
