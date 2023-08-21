@@ -70,21 +70,23 @@ export default () => (
       <Question>
         <p>When playing cards, how would you sort your hand in ascending order?</p>
       </Question>
-      <Jupyter>
-        {py`
-          right_hand = [3, 7, 4, 1, 2, 7, 3]
-          left_hand = []
-
-          for card in right_hand:
-              position = len([c for c in left_hand if c <= card])
-              left_hand.insert(position, card)
-
-          left_hand
-        `}
-      </Jupyter>
-      <Question>
-        <p>What can be improved in the above algorithm?</p>
-      </Question>
+      <Fragment>
+        <Jupyter>
+          {py`
+            right_hand = [3, 7, 4, 1, 2, 7, 3]
+            left_hand = []
+        
+            for card in right_hand:
+                position = len([c for c in left_hand if c <= card])
+                left_hand.insert(position, card)
+        
+            left_hand
+          `}
+        </Jupyter>
+        <Question>
+          <p>What can be improved in the above algorithm?</p>
+        </Question>
+      </Fragment>
     </Slide>
     <Slide title="Insertion sort">
       <p>
@@ -229,34 +231,38 @@ export default () => (
         <li>Guess an expression for {tex`T(n)`}</li>
         <li>Rigorous proof by induction</li>
       </ol>
-      {dot`
-        graph {
-          A [label = "O(n)"];
-          B [label = "T(n/2)"];
-          C [label = "T(n/2)"];
-          A -- B;
-          A -- C;
-          label = "Divide and conquer once"
-        }
-      `}
-      {dot`
-        graph {
-          0 [label = "O(n)"];
-          00 [label = "O(n/2)"];
-          01 [label = "O(n/2)"];
-          000 [label = "T(n/4)"];
-          001 [label = "T(n/4)"];
-          010 [label = "T(n/4)"];
-          011 [label = "T(n/4)"];
-          0 -- 00;
-          0 -- 01;
-          00 -- 000;
-          00 -- 001;
-          01 -- 010;
-          01 -- 011;
-          label = "Divide and conquer twice"
-        }
-      `}
+      <Fragment>
+        {dot`
+          graph {
+            A [label = "O(n)"];
+            B [label = "T(n/2)"];
+            C [label = "T(n/2)"];
+            A -- B;
+            A -- C;
+            label = "Divide and conquer once"
+          }
+        `}
+      </Fragment>
+      <Fragment>
+        {dot`
+          graph {
+            0 [label = "O(n)"];
+            00 [label = "O(n/2)"];
+            01 [label = "O(n/2)"];
+            000 [label = "T(n/4)"];
+            001 [label = "T(n/4)"];
+            010 [label = "T(n/4)"];
+            011 [label = "T(n/4)"];
+            0 -- 00;
+            0 -- 01;
+            00 -- 000;
+            00 -- 001;
+            01 -- 010;
+            01 -- 011;
+            label = "Divide and conquer twice"
+          }
+        `}
+      </Fragment>
     </Slide>
     <Slide title="Solving recurrences" cite={['clrs', 'p. 90']}>
       <Information title="Substitution method">
