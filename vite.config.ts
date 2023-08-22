@@ -6,10 +6,9 @@ export default defineConfig({
   plugins: [
     AutoImport({
       include: [/\.[tj]sx?$/],
-      dirs: ['./src/components'],
+      dirs: ['./src/components', './src/lib/literals'],
       imports: [
         {
-          '~/lib/literals': ['dot', 'py', 'tex'],
           '~/stores/session': ['useSession'],
           'solid-js': [
             'children',
