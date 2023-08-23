@@ -8,13 +8,14 @@ interface CiteProps {
 }
 
 export default function Cite(props: CiteProps) {
+  const c = children(() => props.children);
   const entry = () => bibliography[props.key];
   return (
     <>
       <Show when={!props.reference} fallback={entry()[2]()}>
         <Show when={!props.narrative} fallback={entry()[1]}>
           ({entry()[0]}
-          <Show when={props.children}>, {props.children}</Show>)
+          <Show when={c()}>, {c()}</Show>)
         </Show>
       </Show>
     </>
