@@ -2,6 +2,7 @@ const abbreviations = {
   BSc: 'Bachelor of Science',
   CV: 'Curriculum Vitæ',
   DOM: 'Document Object Model',
+  ECAM: 'École Centrale des Arts et Métiers',
   GCSE: 'General Certificate of Secondary Education',
   IBDP: 'International Baccalaureate Diploma Programme',
   IGCSE: 'International General Certificate of Secondary Education',

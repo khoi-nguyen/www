@@ -4,9 +4,8 @@ export default () => (
   <Page meta={meta}>
     <p>
       Hi everyone! My name is <strong>Khôi Nguyễn</strong> and I'm a mathematician and a programmer
-      who is passionate about education. Currently, I work at <Abbr key="NYU" /> as a part-time
-      lecturer, where I teach <A href="/teaching/2023-fall-algorithms">Algorithms</A> and{' '}
-      <A href="/teaching/2024-spring-numerical-analysis">Numerical Analysis</A>.
+      who is passionate about education. Currently, I work at <Abbr key="ECAM" /> and{' '}
+      <Abbr key="NYU" /> as a lecturer in Mathematics and Computer Science.
     </p>
     <p>
       Previously, I taught Mathematics and Computer Science in international schools such as the{' '}
