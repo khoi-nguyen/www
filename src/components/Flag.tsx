@@ -6,7 +6,7 @@ const flags = {
 } as const;
 
 interface FlagProps {
-  country: string;
+  country?: string;
   lang?: keyof typeof flags;
 }
 
