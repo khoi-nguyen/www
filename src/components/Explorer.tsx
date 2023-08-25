@@ -47,7 +47,7 @@ export default function Explorer(props: ExplorerProps) {
           <article class="card" onClick={() => navigate(page.path)} style={{ cursor: 'pointer' }}>
             <hgroup>
               <h3>
-                <A href={page.path}>{page.title}</A>
+                <A href={page.path}>{page.title}</A> <Flag lang={page.lang || 'en'} />
               </h3>
               <Show when={page.subtitle}>
                 <h4>{page.subtitle}</h4>
