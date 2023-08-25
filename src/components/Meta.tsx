@@ -13,7 +13,6 @@ interface MetaProps {
 export default function Meta(props: MetaProps) {
   props = mergeProps({ lang: 'en' as const }, props);
   const [lang, setLang] = langSignal;
-
   createEffect(() => {
     if (props.lang !== lang() && props.lang) {
       setLang(props.lang);
