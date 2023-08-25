@@ -117,6 +117,17 @@ export default () => (
 
     <Line
       title="Lecturer in Mathematics and Computer Science"
+      employer={
+        <a href="https://ecam.be">
+          <Abbr key="ECAM" />
+        </a>
+      }
+      location="Brussels"
+      dates={[new Date('2023-09')]}
+    ></Line>
+
+    <Line
+      title="Lecturer in Mathematics and Computer Science"
       employer={<a href="https://nyu.edu">New York University</a>}
       location="Paris"
       dates={[new Date('2023-01')]}
