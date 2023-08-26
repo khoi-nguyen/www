@@ -4,7 +4,11 @@ export default () => {
   return (
     <Page meta={meta}>
       <h2>Current Courses</h2>
-      <Explorer pattern="teaching/.*/index.json$" filter={(page) => page.current === true} />
+      <Explorer
+        pattern="teaching/.*/index.json$"
+        filter={(page) => page.current === true}
+        showFlags
+      />
     </Page>
   );
 };

@@ -8,6 +8,7 @@ type SortFunction = (page: Page) => string | number;
 interface ExplorerProps {
   filter?: (page: Page) => boolean;
   pattern: string;
+  showFlags?: boolean;
   sortBy?: SortFunction;
 }
 
@@ -47,7 +48,11 @@ export default function Explorer(props: ExplorerProps) {
           <article class="card" onClick={() => navigate(page.path)} style={{ cursor: 'pointer' }}>
             <hgroup>
               <h3>
-                <A href={page.path}>{page.title}</A> <Flag lang={page.lang || 'en'} />
+                <A href={page.path}>{page.title}</A>
+                <Show when={props.showFlags}>
+                  {' '}
+                  <Flag lang={page.lang || 'en'} />
+                </Show>
               </h3>
               <Show when={page.subtitle}>
                 <h4>{page.subtitle}</h4>
