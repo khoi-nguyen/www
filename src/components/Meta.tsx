@@ -4,14 +4,14 @@ import { langSignal } from '~/root';
 interface MetaProps {
   adminOnly?: boolean;
   current?: boolean;
-  lang?: 'en' | 'fr';
+  lang?: string;
   subtitle?: string;
   title: string;
   description: string;
 }
 
 export default function Meta(props: MetaProps) {
-  props = mergeProps({ lang: 'en' as const }, props);
+  props = mergeProps({ lang: 'en' }, props);
   const [lang, setLang] = langSignal;
   createEffect(() => {
     if (props.lang !== lang() && props.lang) {
