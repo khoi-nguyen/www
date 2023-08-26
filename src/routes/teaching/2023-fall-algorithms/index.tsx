@@ -10,6 +10,8 @@ export const Info = () => (
         <li>Lectures and recitations will be combined</li>
       </ul>
     </dd>
+    <dt>Room</dt>
+    <dd>406</dd>
     <dt>Resources</dt>
     <dd>
       <ul>
