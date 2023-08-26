@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@fontsource/fira-sans": "^5.0.8",
+    "@fontsource/noto-color-emoji": "^5.0.8",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@solidjs/meta": "^0.28.6",
     "@solidjs/router": "^0.8.3",
