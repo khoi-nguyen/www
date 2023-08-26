@@ -51,7 +51,7 @@ export default function Explorer(props: ExplorerProps) {
                 <A href={page.path}>{page.title}</A>
                 <Show when={props.showFlags}>
                   {' '}
-                  <Flag lang={page.lang || 'en'} />
+                  <Flag code={page.lang || 'en'} />
                 </Show>
               </h3>
               <Show when={page.subtitle}>

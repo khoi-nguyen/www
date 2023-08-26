@@ -1,22 +1,24 @@
-import { US, FR } from 'country-flag-icons/string/3x2';
+import type { countries } from 'country-flag-icons';
+import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 
-const flags = {
-  en: US,
-  fr: FR,
+const languages = {
+  en: 'US',
+  fr: 'FR',
 } as const;
 
+type FlagName = keyof typeof countries & string;
+type FlagCode = FlagName | keyof typeof languages;
+
 interface FlagProps {
-  country?: string;
-  lang?: keyof typeof flags;
+  code: FlagCode;
 }
 
 export default function Flag(props: FlagProps) {
   const flag = () => {
-    if (props.country) {
-      return props.country;
-    } else if (props.lang) {
-      return flags[props.lang];
-    }
+    const code = languages.hasOwnProperty(props.code)
+      ? languages[props.code as keyof typeof languages]
+      : props.code;
+    return getUnicodeFlagIcon(code);
   };
-  return <span class="icon" innerHTML={flag()} />;
+  return <>{flag()}</>;
 }
