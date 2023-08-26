@@ -1,3 +1,4 @@
+import '@fontsource/noto-color-emoji/emoji.css';
 import type { countries } from 'country-flag-icons';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 
