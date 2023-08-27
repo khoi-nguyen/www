@@ -139,17 +139,6 @@ export default () => (
     </Line>
 
     <Line
-      title="Lecturer in Mathematics"
-      employer={<a href="https://ceastudyabroad.com/">CEA Study Abroad</a>}
-      location="Paris"
-      dates={[new Date('2023-05'), new Date('2023-06')]}
-    >
-      <ul>
-        <li>Taught course: Differential Equations (for engineering students)</li>
-      </ul>
-    </Line>
-
-    <Line
       title="Teacher of Mathematics and Computer Science"
       employer={<a href="https://britishschool.be">The British School of Brussels</a>}
       dates={[new Date('2021-08'), new Date('2023-01')]}
