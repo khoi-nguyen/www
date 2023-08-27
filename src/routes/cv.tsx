@@ -86,7 +86,7 @@ export default () => (
         </>
       }
       employer={<a href="https://cam.ac.uk">University of Cambridge</a>}
-      dates={[new Date('2011-10'), new Date('2012-06')]}
+      dates={[undefined, new Date('2012-06')]}
     >
       <ul>
         <li>Thesis: Energy-minimizing maps</li>
@@ -184,14 +184,17 @@ export default () => (
 
 interface LineProps {
   children?: JSX.Element;
-  dates: Date[];
+  dates: (Date | undefined)[];
   employer: string | JSX.Element;
   location?: string | JSX.Element;
   title: string | JSX.Element;
 }
 
 function Line(props: LineProps) {
-  const showDate = (date: Date) => {
+  const showDate = (date?: Date) => {
+    if (!date) {
+      return;
+    }
     return date.toLocaleString('en-US', { month: 'short', year: 'numeric' });
   };
   return (
@@ -202,7 +205,10 @@ function Line(props: LineProps) {
         </h4>
         <p class="is-4">
           {props.dates.length === 1 && 'Since '}
-          {props.dates.map(showDate).join(' — ')}
+          {props.dates
+            .filter((x) => x !== undefined)
+            .map(showDate)
+            .join(' — ')}
         </p>
       </hgroup>
       {props.children}
