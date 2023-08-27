@@ -128,14 +128,31 @@ nav#navbar {
     display: inline-block;
     height: 100%;
     padding: 0.4em 0.5em;
-
-    &:hover {
-      background: black;
-    }
   }
 
   li {
     display: inline-block;
+    position: relative;
+
+    ul {
+      background: $dark;
+      display: none;
+      padding: 0;
+      position: absolute;
+      width: 100%;
+
+      li {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    &:hover {
+      background: black;
+      ul {
+        display: block;
+      }
+    }
   }
 
   strong {

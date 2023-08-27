@@ -3,6 +3,8 @@ import {
   faList,
   faChalkboardUser,
   faRightFromBracket,
+  faScrewdriverWrench,
+  faUniversity,
 } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface PageProps {
@@ -34,6 +36,18 @@ export default function Page(props: PageProps) {
             <A href="/teaching">
               <Fa icon={faChalkboardUser} /> Teaching
             </A>
+            <ul>
+              <li>
+                <A href="/teaching/nyu">
+                  <Fa icon={faUniversity} /> <Abbr key="NYU" />
+                </A>
+              </li>
+              <li>
+                <A href="/teaching/ecam">
+                  <Fa icon={faScrewdriverWrench} /> <Abbr key="ECAM" />
+                </A>
+              </li>
+            </ul>
           </li>
           <Show when={admin()}>
             <li>
