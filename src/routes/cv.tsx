@@ -82,7 +82,7 @@ export default () => (
     <Line
       title={
         <>
-          <Abbr key="MASt" /> in Mathematics (Part III)
+          <Abbr key="MASt" /> in Mathematics
         </>
       }
       employer={<a href="https://cam.ac.uk">University of Cambridge</a>}
@@ -109,7 +109,11 @@ export default () => (
       }
       location="Brussels"
       dates={[new Date('2023-09')]}
-    ></Line>
+    >
+      <ul>
+        <li>Taught courses: Mathematics for Engineers, Web Architecture</li>
+      </ul>
+    </Line>
 
     <Line
       title="Lecturer in Mathematics and Computer Science"
@@ -136,7 +140,6 @@ export default () => (
           Supervision of <Abbr key="IBDP" /> Extended Essays
         </li>
         <li>Oxbridge entrance exams and mock interview preparation</li>
-        <li>Extra-Curricular: First LEGO League</li>
       </ul>
     </Line>
 
