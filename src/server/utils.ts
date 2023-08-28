@@ -14,10 +14,16 @@ export function readJSONFile(file: string, defaultValue = '[]') {
   return JSON.parse(existsSync(file) ? readFileSync(file, 'utf-8') : defaultValue);
 }
 
-export function writeJSONFile(file: string, contents: any, event: ServerFunctionEvent) {
-  createDirs(file);
-  if (!isAdmin(undefined, event)) {
+export async function writeJSONFile(
+  file: string,
+  contents: any,
+  event: ServerFunctionEvent,
+  throwError: boolean = true,
+) {
+  if (await isAdmin(undefined, event)) {
+    createDirs(file);
+    writeFileSync(file, JSON.stringify(contents), 'utf-8');
+  } else if (throwError) {
     throw new Error('You need to be logged in');
   }
-  writeFileSync(file, JSON.stringify(contents), 'utf-8');
 }

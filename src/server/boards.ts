@@ -21,5 +21,5 @@ export async function writeBoard(
   data: { url: string; contents: Stroke[][][] },
   event: ServerFunctionEvent,
 ) {
-  writeJSONFile(fileFromUrl(data.url), data.contents, event);
+  await writeJSONFile(fileFromUrl(data.url), data.contents, event, false);
 }

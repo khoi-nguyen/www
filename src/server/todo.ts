@@ -8,5 +8,5 @@ export function getTasks() {
 }
 
 export async function saveTasks(tasks: TodoItem[], event: ServerFunctionEvent) {
-  writeJSONFile(file, tasks, event);
+  await writeJSONFile(file, tasks, event);
 }
