@@ -2,7 +2,7 @@ import SpinnerSVG from '~/assets/spinner.svg';
 
 export default function Spinner() {
   return (
-    <div style={{ 'text-align': 'center' }}>
+    <div class="has-text-centered">
       <img src={SpinnerSVG} alt="Loading" />
     </div>
   );
