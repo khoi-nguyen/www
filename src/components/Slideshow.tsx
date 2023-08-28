@@ -27,10 +27,13 @@ export default function Slideshow(props: SlideshowProps) {
   });
   const boards = createMemo<Stroke[][][]>(() => cloneDeep(receivedBoards()!));
 
+  const [admin] = useSession();
   const [, saveAction] = createServerAction$(writeBoard);
   const url = useLocation().pathname;
   const save = async () => {
-    await saveAction({ url, contents: boards() });
+    if (admin()) {
+      await saveAction({ url, contents: boards() });
+    }
   };
 
   const dimensions = { width: 1920, height: 1080 };
@@ -80,6 +83,7 @@ export default function Slideshow(props: SlideshowProps) {
       deck.sync();
       deck.down();
     });
+    deck.on('slidechanged', save);
     window.addEventListener('beforeunload', save);
   });
   onCleanup(async () => {
