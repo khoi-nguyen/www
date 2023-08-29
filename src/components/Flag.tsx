@@ -1,5 +1,4 @@
 import '@fontsource/noto-color-emoji/emoji.css';
-import { countries } from 'country-flag-icons';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 
 const languages = {
@@ -7,11 +6,8 @@ const languages = {
   fr: 'FR',
 } as const;
 
-type FlagName = typeof countries & string;
-type FlagCode = FlagName | keyof typeof languages;
-
 interface FlagProps {
-  code: FlagCode;
+  code: string;
 }
 
 export default function Flag(props: FlagProps) {
