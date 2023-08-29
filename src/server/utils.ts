@@ -18,12 +18,12 @@ export async function writeJSONFile(
   file: string,
   contents: any,
   event: ServerFunctionEvent,
-  throwError: boolean = true,
+  shouldBeAdmin: boolean = true,
 ) {
-  if (await isAdmin(undefined, event)) {
+  if (!shouldBeAdmin || (await isAdmin(undefined, event))) {
     createDirs(file);
     writeFileSync(file, JSON.stringify(contents), 'utf-8');
-  } else if (throwError) {
+  } else {
     throw new Error('You need to be logged in');
   }
 }
