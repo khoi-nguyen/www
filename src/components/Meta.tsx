@@ -4,6 +4,7 @@ import { langSignal } from '~/root';
 interface MetaProps {
   adminOnly?: boolean;
   current?: boolean;
+  hideHeader?: boolean;
   lang?: string;
   subtitle?: string;
   title: string;
@@ -23,10 +24,12 @@ export default function Meta(props: MetaProps) {
     <>
       <Title>{props.title} - nguyen.me.uk</Title>
       <SolidMeta name="description" content={props.description} />
-      <header>
-        <h1>{props.title}</h1>
-        {props.subtitle && <h2>{props.subtitle}</h2>}
-      </header>
+      <Show when={!props.hideHeader}>
+        <header>
+          <h1>{props.title}</h1>
+          {props.subtitle && <h2>{props.subtitle}</h2>}
+        </header>
+      </Show>
     </>
   );
 }
