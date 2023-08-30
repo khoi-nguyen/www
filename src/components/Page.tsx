@@ -1,6 +1,5 @@
 import {
   faAddressCard,
-  faList,
   faChalkboardUser,
   faRightFromBracket,
   faScrewdriverWrench,
