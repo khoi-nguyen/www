@@ -27,26 +27,14 @@ export default function Page(props: PageProps) {
             </strong>
           </li>
           <li>
-            <A href="/cv">
-              <Fa icon={faAddressCard} /> <Abbr key="CV" />
+            <A href="/teaching/nyu">
+              <Fa icon={faUniversity} /> <Abbr key="NYU" />
             </A>
           </li>
           <li>
-            <A href="/teaching">
-              <Fa icon={faChalkboardUser} /> Teaching
+            <A href="/teaching/ecam">
+              <Fa icon={faScrewdriverWrench} /> <Abbr key="ECAM" />
             </A>
-            <ul>
-              <li>
-                <A href="/teaching/nyu">
-                  <Fa icon={faUniversity} /> <Abbr key="NYU" />
-                </A>
-              </li>
-              <li>
-                <A href="/teaching/ecam">
-                  <Fa icon={faScrewdriverWrench} /> <Abbr key="ECAM" />
-                </A>
-              </li>
-            </ul>
           </li>
           <Show when={admin()}>
             <li>
