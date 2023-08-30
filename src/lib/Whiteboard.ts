@@ -95,6 +95,12 @@ export default class Whiteboard {
       zIndex: 1,
     });
 
+    this.canvas.oncontextmenu = () => false;
+    this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
+    this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
+    this.canvas.addEventListener('mouseup', this.onMouseUp.bind(this));
+    this.setUpTouchEvents();
+
     this.redraw();
   }
 
