@@ -87,7 +87,6 @@ export default class Whiteboard {
    * @param container Used to calculate the offset
    */
   init() {
-    this.canvas.oncontextmenu = () => false;
     Object.assign(this.canvas.style, {
       position: 'absolute',
       top: 0,
@@ -95,10 +94,6 @@ export default class Whiteboard {
       cursor: 'crosshair',
       zIndex: 1,
     });
-    this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this));
-    this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this));
-    this.canvas.addEventListener('mouseup', this.onMouseUp.bind(this));
-    this.setUpTouchEvents();
 
     this.redraw();
   }
