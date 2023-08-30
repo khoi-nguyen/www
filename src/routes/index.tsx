@@ -25,6 +25,9 @@ export default () => (
     <h2>Useful Links</h2>
     <ul>
       <li>
+        <A href="/cv">Curriculum Vitæ</A>
+      </li>
+      <li>
         <A href="/teaching/">My teaching page</A>
       </li>
       <li>
