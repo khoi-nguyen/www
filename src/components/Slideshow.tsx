@@ -4,15 +4,19 @@ import type { Stroke } from '~/lib/Whiteboard';
 import { loadBoard, writeBoard } from '~/server/boards';
 
 interface SlideshowProps {
-  children: JSX.Element[];
+  children: JSX.Element | JSX.Element[];
   meta: Parameters<typeof Meta>[0];
 }
 
 function getSlides(props: SlideshowProps) {
   const results = [];
   const { children } = props;
-  for (let i = 0; i < children.length; i++) {
-    results[i] = (j: number) => (j === 0 ? children[i] : props.children[i]);
+  if (Array.isArray(children)) {
+    for (let i = 0; i < children.length; i++) {
+      results[i] = (j: number) => (j === 0 ? children[i] : (props.children as HTMLElement[])[i]);
+    }
+  } else {
+    results[0] = (j: number) => (j === 0 ? children : props.children);
   }
   return results;
 }
