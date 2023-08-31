@@ -14,5 +14,5 @@ export default function Graphviz(props: GraphvizProps) {
     setSvg(viz.renderSVGElement(String(props.children)));
   });
 
-  return <div classList={{ 'has-text-centered': props.center }}>{svg()}</div>;
+  return <div classList={{ 'has-text-centered': props.center, block: true }}>{svg()}</div>;
 }
