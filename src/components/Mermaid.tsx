@@ -16,10 +16,8 @@ export default function Mermaid(props: MermaidProps) {
   });
 
   return (
-    <div
-      class="has-text-centered block"
-      innerHTML={svg()}
-      style={{ transform: `scale(${props.scale})` }}
-    />
+    <div class="has-text-centered block">
+      <div innerHTML={svg()} style={{ zoom: props.scale }} />
+    </div>
   );
 }
