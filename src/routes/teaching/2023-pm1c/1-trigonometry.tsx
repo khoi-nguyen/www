@@ -46,8 +46,8 @@ export default () => {
           </Mermaid>
           <Definition title="Radian">
             {tex`
-                \alpha_{\text{rad}} \defeq \frac \pi {180} \cdot \alpha_{\text{deg}}
-              `}
+              \alpha_{\text{rad}} \defeq \frac \pi {180} \cdot \alpha_{\text{deg}}
+            `}
           </Definition>
         </Fragment>
       </Slide>
