@@ -2,9 +2,11 @@ import mermaid from 'mermaid';
 
 interface MermaidProps {
   children: string;
+  scale?: number;
 }
 
 export default function Mermaid(props: MermaidProps) {
+  props = mergeProps({ scale: 1 }, props);
   mermaid.initialize({ startOnLoad: false });
   const [svg, setSvg] = createSignal('');
 
@@ -13,5 +15,11 @@ export default function Mermaid(props: MermaidProps) {
     setSvg(svg.svg);
   });
 
-  return <div class="has-text-centered block" innerHTML={svg()} />;
+  return (
+    <div
+      class="has-text-centered block"
+      innerHTML={svg()}
+      style={{ transform: `scale(${props.scale})` }}
+    />
+  );
 }
