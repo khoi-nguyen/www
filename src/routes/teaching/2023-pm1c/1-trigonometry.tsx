@@ -30,23 +30,21 @@ export default () => {
         <Proposition title="Pourquoi les radians?">
           {tex`
             \begin{align*}
-              L &= {\color{red} \frac \pi {180}} \cdot \alpha \cdot r\\
-              A &= {\color{red} \frac \pi {180}} \cdot \frac \alpha 2 \cdot r^2\\
-              \frac \dd {\dd x} \sin(x^\circ) &= {\color{red} \frac \pi {180}} \cdot \cos(x^\circ)
+              L &= {\color{green} \frac \pi {180}} \cdot \alpha \cdot r\\
+              A &= {\color{green} \frac \pi {180}} \cdot \frac \alpha 2 \cdot r^2\\
+              \frac \dd {\dd x} \sin(x^\circ) &= {\color{green} \frac \pi {180}} \cdot \cos(x^\circ)
             \end{align*}
           `}
         </Proposition>
         <Fragment>
-          <Graphviz>
-            {String.raw`
-                digraph {
-                  rankdir=LR;
-                  rad [label="Radians"];
-                  deg [label="Degrés"];
-                  deg -> rad [label="× π/180"];
-                }
-              `}
-          </Graphviz>
+          {dot`
+            digraph {
+              rankdir=LR;
+              rad [label="Radians"];
+              deg [label="Degrés"];
+              deg -> rad [label="× π/180"];
+            }
+          `}
           <Definition title="Radian">
             {tex`
                 \alpha_{\text{rad}} \defeq \frac \pi {180} \cdot \alpha_{\text{deg}}
