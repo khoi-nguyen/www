@@ -61,11 +61,13 @@ export default () => (
         <p>What is an algorithm?</p>
       </Question>
       <Fragment>
-        {mermaid`
-          graph LR
-            I((Input)) --> A[Algorithm]
-            A --> O((Output))
-        `}
+        <Mermaid scale={2}>
+          {String.raw`
+            graph LR
+              I((Input)) --> A[Algorithm]
+              A --> O((Output))
+          `}
+        </Mermaid>
         <Definition title="Algorithm">
           <p>Sequence of computational steps that transform the input into an output</p>
         </Definition>
