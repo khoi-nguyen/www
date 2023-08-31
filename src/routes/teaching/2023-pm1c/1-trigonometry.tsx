@@ -28,6 +28,7 @@ export default () => {
       </Slide>
       <Slide title="Radians">
         <Proposition title="Pourquoi les radians?">
+          Soit {tex`\alpha`} une amplitude en <em>degrés</em>.
           {tex`
             \begin{align*}
               L &= {\color{green} \frac \pi {180}} \cdot \alpha \cdot r\\
@@ -37,14 +38,12 @@ export default () => {
           `}
         </Proposition>
         <Fragment>
-          {dot`
-            digraph {
-              rankdir=LR;
-              rad [label="Radians"];
-              deg [label="Degrés"];
-              deg -> rad [label="× π/180"];
-            }
-          `}
+          <Mermaid scale={2}>
+            {String.raw`
+              graph LR
+                D(degrés) --"× π/180"--> R(radians)
+            `}
+          </Mermaid>
           <Definition title="Radian">
             {tex`
                 \alpha_{\text{rad}} \defeq \frac \pi {180} \cdot \alpha_{\text{deg}}
