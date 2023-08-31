@@ -64,12 +64,12 @@ export default () => (
         <Mermaid scale={2}>
           {String.raw`
             graph LR
-              I((Input)) --> A[Algorithm]
-              A --> O((Output))
+              I[Input] --> A((Algorithm))
+              A --> O[Output]
           `}
         </Mermaid>
         <Definition title="Algorithm">
-          <p>Sequence of computational steps that transform the input into an output</p>
+          <p>Sequence of computational steps that transform an input into an output</p>
         </Definition>
       </Fragment>
     </Slide>
@@ -82,11 +82,11 @@ export default () => (
           {py`
             right_hand = [3, 7, 4, 1, 2, 7, 3]
             left_hand = []
-        
+
             for card in right_hand:
                 position = len([c for c in left_hand if c <= card])
                 left_hand.insert(position, card)
-        
+
             left_hand
           `}
         </Jupyter>
