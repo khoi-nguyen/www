@@ -6,6 +6,7 @@ import {
   faPen,
   faPenToSquare,
 } from '@fortawesome/free-solid-svg-icons/index.js';
+import { langSignal } from '~/root';
 
 interface SpecificEnvironmentProps {
   children?: JSX.Element;
@@ -40,19 +41,27 @@ export function Environment(props: EnvironmentProps) {
 }
 
 export function Corollary(props: SpecificEnvironmentProps) {
-  return <Environment name="Corollary" icon={faBook} {...props} />;
+  const [lang] = langSignal;
+  const name = () => (lang() === 'fr' ? 'Corollaire' : 'Corollary');
+  return <Environment name={name()} icon={faBook} {...props} />;
 }
 
 export function Definition(props: SpecificEnvironmentProps) {
-  return <Environment name="Definition" icon={faBook} {...props} />;
+  const [lang] = langSignal;
+  const name = () => (lang() === 'fr' ? 'Définition' : 'Definition');
+  return <Environment name={name()} icon={faBook} {...props} />;
 }
 
 export function Example(props: SpecificEnvironmentProps) {
-  return <Environment name="Example" icon={faPen} {...props} />;
+  const [lang] = langSignal;
+  const name = () => (lang() === 'fr' ? 'Exemple' : 'Example');
+  return <Environment name={name()} icon={faPen} {...props} />;
 }
 
 export function Exercise(props: SpecificEnvironmentProps) {
-  return <Environment name="Exercise" icon={faPenToSquare} {...props} />;
+  const [lang] = langSignal;
+  const name = () => (lang() === 'fr' ? 'Exercice' : 'Exercise');
+  return <Environment name={name()} icon={faPenToSquare} {...props} />;
 }
 
 export function Information(props: SpecificEnvironmentProps) {
@@ -64,7 +73,9 @@ export function Proposition(props: SpecificEnvironmentProps) {
 }
 
 export function Remark(props: SpecificEnvironmentProps) {
-  return <Environment name="Remark" icon={faBook} {...props} />;
+  const [lang] = langSignal;
+  const name = () => (lang() === 'fr' ? 'Remarque' : 'Remark');
+  return <Environment name={name()} icon={faBook} {...props} />;
 }
 
 export function Question(props: SpecificEnvironmentProps) {
@@ -72,5 +83,7 @@ export function Question(props: SpecificEnvironmentProps) {
 }
 
 export function Theorem(props: SpecificEnvironmentProps) {
-  return <Environment name="Theorem" icon={faBook} {...props} />;
+  const [lang] = langSignal;
+  const name = () => (lang() === 'fr' ? 'Théorème' : 'Theorem');
+  return <Environment name={name()} icon={faBook} {...props} />;
 }
