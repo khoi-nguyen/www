@@ -45,7 +45,7 @@ export default () => (
         `}
       </Jupyter>
       <p>
-        Go to <A href="/teaching/2023-fall-algorithms/1-introduction">Chapter 1</A>.
+        Go to <A href="/teaching/2023-fall-algorithms/1-foundations">Chapter 1</A>.
       </p>
     </Slide>
   </Slideshow>
