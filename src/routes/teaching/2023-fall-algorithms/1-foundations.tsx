@@ -260,6 +260,11 @@ export default () => (
             Assume <code>A</code> is an array of elements which are increasing then decreasing.
             Write an algorithm that finds the maximum value. What's its running time?
           </li>
+          <li>
+            Given an array of strictly the characters R, G, and B, segregate the values of the array
+            so that all the Rs come first, the Gs come second, and the Bs come last. You can only
+            swap elements of the array. Do this in linear time and in-place.
+          </li>
         </ul>
       </Exercise>
       <div>
