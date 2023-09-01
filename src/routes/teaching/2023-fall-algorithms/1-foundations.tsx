@@ -211,7 +211,7 @@ export default () => (
         `}
       </Definition>
       <p>
-        As an <strong>abuse of notation,</strong>, we shall write {tex`f(n) = \bigo(n)`}.
+        As an <strong>abuse of notation</strong>, we shall write {tex`f(n) = \bigo(n)`}.
       </p>
       {plot`
         x = np.arange(0.0, 30, 0.1)
