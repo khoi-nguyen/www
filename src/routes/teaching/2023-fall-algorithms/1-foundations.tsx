@@ -249,7 +249,7 @@ export default () => (
     <Slide title={() => <>Exercises: {tex`\bigo`}-notation</>}>
       <Pdf src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw1.pdf" />
     </Slide>
-    <Slide title="Programming tasks">
+    <Slide title="Programming tasks" columns>
       <Exercise>
         <ul>
           <li>
@@ -262,6 +262,15 @@ export default () => (
           </li>
         </ul>
       </Exercise>
+      <div>
+        <Jupyter>
+          {py`
+            # Type your code here
+            # if you're too lazy to start your text editor
+            4 + 7
+          `}
+        </Jupyter>
+      </div>
     </Slide>
     <Slide title="Divide et impera">
       <p>
