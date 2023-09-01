@@ -6,9 +6,17 @@ interface PdfProps {
 }
 
 export default function Pdf(props: PdfProps) {
-  props = mergeProps({ width: '100%', height: 500 }, props);
+  props = mergeProps({ width: '100%', height: 875 }, props);
   const src = () => {
     return props.src + '#toolbar=0' + (props.page ? `&page=${props.page}` : '');
   };
-  return <embed src={src()} width={props.width} height={props.height} type="application/pdf" />;
+  return (
+    <embed
+      class="clickable"
+      src={src()}
+      width={props.width}
+      height={props.height}
+      type="application/pdf"
+    />
+  );
 }
