@@ -77,7 +77,10 @@ export default () => (
       <Question>
         <p>When playing cards, how would you sort your hand in ascending order?</p>
       </Question>
-      <Fragment>
+      <Fragment index={1}>
+        <Youtube src="https://www.youtube.com/watch?v=gSdLGSM--dw" />
+      </Fragment>
+      <Fragment index={2}>
         <Jupyter>
           {py`
             right_hand = [3, 7, 4, 1, 2, 7, 3]
@@ -90,9 +93,6 @@ export default () => (
             left_hand
           `}
         </Jupyter>
-        <Question>
-          <p>What can be improved in the above algorithm?</p>
-        </Question>
       </Fragment>
     </Slide>
     <Slide title="Insertion sort">
