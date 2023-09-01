@@ -1,4 +1,5 @@
 import meta from './1-foundations.json';
+import complexityChart from '~/assets/complexity_chart.svg';
 
 export const insertionSort = py`
   def insertion_sort(A):
@@ -211,7 +212,7 @@ export default () => (
         `}
       </Definition>
       <p>
-        As an <strong>abuse of notation</strong>, we shall write {tex`f(n) = \bigo(n)`}.
+        As an <strong>abuse of notation</strong>, we shall write {tex`f(n) = \bigtheta(n)`}.
       </p>
       {plot`
         x = np.arange(0.0, 30, 0.1)
@@ -223,6 +224,27 @@ export default () => (
         plt.plot(x, h)
         ax.legend(['f(n)', 'Cg(n)', 'cg(n)'])
       `}
+    </Slide>
+    <Slide title="Algorithmic families" columns>
+      <dl>
+        <dt>{tex`O(1)`}</dt>
+        <dd>Constant</dd>
+        <dt>{tex`O(\log n)`}</dt>
+        <dd>Logarithmic</dd>
+        <dt>{tex`O(n)`}</dt>
+        <dd>Linear</dd>
+        <dt>{tex`O(n^2)`}</dt>
+        <dd>Quadratic</dd>
+        <dt>{tex`O(n^p)`}</dt>
+        <dd>Polynomial</dd>
+        <dt>{tex`O(2^n)`}</dt>
+        <dd>Exponential</dd>
+        <dt>{tex`O(n!)`}</dt>
+        <dd>Factorial</dd>
+      </dl>
+      <div class="has-text-centered">
+        <img src={complexityChart} alt="Big-O Complexity Chart" />
+      </div>
     </Slide>
     <Slide title={() => <>Exercises: {tex`\bigo`}-notation</>}>
       <Pdf src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw1.pdf" />
