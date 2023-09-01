@@ -249,6 +249,20 @@ export default () => (
     <Slide title={() => <>Exercises: {tex`\bigo`}-notation</>}>
       <Pdf src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw1.pdf" />
     </Slide>
+    <Slide title="Programming tasks">
+      <Exercise>
+        <ul>
+          <li>
+            Given an array <code>A</code> of {tex`n`} <strong>sorted</strong> elements, write an
+            algorithm that would search for a given value. What's the running time?
+          </li>
+          <li>
+            Assume <code>A</code> is an array of elements which are increasing then decreasing.
+            Write an algorithm that finds the maximum value. What's its running time?
+          </li>
+        </ul>
+      </Exercise>
+    </Slide>
     <Slide title="Divide et impera">
       <p>
         A common stategy is <strong>divide-and-conquer</strong>.
@@ -264,6 +278,13 @@ export default () => (
           <strong>Combine</strong> the subproblem solutions to solve the original problem
         </li>
       </ul>
+      <Fragment>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif?20151222172210"
+          alt="Merge sort example"
+          style="width: 100%;"
+        />
+      </Fragment>
     </Slide>
     <Slide title="Merge sort">
       <Jupyter>
