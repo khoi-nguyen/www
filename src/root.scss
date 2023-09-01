@@ -409,6 +409,10 @@ pre,
     z-index: 2;
   }
 
+  .fragment {
+    will-change: auto !important;
+  }
+
   .toolbar {
     font-size: 40px;
     bottom: 15px;
