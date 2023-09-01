@@ -105,6 +105,8 @@ export default () => (
           insertion_sort([3, 7, 8, 1, 2, 7, 3])
         `}
       </Jupyter>
+    </Slide>
+    <Slide title="Analysis of an algorithm">
       <p>For every algorithm, we shall study the following properties.</p>
       <ul>
         <li>
@@ -148,8 +150,34 @@ export default () => (
         \sum_{i = 1}^n i = \frac {n (n + 1)} 2
       `}
     </Slide>
+    <Slide title="Computing time">
+      <p>
+        We are interested in {tex`T(n)`}, where {tex`T`} is the <strong>time</strong> an algorithm
+        takes to solve a problem of <strong>size</strong> {tex`n`}.
+      </p>
+      {plot`
+        x = np.arange(0.0, 100, 1)
+        y = 2 * x**2
+        z = 2 * x ** 2 - 4 * x + 10
+        plt.xlabel("T")
+        plt.ylabel("n")
+        plt.plot(x, y)
+        plt.plot(x, z)
+        ax.legend(['2n²', '2n²-4n+10'])
+      `}
+      <p>
+        We shall only keep the <strong>asymptotic term</strong>:
+      </p>
+      {tex`
+        T(n) = 2 n^2 - 4 n + 10
+        \implies
+        T(n) = \bigtheta(n^2)
+      `}
+    </Slide>
     <Slide title={() => <>{tex`\bigo`}-notation</>} cite={['clrs', 'p. 54-55']}>
-      <p>Let {tex`f, g : \N \to \R^+`}.</p>
+      <p>
+        Let {tex`f`} and {tex`g`} be <strong>positive</strong> functions.
+      </p>
       <Definition title={() => <>{tex`\bigo(g)`}</>}>
         <p>
           {tex`f \in \bigo(g)`} if there exist positive constants {tex`C`} and {tex`N`} such that
@@ -159,6 +187,19 @@ export default () => (
           \quad n \geq N.
         `}
       </Definition>
+      <p>
+        As an <strong>abuse of notation,</strong>, we shall write {tex`f(n) = \bigo(n)`}.
+      </p>
+      {plot`
+        x = np.arange(0.0, 30, 0.1)
+        f = x ** 2 + 5 * np.sin(3 * x) * x
+        g = 1.4 * x ** 2
+        plt.plot(x, f)
+        plt.plot(x, g)
+        ax.legend(['f(n)', 'Cg(n)'])
+      `}
+    </Slide>
+    <Slide title={() => <>{tex`\bigtheta`}-notation</>} cite={['clrs', 'p. 54-55']}>
       <Definition title={() => <>{tex`\bigtheta(g)`}</>}>
         <p>
           {tex`f \in \bigtheta(g)`} if there exist positive constants {tex`c, C`} and {tex`N`} such
@@ -169,17 +210,19 @@ export default () => (
           \quad n \geq N.
         `}
       </Definition>
-      <Remark>
-        <ul>
-          <li>
-            {tex`f \in \bigo(g(n))`}: {tex`f`} is big-oh of {tex`g`} of {tex`n`},
-          </li>
-          <li>
-            {tex`f \in \bigo(g(n))`}: {tex`f`} is big-theta of {tex`g`} of {tex`n`},
-          </li>
-          <li>As an abuse of notation, we'll write {tex`f(n) = \bigo(g(n))`}.</li>
-        </ul>
-      </Remark>
+      <p>
+        As an <strong>abuse of notation,</strong>, we shall write {tex`f(n) = \bigo(n)`}.
+      </p>
+      {plot`
+        x = np.arange(0.0, 30, 0.1)
+        f = x ** 2 + 5 * np.sin(3 * x) * x
+        g = 1.4 * x ** 2
+        h = 0.7 * x ** 2
+        plt.plot(x, f)
+        plt.plot(x, g)
+        plt.plot(x, h)
+        ax.legend(['f(n)', 'Cg(n)', 'cg(n)'])
+      `}
     </Slide>
     <Slide title={() => <>Exercises: {tex`\bigo`}-notation</>}>
       <Exercise title="True or False">
