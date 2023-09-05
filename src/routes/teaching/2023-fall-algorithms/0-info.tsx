@@ -48,5 +48,30 @@ export default () => (
         Go to <A href="/teaching/2023-fall-algorithms/1-foundations">Chapter 1</A>.
       </p>
     </Slide>
+    <Slide title="5 Sept 2023">
+      <ul>
+        <li>
+          <p>
+            <strong>Insertion sort</strong> is the algorithm you use when you play cards
+          </p>
+          <ul>
+            <li>Correctness (invariant: cards in the left-hand are sorted)</li>
+            <li>
+              Runtime: {tex`\bigo(n)`} (best case) or {tex`\bigo(n^2)`} (average and worst case)
+            </li>
+            <li>Space complexity: {tex`\bigo(1)`} (in place)</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Asymptotic notation</strong>:
+          {tex`
+            3 n^3 + 7 n^2 - 3 = \bigtheta(n^3)\\
+            \bigtheta(g) \defeq \{ f : c g(n) \leq f(n) \leq C g(n), \quad n \geq N, \quad \text{for some } N\}\\
+            \bigo(g) \defeq \{ f : f(n) \leq C g(n), \quad n \geq N, \quad \text{for some } N\}
+          `}
+        </li>
+      </ul>
+      <A href="/teaching/2023-fall-algorithms/1-foundations#/12">Click here</A>
+    </Slide>
   </Slideshow>
 );
