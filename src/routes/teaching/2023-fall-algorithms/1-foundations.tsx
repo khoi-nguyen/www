@@ -443,6 +443,34 @@ export default () => (
           </li>
         </ol>
       </Exercise>
+      <Exercise title="Lower-order term trick">
+        <p>
+          Show that {tex`\bigtheta(n^2)`} is the solution to the recurrence{' '}
+          {tex`T(n) = 4 T(n / 2) + n`}.
+        </p>
+      </Exercise>
+    </Slide>
+    <Slide title="Exercises: solving recurrences part II" cite={['clrs', 'p. 101']}>
+      <Exercise>
+        <p>
+          For each of the following recurrences, sketch its recursion tree, and guess a good
+          asymptotic upper bound on its solution. Then use the substitution method to verify your
+          answer.
+        </p>
+        <ol>
+          <li>{tex`T(n) = T(n / 2) + n^3`}</li>
+          <li>{tex`T(n) = 4T(n / 3) + n`}</li>
+          <li>{tex`T(n) = 4T(n / 2) + n`}</li>
+          <li>{tex`T(n) = 3T(n - 1) + 1`}</li>
+        </ol>
+      </Exercise>
+      <Exercise title="Master theorem">
+        <p>
+          Assume that {tex`T(n) = aT(n / b) + f(n)`}, with {tex`a`} and {tex`b`} being integers. If{' '}
+          {tex`f(n) = \bigo(n^{\log_ba - \epsilon})`} for some {tex`\epsilon > 0`}, then{' '}
+          {tex`T(n) = \bigtheta(n^{\log_b a})`}.
+        </p>
+      </Exercise>
     </Slide>
     <Slide title="Recurrences: Avoiding pitfalls" cite={['clrs', 'pp. 93-94']}>
       <Exercise>
@@ -460,7 +488,7 @@ export default () => (
         \end{align*}
       `}
     </Slide>
-    <Slide title="Comparison of sorting algorithm">
+    <Slide title="Comparison of sorting algorithms">
       <table>
         <thead>
           <tr>
@@ -529,7 +557,7 @@ export default () => (
     </Slide>
     <Slide title="A first implementation of quicksort">
       <p>
-        The real quicksort is <strong>in-place</strong>. We use the first element as pivot.
+        The real quicksort is <strong>in place</strong>. Here, we use the first element as pivot.
       </p>
       <Jupyter>
         {py`
@@ -594,6 +622,9 @@ export default () => (
           pivot.
         </p>
       </Remark>
+      <Exercise>
+        <p>Implement Quicksort with a random pivot.</p>
+      </Exercise>
     </Slide>
     <Slide title={() => <>Optimality of {tex`\bigo(n \log n)`} for comparison sorts</>}>
       <Theorem>
