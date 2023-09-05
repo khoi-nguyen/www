@@ -70,6 +70,7 @@ export default () => (
             \bigo(g) \defeq \{ f : f(n) \leq C g(n), \quad n \geq N, \quad \text{for some } N\}
           `}
         </li>
+        <li>Sorting is an important operation in compsci (e.g. median, search)</li>
       </ul>
       <A href="/teaching/2023-fall-algorithms/1-foundations#/12">Click here</A>
     </Slide>
