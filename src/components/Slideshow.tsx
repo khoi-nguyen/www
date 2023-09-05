@@ -88,12 +88,10 @@ export default function Slideshow(props: SlideshowProps) {
       deck.down();
     });
     deck.on('slidechanged', save);
-    window.addEventListener('beforeunload', save);
   });
   onCleanup(async () => {
     if (deck) {
       deck.destroy();
-      await save();
     }
   });
 
