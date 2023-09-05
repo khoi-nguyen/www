@@ -165,7 +165,7 @@ export default () => (
       employer={
         <a href="https://www.federation-wallonie-bruxelles.be/">Féderation Wallonie-Bruxelles</a>
       }
-      dates={[new Date('2017-01'), new Date('2020-06')]}
+      dates={[new Date('2017-01'), new Date('2019-06')]}
     >
       <ul>
         <li>Language of instruction: French</li>
