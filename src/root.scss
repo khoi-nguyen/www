@@ -167,6 +167,8 @@ nav#navbar {
 
 table {
   @extend .block, .container;
+  border-collapse: collapse;
+  border-spacing: 0;
   width: 100%;
 
   td,
@@ -327,6 +329,14 @@ pre,
     grid-gap: 1em;
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.has-background-danger {
+  background: #ff3366;
+}
+
+.has-background-success {
+  background: #00cc66;
 }
 
 .has-text-centered {
