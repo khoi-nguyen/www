@@ -460,15 +460,65 @@ export default () => (
         \end{align*}
       `}
     </Slide>
-    <Slide title="Quicksort">
-      <ul>
-        <li>
-          Runtime: {tex`\bigo(n^2)`} (worst case), {tex`\bigo(n \log n)`} (average)
-        </li>
-        <li>In place</li>
-        <li>The constant in {tex`\bigo(\cdot)`} is low, so it's fast in practice</li>
-        <li>Divide and conquer</li>
-      </ul>
+    <Slide title="Comparison of sorting algorithm">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Insertion sort</th>
+            <th>Merge sort</th>
+            <th>Quicksort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>In place</th>
+            <td class="has-background-success">Yes</td>
+            <td class="has-background-danger">No</td>
+            <td class="has-background-success">Yes</td>
+          </tr>
+          <tr>
+            <th>Comparison</th>
+            <td>Yes</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th>Stable</th>
+            <td class="has-background-success">Yes</td>
+            <td class="has-background-success">Yes</td>
+            <td class="has-background-danger">No</td>
+          </tr>
+          <tr>
+            <th>Worst case runtime</th>
+            <td class="has-background-danger">{tex`\bigo(n^2)`}</td>
+            <td class="has-background-success">{tex`\bigo(n \log n)`}</td>
+            <td class="has-background-danger">{tex`\bigo(n^2)`}</td>
+          </tr>
+          <tr>
+            <th>Average case runtime</th>
+            <td class="has-background-danger">{tex`\bigo(n^2)`}</td>
+            <td class="has-background-success">{tex`\bigo(n \log n)`}</td>
+            <td class="has-background-success">{tex`\bigo(n \log n)`}</td>
+          </tr>
+          <tr>
+            <th>Best case runtime</th>
+            <td class="has-background-success">{tex`\bigo(n)`}</td>
+            <td>{tex`\bigo(n \log n)`}</td>
+            <td>{tex`\bigo(n \log n)`}</td>
+          </tr>
+        </tbody>
+      </table>
+      <dl>
+        <dt>Comparison sort</dt>
+        <dd>Only uses comparisons to chose between different permutations</dd>
+        <dt>Stable sort</dt>
+        <dd>Maintain the order of identical elements</dd>
+      </dl>
+      <p>
+        We shall see later that {tex`\bigo(n \log n)`} is the best we can do for{' '}
+        <strong>comparison sorts</strong>.
+      </p>
     </Slide>
     <Slide title="Quick sort: example">
       <Example>
