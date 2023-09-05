@@ -48,7 +48,7 @@ export default () => (
         Go to <A href="/teaching/2023-fall-algorithms/1-foundations">Chapter 1</A>.
       </p>
     </Slide>
-    <Slide title="5 Sept 2023">
+    <Slide title="5 Sept 2023" columns>
       <ul>
         <li>
           <p>
@@ -71,8 +71,29 @@ export default () => (
           `}
         </li>
         <li>Sorting is an important operation in compsci (e.g. median, search)</li>
+        <li>
+          <A href="/teaching/2023-fall-algorithms/1-foundations#/12">Click here</A>
+        </li>
       </ul>
-      <A href="/teaching/2023-fall-algorithms/1-foundations#/12">Click here</A>
+      <div>
+        <h2>Homework (due Tuesday 12 September)</h2>
+        <p>
+          Send me a Jupyter file by email (nguyen.khoi@nyu.edu) with the following exercises solved.
+        </p>
+        <ul>
+          <li>
+            2-2. Bubble sort <Cite key="clrs">p. 46</Cite>: use Python instead of pseudo-code
+          </li>
+          <li>
+            2-3. Horner <Cite key="clrs">p. 47</Cite>: use Python instead of pseudo-code
+          </li>
+          <li>
+            <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/">
+              Leetcode problem
+            </a>
+          </li>
+        </ul>
+      </div>
     </Slide>
   </Slideshow>
 );
