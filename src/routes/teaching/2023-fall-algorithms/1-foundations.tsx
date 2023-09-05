@@ -300,6 +300,13 @@ export default () => (
         />
       </Fragment>
     </Slide>
+    <Slide title="Merge sort: example">
+      <Example>
+        <p>
+          Sort the following array: <code>[11, 6, 3, 24, 46, 22, 7]</code>
+        </p>
+      </Example>
+    </Slide>
     <Slide title="Merge sort">
       <Jupyter>
         {mergeSort}
@@ -351,6 +358,46 @@ export default () => (
           }
         `}
       </Fragment>
+    </Slide>
+    <Slide title="Sorting olympics" columns>
+      <div>
+        <h2>Insertion sort</h2>
+        <Jupyter>
+          {py`
+            import time
+            start = time.time()
+
+          `}
+          {insertionSort}
+          {py`
+
+            for i in range(10**6):
+                A = [1, 4, 3, 2, 7, 3, 6]
+                insertion_sort(A)
+
+            time.time() - start
+          `}
+        </Jupyter>
+      </div>
+      <div>
+        <h2>Merge sort</h2>
+        <Jupyter>
+          {py`
+            import time
+            start = time.time()
+
+          `}
+          {mergeSort}
+          {py`
+
+            for i in range(10**6):
+                A = [1, 4, 3, 2, 7, 3, 6]
+                merge_sort(A)
+
+            time.time() - start
+          `}
+        </Jupyter>
+      </div>
     </Slide>
     <Slide title="Solving recurrences" cite={['clrs', 'p. 90']}>
       <Information title="Substitution method">
@@ -406,63 +453,34 @@ export default () => (
       `}
       <p>We can check that {tex`T(n) = O(n)`} satisfies the recurrence relation, as</p>
       {tex`
-        \begin{align}
+        \begin{align*}
           T(n) &\leq 2 \bigo \left(\left\lfloor \frac n 2 \right\rfloor\right) + \bigtheta(n)\\
           &= 2 \bigo(n) + \bigtheta(n)\\
           &= O(n).
-        \end{align}
+        \end{align*}
       `}
     </Slide>
-    <Slide title="Why is sorting important?"></Slide>
-    <Slide title="Sorting olympics" columns>
-      <div>
-        <h2>Insertion sort</h2>
-        <Jupyter>
-          {py`
-            import time
-            start = time.time()
-
-          `}
-          {insertionSort}
-          {py`
-
-            for i in range(10**6):
-                A = [1, 4, 3, 2, 7, 3, 6]
-                insertion_sort(A)
-
-            time.time() - start
-          `}
-        </Jupyter>
-      </div>
-      <div>
-        <h2>Merge sort</h2>
-        <Jupyter>
-          {py`
-            import time
-            start = time.time()
-
-          `}
-          {mergeSort}
-          {py`
-
-            for i in range(10**6):
-                A = [1, 4, 3, 2, 7, 3, 6]
-                merge_sort(A)
-
-            time.time() - start
-          `}
-        </Jupyter>
-      </div>
-    </Slide>
-    <Slide title={() => <>Optimality of {tex`\bigo(n \log n)`} for comparison sorts</>}>
-      <Theorem>
-        <p>
-          The running time of a <strong>comparison sorting algorithm</strong> is at best{' '}
-          {tex`\bigo(n \log n)`}.
-        </p>
-      </Theorem>
-    </Slide>
     <Slide title="Quicksort">
+      <ul>
+        <li>
+          Runtime: {tex`\bigo(n^2)`} (worst case), {tex`\bigo(n \log n)`} (average)
+        </li>
+        <li>In place</li>
+        <li>The constant in {tex`\bigo(\cdot)`} is low, so it's fast in practice</li>
+        <li>Divide and conquer</li>
+      </ul>
+    </Slide>
+    <Slide title="Quick sort: example">
+      <Example>
+        <p>
+          Sort the following array: <code>[11, 6, 3, 24, 46, 22, 7]</code>
+        </p>
+      </Example>
+    </Slide>
+    <Slide title="A first implementation of quicksort">
+      <p>
+        The real quicksort is <strong>in-place</strong>. We use the first element as pivot.
+      </p>
       <Jupyter>
         {py`
           def quicksort(A):
@@ -476,6 +494,64 @@ export default () => (
           quicksort([-5, 3, 2, -1, 7, 5, 3])
         `}
       </Jupyter>
+    </Slide>
+    <Slide title="In-place partitioning">
+      <Jupyter>
+        {py`
+          def quicksort(A, start, end):
+              if len(A[start:end]) <= 1:
+                  return None
+              # In-place partitioning
+              i = start
+              for j in range(start, end - 1):
+                  if A[j] <= A[end - 1]:
+                    A[i], A[j] = A[j], A[i]
+                    i += 1
+              A[i], A[end - 1] = A[end - 1], A[i]
+              # Recursive call
+              quicksort(A, start, i)
+              quicksort(A, i + 1, end)
+
+          A = [-5, 3, 2, -1, 7, 5, 3]
+          quicksort(A, 0, len(A))
+          A
+        `}
+      </Jupyter>
+      <Fragment>
+        <Proposition title="Invariant">
+          <ul>
+            <li>
+              In {tex`\{\text{start}, \dots, i - 1\}`}, the elements are {tex`\leq \text{pivot}`}.
+            </li>
+            <li>
+              In {tex`\{i, \dots, j - 1\}`}, the elements are {tex`> \text{pivot}`}.
+            </li>
+          </ul>
+        </Proposition>
+      </Fragment>
+    </Slide>
+    <Slide title="Runtime of quicksort">
+      <Proposition title="Runtime of quicksort">
+        <ul>
+          <li>The worst-case runtime is {tex`\bigo(n^2)`}</li>
+          <li>The average case runtime is {tex`\bigo(n \log n)`}</li>
+          <li>The best case runtime is {tex`\bigo(n \log n)`}</li>
+        </ul>
+      </Proposition>
+      <Remark title="Choice of pivot">
+        <p>
+          The algorithm may perform poorly. One idea would be to choose a <strong>random</strong>{' '}
+          pivot.
+        </p>
+      </Remark>
+    </Slide>
+    <Slide title={() => <>Optimality of {tex`\bigo(n \log n)`} for comparison sorts</>}>
+      <Theorem>
+        <p>
+          The running time of a <strong>comparison sorting algorithm</strong> is at best{' '}
+          {tex`\bigo(n \log n)`}.
+        </p>
+      </Theorem>
     </Slide>
     <Slide title="Counting sort: an example">
       <Example>
