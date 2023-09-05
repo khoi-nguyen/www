@@ -28,4 +28,13 @@ export default {
       </>
     ),
   ],
+  stewart: [
+    'Stewart (2015)',
+    'Stewart (2015)',
+    () => (
+      <>
+        Stewart, J. (2015). <em>Calculus</em>. Cengage Learning.
+      </>
+    ),
+  ],
 } as const;
