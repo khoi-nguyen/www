@@ -101,6 +101,7 @@ export default function Slideshow(props: SlideshowProps) {
         <section class="slide title-slide">
           <div>
             <Meta {...props.meta} />
+            {admin()}
           </div>
         </section>
         <For each={slides}>
