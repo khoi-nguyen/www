@@ -1,5 +1,6 @@
 const abbreviations = {
   BSc: 'Bachelor of Science',
+  CAS: 'Computer Algebra System',
   CV: 'Curriculum Vitæ',
   DOM: 'Document Object Model',
   ECAM: 'École Centrale des Arts et Métiers',
