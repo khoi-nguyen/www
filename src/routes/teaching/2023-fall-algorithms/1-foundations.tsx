@@ -483,7 +483,7 @@ export default () => (
       {tex`
         \begin{align*}
           T(n) &\leq 2 \bigo \left(\left\lfloor \frac n 2 \right\rfloor\right) + \bigtheta(n)\\
-          &= 2 \bigo(n) + \bigtheta(n)\\
+          &= \bigo(n) + \bigtheta(n)\\
           &= O(n).
         \end{align*}
       `}
