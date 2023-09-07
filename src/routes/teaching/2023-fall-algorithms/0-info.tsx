@@ -95,5 +95,48 @@ export default () => (
         </ul>
       </div>
     </Slide>
+    <Slide title="7 Sept 2023" columns>
+      <ul>
+        <li>
+          <strong>Divide and conquer</strong>: recursively divide the problem until it becomes
+          trivial, and combine the solutions of the subproblems to solve the original problem.
+        </li>
+        <li>
+          <strong>Merge sort</strong>: divide-and-conquer sorting algorithm which runs in{' '}
+          {tex`\bigo(n \log n)`}
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif?20151222172210"
+            alt="Merge sort example"
+            style="width: 50%;"
+          />
+        </li>
+        <li>
+          <strong>Bold prediction of the day:</strong> my website is going to work today on at least
+          one computer.
+        </li>
+        <li>
+          <A href="/teaching/2023-fall-algorithms/1-foundations#/22">Click here</A>
+        </li>
+      </ul>
+      <div>
+        <h2>Homework (due Tuesday 12 September)</h2>
+        <p>
+          Send me a Jupyter file by email (nguyen.khoi@nyu.edu) with the following exercises solved.
+        </p>
+        <ul>
+          <li>
+            2-2. Bubble sort <Cite key="clrs">p. 46</Cite>: use Python instead of pseudo-code
+          </li>
+          <li>
+            2-3. Horner <Cite key="clrs">p. 47</Cite>: use Python instead of pseudo-code
+          </li>
+          <li>
+            <a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/">
+              Leetcode problem
+            </a>
+          </li>
+        </ul>
+      </div>
+    </Slide>
   </Slideshow>
 );
