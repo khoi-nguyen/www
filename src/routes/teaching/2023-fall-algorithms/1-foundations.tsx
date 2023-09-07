@@ -662,6 +662,7 @@ export default () => (
           The algorithm must be <strong>in place</strong> and {tex`\bigo(n \log n)`} on average.
         </p>
       </Exercise>
+      <Jupyter>{'# Type your code here'}</Jupyter>
     </Slide>
     <Slide title="Runtime of quicksort">
       <Proposition title="Runtime of quicksort">
