@@ -8,11 +8,12 @@ interface SlideProps {
   title?: string | (() => JSX.Element);
 }
 
+function display(x: number) {
+  return (x > 9 ? '' : '0') + String(x);
+}
+
 function datetime() {
   const date = new Date();
-  function display(x: number) {
-    return (x > 9 ? '' : '0') + String(x);
-  }
   return `${display(date.getHours())}:${display(date.getMinutes())}`;
 }
 
