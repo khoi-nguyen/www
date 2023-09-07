@@ -2,6 +2,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface JupyterProps {
   children: JSX.Element;
+  solution?: string;
 }
 
 export default function Jupyter(props: JupyterProps) {
@@ -39,7 +40,7 @@ export default function Jupyter(props: JupyterProps) {
           </Show>
         </div>
         <div class="editor">
-          <Editor onUpdate={handleUpdate} onKeyDown={handleKeyDown}>
+          <Editor onUpdate={handleUpdate} onKeyDown={handleKeyDown} solution={props.solution}>
             {code()}
           </Editor>
         </div>
