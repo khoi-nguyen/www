@@ -400,6 +400,10 @@ pre,
           font-style: normal;
         }
       }
+
+      .time {
+        @extend .is-vcentered, .is-narrow;
+      }
     }
 
     .slide-contents {
