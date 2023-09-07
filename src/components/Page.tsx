@@ -1,6 +1,5 @@
 import {
   faAddressCard,
-  faChalkboardUser,
   faRightFromBracket,
   faScrewdriverWrench,
   faUniversity,
@@ -25,6 +24,11 @@ export default function Page(props: PageProps) {
             <strong>
               <A href="/">Khôi Nguyễn</A>
             </strong>
+          </li>
+          <li>
+            <A href="/cv">
+              <Fa icon={faAddressCard} /> <Abbr key="CV" />
+            </A>
           </li>
           <li>
             <A href="/teaching/nyu">
