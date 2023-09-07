@@ -5,7 +5,8 @@ export default () => (
     <p>
       Hi everyone! My name is <strong>Khôi Nguyễn</strong> and I'm a mathematician and a programmer
       who is passionate about education. Currently, I work at <Abbr key="ECAM" /> and{' '}
-      <Abbr key="NYU" /> as a lecturer in Mathematics and Computer Science.
+      <Abbr key="NYU" /> as a lecturer in Mathematics and Computer Science. I focus on Web
+      development and the crossover between mathematics and computer science.
     </p>
     <p>
       Previously, I taught Mathematics and Computer Science in international schools such as the{' '}
@@ -19,7 +20,8 @@ export default () => (
     </p>
     <p>
       The main purpose of this website is to host my <A href="/teaching">teaching resources</A> for
-      my students.
+      my students. Its source code is available on{' '}
+      <a href="https://github.com/khoi-nguyen/www">Github</a>.
     </p>
     <h2>Useful Links</h2>
     <ul>
