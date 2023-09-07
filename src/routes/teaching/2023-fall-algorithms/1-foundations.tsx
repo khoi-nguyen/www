@@ -26,6 +26,24 @@ export const mergeSort = py`
       return result + L + R
 `;
 
+const karatsuba = py`
+  def karatsuba(x, y):
+      if x < 10 or y < 10:
+          return x * y
+
+      x_str, y_str = str(x), str(y)
+      m = max(len(x_str), len(y_str)) // 2
+
+      x_high, x_low = int(x_str[:-m]), int(x_str[-m:])
+      y_high, y_low = int(y_str[:-m]), int(y_str[-m:])
+
+      a = karatsuba(x_high, y_high)
+      b = karatsuba(x_low, y_low)
+      c = karatsuba(x_high + x_low, y_high + y_low) - a - b
+
+      return a * 10 ** (2 * m) + c * 10 ** m + b
+`;
+
 const CountTable = (props: { max: number }) => (
   <table>
     <thead>
@@ -306,6 +324,9 @@ export default () => (
           Sort the following array: <code>[11, 6, 3, 24, 46, 22, 7]</code>
         </p>
       </Example>
+      <Exercise>
+        <p>Sort the following array</p>
+      </Exercise>
     </Slide>
     <Slide title="Merge sort">
       <Jupyter>
@@ -554,6 +575,12 @@ export default () => (
           Sort the following array: <code>[11, 6, 3, 24, 46, 22, 7]</code>
         </p>
       </Example>
+      <Exercise>
+        Apply (by hand) the quicksort algorithm to:
+        {tex`
+          A = [13, 19, 9, 5, 12, 8, 7, 4, 21, 2, 6, 11]
+        `}
+      </Exercise>
     </Slide>
     <Slide title="A first implementation of quicksort">
       <p>
@@ -573,7 +600,20 @@ export default () => (
         `}
       </Jupyter>
     </Slide>
-    <Slide title="In-place partitioning">
+    <Slide title="Hoare partition's scheme" cite={['clrs', 'pp. 183-184']}>
+      <Example title="Hoare partition's scheme">
+        <p>
+          Apply the <em>Hoare partition scheme</em> on <code>[11, 6, 3, 24, 46, 22, 7]</code>
+        </p>
+      </Example>
+      <Exercise>
+        <p>Illustrate the partition operation on the array</p>
+        {tex`
+          A = [ 13, 19, 9, 5, 12, 8, 7, 4, 21, 2, 6, 11 ]
+        `}
+      </Exercise>
+    </Slide>
+    <Slide title="In-place partitioning" cite={['clrs', 'p. 184']}>
       <Jupyter>
         {py`
           def quicksort(A, start, end):
@@ -608,6 +648,24 @@ export default () => (
         </Proposition>
       </Fragment>
     </Slide>
+    <Slide title="Exercises">
+      <Exercise>
+        <ol>
+          <li>Describe the worst case for quicksort. What's the runtime?</li>
+          <li>Describe the best case for quicksort. What's the runtime?</li>
+          <li>What is the runtime of the algorithm if all the elements are equal?</li>
+        </ol>
+      </Exercise>
+      <Exercise>
+        <p>
+          <strong>Without sorting</strong>, implement an algorithm that finds the {tex`k`}-th
+          smallest element.
+        </p>
+        <p>
+          The algorithm must be <strong>in place</strong> and {tex`\bigo(n \log n)`} on average.
+        </p>
+      </Exercise>
+    </Slide>
     <Slide title="Runtime of quicksort">
       <Proposition title="Runtime of quicksort">
         <ul>
@@ -624,6 +682,46 @@ export default () => (
       </Remark>
       <Exercise>
         <p>Implement Quicksort with a random pivot.</p>
+      </Exercise>
+    </Slide>
+    <Slide title="Multiplication algorithm">
+      <p>
+        Fast multiplication of large numbers is essential in <Abbr key="CAS" />, cryptography, etc.
+      </p>
+      <p>
+        For a long time, people thought that the multiplication algorithm we learn in primary school
+        was optimal.
+      </p>
+      <Question>
+        <p>Assume we have two numbers with {tex`n`} digits.</p>
+        <ol>
+          <li>What is the runtime of the traditional multiplication algorithm?</li>
+          <li>What is the runtime when you sum them?</li>
+        </ol>
+      </Question>
+    </Slide>
+    <Slide title="Towards the Карацу́ба (Karatsuba) algorithm">
+      <Exercise>
+        <p>
+          Assume {tex`a, b, c, d`} are digits and calculate the product{' '}
+          {tex`(10 a + b) \times (10 c + d).`} Compare the result with {tex`(a + b)(c + d)`}
+        </p>
+        <p>Hence, use this to calculate {tex`42 \times 14`} using 3 multiplications.</p>
+      </Exercise>
+      <Exercise title="Карацу́ба's trick">
+        <p>Use Карацу́ба's trick to calculate {tex`27 \times 32`} in 3 multiplications.</p>
+      </Exercise>
+    </Slide>
+    <Slide title="Карацу́ба's algorithm in Python">
+      <Jupyter>{karatsuba}</Jupyter>
+    </Slide>
+    <Slide title="Karatsuba's runtime">
+      <Jupyter>{karatsuba}</Jupyter>
+      <Exercise>
+        <p>Calculate the runtime of Karatsuba's algorithm.</p>
+        <p>
+          What about if we only did <em>divide-and-conquer</em> without applying Karatsuba's trick?
+        </p>
       </Exercise>
     </Slide>
     <Slide title={() => <>Optimality of {tex`\bigo(n \log n)`} for comparison sorts</>}>
