@@ -3,30 +3,10 @@ import meta from './1-trigonometry.json';
 export default () => {
   return (
     <Slideshow meta={meta}>
-      <Slide title="Motivations">
-        <Definition>
-          <p>Pourquoi la trigonométrie est-elle importante?</p>
-        </Definition>
-      </Slide>
-      <Slide title="Fourier" split={false} columns>
-        <Iframe src="https://www.myfourierepicycles.com/" />
-        <div>
-          <p>À titre d'information, pas dans la matière.</p>
-          <Theorem title="Fourier">
-            <p>
-              Toute fonction <em>raisonnable</em> peut être reconstruite à partir de fonctions
-              trigonométriques.
-            </p>
-          </Theorem>
-          <Remark title="JPEG, MP3">
-            <p>
-              Cette idée est à la base d'algorithmes de compression tels que <Abbr key="JPEG" /> et{' '}
-              <Abbr key="MP3" />.
-            </p>
-          </Remark>
-        </div>
-      </Slide>
       <Slide title="Radians">
+        <Exercise title="Arc de cercle">
+          <p>Calculer la</p>
+        </Exercise>
         <Proposition title="Pourquoi les radians?">
           Soit {tex`\alpha`} une amplitude en <em>degrés</em>.
           {tex`
