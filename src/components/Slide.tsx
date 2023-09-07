@@ -30,7 +30,7 @@ export default function Slide(props: SlideProps) {
     on(time, () => {
       setTimeout(() => {
         setTime(datetime());
-      }, 1000);
+      }, 60 * 1000);
     }),
   );
 
