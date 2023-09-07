@@ -324,9 +324,6 @@ export default () => (
           Sort the following array: <code>[11, 6, 3, 24, 46, 22, 7]</code>
         </p>
       </Example>
-      <Exercise>
-        <p>Sort the following array</p>
-      </Exercise>
     </Slide>
     <Slide title="Merge sort">
       <Jupyter>
