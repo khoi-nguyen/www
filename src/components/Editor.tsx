@@ -8,6 +8,7 @@ interface EditorProps {
   lang?: keyof typeof Prism.languages;
   onUpdate?: (code: string) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
+  solution?: string;
 }
 
 export default function Editor(props: EditorProps) {
@@ -40,5 +41,18 @@ export default function Editor(props: EditorProps) {
     }
   });
 
-  return <pre class={`language-${props.lang} clickable`}>{textArea}</pre>;
+  const solve = () => {
+    if (props.solution) {
+      editor.updateCode(props.solution);
+    }
+  };
+
+  return (
+    <>
+      <pre class={`language-${props.lang} clickable`}>{textArea}</pre>
+      <Show when={props.solution}>
+        <button onClick={solve}>Solve</button>
+      </Show>
+    </>
+  );
 }
