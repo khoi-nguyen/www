@@ -26,13 +26,9 @@ export default function Slide(props: SlideProps) {
   );
 
   const [time, setTime] = createSignal(datetime());
-  createEffect(
-    on(time, () => {
-      setTimeout(() => {
-        setTime(datetime());
-      }, 60 * 1000);
-    }),
-  );
+  setInterval(() => {
+    setTime(datetime());
+  }, 1000);
 
   return (
     <div>
