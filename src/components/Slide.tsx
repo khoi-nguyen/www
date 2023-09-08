@@ -26,9 +26,13 @@ export default function Slide(props: SlideProps) {
   );
 
   const [time, setTime] = createSignal(datetime());
-  setInterval(() => {
+  const clock = setInterval(() => {
     setTime(datetime());
   }, 1000);
+
+  onCleanup(() => {
+    clearInterval(clock);
+  });
 
   return (
     <div>
