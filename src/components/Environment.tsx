@@ -68,6 +68,12 @@ export function Information(props: SpecificEnvironmentProps) {
   return <Environment name="Information" icon={faInfoCircle} {...props} />;
 }
 
+export function Problem(props: SpecificEnvironmentProps) {
+  const [lang] = langSignal;
+  const name = () => (lang() === 'fr' ? 'Problème' : 'Problem');
+  return <Environment name={name()} icon={faBook} {...props} />;
+}
+
 export function Proposition(props: SpecificEnvironmentProps) {
   return <Environment name="Proposition" icon={faBook} {...props} />;
 }
