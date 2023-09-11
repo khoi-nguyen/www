@@ -3,6 +3,30 @@ import meta from './1-trigonometry.json';
 export default () => {
   return (
     <Slideshow meta={meta}>
+      <Slide
+        title={() => (
+          <>
+            Bienvenue à l'
+            <Abbr key="ECAM" />
+          </>
+        )}
+      >
+        <p>Bienvenue! Je vous souhaite énormément de succès et de belles rencontres.</p>
+        <p>Quelques règles avant de commencer le cours:</p>
+        <ul>
+          <li>
+            <strong>Ponctualité</strong>: les retardataires ne seront admis qu'en une fois 15
+            minutes après le début du cours.
+          </li>
+          <li>
+            <strong>Respect du temps de parole</strong>: silence lorsque quelqu'un·e s'exprime.
+          </li>
+          <li>
+            <strong>Respect mutuel et de l'apprentissage du groupe</strong>
+          </li>
+        </ul>
+      </Slide>
+      <Slide title="À propos de ce cours"></Slide>
       <Slide title="Degrés et radians" cite={['stewart', 'p. A24']}>
         <p>
           Le <strong>radian</strong> (rad, facultatif) et le <strong>degré</strong> ({tex`\circ`})
@@ -100,6 +124,15 @@ export default () => {
       </Slide>
       <Slide title="Cercle trigonométrique">
         <Geogebra id="yyufnmy9" />
+      </Slide>
+      <Slide title="Rapports trigonométriques">
+        <Definition title="SOH CAH TOA">
+          {tex`
+            \sin \theta \defeq \frac {\text{opposé}} {\text{hypothénuse}}, \quad
+            \cos \theta \defeq \frac {\text{adjacent}} {\text{hypothénuse}}, \quad
+            \tan \theta \defeq \frac {\text{opposé}} {\text{adjacent}}.
+          `}
+        </Definition>
       </Slide>
     </Slideshow>
   );
