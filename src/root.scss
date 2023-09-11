@@ -169,6 +169,7 @@ table {
   @extend .block, .container;
   border-collapse: collapse;
   border-spacing: 0;
+  margin-bottom: 1em !important; // Temporary fix
   width: 100%;
 
   td,
