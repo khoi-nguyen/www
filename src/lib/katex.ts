@@ -17,6 +17,7 @@ const macros = {
   '\\i': '\\mathrm{i}',
   '\\ip': '\\langle #1, #2 \\rangle',
   '\\mat': '\\mathsf{#1}',
+  '\\dist': '\\mathrm{dist}',
   '\\placeholder': '\\mathord{\\color{lightgray}\\bullet}',
   '\\vec': '\\mathbf{\\boldsymbol{#1}}',
 };
