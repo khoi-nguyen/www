@@ -3,6 +3,7 @@ import {
   faBook,
   faCircleQuestion,
   faInfoCircle,
+  faLightbulb,
   faPen,
   faPenToSquare,
 } from '@fortawesome/free-solid-svg-icons/index.js';
@@ -64,6 +65,12 @@ export function Exercise(props: SpecificEnvironmentProps) {
   const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Exercice' : 'Exercise');
   return <Environment name={name()} icon={faPenToSquare} {...props} />;
+}
+
+export function Idea(props: SpecificEnvironmentProps) {
+  const [lang] = langSignal;
+  const name = () => (lang() === 'fr' ? 'Idée' : 'Idea');
+  return <Environment name={name()} icon={faLightbulb} {...props} />;
 }
 
 export function Information(props: SpecificEnvironmentProps) {
