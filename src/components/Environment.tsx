@@ -12,6 +12,7 @@ interface SpecificEnvironmentProps {
   children?: JSX.Element;
   icon?: IconDefinition;
   title?: string | (() => JSX.Element);
+  pluralize?: boolean;
 }
 
 interface EnvironmentProps extends SpecificEnvironmentProps {
@@ -30,6 +31,7 @@ export function Environment(props: EnvironmentProps) {
           )}
         </Show>
         {props.name}
+        <Show when={props.pluralize}>s</Show>
         <Show when={props.title}>
           {' '}
           ({typeof props.title === 'function' ? props.title() : props.title})
