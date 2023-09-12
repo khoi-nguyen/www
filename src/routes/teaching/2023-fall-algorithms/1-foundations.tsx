@@ -721,6 +721,91 @@ export default () => (
           What about if we only did <em>divide-and-conquer</em> without applying Karatsuba's trick?
         </p>
       </Exercise>
+      <p>
+        <em>Hint:</em> {tex`a^{\log_b c} = c^{\log_b a}`}
+      </p>
+    </Slide>
+    <Slide title="Closest pair of points" columns>
+      <div>
+        <Problem title="Closest pair of points">
+          <p>
+            Given {tex`n`} distinct points {tex`p_1, \dots, p_n \in \R^2`}, find {tex`i, j`} such
+            that
+          </p>
+          {tex`
+            \dist(p_i, p_j) = \min_{\substack{i, j = 1, \dots, n\\ i \neq j}} \dist(x, y)
+          `}
+        </Problem>
+        <Jupyter>
+          {py`
+            def closest_pair(p):
+                min_distance = float('inf')
+                pair = []
+                for i in range(len(p)):
+                    for j in range(len(p)):
+                        dist = (p[i][0]-p[j][0])**2 + (p[i][1]-p[j][1])**2
+                        if 0 < dist < min_distance:
+                            min_distance = dist
+                            pair = [i, j]
+                return pair
+            closest_pair([[0, 0], [1, 1], [5, 5]])
+          `}
+        </Jupyter>
+      </div>
+      <div>
+        <Question>
+          <ul>
+            <li>What is the runtime of the brute-force algorithm?</li>
+            <li>
+              Could you think of a faster algorithm using <em>divide-and-conquer</em>?
+            </li>
+          </ul>
+        </Question>
+      </div>
+    </Slide>
+    <Slide title="Closest pair: divide and conquer">
+      <ol>
+        <li>
+          <strong>Divide</strong> points into two halves using a vertical line
+        </li>
+        <li>
+          <strong>Conquer</strong>: Find closest pair in each side recursively
+        </li>
+        <li>
+          <strong>Combine</strong>: Find closest amongst pairs crossing the line
+        </li>
+      </ol>
+      <Question title="Complexity of Step III">
+        <p>Is it possible to do better than {tex`\bigo(n^2)`} for Step III?</p>
+      </Question>
+      <Fragment>
+        <Idea>
+          <p>
+            If the closest pairs in each sides have distances {tex`\delta_1, \delta_2`}, we only
+            need to look at a distance {tex`\delta \defeq \min \{\delta_1, \delta_2\}`} from the
+            line.
+          </p>
+        </Idea>
+      </Fragment>
+    </Slide>
+    <Slide title="Closest pair: Step III">
+      <Idea title="Ordering">
+        <p>
+          <strong>Sort</strong> these points by their {tex`y`}-coordinate ({tex`\bigo(n \log n)`}).
+          We now need only check each pair against their immediate neighbours.
+        </p>
+      </Idea>
+      <Proposition>
+        <p>
+          Assume {tex`s_1, \ldots, s_k`} are sorted according to their {tex`y`} coordinate. If{' '}
+          {tex`\abs{i - j} > 11,`} then {tex`\dist(s_i, s_j) \geq \delta`}.
+        </p>
+      </Proposition>
+    </Slide>
+    <Slide title="Closest pair: runtime">
+      <Theorem title="Runtime of closest pair">
+        <p>The runtime of our closest pair algorithm is {tex`\bigo(n \log^2 n).`}</p>
+      </Theorem>
     </Slide>
     <Slide title={() => <>Optimality of {tex`\bigo(n \log n)`} for comparison sorts</>}>
       <Theorem>
