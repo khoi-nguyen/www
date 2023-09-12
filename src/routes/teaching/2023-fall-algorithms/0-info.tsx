@@ -138,5 +138,53 @@ export default () => (
         </ul>
       </div>
     </Slide>
+    <Slide title="12 Sept 2023" columns>
+      <ol>
+        <li>
+          <strong>Quicksort</strong>: divide-and-conquer algorithm that puts one number in the
+          correct position (the <em>pivot</em>) and recursively calls itself on both lists that this
+          pivot determines.
+        </li>
+        <li>
+          Quicksort's <strong>runtime</strong> depends a lot on the choice of pivot. While the
+          average case is {tex`\bigo(n \log n)`}, the worst case is {tex`\bigo(n^2)`}
+        </li>
+        <li>
+          <strong>Karatsuba's algorithm</strong> is a divide-and-conquer algorithm in which the
+          combining step uses three multiplications instead of four. We will go over it again today.
+        </li>
+        <li>
+          <A href="/teaching/2023-fall-algorithms/1-foundations#/30">Continue</A>
+        </li>
+      </ol>
+      <div>
+        <h3>Homework due next Monday</h3>
+        <ul>
+          <li>
+            Implement Gauss and Karatsuba's algorithm in Python so that given two arrays of
+            integers, it results a the digits of the product of the two numbers associated with the
+            arrays.
+            <Code>
+              {py`
+                karatsuba([1, 3], [1, 2]) # returns [1, 5, 6]
+              `}
+            </Code>
+          </li>
+          <li>
+            Using a plotting library such as <em>matplotlib</em>, plot the time both algorithms take
+            as a function of n random digits. Roughly when is your Karatsuba implementation faster?
+          </li>
+          <li>
+            Use your Karatsuba implementation and a <em>divide-and-conquer</em> approach to write an
+            algorithm that computes the {tex`n`}th power of a number. You may not use
+            <Code>
+              {py`
+                power([1, 3, 4, 2], 2) # return 1342**2
+              `}
+            </Code>
+          </li>
+        </ul>
+      </div>
+    </Slide>
   </Slideshow>
 );

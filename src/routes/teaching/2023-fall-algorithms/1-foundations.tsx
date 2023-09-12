@@ -64,8 +64,8 @@ const CountTable = (props: { max: number }) => (
 );
 
 const countingSort = py`
-  def counting_sort(A, max):
-      count, result = [0] * max, []
+  def counting_sort(A, k):
+      count, result = [0] * k, []
       for element in A:
           count[element] += 1
       for value, frequency in enumerate(count):
@@ -814,6 +814,10 @@ export default () => (
           {tex`\bigo(n \log n)`}.
         </p>
       </Theorem>
+      <p>
+        <strong>Hint</strong>:{' '}
+        {tex`\log n! = \sum_{i = 1}^n \log n \approx \int_1^x \log x = \bigtheta(n \log n)`}
+      </p>
     </Slide>
     <Slide title="Counting sort: an example">
       <Example>
@@ -836,9 +840,10 @@ export default () => (
       </ol>
     </Slide>
     <Slide title="Counting sort: Python implementation">
-      <Jupyter>
-        {countingSort}
+      <Jupyter solution={countingSort + '\ncounting_sort([0, 4, 3, 2, 7, 3, 4], 10)'}>
         {py`
+          def counting_sort(A, k):
+              pass
 
           counting_sort([0, 4, 3, 2, 7, 3, 4], 10)
         `}
