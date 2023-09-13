@@ -20,6 +20,7 @@ const macros = {
   '\\dist': '\\mathrm{dist}',
   '\\placeholder': '\\mathord{\\color{lightgray}\\bullet}',
   '\\vec': '\\mathbf{\\boldsymbol{#1}}',
+  '\\vv': '\\overrightarrow{#1}',
 };
 
 export default function render(tex: string, displayMode = false) {
