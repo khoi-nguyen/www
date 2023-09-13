@@ -6,6 +6,7 @@ import {
   faLightbulb,
   faPen,
   faPenToSquare,
+  faScrewdriverWrench,
 } from '@fortawesome/free-solid-svg-icons/index.js';
 import { langSignal } from '~/root';
 
@@ -75,6 +76,10 @@ export function Idea(props: SpecificEnvironmentProps) {
 
 export function Information(props: SpecificEnvironmentProps) {
   return <Environment name="Information" icon={faInfoCircle} {...props} />;
+}
+
+export function Instruction(props: SpecificEnvironmentProps) {
+  return <Environment name="Instruction" icon={faScrewdriverWrench} {...props} />;
 }
 
 export function Problem(props: SpecificEnvironmentProps) {
