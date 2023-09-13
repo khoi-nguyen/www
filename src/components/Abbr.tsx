@@ -5,6 +5,7 @@ const abbreviations = {
   DOM: 'Document Object Model',
   ECAM: 'École Centrale des Arts et Métiers',
   GCSE: 'General Certificate of Secondary Education',
+  GEI: 'Génie Électronique et Informatique',
   IBDP: 'International Baccalaureate Diploma Programme',
   IGCSE: 'International General Certificate of Secondary Education',
   JPEG: 'Joint Photographic Experts Group',
