@@ -114,6 +114,7 @@ export default class Whiteboard {
     this.ctx.fillStyle = stroke.color;
     this.ctx.strokeStyle = stroke.color;
     this.ctx.lineCap = 'round';
+    this.ctx.lineJoin = 'round';
     this.ctx.lineWidth = stroke.lineWidth;
     for (const point of stroke.points) {
       this.ctx.lineTo(...point);
