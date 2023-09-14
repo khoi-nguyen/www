@@ -381,7 +381,18 @@ export default () => {
           `}
         </Remark>
       </Slide>
-      <Slide title="Formules de Simpson"></Slide>
+      <Slide title="Formules de Simpson">
+        <Proposition title="Formules de Simpson">
+          {tex`
+            \begin{align*}
+            \cos p + \cos q &= 2 \cos \frac {p + q} 2 \cos \frac {p - q} 2\\
+            \cos p - \cos q &= -2 \sin \frac {p + q} 2 \sin \frac {p - q} 2\\
+            \sin p + \sin q &= 2 \sin \frac {p + q} 2 \cos \frac {p - q} 2\\
+            \sin p - \sin q &= 2 \cos \frac {p + q} 2 \sin \frac {p - q} 2
+            \end{align*}
+          `}
+        </Proposition>
+      </Slide>
       <Slide title="Exercices: identités trigonométriques">
         <Iframe src="https://pmt.physicsandmathstutor.com/download/Maths/A-level/Pure/Trigonometry-2/Edexcel-Set-B/Trigonometric%20Identities.pdf" />
       </Slide>
