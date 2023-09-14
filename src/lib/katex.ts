@@ -10,6 +10,7 @@ const macros = {
   '\\abs': '\\left|#1\\right|',
   '\\bigo': '\\mathcal{O}',
   '\\bigtheta': '\\mathcal{\\Theta}',
+  '\\bvec': '\\mathbf{\\boldsymbol{#1}}',
   '\\dd': '\\,\\mathrm{d}',
   '\\defeq': '\\stackrel{\\mathsf{def}}{=}',
   '\\e': '\\mathrm{e}',
@@ -20,8 +21,6 @@ const macros = {
   '\\norm': '\\|#1\\|',
   '\\dist': '\\mathrm{dist}',
   '\\placeholder': '\\mathord{\\color{lightgray}\\bullet}',
-  '\\vec': '\\mathbf{\\boldsymbol{#1}}',
-  '\\vv': '\\overrightarrow{#1}',
 };
 
 export default function render(tex: string, displayMode = false) {

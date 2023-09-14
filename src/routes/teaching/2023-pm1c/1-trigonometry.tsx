@@ -287,7 +287,7 @@ export default () => {
           <li>
             Pour un point {tex`P`} sur le cercle, on définit {tex`\cos`} et {tex`\sin`} de sorte que
             {tex`
-              \vv{OP} = (\cos \theta, \sin \theta),
+              \vec{OP} = (\cos \theta, \sin \theta),
               \quad \theta = \widehat{AOP},
             `}
           </li>
