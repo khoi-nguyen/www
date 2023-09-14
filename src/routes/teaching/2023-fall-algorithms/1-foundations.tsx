@@ -982,5 +982,51 @@ export default () => (
       </p>
       We can check that this is optimas as {tex`b = n`}.
     </Slide>
+    <Slide title="(Non-examinable) Towards Fourier analysis">
+      <Exercise>
+        <p>Calculate</p>
+        {tex`
+          \int_0^1 e^{i 2 \pi n t} \dd t.
+        `}
+        <p>Discuss in terms of {tex`n`}.</p>
+      </Exercise>
+    </Slide>
+    <Slide title="(Non-examinable) Fourier and Fast Fourier Transform">
+      <Youtube src="https://www.youtube.com/watch?v=QVuU2YCwHjw" />
+      <Question>
+        <p>Signals often take the shape:</p>
+        {tex`
+          f(t) = \sum_{k \in \Z} c_k e^{i 2 \pi k t}
+        `}
+        <p>How could we find the values {tex`c_k?`}</p>
+      </Question>
+      <Idea title="Averaging">
+        <p>What happens if we integrate both sides?</p>
+      </Idea>
+      <Fragment>
+        {tex`
+          c_k = \int_0^1 f(t) e^{-i 2 \pi k t} \dd t
+        `}
+      </Fragment>
+    </Slide>
+    <Slide title="Discrete Fourier Transform">
+      {tex`
+        f(t) = \sum_{k \in \Z} c_k e^{i 2 \pi k t},\qquad
+        c_k = \int_0^1 f(t) e^{-i 2 \pi k t} \dd t
+      `}
+      <Definition title="Discrete Fourier Transform">
+        {tex`
+          X_k \defeq \frac 1 N \sum_{n = 0}^{N - 1} f\left(\frac n N\right) e^{i 2 \pi k \frac n N}
+        `}
+      </Definition>
+    </Slide>
+    <Slide title="Complexity of the DFT">
+      {tex`
+        X_k \defeq \frac 1 N \sum_{n = 0}^{N - 1} f\left(\frac n N\right) e^{i 2 \pi k \frac n N}
+      `}
+      <Proposition>
+        Calculating all the discrete Fourier coefficients has a runtime of {tex`\bigo(n^2).`}
+      </Proposition>
+    </Slide>
   </Slideshow>
 );
