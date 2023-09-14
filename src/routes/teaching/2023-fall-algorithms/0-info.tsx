@@ -186,5 +186,55 @@ export default () => (
         </ul>
       </div>
     </Slide>
+    <Slide title="14 Sept 2023" columns>
+      <ol>
+        <li>
+          Comparison sorts are algorithms that can be modelled by decision trees which only use
+          comparisons.
+        </li>
+        <li>
+          The running time of a comparison sorting algorithm is at best {tex`\bigo(n \log n)`}
+        </li>
+        <li>
+          We now move on to the less ambitious plan to order integers. Can we reach {tex`\bigo(n)`}?
+          This is still an open problem.
+        </li>
+        <li>
+          Counting sort is an algorithm which uses a tally to recreate the list. Its complexity is{' '}
+          {tex`\bigo(n + k).`}
+        </li>
+        <li>
+          <A href="/teaching/2023-fall-algorithms/1-foundations#/30">Continue</A>
+        </li>
+      </ol>
+      <div>
+        <h3>Homework due Tuesday</h3>
+        <ul>
+          <li>
+            Implement Gauss and Karatsuba's algorithm in Python so that given two arrays of
+            integers, it results a the digits of the product of the two numbers associated with the
+            arrays.
+            <Code>
+              {py`
+                karatsuba([1, 3], [1, 2]) # returns [1, 5, 6]
+              `}
+            </Code>
+          </li>
+          <li>
+            Using a plotting library such as <em>matplotlib</em>, plot the time both algorithms take
+            as a function of n random digits. Roughly when is your Karatsuba implementation faster?
+          </li>
+          <li>
+            Use your Karatsuba implementation and a <em>divide-and-conquer</em> approach to write an
+            algorithm that computes the {tex`n`}th power of a number. You may not use
+            <Code>
+              {py`
+                power([1, 3, 4, 2], 2) # return 1342**2
+              `}
+            </Code>
+          </li>
+        </ul>
+      </div>
+    </Slide>
   </Slideshow>
 );
