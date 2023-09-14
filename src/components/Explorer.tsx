@@ -9,6 +9,7 @@ interface ExplorerProps {
   filter?: (page: Page) => boolean;
   pattern: string;
   showFlags?: boolean;
+  showPath?: boolean;
   sortBy?: SortFunction;
 }
 
@@ -56,6 +57,9 @@ export default function Explorer(props: ExplorerProps) {
               </h3>
               <Show when={page.subtitle}>
                 <h4>{page.subtitle}</h4>
+              </Show>
+              <Show when={props.showPath}>
+                <pre>{page.path}</pre>
               </Show>
               {page.description}
             </hgroup>
