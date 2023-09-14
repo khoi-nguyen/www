@@ -396,13 +396,11 @@ export default () => {
       <Slide title="Exercices: identités trigonométriques">
         <Iframe src="https://pmt.physicsandmathstutor.com/download/Maths/A-level/Pure/Trigonometry-2/Edexcel-Set-B/Trigonometric%20Identities.pdf" />
       </Slide>
-      <Slide title="Fonctions réciproques">
-        <Jupyter>
-          {py`
-            from sympy import *
-            acos(1)
-          `}
-        </Jupyter>
+      <Slide title="Graphes trigonométriques">
+        <Geogebra id="eVGq4u6M" />
+      </Slide>
+      <Slide title="Graphes trigonométriques" split={false}>
+        <Iframe src="https://www.geogebra.org/calculator" />
       </Slide>
       <Slide title="Résoudre des équations trigonométriques">
         <Instruction pluralize>
