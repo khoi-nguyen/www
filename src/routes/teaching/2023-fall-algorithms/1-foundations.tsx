@@ -73,6 +73,26 @@ const countingSort = py`
       return result
 `;
 
+const stableCountingSort = py`
+  def stable_counting_sort(A, key, k):
+      result = []
+      count = []
+      for i in range(k):
+          count.append([])
+      for element in A:
+          count[key(element)].append(element)
+      for i in range(k):
+          result.extend(count[i])
+      return result
+`;
+
+const radixSort = py`
+  def radix_sort(A, k):
+      for i in range(k):
+          A = stable_counting_sort(A, lambda x: int(str(x)[-i-1]), 10)
+      return A
+`;
+
 export default () => (
   <Slideshow meta={meta}>
     <Slide title="What is an algorithm?" cite={['clrs', 'p. 3']}>
@@ -857,6 +877,110 @@ export default () => (
           admissible elements.
         </p>
       </Proposition>
+    </Slide>
+    <Slide title="Stability">
+      <Definition>
+        <p>
+          A sorting algorithm is called <strong>stable</strong> if it preserves the order of records
+          with equal keys.
+        </p>
+      </Definition>
+      <Exercise>
+        <p>
+          Which of the following sorting algorithms are stable: insertion sort, merge sort, and
+          quicksort? Give a simple scheme that makes any comparison sort stable. How much additional
+          time and space does your scheme entail?
+        </p>
+      </Exercise>
+      <Exercise>
+        <p>How would you transform any comparison algorithm into a stable algorithm?</p>
+      </Exercise>
+    </Slide>
+    <Slide title="Stability and counting sort">
+      <Exercise>
+        <p>
+          Write a <strong>stable</strong> algorithm that sorts integers on their last digit.
+        </p>
+      </Exercise>
+      <Jupyter>
+        {py`
+          def last_digit_sort(A):
+              pass
+        `}
+      </Jupyter>
+    </Slide>
+    <Slide title="Is counting sort actually good?">
+      <p>
+        An active open problem is the <strong>conjecture</strong> that a list of integers can be
+        sorted in {tex`\bigo(n)`}. Currently, the best known algorithm sorts in{' '}
+        {tex`\bigo(n \sqrt {\log \log n}).`}
+      </p>
+      <p>
+        <strong>Counting sort</strong> is far from that conjecture. It is {tex`\bigo(n)`} when{' '}
+        {tex`k = \bigo(n)`}.
+      </p>
+    </Slide>
+    <Slide title="Stable counting sort">
+      <Jupyter>
+        {stableCountingSort}
+        {py`
+          key = lambda x: x % 10
+          stable_counting_sort([31, 27, 49, 27, 43], key, 10)
+        `}
+      </Jupyter>
+    </Slide>
+    <Slide title="Towards Radix sort">
+      <Idea>
+        <p>Use a stable counting sort to sort on the last digit, then on the penultimate, etc.</p>
+      </Idea>
+      <Example>
+        <p>Sort the list</p>
+        {tex`
+          717, 026, 785, 636, 955, 572, 772, 304, 935, 395.
+        `}
+      </Example>
+      <Exercise>
+        <p>
+          Use <strong>radix sort</strong> to sort the following words: COW, DOG, SEA, RUG, ROW, MOB,
+          BOX, TAB, BAR, EAR, TAR, DIG, BIG, TEA, NOW, FOX.
+        </p>
+      </Exercise>
+    </Slide>
+    <Slide title="Implementing Radix sort">
+      <Exercise>
+        <p>
+          Implement Radix sort in Python. What is the invariant? Prove the algorithm is correct.
+          What is its runtime?
+        </p>
+        <Jupyter solution={radixSort}>{''}</Jupyter>
+      </Exercise>
+      <Exercise>
+        <p>
+          How would you sort {tex`n`} integers in the range {tex`0`} to {tex`n^3 - 1`} in{' '}
+          {tex`\bigo(n)`} time.
+        </p>
+      </Exercise>
+    </Slide>
+    <Slide title="Counting and Radix sort">
+      <p>
+        Runtime of <strong>counting sort</strong> on {tex`\{1, \dots, k\}`}
+      </p>
+      {tex`
+        \bigo(n + k).
+      `}
+      <p>
+        Runtime of <strong>radix sort</strong> on {tex`\{1, \dots, k\}`}:
+      </p>
+      {tex`
+        \bigo(\log_{10} k) \bigo(n + 10) = \bigo(n \log k).
+      `}
+      <p>
+        Observe that for a general base {tex`b`}, radix sort works in
+        {tex`
+          \bigo((n + b) \log_b k).
+        `}
+      </p>
+      We can check that this is optimas as {tex`b = n`}.
     </Slide>
   </Slideshow>
 );
