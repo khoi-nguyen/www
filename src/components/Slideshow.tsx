@@ -54,6 +54,7 @@ export default function Slideshow(props: SlideshowProps) {
       center: false,
       hash: true,
       margin: 0,
+      pdfSeparateFragments: false,
       slideNumber: true,
       touch: false,
       transition: 'none',
