@@ -97,6 +97,19 @@ export default () => {
           </Instruction>
         </div>
       </Slide>
+      <Slide title="Plan du cours">
+        <ol>
+          <li>Trigonométrie</li>
+          <li>Vecteurs</li>
+          <li>Nombres complexes</li>
+          <li>Algèbre</li>
+          <li>Systèmes</li>
+          <li>Géométrie</li>
+          <li>Fonctions et limites</li>
+          <li>Dérivée</li>
+          <li>Réciproques</li>
+        </ol>
+      </Slide>
       <Slide title="Degrés et radians" cite={['stewart', 'p. A24']}>
         <p>
           Le <strong>radian</strong> (rad) et le <strong>degré</strong> ({tex`\circ`}) sont deux
