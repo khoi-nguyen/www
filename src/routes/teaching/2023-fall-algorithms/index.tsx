@@ -58,7 +58,7 @@ export default () => {
       <h2>Practical information</h2>
       <Info />
       <h2>Teaching resources</h2>
-      <Explorer pattern={`${location.pathname}/?[0-9]+-.*json$`} />
+      <Explorer pattern={`${location.pathname}/?[0-9]+-.*json$`} showPDF />
     </Page>
   );
 };

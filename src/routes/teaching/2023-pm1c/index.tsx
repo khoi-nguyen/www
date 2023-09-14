@@ -30,7 +30,7 @@ export default () => {
         </dd>
       </dl>
       <h2>Resources</h2>
-      <Explorer pattern={`${location.pathname}/?[0-9]+-.*json$`} />
+      <Explorer pattern={`${location.pathname}/?[0-9]+-.*json$`} showPDF />
     </Page>
   );
 };

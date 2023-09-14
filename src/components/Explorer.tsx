@@ -1,3 +1,4 @@
+import { faFilePdf } from '@fortawesome/free-solid-svg-icons/index.js';
 import { sortBy } from 'lodash-es';
 
 type Metadata = Parameters<typeof Meta>[0];
@@ -10,6 +11,7 @@ interface ExplorerProps {
   pattern: string;
   showFlags?: boolean;
   showPath?: boolean;
+  showPDF?: boolean;
   sortBy?: SortFunction;
 }
 
@@ -53,6 +55,12 @@ export default function Explorer(props: ExplorerProps) {
                 <Show when={props.showFlags}>
                   {' '}
                   <Flag code={page.lang || 'en'} />
+                </Show>
+                <Show when={props.showPDF}>
+                  {' '}
+                  <A href={`${page.path}?print-pdf`}>
+                    <Fa icon={faFilePdf} />
+                  </A>
                 </Show>
               </h3>
               <Show when={page.subtitle}>
