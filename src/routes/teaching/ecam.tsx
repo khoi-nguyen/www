@@ -10,6 +10,7 @@ export default () => {
       <Explorer
         filter={(page) => page.subtitle?.startsWith('ECAM') === true}
         pattern={`teaching/.*/index\.json$`}
+        showPath
       />
     </Page>
   );
