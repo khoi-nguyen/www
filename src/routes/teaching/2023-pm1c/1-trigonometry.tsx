@@ -107,7 +107,7 @@ export default () => {
           <li>Géométrie</li>
           <li>Fonctions et limites</li>
           <li>Dérivée</li>
-          <li>Réciproques</li>
+          <li>Fonctions réciproques</li>
         </ol>
       </Slide>
       <Slide title="Degrés et radians" cite={['stewart', 'p. A24']}>
