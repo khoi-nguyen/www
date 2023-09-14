@@ -157,13 +157,31 @@ export default () => {
           <li>produit scalaire {tex`> 0`}: angle aigu</li>
         </ul>
       </Slide>
+      <Slide title="Projection" cite={['stewart', 'p. 851']}>
+        {tex`
+          \text{proj}_{\vec a}(\vec b) = \frac {\vec b \cdot \vec a} {\norm {\vec a}^2} \vec a
+        `}
+        <Example>
+          <p>
+            Trouver la projection de {tex`\vec b = (1, 1, 2)`} sur {tex`\vec a = (-2, 3, 1)`}.
+          </p>
+        </Example>
+      </Slide>
       <Slide title="Produit vectoriel">
         <p>
           Écrivons {tex`\vec a = (a_1, a_2, a_3)`} et {tex`\vec b = (b_1, b_2, b_3)`}.
         </p>
         {tex`
-          \vec a \times \vec b
-          = (a_2 b_3 - a_3 b_2, a_3 b_1 - a_1 b_3, a_1 b_2 - a_2 b_1)
+          \begin{align*}
+            \vec a \times \vec b
+            &= (a_2 b_3 - a_3 b_2, a_3 b_1 - a_1 b_3, a_1 b_2 - a_2 b_1)\\
+            &=
+            \begin{vmatrix}
+              \vec i & \vec j & \vec k\\
+              a_1 & a_2 & a_3\\
+              b_1 & b_2 & b_3
+            \end{vmatrix}
+          \end{align*}
         `}
         <Example>
           <p>
@@ -248,6 +266,30 @@ export default () => {
           <p>
             Montre que les vecteurs {tex`\vec a = (1, 4, -7)`}, {tex`\vec b = (2, -1, 4)`} et{' '}
             {tex`\vec c = (0, -9, 18)`} sont coplanaires.
+          </p>
+        </Example>
+      </Slide>
+      <Slide title="Applications">
+        {tex`
+          W = \vec F \cdot \vec D
+          \qquad
+          \text{Travail d'une force}
+        `}
+        <Example>
+          <p>
+            Une charrette est tiré sur 100m horizontalement par une force de 70N. Le manche de la
+            charrette est à un angle de {tex`35^\circ`} de l'horizontale. Calcule le travail.
+          </p>
+        </Example>
+        {tex`
+          \vec M = \vec r \times \vec F
+          \qquad
+          \text{Moment d'une force}
+        `}
+        <Example>
+          <p>
+            Un boulon est serré en appliquant une force de 40N à une clé anglaise. Calcule la norme
+            du moment de force autour du boulon.
           </p>
         </Example>
       </Slide>
