@@ -24,6 +24,14 @@ export default () => {
           Trouver le vecteur reliant {tex`A(2, -3, 4)`} et {tex`B(-2, 1, 1)`}, c'est-à-dire{' '}
           {tex`\vec {AB}`}.
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            A = np.array([2, -3, 4])
+            B = np.array([-2, 1, 1])
+            B - A
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Longueur ou norme d'un vecteur" cite={['stewart', 'p. 841']}>
         <Definition title="Norme">
@@ -54,6 +62,15 @@ export default () => {
             {tex`2 \vec a + 5 \vec b`}.
           </p>
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            a = np.array([4, 0, 3])
+            b = np.array([-2, 1, 5])
+            np.linalg.norm(a)
+            # a + b
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Base canonique" cite={['stewart', 'p. 842']}>
         <p>
@@ -91,17 +108,23 @@ export default () => {
         <Example>
           <p>Trouve le vecteur unitaire dans la direction de {tex`2 \vec i - \vec j - 2 \vec k`}</p>
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            a = np.array([2, -1, -2])
+            norm = np.linalg.norm(a)
+            a / norm
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Produit scalaire" cite={['stewart', 'p. 847']}>
-        <p>
-          Soient {tex`\vec a = (a_1, a_2, a_3)`} et {tex`\vec b = (b_1, b_2, b_3)`}
-        </p>
         <Definition title="Produit scalaire">
           {tex`
             \begin{align*}
             \vec a \cdot \vec b
             &= \norm {\vec a} \norm {\vec b} \cos \theta\\
-            &= a_1 b_1 + a_2 b_2 + a_3 b_3
+            &= a_1 b_1 + a_2 b_2 + a_3 b_3\quad
+            \vec a = (a_1, a_2, a_3), \vec b = (b_1, b_2, b_3)
             \end{align*}
           `}
         </Definition>
@@ -120,6 +143,12 @@ export default () => {
             et que l'angle entre eux est {tex`\frac \pi 3`}, trouve {tex`\vec a \cdot \vec b`}.
           </p>
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            np.dot(np.array([-1, 7, 4]), np.array([6, 2, -1/2]))
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Angle entre deux vecteurs">
         <p>
@@ -137,6 +166,15 @@ export default () => {
             {tex`\vec b = (5, -3, 2)`}.
           </p>
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            a = np.array([2, 2, -1])
+            b = np.array([5, -3, 2])
+            cosine = np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+            np.arccos(cosine)
+          `}
+        </Jupyter>
         <p>
           Deux vecteurs sont <strong>orthogonaux</strong> ou <strong>perpendiculaires</strong> si{' '}
           {tex`\vec a \cdot \vec b = 0`}.
@@ -147,6 +185,12 @@ export default () => {
             {tex`5 \vec i - 4 \vec j + 2 \vec k`}
           </p>
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            np.dot(np.array([2, 2, -1]), np.array([5, -4, 2]))
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Produit scalaire: animation">
         <p>Le produit scalaire mesure à quel point deux vecteurs sont parallèles.</p>
@@ -166,6 +210,14 @@ export default () => {
             Trouver la projection de {tex`\vec b = (1, 1, 2)`} sur {tex`\vec a = (-2, 3, 1)`}.
           </p>
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            b = np.array([1, 1, 2])
+            a = np.array([-2, 3, 1])
+            np.dot(b, a) / np.dot(a, a) * a
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Produit vectoriel">
         <p>
@@ -189,6 +241,14 @@ export default () => {
             {tex`\vec a \times \vec b = (-43, 13, 1)`}
           </p>
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            a = np.array([1, 3, 4])
+            b = np.array([2, 7, -5])
+            np.cross(a, b)
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Produit vectoriel: interpretation">
         <Geogebra id="mkzzm8hh" height={500} />
@@ -221,6 +281,16 @@ export default () => {
         <Example>
           <p>Trouve l'aire du triangle passant par les points mentionnés ci-dessus</p>
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            P = np.array([1, 4, 6])
+            Q = np.array([-2, 5, -1])
+            R = np.array([1, -1, 1])
+            PQ, PR = Q - Q, R - P
+            np.cross(PQ, PR)
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Propriétés du produit vectoriel">
         {tex`
@@ -268,6 +338,15 @@ export default () => {
             {tex`\vec c = (0, -9, 18)`} sont coplanaires.
           </p>
         </Example>
+        <Jupyter>
+          {py`
+            import numpy as np
+            a = np.array([1, 4, -7])
+            b = np.array([2, -1, 4])
+            c = np.array([0, -9, 18])
+            np.dot(a, np.cross(b, c)) # a . (b x c)
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Applications">
         {tex`
