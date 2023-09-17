@@ -13,6 +13,9 @@ export default () => {
         {tex`
           \C \defeq \{a + bi : a, b \in \R\}.
         `}
+        {tex`
+          z = \underbrace{a}_{\mathrm{Re}\ z} + \underbrace{b}_{\mathrm{Im}\ z} i
+        `}
         <Remark title="Notation">
           <p>
             On écrit parfois {tex`j`} au lieu de {tex`i`} (par exemple, en élecricité ou en Python).
@@ -254,24 +257,15 @@ export default () => {
             e^{i \theta} = \cos \theta + i \sin \theta
           `}
         </Theorem>
-        <Fragment>
-          <Remark>
-            <p>
-              Ce théorème signifie qu'en étendant l'algèbre des nombres réels pour modéliser les
-              rotations du plan, on se rend compte que la trigonométrie et l'exponentiation sont la
-              même opération.
-            </p>
-            <p>
-              La preuve de ce résultat est établie par le calcul différentiel et intégral. On est
-              bien loin du cadre des triangles!
-            </p>
-          </Remark>
-          <Example>
-            <p>
-              Calculer {tex`e^{i \pi}`}, {tex`e^{-1 + i \pi/2}`} et {tex`i^i`}.
-            </p>
-          </Example>
-        </Fragment>
+        <Example>
+          <p>
+            Calculer {tex`e^{i \pi}`}, {tex`e^{-1 + i \pi/2}`} et {tex`i^i`}.
+          </p>
+        </Example>
+        <p>On peut également facilement prouver les formules de trigonométrie</p>
+        <Example>
+          <p>Montrer que {tex`\cos (a + b) = \cos a \cos b - \sin a \sin b`}</p>
+        </Example>
       </Slide>
       <Slide title="Racines n-ième">
         <Proposition>
