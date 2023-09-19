@@ -236,5 +236,14 @@ export default () => (
         </ul>
       </div>
     </Slide>
+    <Slide title="19 Sept 2023" columns>
+      <div>
+        <ul>
+          <li>Radix sort: stable counting sort on last, then penultimate, etc.</li>
+          <li>Running time: {tex`\bigo(n \log k)`}</li>
+          <li>Why is stability important in sorting?</li>
+        </ul>
+      </div>
+    </Slide>
   </Slideshow>
 );
