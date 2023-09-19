@@ -983,12 +983,20 @@ export default () => (
       We can check that this is optimas as {tex`b = n`}.
     </Slide>
     <Slide title="(Non-examinable) Towards Fourier analysis">
+      <Youtube src="https://www.youtube.com/watch?v=nmgFG7PUHfo" />
       <Exercise>
         <p>Calculate</p>
         {tex`
           \int_0^1 e^{i 2 \pi n t} \dd t.
         `}
         <p>Discuss in terms of {tex`n`}.</p>
+      </Exercise>
+    </Slide>
+    <Slide title="Correctness">
+      <Exercise title="Correctness">
+        <p>
+          Prove the correctness of <strong>radix sort</strong>.
+        </p>
       </Exercise>
     </Slide>
     <Slide title="(Non-examinable) Fourier and Fast Fourier Transform">
@@ -1016,17 +1024,85 @@ export default () => (
       `}
       <Definition title="Discrete Fourier Transform">
         {tex`
-          X_k \defeq \frac 1 N \sum_{n = 0}^{N - 1} f\left(\frac n N\right) e^{i 2 \pi k \frac n N}
+          X_k \defeq \frac 1 N \sum_{n = 0}^{N - 1} f\left(\frac n N\right) e^{-i 2 \pi k \frac n N}
         `}
       </Definition>
+      <p>
+        Instead of an actual function, we'll often have a discretization, so that the most common
+        definition is
+      </p>
+      {tex`
+        X_k \defeq \sum_{n = 0}^{N - 1} x_n e^{- \frac {2 \pi i n k} N}
+      `}
+    </Slide>
+    <Slide title="Periodicity">
+      {tex`
+        X_k \defeq \sum_{n = 0}^{N - 1} x_n e^{- \frac {2 \pi i n k} N}
+      `}
+      <Proposition>{tex`X_{k + N} = X_k`}</Proposition>
     </Slide>
     <Slide title="Complexity of the DFT">
       {tex`
-        X_k \defeq \frac 1 N \sum_{n = 0}^{N - 1} f\left(\frac n N\right) e^{i 2 \pi k \frac n N}
+        X_k \defeq \sum_{n = 0}^{N - 1} x_n e^{-i 2 \pi k \frac n N},
+        \quad k = 0, \dots, N - 1.
       `}
       <Proposition>
         Calculating all the discrete Fourier coefficients has a runtime of {tex`\bigo(n^2).`}
       </Proposition>
+    </Slide>
+    <Slide title="The FFT">
+      {tex`
+        X_k \defeq \sum_{n = 0}^{N - 1} x_n e^{-i 2 \pi k \frac n N},
+        \quad k = 0, \dots, N - 1.
+      `}
+      <Idea>
+        <ul>
+          <li>
+            Divide {tex`x_0, x_1, \dots, x_{N - 1}`} into two sets:
+            {tex`
+              x_0, x_2, \dots \qquad \text{and} \qquad x_1, x_3, \dots
+            `}
+          </li>
+          <li>
+            Calculate the DFTs on both subsets:
+            {tex`
+              E_k, O_k, \qquad k = 0, \dots, \frac N 2 - 1.
+            `}
+          </li>
+          <li>
+            Conquer! They are enough to calculate {tex`X_k`} for {tex`k = 0, \dots, N - 1`}.
+          </li>
+        </ul>
+      </Idea>
+    </Slide>
+    <Slide title="FFT in Python">
+      <Editor>
+        {py`
+          from math import pi
+
+          def fft(x, N, s):
+              if N == 1:
+                  return [x_0]
+
+              E = fft(x, N / 2, 2 * s)
+              O = fft(x + s, N / 2, 2 * s)
+              X = [0] * N
+              for k in range(N / 2):
+                  X[k] = E[k] + exp(-2 * pi * 1j / N * k) * O[k]
+                  X[k + N/2] = E[k] - exp(-2 * pi * 1j / N * k) * O[k]
+              return X
+        `}
+      </Editor>
+      <Theorem>Calculate the running time of the FFT.</Theorem>
+    </Slide>
+    <Slide title="Revision">
+      <Iframe src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw2.pdf" />
+    </Slide>
+    <Slide title="Revision">
+      <Iframe src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw3.pdf" />
+    </Slide>
+    <Slide title="Revision">
+      <Iframe src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw4.pdf" />
     </Slide>
   </Slideshow>
 );
