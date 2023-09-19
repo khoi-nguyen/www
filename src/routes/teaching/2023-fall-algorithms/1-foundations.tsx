@@ -982,6 +982,13 @@ export default () => (
       </p>
       We can check that this is optimas as {tex`b = n`}.
     </Slide>
+    <Slide title="Correctness">
+      <Exercise title="Correctness">
+        <p>
+          Prove the correctness of <strong>radix sort</strong>.
+        </p>
+      </Exercise>
+    </Slide>
     <Slide title="(Non-examinable) Towards Fourier analysis">
       <Youtube src="https://www.youtube.com/watch?v=nmgFG7PUHfo" />
       <Exercise>
@@ -990,13 +997,6 @@ export default () => (
           \int_0^1 e^{i 2 \pi n t} \dd t.
         `}
         <p>Discuss in terms of {tex`n`}.</p>
-      </Exercise>
-    </Slide>
-    <Slide title="Correctness">
-      <Exercise title="Correctness">
-        <p>
-          Prove the correctness of <strong>radix sort</strong>.
-        </p>
       </Exercise>
     </Slide>
     <Slide title="(Non-examinable) Fourier and Fast Fourier Transform">
