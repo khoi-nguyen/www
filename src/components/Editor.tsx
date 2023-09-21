@@ -8,7 +8,7 @@ interface EditorProps {
   lang?: keyof typeof Prism.languages;
   onUpdate?: (code: string) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
-  showStudents?: boolean;
+  hideUntil?: Date;
   solution?: string;
 }
 
@@ -49,10 +49,20 @@ export default function Editor(props: EditorProps) {
     }
   };
 
+  const showSolutionButton = () => {
+    if (!props.solution) {
+      return false;
+    }
+    if (!props.hideUntil) {
+      return true;
+    }
+    return new Date() > props.hideUntil || admin();
+  };
+
   return (
     <>
       <pre class={`language-${props.lang} clickable`}>{textArea}</pre>
-      <Show when={props.solution && (props.showStudents || admin())}>
+      <Show when={showSolutionButton()}>
         <button onClick={solve}>Solve</button>
       </Show>
     </>

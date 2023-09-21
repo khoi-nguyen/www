@@ -2,7 +2,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface JupyterProps {
   children: JSX.Element;
-  showStudents?: boolean;
+  hideUntil?: Date;
   solution?: string;
 }
 
@@ -45,7 +45,7 @@ export default function Jupyter(props: JupyterProps) {
             onUpdate={handleUpdate}
             onKeyDown={handleKeyDown}
             solution={props.solution}
-            showStudents={props.showStudents}
+            hideUntil={props.hideUntil}
           >
             {code()}
           </Editor>
