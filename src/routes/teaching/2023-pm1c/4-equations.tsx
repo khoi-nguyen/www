@@ -264,7 +264,14 @@ export default () => {
           </Jupyter>
         </div>
       </Slide>
-      <Slide title="Systèmes: cas possibles en dimensions 2 et 3"></Slide>
+      <Slide title="Systèmes: cas possibles en dimensions 2 et 3">
+        <p>
+          <img src="https://math.libretexts.org/@api/deki/files/7563/11.3.2.png?revision=1" />
+        </p>
+        <p>
+          <img src="https://math.libretexts.org/@api/deki/files/7564/11.3.3.png?revision=1" />
+        </p>
+      </Slide>
       <Slide title="Questions de niveau examen: discriminant">
         <Iframe src="https://www.mathsgenie.co.uk/resources/as-pure-the-discriminant.pdf" />
       </Slide>
