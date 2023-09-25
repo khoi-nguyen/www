@@ -224,6 +224,23 @@ export default () => {
         `}
         <Geogebra id="otC7BvrY" />
       </Slide>
+      <Slide title="Passer d'équation paramétrique à cartésienne et vice-versa">
+        <Example>
+          <ol>
+            <li>Convertir l'équation {tex`x + y + z + 1 = 0`} en équation paramétrique.</li>
+            <li>
+              Convertir l'équation suivante en équation cartésienne:
+              {tex`
+                \begin{cases}
+                  x &= 1 + t\\
+                  y &= 1 - t + t'\\
+                  z &= 3 + t'
+                \end{cases}
+              `}
+            </li>
+          </ol>
+        </Example>
+      </Slide>
       <Slide title="Exercices">
         <Iframe src="https://pmt.physicsandmathstutor.com//download/Maths/A-level/Pure/Coordinate-Geometry-1/Edexcel-Set-B/Straight%20Lines.pdf" />
       </Slide>
