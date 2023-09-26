@@ -245,5 +245,28 @@ export default () => (
         </ul>
       </div>
     </Slide>
+    <Slide title="26 Sept 2023" columns>
+      <div>
+        <h2>Dynamic programming</h2>
+        <ul>
+          <li>Break down problem into overlapping subproblems</li>
+          <li>
+            Subproblems are often created via substrings or subarrays (often prefixes/suffixes)
+          </li>
+          <li>
+            Recursion and memoization to reduce to smaller problems (top-down) and ultimately to
+            base cases
+          </li>
+          <li>Notion of order (bottom-up)</li>
+          <li>Running time: number of subproblems {tex`\times`} non-recursive work</li>
+        </ul>
+        <h2>Homework</h2>
+        <ul>
+          <li>Homework 1 and 2 due today</li>
+          <li>Homework 3 on dynamic programming due next monday</li>
+        </ul>
+      </div>
+      <Iframe src="https://kenn7.github.io/algo/session6/" />
+    </Slide>
   </Slideshow>
 );
