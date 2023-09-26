@@ -238,6 +238,342 @@ export default () => {
       <Slide title="Exercises">
         <Iframe src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw5.pdf" />
       </Slide>
+      <Slide title="Dynamic programming">
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th>Fibonacci</th>
+              <th>Rod cutting</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Subproblems</th>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Relate</th>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Original</th>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Order</th>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Base cases</th>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Running time</th>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <Remark>
+          {tex`
+            \text{Time complexity} =
+            \# \ \text{subproblems} \times \text{non-recursive work}
+          `}
+        </Remark>
+      </Slide>
+      <Slide title="Longest Common subsequence">
+        <Problem title="Longest Common Subsequence">
+          <p>
+            Given two sequences A and B, find the longest sequence L that's a subsequence of both A
+            and B.
+          </p>
+        </Problem>
+        <Example>
+          <p>A LCS of "hieroglyphology" and "michaelangelo" is "hello".</p>
+        </Example>
+        <Exercise>
+          <p>Determine an LCS of</p>
+          {tex`
+            1\,0\,0\,1\,0\,1\,0\,1\quad
+            0\,1\,0\,1\,1\,0\,1\,1\,0
+          `}
+        </Exercise>
+        <Exercise>
+          <p>What is the time complexity of the naive brute-force algorithm?</p>
+        </Exercise>
+      </Slide>
+      <Slide title="Problem analysis">
+        <dl>
+          <dt>Subproblems</dt>
+          <dd>
+            <code>C[i,j]</code> denotes the length of LCS of <code>X[:i]</code> and{' '}
+            <code>X[:j]</code>
+          </dd>
+          <dt>Base cases</dt>
+          <dd>
+            <code>C[0,j] = C[i, 0] = 0</code>
+          </dd>
+          <dt>Recurrence</dt>
+          <dd>
+            {tex`
+              C[i, j] =
+              \begin{cases}
+                0 & \text{if } i j = 0\\
+                C[i - 1, j - 1] + 1 & \text{if } i j > 0 \, \text{and} \, X[i - 1] = Y[j - 1]\\
+                \max\{C[i, j-1], C[i - 1, j]\} & \text{otherwise}
+              \end{cases}
+            `}
+          </dd>
+        </dl>
+      </Slide>
+      <Slide title="Top-down implementation">
+        <Exercise>
+          <p>Write a top-down implementation of LCS</p>
+        </Exercise>
+        <Jupyter
+          solution={py`
+            import functools
+
+            @functools.cache
+            def lcs(X, Y):
+                if len(X) == 0 or len(Y) == 0:
+                    return 0
+                if X[-1] == Y[-1]:
+                    return 1 + lcs(X[:-1], Y[:-1])
+                return max(lcs(X[:-1], Y), lcs(X, Y[:-1]))
+
+            lcs(['t', 'h', 'e', 'i', 'r'], ['h', 'a', 'b', 'i', 't'])
+          `}
+          hideUntil={new Date('2023-09-27')}
+        >
+          {py`
+            def lcs(X, Y):
+                pass
+
+            lcs(['t', 'h', 'e', 'i', 'r'], ['h', 'a', 'b', 'i', 't'])
+          `}
+        </Jupyter>
+      </Slide>
+      <Slide title="Towards the bottom-up implementation" columns>
+        <table>
+          <thead>
+            <tr>
+              {['', '', 'T', 'H', 'E', 'I', 'R'].map((l) => (
+                <th>{l}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {['', '0', '', '', '', '', ''].map((l) => (
+                <th>{l}</th>
+              ))}
+            </tr>
+            {['H', 'A', 'B', 'I', 'T'].map((l) => (
+              <tr>
+                <th>{l}</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              {['', '', 'B', 'D', 'C', 'A', 'B', 'A'].map((l) => (
+                <th>{l}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {['', '0', '', '', '', '', '', ''].map((l) => (
+                <th>{l}</th>
+              ))}
+            </tr>
+            {['A', 'B', 'C', 'B', 'D', 'A', 'B'].map((l) => (
+              <tr>
+                <th>{l}</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Slide>
+      <Slide title="LCS: Python implementation">
+        <Exercise>
+          <p>Below is a bottom-up implementation of LCS. What's its time complexity?</p>
+        </Exercise>
+        <Jupyter>
+          {py`
+            def lcs(X, Y):
+                m, n = len(X), len(Y)
+                C = [[0] * (n + 1)]
+                for i in range(1, m + 1):
+                    C.append([0])
+                    for j in range(1, n + 1):
+                        if X[i - 1] == Y[j - 1]:
+                            C[i].append(C[i - 1][j - 1] + 1)
+                        else:
+                            C[i].append(max(C[i - 1][j], C[i][j - 1]))
+                return C[m][n]
+            lcs(['t', 'h', 'e', 'i', 'r'], ['h', 'a', 'b', 'i', 't'])
+          `}
+        </Jupyter>
+      </Slide>
+      <Slide title="Parent pointers" columns>
+        <div>
+          <p>We'll use parent pointers to relate a subproblem to its parent.</p>
+          <table>
+            <thead>
+              <tr>
+                {['', '', 'T', 'H', 'E', 'I', 'R'].map((l) => (
+                  <th>{l}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {['', '0', '', '', '', '', ''].map((l) => (
+                  <th>{l}</th>
+                ))}
+              </tr>
+              {['H', 'A', 'B', 'I', 'T'].map((l) => (
+                <tr>
+                  <th>{l}</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <Exercise>
+            <p>Find the LCS using parent pointers.</p>
+          </Exercise>
+          <table>
+            <thead>
+              <tr>
+                {['', '', 'B', 'D', 'C', 'A', 'B', 'A'].map((l) => (
+                  <th>{l}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {['', '0', '', '', '', '', '', ''].map((l) => (
+                  <th>{l}</th>
+                ))}
+              </tr>
+              {['A', 'B', 'C', 'B', 'D', 'A', 'B'].map((l) => (
+                <tr>
+                  <th>{l}</th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Slide>
+      <Slide title="LCS: Python implementation with parent pointers">
+        <Exercise>
+          <p>Change the implementation so it actually computes the LCS and not only its length.</p>
+        </Exercise>
+        <Jupyter>
+          {py`
+            def lcs(X, Y):
+                m, n = len(X), len(Y)
+                C = [[0] * (n + 1)]
+                for i in range(1, m + 1):
+                    C.append([0])
+                    for j in range(1, n + 1):
+                        if X[i - 1] == Y[j - 1]:
+                            C[i].append(C[i - 1][j - 1] + 1)
+                        else:
+                            C[i].append(max(C[i - 1][j], C[i][j - 1]))
+                return C[m][n]
+            lcs(['t', 'h', 'e', 'i', 'r'], ['h', 'a', 'b', 'i', 't'])
+          `}
+        </Jupyter>
+      </Slide>
+      <Slide title="Longest increasing subsequence">
+        <Problem title="Longest increasing Subsequence">
+          <p>
+            Given a sequence A, find the longest subsequence L of A consisting of increasing
+            numbers.
+          </p>
+        </Problem>
+        <Example>
+          <p>An LIS of "carbohydrate" would be "abort"</p>
+        </Example>
+      </Slide>
+      <Slide title="Analysis of the problem">
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th>Longest increasing subsequence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Subproblems</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Relate</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Original</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Order</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Base cases</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Running time</th>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <Exercise>
+          <p>Implement the LIS algorithm in Python.</p>
+        </Exercise>
+      </Slide>
     </Slideshow>
   );
 };
