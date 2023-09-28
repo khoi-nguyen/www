@@ -658,6 +658,7 @@ export default () => {
           <p>Write a top-down implementation of the Knapsack problem</p>
         </Exercise>
         <Jupyter
+          hideUntil={new Date('2023-09-29')}
           solution={py`
             from functools import cache
 
@@ -746,8 +747,9 @@ export default () => {
             original solution.
           </p>
         </Exercise>
-        <Jupyter>
-          {py`
+        <Jupyter
+          hideUntil={new Date('2023-09-29')}
+          solution={py`
             w = [1, 2, 5, 6, 7]
             v = [1, 6, 18, 22, 28]
             W, n = 11, len(w)
@@ -759,6 +761,19 @@ export default () => {
                         M[i + 1][j] = M[i][j]
                     else:
                         M[i + 1][j] = max(M[i][j], v[i] + M[i][j - w[i]])
+            M[-1][-1]
+          `}
+        >
+          {py`
+            w = [1, 2, 5, 6, 7]
+            v = [1, 6, 18, 22, 28]
+            W, n = 11, len(w)
+
+            M = [[0 for col in range(W + 1)] for row in range(n + 1)]
+            for i in range(n):
+                for j in range(1, W + 1):
+                    pass
+
             M[-1][-1]
           `}
         </Jupyter>
