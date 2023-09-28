@@ -752,14 +752,14 @@ export default () => {
             v = [1, 6, 18, 22, 28]
             W, n = 11, len(w)
 
-            # TODO: Fix indices
             M = [[0 for col in range(W + 1)] for row in range(n + 1)]
-            for i in range(1, n + 1):
-                for w in range(1, W + 1):
-                    if w[i] > w:
-                        M[i][w] = M[i - 1][w]
+            for i in range(n):
+                for j in range(1, W + 1):
+                    if w[i] > j:
+                        M[i + 1][j] = M[i][j]
                     else:
-                        M[i][w] = max(M[i - 1][w], v[i] + M[i - 1][w - w[i]])
+                        M[i + 1][j] = max(M[i][j], v[i] + M[i][j - w[i]])
+            M[-1][-1]
           `}
         </Jupyter>
       </Slide>
