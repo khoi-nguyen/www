@@ -7,6 +7,7 @@ import {
   faLightbulb,
   faPen,
   faPenToSquare,
+  faQuoteLeft,
   faScrewdriverWrench,
 } from '@fortawesome/free-solid-svg-icons/index.js';
 import { langSignal } from '~/root';
@@ -107,6 +108,12 @@ export function Remark(props: SpecificEnvironmentProps) {
 
 export function Question(props: SpecificEnvironmentProps) {
   return <Environment name="Question" icon={faCircleQuestion} {...props} />;
+}
+
+export function Quote(props: SpecificEnvironmentProps) {
+  const [lang] = langSignal;
+  const name = () => (lang() === 'fr' ? 'Citation' : 'Quote');
+  return <Environment name={name()} icon={faQuoteLeft} {...props} />;
 }
 
 export function Theorem(props: SpecificEnvironmentProps) {
