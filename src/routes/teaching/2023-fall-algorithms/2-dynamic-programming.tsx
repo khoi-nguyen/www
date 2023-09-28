@@ -574,6 +574,212 @@ export default () => {
           <p>Implement the LIS algorithm in Python.</p>
         </Exercise>
       </Slide>
+      <Slide title="Knapsack">
+        <Problem>
+          <ul>
+            <li>{tex`n`} objects and a knapsack</li>
+            <li>
+              Item {tex`i`} weighs {tex`w_i`} and has value {tex`v_i`}
+            </li>
+            <li>Knapsack has capacity of {tex`W`}</li>
+            <li>Goal is to fill knapsack and maximize total value</li>
+          </ul>
+        </Problem>
+        <Example>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>value</th>
+                <th>weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                [1, 1, 1],
+                [2, 6, 2],
+                [3, 18, 5],
+                [4, 22, 6],
+                [5, 28, 7],
+              ].map((row) => (
+                <tr>
+                  {row.map((cell) => (
+                    <td>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p>If {tex`W = 11`}, the optimal choice is to take items 3 and 4.</p>
+        </Example>
+      </Slide>
+      <Slide title="Analysis of the knapsack problem">
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th>Knapsack</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Guess</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Subproblems</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Relate</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Original</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Order</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Base cases</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Running time</th>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </Slide>
+      <Slide title="Knapsack: top-down implementation">
+        <Exercise>
+          <p>Write a top-down implementation of the Knapsack problem</p>
+        </Exercise>
+        <Jupyter
+          solution={py`
+            from functools import cache
+
+            w = [1, 2, 5, 6, 7]
+            v = [1, 6, 18, 22, 28]
+
+            @cache
+            def knapsack(i, W):
+                if i == 0:
+                    return 0
+                if w[i] > W:
+                    return knapsack(i - 1, W)
+                return max(
+                    knapsack(i - 1, W),
+                    v[i] + knapsack(i - 1, W - w[i])
+                )
+            knapsack(4, 11)
+        `}
+        >
+          {py`
+            from functools import cache
+
+            w = [1, 2, 5, 6, 7]
+            v = [1, 6, 18, 22, 28]
+
+            @cache
+            def knapsack(i, W):
+                pass
+            knapsack(4, 11)
+          `}
+        </Jupyter>
+      </Slide>
+      <Slide title="Knapsack: towards the bottom-up implementation" split={false}>
+        <p>Use the idea of parent pointers to reconstruct the solution.</p>
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => (
+                <th>{i}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {['{}', '{1}', '{1, 2}', '{1, 2, 3}', '{1, 2, 3, 4}', '{1, 2, 3, 4, 5}'].map(
+              (label) => (
+                <tr>
+                  <td>{label}</td>
+                  {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((_) => (
+                    <td></td>
+                  ))}
+                </tr>
+              ),
+            )}
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>value</th>
+              <th>weight</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              [1, 1, 1],
+              [2, 6, 2],
+              [3, 18, 5],
+              [4, 22, 6],
+              [5, 28, 7],
+            ].map((row) => (
+              <tr>
+                {row.map((cell) => (
+                  <td>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Slide>
+      <Slide title="Bottom-Up implementation of Knapsack">
+        <Exercise>
+          <p>
+            Write a bottom-up implementation of Knapsack. Use parent pointers to construct the
+            original solution.
+          </p>
+        </Exercise>
+        <Jupyter>
+          {py`
+            w = [1, 2, 5, 6, 7]
+            v = [1, 6, 18, 22, 28]
+            W, n = 11, len(w)
+
+            # TODO: Fix indices
+            M = [[0 for col in range(W + 1)] for row in range(n + 1)]
+            for i in range(1, n + 1):
+                for w in range(1, W + 1):
+                    if w[i] > w:
+                        M[i][w] = M[i - 1][w]
+                    else:
+                        M[i][w] = max(M[i - 1][w], v[i] + M[i - 1][w - w[i]])
+          `}
+        </Jupyter>
+      </Slide>
+      <Slide title="Running-time: pseudo-polynomial">
+        <Proposition>
+          {tex`
+            T(n) = \bigo(n W)
+          `}
+        </Proposition>
+        <Remark>
+          <p>
+            Storing {tex`W`} in memory requires {tex`\bigo(\log_2 W)`} bit. Knapsack is therefore
+            exponential in the input size, but polynomial in the input. We say it's a{' '}
+            <em>pseudo-polynomial</em> algorithm.
+          </p>
+        </Remark>
+      </Slide>
+      <Slide title="Exercises: Question 4">
+        <Iframe src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw5.pdf" />
+      </Slide>
     </Slideshow>
   );
 };
