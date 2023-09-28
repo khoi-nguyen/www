@@ -95,6 +95,9 @@ export default () => (
           <a href="https://www.maths.cam.ac.uk/person/ngw24">Neshan Wickramasekera</a>
         </li>
         <li>Grade: distinction (highest passing grade)</li>
+        <li>
+          Offered a <Abbr key="PhD" /> position based on academic performance
+        </li>
       </ul>
     </Line>
 
