@@ -218,6 +218,15 @@ export default () => {
             </li>
           </ul>
         </Definition>
+        <Python>
+          {py`
+            import matplotlib.pyplot as plt
+            import numpy as np
+            x = np.linspace(0.5, 10, 1000)
+            y = (x + 1)**2 * np.sin(x)
+            plt.plot(x, y)
+          `}
+        </Python>
       </Slide>
       <Slide title="Recherche d'extrema">
         <Theorem title="Dérivées et extremum">
