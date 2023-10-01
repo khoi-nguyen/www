@@ -92,8 +92,8 @@ export default () => {
           {py`
             import matplotlib.pyplot as plt
             import numpy as np
-            x = np.linspace(3, 15, 1000)
-            y = np.sin(10 / x)
+            x = np.linspace(0.5, 10, 1000)
+            y = (x + 1)**2 * np.sin(x)
             plt.plot(x, y)
           `}
         </Python>
