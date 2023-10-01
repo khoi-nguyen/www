@@ -16,7 +16,8 @@ export default () => {
           <li>1972: naissance de Zidane, Rivaldo, Figo et Nedved</li>
           <li>
             2023: Marius Joly, David Annenkoff, Rolando Guerrieri, Jonas Marchal mettent un
-            auditoire entier en échec
+            auditoire entier en échec. Le nom de Khoi Nguyen apparaît sur la liste des meilleurs
+            scores d'un minigolf à Woluwe-Saint-Lambert.
           </li>
         </ul>
       </Slide>
@@ -37,12 +38,9 @@ export default () => {
             "Vous savez, l'annus mirabilis d'Einstein en 1905, c'était{' '}
             <strong>vraiment exceptionnel</strong>. Ce Monsieur Einstein a{' '}
             <strong>révolutionné la physique</strong>, apportant des idées qui ont changé notre
-            compréhension de l'univers,{' '}
-            <strong>
-              tout comme mon fameux coup de tête en 2006 a changé la façon dont nous nous souvenons
-              de la Coupe du Monde
-            </strong>
-            . C'était un moment où tout a basculé, à la fois pour lui et pour moi.
+            compréhension de l'univers, <strong>tout comme mon fameux coup de boule</strong> en 2006
+            a changé la façon dont nous nous souvenons de la Coupe du Monde . C'était un moment où
+            tout a basculé, à la fois pour lui et pour moi.
           </p>
         </Quote>
         <p>
