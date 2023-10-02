@@ -43,10 +43,17 @@ export default () => {
             tout a basculé, à la fois pour lui et pour moi.
           </p>
         </Quote>
-        <p>
-          Pour les plus naïfs d'entre vous, je me sens obligé de préciser que c'est sorti de
-          ChatGPT.
-        </p>
+        <Quote title="Newton à propos d'Enstein">
+          <p>
+            What Einstein did was a good step. I would have added much several ways, had I been
+            acquainted with Jimmy's works.{' '}
+            <strong>
+              If he hath seen further than me, it is by standing on my giant shoulders
+            </strong>
+            . They are still very sore and I need a backrub.
+          </p>
+        </Quote>
+        <p>La véracité de la dernière citation </p>
       </Slide>
       <Slide title="Vers la dérivée" columns>
         <div>
