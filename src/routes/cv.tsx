@@ -1,10 +1,5 @@
 import meta from './cv.json';
-import {
-  faBirthdayCake,
-  faEnvelope,
-  faGlobe,
-  faPhone,
-} from '@fortawesome/free-solid-svg-icons/index.js';
+import { faBirthdayCake, faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons/index.js';
 
 function calculateAge(dob: Date): number {
   const currentDate = new Date();
@@ -28,9 +23,6 @@ export default () => (
         <ul class="cv-info is-4">
           <li>
             <Fa icon={faBirthdayCake} /> {calculateAge(new Date('1991-01-24'))} years old
-          </li>
-          <li>
-            <Fa icon={faPhone} /> +32 499 19 24 02
           </li>
           <li>
             <Fa icon={faEnvelope} /> <a href="mailto:khoi@nguyen.me.uk">khoi@nguyen.me.uk</a>
