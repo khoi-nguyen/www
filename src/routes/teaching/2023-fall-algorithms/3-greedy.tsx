@@ -1,6 +1,25 @@
 import meta from './3-greedy.json';
+import dedent from 'dedent-js';
 
 export default () => {
+  const treeNode = py`
+    class Node:
+        left = None
+        right = None
+        def __init__(self, frequency, letter = None):
+            self.letter = letter
+            self.frequency = frequency
+        def __lt__(self, other):
+            return self.frequency < other.frequency
+        def encode(self, encoding = ''):
+            if self.left is None and self.right is None:
+                yield (self.letter, encoding)
+            else:
+                for v in self.left.encode(encoding + '0'):
+                    yield v
+                for v in self.right.encode(encoding + '1'):
+                    yield v
+  `;
   return (
     <Slideshow meta={meta}>
       <Slide title="Interval scheduling problem">
@@ -184,6 +203,280 @@ export default () => {
             first.
           </p>
         </Exercise>
+      </Slide>
+      <Slide title="Lossless text compression">
+        <Question>
+          <p>
+            Given a text that uses 32 symbols (26 letters, space, punctuation), how can we encode
+            this text in bits?
+          </p>
+        </Question>
+        <Fragment>
+          <Question>
+            <p>
+              How can we use the relative frequencies of the letters to reduce our encoding? How do
+              we know when the next symbol begins?
+            </p>
+          </Question>
+        </Fragment>
+      </Slide>
+      <Slide title="Prefix code">
+        <p>
+          A <strong>prefix code</strong> does not have ambiguities.
+        </p>
+        <Definition title="Prefix code">
+          <p>
+            A <strong>prefix code</strong> for a set {tex`S`} is a function
+          </p>
+          {tex`
+            c : S \to \{0, 1\}
+          `}
+          such that {tex`c(x)`} is never a prefix of {tex`y`} if {tex`x, y \in S`} are distinct.
+        </Definition>
+      </Slide>
+      <Slide title="Codes: binary tree representation">
+        <Example>
+          <p>Draw the tree associated with</p>
+          {tex`
+            c(a) = 11, \quad
+            c(e) = 01, \quad
+            c(k) = 001, \quad
+            c(l) = 10, \quad
+            c(u) = 000
+          `}
+        </Example>
+        <Question>
+          <p>When is a binary tree a representation of a prefix code?</p>
+        </Question>
+        <Exercise>
+          <p>What is the meaning of 111010001111101000</p>
+          {dot`
+            graph {
+              root [label=" "];
+              0 [label=" "];
+              1 [label=" "];
+              00 [label=" "];
+              01 [label="e"];
+              000 [label="l"];
+              001 [label="m"];
+              10 [label="i"];
+              11 [label=" "];
+              111 [label=" "];
+              1110 [label="s"];
+              1111 [label="p"];
+              root -- 0;
+              root -- 1;
+              0 -- 00;
+              0 -- 01;
+              00 -- 000;
+              00 -- 001;
+              1 -- 10;
+              1 -- 11;
+              11 -- 111;
+              111 -- 1110;
+              111 -- 1111;
+            }
+          `}
+        </Exercise>
+      </Slide>
+      <Slide title="Optimality">
+        <Definition title="Average bits per letter">
+          {tex`
+            \text{ABL}(c) = \sum_{x \in S} f_x \abs{c(x)}
+          `}
+        </Definition>
+        <p>In a binary tree, the formula becomes</p>
+        {tex`
+          \text{ABL}(T) = \sum_{x \in S} f_x \text{depth}_T(x)
+        `}
+        <Problem>
+          <p>Given an alphabet {tex`S`}, find a prefix code that minimizes the ABL.</p>
+        </Problem>
+      </Slide>
+      <Slide title="Towards Huffman encoding">
+        <h3>Key observations</h3>
+        <ul>
+          <li>
+            Lowest frequency letters should be at the lowest level in the tree of an optimal prefix
+            code.
+          </li>
+          <li>For {tex`n > 1`}, the lowest level always contains at least two leaves.</li>
+          <li>The order in which items appear in a level does not matter</li>
+        </ul>
+      </Slide>
+      <Slide title="Huffman encoding by hand">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/d/d8/HuffmanCodeAlg.png"
+          alt="Huffman encoding example"
+          height={700}
+        />
+        <Example>
+          <p>Encode the string "pepper" using Huffman encoding</p>
+        </Example>
+      </Slide>
+      <Slide title="Huffman: pseudo-code">
+        <pre>
+          {dedent`
+            Huffman(S) {
+              if |S|=2 {
+                return tree with root and 2 leaves
+              } else {
+                let y and z be lowest-frequency letters in S
+                S’ = S
+                remove y and z from S’
+                insert new letter ω in S’ with fω=fy+fz
+                T’ = Huffman(S’)
+                T = add two children y and z to leaf ω from T’
+                return T
+              }
+            } 
+          `}
+        </pre>
+        <Question>
+          <p>What's the time complexity?</p>
+        </Question>
+      </Slide>
+      <Slide title="Huffman: correctness">
+        <Proposition>
+          <p>
+            Let T' be the tree obtained by removing two sibling leaves {tex`x, y`}, and relabelling
+            the parent {tex`\omega`} with frequency {tex`f_x + f(y)`}.
+          </p>
+          {tex`
+            \text{ABL}(T') = \text{ABL}(T) - f_\omega
+          `}
+        </Proposition>
+        <Proposition>
+          <p>Huffman code for S achives the minimum ABL of any prefix code</p>
+        </Proposition>
+      </Slide>
+      <Slide title="Priority queue">
+        <p>
+          We need a <strong>priority queue</strong> model so we can associate shorter encodings with
+          the most frequent letters. The following method should be implemented and run "fast".
+        </p>
+        <ul>
+          <li>
+            <code>insert(S, x)</code>
+          </li>
+          <li>
+            <code>max(S)</code>
+          </li>
+          <li>
+            <code>extract_max(S)</code>
+          </li>
+          <li>
+            <code>increase_key(S, x, k)</code>
+          </li>
+        </ul>
+      </Slide>
+      <Slide title="Data structure: Heaps">
+        <Definition title="Heap">
+          <p>A heap is an array visualized as a nearly complete binary trees.</p>
+        </Definition>
+        <Example>
+          <p>Represent the following array as a heap</p>
+          <table>
+            <tbody>
+              <tr>
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
+                  <td>{i}</td>
+                ))}
+              </tr>
+              <tr>
+                {[23, 12, 34, 4, 5, 10, 7, 8, 29, 1].map((i) => (
+                  <td>{i}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </Example>
+        <Question>
+          <p>
+            Given a node {tex`i`}, what are the indices of its children? What about the index of the
+            parent?
+          </p>
+        </Question>
+      </Slide>
+      <Slide title="Max and min-heaps">
+        <Definition title="Max/min-heaps">
+          <p>
+            A max (resp. min) heap is a heap that has the additional property that a parent is
+            always greater (resp. less) than or equal to its children.
+          </p>
+        </Definition>
+        <p>A min heap is ideal to find the two least frequent letters!</p>
+      </Slide>
+      <Slide title="Min-Heaps in Python's standard library">
+        <Editor>
+          {py`
+            import heapq
+
+            # Transform list into heap in O(n)
+            heapq.heapify(x)
+
+            # Pop smallest item O(log n)
+            heapq.heappop(heap)
+
+            # Push a value on the heap O(log n)
+            heapq.heappush(heap, item)
+          `}
+        </Editor>
+        <Question>
+          <p>
+            How are these methods implemented to keep the heap invariant? Why do we sift down
+            instead of up?
+          </p>
+        </Question>
+      </Slide>
+      <Slide title="Huffman encoding: implementation">
+        <Jupyter>
+          {treeNode}
+          {py`
+            a = Node(0.1, 'a')
+            a.left, a.right = Node(0.1, 'b'), Node(0.1, 'c')
+            list(a.encode())
+          `}
+        </Jupyter>
+      </Slide>
+      <Slide title="Huffman encoding: implementation">
+        <Exercise>
+          <p>
+            Implement Huffman's encoding. How many bits do you save on Shakespeare's 18th sonnet?
+          </p>
+        </Exercise>
+        <Jupyter
+          before={treeNode}
+          hideUntil={new Date('2023-10-06')}
+          solution={py`
+            import heapq
+
+            freq = {}
+            text = "eeeeaazeeabbbaabeaeab"
+            for l in text:
+                freq[l] = freq[l] + 1 if l in freq else 1
+            # Priority queue
+            pq = []
+            for l in freq:
+                pq.append(Node(freq[l], l))
+            heapq.heapify(pq)
+
+            while len(pq) > 1:
+                y, z = heapq.heappop(pq), heapq.heappop(pq)
+                w = Node(y.frequency + z.frequency)
+                w.left, w.right = y, z
+                heapq.heappush(pq, w)
+
+            list(pq[0].encode())
+          `}
+        >
+          {py`
+            import heapq
+
+            freq = {}
+            text = "eeeeaazeeabbbaabeaeab"
+          `}
+        </Jupyter>
       </Slide>
     </Slideshow>
   );
