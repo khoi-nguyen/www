@@ -2,6 +2,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface JupyterProps {
   children: JSX.Element;
+  before?: string;
   hideUntil?: Date;
   solution?: string;
 }
@@ -16,7 +17,7 @@ export default function Jupyter(props: JupyterProps) {
   const run = () => {
     setCodeToRun('');
     setIsLoading(true);
-    setCodeToRun(code());
+    setCodeToRun((props.before || '') + '\n' + code());
   };
   const handleUpdate = (value: string) => {
     setCode(value);
