@@ -428,6 +428,14 @@ export default () => {
             instead of up?
           </p>
         </Question>
+        <Jupyter>
+          {py`
+            import heapq
+            S = [100, 4, 7, 10, 3, 2, 0]
+            heapq.heapify(S)
+            S
+          `}
+        </Jupyter>
       </Slide>
       <Slide title="Huffman encoding: implementation">
         <Jupyter>
