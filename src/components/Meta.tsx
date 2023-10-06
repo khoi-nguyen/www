@@ -1,5 +1,5 @@
 import { Meta as SolidMeta, Title } from 'solid-start';
-import { langSignal } from '~/root';
+import { langSignal } from '~/lib/signals';
 
 interface MetaProps {
   adminOnly?: boolean;

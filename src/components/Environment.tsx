@@ -10,7 +10,7 @@ import {
   faQuoteLeft,
   faScrewdriverWrench,
 } from '@fortawesome/free-solid-svg-icons/index.js';
-import { langSignal } from '~/root';
+import { langSignal } from '~/lib/signals';
 
 interface SpecificEnvironmentProps {
   children?: JSX.Element;
@@ -22,6 +22,8 @@ interface SpecificEnvironmentProps {
 interface EnvironmentProps extends SpecificEnvironmentProps {
   name: string;
 }
+
+const [lang] = langSignal;
 
 export function Environment(props: EnvironmentProps) {
   return (
@@ -47,31 +49,26 @@ export function Environment(props: EnvironmentProps) {
 }
 
 export function Corollary(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Corollaire' : 'Corollary');
   return <Environment name={name()} icon={faBook} {...props} />;
 }
 
 export function Definition(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Définition' : 'Definition');
   return <Environment name={name()} icon={faBook} {...props} />;
 }
 
 export function Example(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Exemple' : 'Example');
   return <Environment name={name()} icon={faPen} {...props} />;
 }
 
 export function Exercise(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Exercice' : 'Exercise');
   return <Environment name={name()} icon={faPenToSquare} {...props} />;
 }
 
 export function Idea(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Idée' : 'Idea');
   return <Environment name={name()} icon={faLightbulb} {...props} />;
 }
@@ -85,13 +82,11 @@ export function Instruction(props: SpecificEnvironmentProps) {
 }
 
 export function Interpretation(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Interprétation' : 'Interpretation');
   return <Environment name={name()} icon={faImage} {...props} />;
 }
 
 export function Problem(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Problème' : 'Problem');
   return <Environment name={name()} icon={faBook} {...props} />;
 }
@@ -101,7 +96,6 @@ export function Proposition(props: SpecificEnvironmentProps) {
 }
 
 export function Remark(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Remarque' : 'Remark');
   return <Environment name={name()} icon={faBook} {...props} />;
 }
@@ -111,13 +105,11 @@ export function Question(props: SpecificEnvironmentProps) {
 }
 
 export function Quote(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Citation' : 'Quote');
   return <Environment name={name()} icon={faQuoteLeft} {...props} />;
 }
 
 export function Theorem(props: SpecificEnvironmentProps) {
-  const [lang] = langSignal;
   const name = () => (lang() === 'fr' ? 'Théorème' : 'Theorem');
   return <Environment name={name()} icon={faBook} {...props} />;
 }
