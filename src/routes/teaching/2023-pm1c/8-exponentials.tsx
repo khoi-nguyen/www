@@ -141,6 +141,29 @@ export default () => {
           qu'on veut la fonction réciproque de {tex`x \mapsto 10^x`}.
         </p>
       </Slide>
+      <Slide title="Applications: équations différentielles">
+        {tex`
+          y = e^{\lambda x}
+          \implies \frac {\dd^n y} {\dd x^n} = \lambda^n e^{\lambda x}
+        `}
+        <Proposition>
+          <p>L'équation différentielle</p>
+          {tex`
+            a y'' + b y ' + c y = 0
+          `}
+          <p>a pour solution {tex`y = e^{\lambda x}`} si et seulement si</p>
+          {tex`
+            a \lambda^2 + b \lambda + c = 0.
+          `}
+        </Proposition>
+        <Example>
+          <p>Résoudre</p>
+          <ul>
+            <li>{tex`y'' -5y' + 6y = 0`}</li>
+            <li>{tex`y'' + 1 = 0`}</li>
+          </ul>
+        </Example>
+      </Slide>
       <Slide title="Graphes des logarithmes">
         <Geogebra id="P5Rm88qB" />
       </Slide>
