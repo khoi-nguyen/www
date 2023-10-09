@@ -486,6 +486,32 @@ export default () => {
           `}
         </Jupyter>
       </Slide>
+      <Slide title="Huffman code: exercises">
+        <Iframe src="https://www.cimt.org.uk/resources/codes/codes_u17_text.pdf" />
+      </Slide>
+      <Slide title="Huffman code: exercises">
+        <Iframe src="https://ranger.uta.edu/~alex/courses/3318/practice/quiz4/2_Huffman_practice_Solution.pdf" />
+      </Slide>
+      <Slide title="Exercices: homework">
+        <ul>
+          <li>
+            <a href="https://leetcode.com/problems/largest-number/">Largest number</a>
+          </li>
+          <li>
+            <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/">
+              Best time to buy and sell stock
+            </a>
+          </li>
+          <li>
+            <a href="https://leetcode.com/problems/gas-station/description/">Gas station</a>
+          </li>
+          <li>
+            <a href="https://leetcode.com/problems/queue-reconstruction-by-height/?envType=list&envId=50f6p33i">
+              Queue reconstruction by height
+            </a>
+          </li>
+        </ul>
+      </Slide>
     </Slideshow>
   );
 };
