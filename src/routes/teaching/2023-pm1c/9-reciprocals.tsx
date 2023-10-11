@@ -48,7 +48,7 @@ export default () => {
         <Definition>
           <p>
             La fonction {tex`\arctan`} est la réciproque de {tex`\tan x`} restreinte à{' '}
-            {tex`[-\pi/2, \pi]`}
+            {tex`[-\pi/2, \pi/2]`}
           </p>
         </Definition>
         <Geogebra id="wzAjzaEt" />
