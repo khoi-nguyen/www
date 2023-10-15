@@ -6,9 +6,11 @@ interface Attrs {
 interface FragmentProps {
   children: JSX.Element | JSX.Element[];
   index?: number;
+  hideUntil?: Date;
 }
 
 export default function Fragment(props: FragmentProps) {
+  const [admin] = useSession();
   const attrs: () => Attrs = () => {
     const newAttrs: Attrs = { class: 'fragment' };
     if (props.index) {
@@ -16,5 +18,11 @@ export default function Fragment(props: FragmentProps) {
     }
     return newAttrs;
   };
-  return <div {...attrs()}>{props.children}</div>;
+  const showChildren = () => {
+    if (!props.hideUntil) {
+      return true;
+    }
+    return new Date() > props.hideUntil || admin();
+  };
+  return <div {...attrs()}>{showChildren() && props.children}</div>;
 }
