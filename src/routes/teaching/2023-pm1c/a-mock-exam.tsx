@@ -90,7 +90,31 @@ export default () => {
           </ul>
         </Fragment>
       </Slide>
-      <Slide title="Question 2: vecteurs"></Slide>
+      <Slide title="Question 2: vecteurs">
+        <p>Given {tex`\vec a = \vec i + \vec j`},</p>
+        {tex`
+          \vec a = \vec i + \vec j,
+          \quad
+          \vec b = 3 \vec i - \vec j + \vec k,
+          \quad
+          \vec c = 2 \vec i + \vec j - \vec k
+        `}
+        <ol>
+          <li>(3 points) Calculer {tex`\vec b \times \vec c`}</li>
+          <li>(2 points) Calculer {tex`\vec a \cdot (\vec b \times \vec c)`}</li>
+          <li>(2 points) L'aire du triangle OBC</li>
+          <li>(1 points) Le volume du tétraèdre OABC</li>
+        </ol>
+        <Fragment hideUntil={new Date('2023-10-17')}>
+          <h3>Correction</h3>
+          <ul>
+            <li>M1 A2: {tex`(0, 5, 5)`}, A1 pour deux composantes correctes</li>
+            <li>M1 A1: {tex`5`}</li>
+            <li>M1 A1: {tex`\frac 5 2 \sqrt 2`}</li>
+            <li>B1: {tex`5/6`}</li>
+          </ul>
+        </Fragment>
+      </Slide>
       <Slide title="Question 3: nombres complexes">
         <ol>
           <li>
