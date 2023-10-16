@@ -3,9 +3,17 @@ import meta from './a-mock-exam.json';
 export default () => {
   return (
     <Slideshow meta={meta}>
-      <Slide title="Avertissement">
+      <Slide title="Avant de commencer">
+        <h3>Avertissement</h3>
         <ul>
           <li>Le but est d'illustrer la difficulté des questions, pas de donner des "tuyaux"</li>
+          <li>Cet "examen blanc" ne comporte pas tous les points de matière</li>
+        </ul>
+        <h3>Procédure</h3>
+        <ul>
+          <li>Nous allons faire 7 questions d'examen (le vrai en a 10)</li>
+          <li>Je vous laisse 1 min par point (vous aurez 1min30 par point à l'examen)</li>
+          <li>Ensuite on fait la correction au tableau et on parcourt les critères</li>
         </ul>
       </Slide>
       <Slide title="Où trouver des questions de niveau examen?" columns>
@@ -45,19 +53,26 @@ export default () => {
           </p>
         </div>
       </Slide>
-      <Slide title="Critères de correction">
+      <Slide title="Questions et critères de correction">
         <p>
-          Nous emploierons les mêmes critères que les grilles de correction du baccalauréat
-          britannique. Les spécificités sont les suivantes.
+          Nous emploierons les mêmes types de questions et les mêmes critères que les grilles de
+          correction du baccalauréat britannique. Les spécificités sont les suivantes.
         </p>
         <ul>
           <li>
+            Les questions sont coupées en un nombre de sous-questions le plus indépendantes
+            possibles.
+          </li>
+          <li>
             Des points de <strong>méthode</strong> vous seront accordés même si vous faites des
-            erreurs.
+            erreurs pour mitiger l'impact des erreurs de distraction.
           </li>
           <li>Une réponse sans raisonnement ne sera souvent pas comptabilisée</li>
         </ul>
-        <p>En pratique, cela vous encourage à écrire votre raisonnement</p>
+        <p>
+          En pratique, cela vous encourage à écrire votre raisonnement et vous donne beaucoup de
+          questions d'examen pour vous entraîner.
+        </p>
       </Slide>
       <Slide title="Question 1: trigonométrie">
         <ol>
