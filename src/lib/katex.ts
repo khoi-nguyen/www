@@ -21,6 +21,7 @@ const macros = {
   '\\norm': '\\|#1\\|',
   '\\dist': '\\mathrm{dist}',
   '\\placeholder': '\\mathord{\\color{lightgray}\\bullet}',
+  '\\P': '\\mathbb{P}',
 };
 
 export default function render(tex: string, displayMode = false) {
