@@ -144,6 +144,210 @@ export default () => {
           <p>Show the ten highest ranked pages.</p>
         </Exercise>
       </Slide>
+      <Slide title="PageRank: solution" columns>
+        <Editor>
+          {py`
+            import pandas as pd
+            from scipy import sparse
+            from numpy import array, sqrt, argmax
+            import numpy as np
+
+            websites = pd.read_csv('names.csv')
+            links = pd.read_csv('edges.csv')
+            N = len(websites)
+
+            link_count= {}
+            for node in links.FromNode:
+                if node in link_count:
+                    link_count[node] =+ 1
+                else:
+                    link_count[node] = 1
+          `}
+        </Editor>
+        <Editor>
+          {py`
+            # Adjacency matrix
+            I, J, V = [], [], []
+            for link in links.iterrows():
+                if len(link) < 1:
+                    break
+                from_node = link[1].FromNode
+                to_node = link[1].ToNode
+                if from_node < N and to_node < N:
+                    J.append(from_node)
+                    I.append(to_node)
+                    V.append(1. / link_count[from_node])
+            T = sparse.coo_matrix((V, (I, J)), shape=(N, N))
+
+            # PageRank
+            norm_squared = lambda x: x.dot(x)
+            x = array([1./N for n in range(N)])
+            while norm_squared(T @ x - x) / norm_squared(x) > 10**(-15):
+                x = T @ x
+
+            # Displaying results
+            for i in reversed(np.argsort(x)[-10:]):
+                print(websites.Name[i - 1])
+          `}
+        </Editor>
+      </Slide>
+      <Slide title="Graph Exploration">
+        <Question>
+          <p>From a given set of nodes, which vertices can I reach?</p>
+        </Question>
+        <ul>
+          <li>Web crawling</li>
+          <li>Social networking</li>
+          <li>Network Broadcast</li>
+          <li>Garbage collection</li>
+        </ul>
+      </Slide>
+      <Slide title="Adjacency list">
+        <Definition title="Adjacency list">
+          {tex`
+            \text{Adj}[u] = \{v \in V | (u, v) \in E\}
+          `}
+        </Definition>
+        <Question>
+          <p>How much space does that representation required?</p>
+          <p>{tex`\bigtheta(V + E)`}</p>
+        </Question>
+      </Slide>
+      <Slide title="Adjacency list/matrix">
+        <Iframe src="https://visualgo.net/en/graphds" />
+      </Slide>
+      <Slide title="Breadth-first search">
+        <ul>
+          <li>Visit all the nodes reachable from a given node {tex`s \in V`}</li>
+          <li>We want to achieve {tex`\bigo(V + E)`} time</li>
+          <li>Look at nodes reachable in {tex`0, 1, 2, \dots`} moves</li>
+          <li>Careful to avoid duplicates (otherwise running time could be infinite)</li>
+        </ul>
+      </Slide>
+      <Slide title="Breadth-First Search">
+        <Exercise>
+          <p>Write an algorithm that perform breadth-first search from a given source node s.</p>
+        </Exercise>
+        <Editor>
+          {py`
+            V = [0, 1, 2]
+            Adj = {
+              0: [1, 2],
+              1: [2],
+            }
+            def BFS(s, Adj):
+              level = {s: 0}
+              i = 1
+              frontier = [s]
+              while frontier:
+                  next = []
+                  for u in frontier:
+                      for v in Adj[u]:
+                          if v not in level:
+                              level[v] = i
+                              next.append(v)
+                  frontier = next
+                  i += 1
+          `}
+        </Editor>
+      </Slide>
+      <Slide title="Shortest paths">
+        <Exercise title="Shortest paths">
+          <p>
+            Change the BFS algorithm so that you can keep track of a shortest path from s to any
+            node.
+          </p>
+          <Editor
+            solution={py`
+              def BFS(s, Adj):
+                level = {s: 0}
+                i = 1
+                frontier = [s]
+                parent = {s: None}
+                while frontier:
+                    next = []
+                    for u in frontier:
+                        for v in Adj[u]:
+                            if v not in level:
+                                level[v] = i
+                                next.append(v)
+                                parent[v] = u
+                    frontier = next
+                    i += 1
+            `}
+            hideUntil={new Date('2023-10-20')}
+          >
+            {py`
+              def BFS(s, Adj):
+                level = {s: 0}
+                i = 1
+                frontier = [s]
+                while frontier:
+                    next = []
+                    for u in frontier:
+                        for v in Adj[u]:
+                            if v not in level:
+                                level[v] = i
+                                next.append(v)
+                    frontier = next
+                    i += 1
+            `}
+          </Editor>
+        </Exercise>
+      </Slide>
+      <Slide title="Running Time">
+        <Proposition>
+          {tex`
+            \sum_{v \in V} |\text{Adj}[v]| = \bigtheta(E)
+          `}
+        </Proposition>
+      </Slide>
+      <Slide title="Depth-first search">
+        <ul>
+          <li>Recursively explore graph, backtracking as necessary</li>
+          <li>Careful not to repeat</li>
+        </ul>
+        <Exercise>
+          <p>Implement DFS, when you're given the set of vertices and an adjacency list.</p>
+        </Exercise>
+        <Editor
+          solution={py`
+            parent = {}
+
+            def DFS_visit(Adj, s):
+                for v in Adj[s]:
+                    if v not in parent:
+                        parent[v] = s
+                        DFS_visit(Adj, u)
+
+            def DFS(V, Adj):
+              for s in V:
+                  if s not in parent:
+                      parent[s] = None
+                      DFS_visit(Adj, s)
+          `}
+        >
+          {py`
+          `}
+        </Editor>
+      </Slide>
+      <Slide title="DFS: Running time">
+        <Proposition>
+          <p>The Running time of DFS is {tex`\bigtheta (V + E)`}</p>
+        </Proposition>
+      </Slide>
+      <Slide title="Exercise: Sudoku solving">
+        <Exercise title="Sudoku Solving">
+          <p>
+            Sudoku is a puzzle where you're given a 9 by 9 grid partially filled with digits. The
+            objective is to fill the grid subject to the constraint that every row, column, and box
+            (3 by 3 subgrid) must contain all of the digits from 1 to 9.
+          </p>
+        </Exercise>
+      </Slide>
+      <Slide title="Exercise: N queens problem">
+        <Iframe src="https://en.wikipedia.org/wiki/Eight_queens_puzzle" />
+      </Slide>
     </Slideshow>
   );
 };
