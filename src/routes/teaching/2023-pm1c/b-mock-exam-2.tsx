@@ -25,6 +25,9 @@ export default () => {
           <li>Qui va vous donner cours au deuxième quadri?</li>
         </ul>
       </Slide>
+      <Slide title="Factorisation">
+        <Iframe src="https://pmt.physicsandmathstutor.com//download/Maths/A-level/Pure/Algebra-and-Functions-1/Solomon/06a.%20Quadratics%20%E2%80%93%20factorising.pdf" />
+      </Slide>
       <Slide title="Q1. Équations différentielles">
         <Exercise>
           <p>Considérons l'équation différentielle</p>
