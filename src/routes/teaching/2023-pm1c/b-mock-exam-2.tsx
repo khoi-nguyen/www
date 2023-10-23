@@ -125,6 +125,9 @@ export default () => {
       <Slide title="Dérivation">
         <Iframe src="https://stepdatabase.maths.org/database/db/94/94-S1.pdf" />
       </Slide>
+      <Slide title="Droites">
+        <Iframe src="https://pmt.physicsandmathstutor.com//download/Maths/A-level/Pure/Coordinate-Geometry-2/Edexcel-Set-A/Straight%20Lines.pdf" />
+      </Slide>
       <Slide title="Nombres complexes">
         <img
           src="https://stepdatabase.maths.org/database/db/89/89-S1-Q8.png"
