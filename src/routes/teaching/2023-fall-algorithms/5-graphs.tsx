@@ -386,7 +386,7 @@ export default () => {
                             return result
                     grid[n] = 0
                 return grid
-            box_positions = [9 * (3 * i) + 3 * j for i in range(9) for j in range(9)]
+            box_positions = [9 * (3 * i) + 3 * j for i in range(3) for j in range(3)]
             def valid_so_far(grid):
                 for i in range(9):
                     if has_duplicates([grid[9 * i + j] for j in range(9)]):
@@ -394,7 +394,7 @@ export default () => {
                     if has_duplicates([grid[9 * j + i] for j in range(9)]):
                         return False
                     indices = [0, 1, 2, 9, 10, 11, 18, 19, 20]
-                    if has_duplicates([box_positions[i] + j for j in indices]):
+                    if has_duplicates([grid[box_positions[i] + j] for j in indices]):
                         return False
                 return True
             def has_duplicates(numbers):
