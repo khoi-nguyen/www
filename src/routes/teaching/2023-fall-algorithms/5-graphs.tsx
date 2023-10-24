@@ -348,6 +348,175 @@ export default () => {
       <Slide title="Exercise: N queens problem">
         <Iframe src="https://en.wikipedia.org/wiki/Eight_queens_puzzle" />
       </Slide>
+      <Slide title="Recall: DFS">
+        <ul>
+          <li>Recursively explore graph, backtracking as necessary</li>
+          <li>Careful not to repeat</li>
+        </ul>
+        <Editor>
+          {py`
+            parent = {}
+
+            def DFS_visit(Adj, s):
+                for v in Adj[s]:
+                    if v not in parent:
+                        parent[v] = s
+                        DFS_visit(Adj, u)
+
+            def DFS(V, Adj):
+              for s in V:
+                  if s not in parent:
+                      parent[s] = None
+                      DFS_visit(Adj, s)
+          `}
+        </Editor>
+      </Slide>
+      <Slide title="Sudoku: solution" split={false}>
+        <Jupyter>
+          {py`
+            def sudoku(grid):
+                if 0 not in grid:
+                    return grid
+                n = grid.index(0)
+                for i in range(1, 10):
+                    grid[n] = i
+                    if valid_so_far(grid):
+                        result = sudoku(grid)
+                        if 0 not in result:
+                            return result
+                    grid[n] = 0
+                return grid
+            box_positions = [9 * (3 * i) + 3 * j for i in range(9) for j in range(9)]
+            def valid_so_far(grid):
+                for i in range(9):
+                    if has_duplicates([grid[9 * i + j] for j in range(9)]):
+                        return False
+                    if has_duplicates([grid[9 * j + i] for j in range(9)]):
+                        return False
+                    indices = [0, 1, 2, 9, 10, 11, 18, 19, 20]
+                    if has_duplicates([box_positions[i] + j for j in indices]):
+                        return False
+                return True
+            def has_duplicates(numbers):
+                nonzero = [x for x in numbers if x > 0]
+                return len(nonzero) != len(set(nonzero))
+            print(sudoku(81*[0])
+          `}
+        </Jupyter>
+      </Slide>
+      <Slide title="Edge classification">
+        <ul>
+          <li>Tree edge: visit new vertex via edge</li>
+          <li>Forward edge: node to descendant in a tree but not a tree edge</li>
+          <li>Backward edge: node to ancestor in tree, indicate a cycle</li>
+          <li>Cross edge: between two non-ancestor related vertices</li>
+        </ul>
+        <Question>
+          <p>How can we know what type of edge {tex`(u, v)`} is?</p>
+        </Question>
+        <ul>
+          <li>Tree edges: {tex`v`} is white when we explore edge</li>
+          <li>Forward edge: {tex`v`} is black when we explore edge</li>
+          <li>Back edge: {tex`v`} is gray when we explore edge</li>
+          <li>Cross edge: {tex`v`} is black when we explore edge</li>
+        </ul>
+      </Slide>
+      <Slide title="Edge classification in undirected graphs">
+        <Proposition>
+          <p>In an undirected graph, every edge is either a tree or a backedge.</p>
+        </Proposition>
+        <Corollary>
+          <p>An undirected graph is acyclic if and only if there are no back edges</p>
+        </Corollary>
+      </Slide>
+      <Slide title="Acyclic directed graphs">
+        <Proposition>
+          <p>A directed graph is acyclic if and only if there are no back edges.</p>
+        </Proposition>
+      </Slide>
+      <Slide title="Topological Sort">
+        <Problem>
+          <p>
+            Given a directed acyclic graph, "sort" the vertices in such a way that the edges are
+            always pointing to the right.
+          </p>
+        </Problem>
+        <p>Applications include:</p>
+        <ul>
+          <li>Building software</li>
+          <li>Job scheduling</li>
+          <li>Select courses with prerequisites</li>
+        </ul>
+      </Slide>
+      <Slide title="Topological sort: example">
+        <img
+          src="https://www.interviewcake.com/images/svgs/directed_graph__example_2.svg?bust=210"
+          style={{ width: '80%' }}
+        />
+      </Slide>
+      <Slide title="Topological sort: algorithm and proof of correctness">
+        <ul>
+          <li>Run DFS</li>
+          <li>Output vertices in decreasing order of finish time</li>
+        </ul>
+        <Proposition>
+          <p>If {tex`(u, v) \in E`}, then</p>
+          {tex`
+            u.f \geq v.f
+          `}
+        </Proposition>
+      </Slide>
+      <Slide title="Topological sort: implementation">
+        <Exercise>
+          <p>Modify DFS to implement topological sort</p>
+        </Exercise>
+        <Editor
+          solution={py`
+            parent = {}
+            topologically_sorted = []
+
+            def DFS_visit(Adj, s):
+                for v in Adj[s]:
+                    if v not in parent:
+                        parent[v] = s
+                        DFS_visit(Adj, u)
+                topologically_sorted.append(s)
+
+            def DFS(V, Adj):
+              for s in V:
+                  if s not in parent:
+                      parent[s] = None
+                      DFS_visit(Adj, s)
+          `}
+          hideUntil={new Date('2023-10-25')}
+        >
+          {py`
+            parent = {}
+
+            def DFS_visit(Adj, s):
+                for v in Adj[s]:
+                    if v not in parent:
+                        parent[v] = s
+                        DFS_visit(Adj, u)
+
+            def DFS(V, Adj):
+              for s in V:
+                  if s not in parent:
+                      parent[s] = None
+                      DFS_visit(Adj, s)
+          `}
+        </Editor>
+      </Slide>
+      <Slide title="Exercices">
+        <ul>
+          <li>
+            <a href="https://leetcode.com/problems/course-schedule">Course Schedule</a>
+          </li>
+          <li>
+            <a href="https://leetcode.com/problems/course-schedule-ii">Course Schedule II</a>
+          </li>
+        </ul>
+      </Slide>
     </Slideshow>
   );
 };
