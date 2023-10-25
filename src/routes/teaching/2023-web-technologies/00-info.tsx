@@ -3,6 +3,19 @@ import meta from './00-info.json';
 export default () => {
   return (
     <Slideshow meta={meta}>
+      <Slide title="Déroulement de l'UE">
+        <ul>
+          <li>Appel de 5 minutes au début de chaque session</li>
+          <li>Vous travaillez individuellement sur les exercices sur Claco</li>
+          <li>Vous m'appelez pour valider chacun de vos exercices</li>
+          <li>Un petit quizz sur la session précédente à chaque fois</li>
+        </ul>
+        <Remark>
+          <ul>
+            <li>Je ne validerai vos exercices que pendant les séances</li>
+          </ul>
+        </Remark>
+      </Slide>
       <Slide title="Aperçu">
         <p>Le web (côté client) repose sur les technologies suivantes</p>
         <dl>
