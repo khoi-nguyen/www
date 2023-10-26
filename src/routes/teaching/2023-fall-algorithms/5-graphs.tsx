@@ -517,6 +517,140 @@ export default () => {
           </li>
         </ul>
       </Slide>
+      <Slide title="Strongly Connected Component">
+        <Definition title="Strongly connected component">
+          <p>
+            Let {tex`G = (V, E)`} be a directed graph. A subset {tex`C \subset V`} is a{' '}
+            <strong>strongly connected component</strong> if for every pair {tex`u, v \in C`}, there
+            is a path from {tex`u`} to {tex`v`} and from {tex`v`} to {tex`u`}.
+          </p>
+        </Definition>
+        <Definition title="Component graph">
+          <p>
+            Let {tex`G = (V, E)`} be a directed graph with connected connected{' '}
+            {tex`C_1, \dots, C_n`}. The component graph is the graph
+          </p>
+          {tex`
+            \{C_i : 1 \leq i \leq n\} \times \{(C_i, C_j) : 1 \leq i, j \leq n \text{ and there's a path between } C_i \text{ and } C_j\}
+          `}
+        </Definition>
+      </Slide>
+      <Slide title="Strongly connected components">
+        <Problem>
+          <p>Given a directed graph G, find its connected components</p>
+        </Problem>
+        <Remark>
+          <ul>
+            <li>
+              DFS-Visit will always visit <em>at least</em> the connected component of the starting
+              point, but might visit other connected components too.
+            </li>
+            <li>
+              Between two strongly connected components, there's a one-way bridge between them.
+            </li>
+          </ul>
+        </Remark>
+      </Slide>
+      <Slide title="Transpose graph">
+        <Definition title="Transpose graph">
+          <p>
+            Let {tex`G = (V, E)`} be a graph. Its <em>transpose graph</em> is the graph
+          </p>
+          {tex`
+            V \times \{ (v, u) : (u, v) \in E \}
+          `}
+        </Definition>
+        <div class="has-text-centered">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Amirali_reverse.jpg" />
+        </div>
+        <Question>
+          <p>
+            Why is it called the transpose graph? What happens to the{' '}
+            <strong>adjacency matrix</strong> when we transpose the graph?
+          </p>
+        </Question>
+        <Exercise>
+          <p>
+            Write a Python code that transforms a graph (given via an adjacency list) to its
+            transpose.
+          </p>
+        </Exercise>
+      </Slide>
+      <Slide title="Strongly connected components: algorithm">
+        <ol>
+          <li>Topological sort the edges of the graphs</li>
+          <li>Transpose the graph</li>
+          <li>Run DFS visit on unvisited nodes in topological order</li>
+        </ol>
+        <Exercise>
+          <p>Implement it</p>
+        </Exercise>
+      </Slide>
+      <Slide title="Strongly connected components: proof of correctness">
+        <Proposition>
+          <p>
+            Assume that {tex`S_1, \dots, S_n`} are the strongly connected components of a graph{' '}
+            {tex`G = (V, E)`} sorted in topological order.
+          </p>
+          <p>
+            If {tex`s \in S_i`}, then DFS-Visit will only reach the vertices in{' '}
+            {tex`S_1, \dots, S_i`} in the transpose of {tex`G`}.
+          </p>
+        </Proposition>
+        <Corollary>
+          <p>The SSC algorithm is correct.</p>
+        </Corollary>
+      </Slide>
+      <Slide title="Weighted graph">
+        <Definition>
+          <p>
+            A graph {tex`G = (V, E)`} is <strong>weighted</strong> if it's given with a function{' '}
+            {tex`w : E \to \R`}.
+          </p>
+        </Definition>
+      </Slide>
+      <Slide title="Minimum spanning tree">
+        <Problem>
+          <p>
+            Given an undirected weighted and connecte graph {tex`((V, E), w)`}, find a spanning
+            subtree {tex`T \sub E`} with smallest total weight.
+          </p>
+        </Problem>
+      </Slide>
+      <Slide title="Generic MST algorithm">
+        <pre>
+          {py`
+            A = {}
+            while A is not spanning:
+                find safe edge e
+                A.add(e)
+            return A
+          `}
+        </pre>
+        <p>We'll see: Prims, Kruskal</p>
+      </Slide>
+      <Slide title="MST: Exercises"></Slide>
+      <Slide title="Definitions">
+        <li>Cut: partition of the vertices in two sets</li>
+        <li>
+          Edge <strong>crosses cut</strong> if its vertices are on either side of the cut
+        </li>
+        <li>
+          Cut <strong>respects</strong> {tex`A`} if no edge in {tex`A`} crosses the cut.
+        </li>
+        <li>
+          <strong>light edge crossing a cut</strong>: minimal weight of any edge entering the cut.
+        </li>
+      </Slide>
+      <Slide title="Criterion for safe edge">
+        <Proposition>
+          <p>Assume {tex`A \subset E`} is a subset of some MST.</p>
+          <p>
+            If {tex`S`} is a cut respecting {tex`A`} and {tex`(u, v)`} is a light edge crossing{' '}
+            {tex`(S, V \setminus S)`}, then {tex`(u, v)`} is safe for {tex`A`}.
+          </p>
+        </Proposition>
+      </Slide>
     </Slideshow>
   );
 };
