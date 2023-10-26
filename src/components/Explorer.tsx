@@ -10,9 +10,9 @@ interface ExplorerProps {
   filter?: (page: Page) => boolean;
   pattern: string;
   showFlags?: boolean;
-  showPath?: boolean;
   showPDF?: boolean;
   sortBy?: SortFunction;
+  title?: (page: Page) => string | JSX.Element;
 }
 
 const defaultFilter = () => true;
@@ -51,7 +51,11 @@ export default function Explorer(props: ExplorerProps) {
           <article class="card" onClick={() => navigate(page.path)} style={{ cursor: 'pointer' }}>
             <hgroup>
               <h3>
-                <A href={page.path}>{page.title}</A>
+                <A href={page.path}>
+                  <Show when={props.title} fallback={page.title}>
+                    {props.title!(page)}
+                  </Show>
+                </A>
                 <Show when={props.showFlags}>
                   {' '}
                   <Flag code={page.lang || 'en'} />
@@ -65,9 +69,6 @@ export default function Explorer(props: ExplorerProps) {
               </h3>
               <Show when={page.subtitle}>
                 <h4>{page.subtitle}</h4>
-              </Show>
-              <Show when={props.showPath}>
-                <pre>{page.path}</pre>
               </Show>
               {page.description}
             </hgroup>
