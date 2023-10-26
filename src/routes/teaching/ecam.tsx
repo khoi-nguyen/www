@@ -19,17 +19,23 @@ const title = (page: Page) => {
   );
 };
 
+const current = (page: Page) => {
+  return page.subtitle?.startsWith('ECAM') === true && page.current === true;
+};
+
+const old = (page: Page) => {
+  return page.subtitle?.startsWith('ECAM') === true && page.current !== true;
+};
+
 export default () => {
   return (
     <Page meta={meta}>
       <div class="has-text-centered">
         <img src={logo} alt="ECAM Brussels Engineering School" style={{ 'max-height': '200px' }} />
       </div>
-      <Explorer
-        filter={(page) => page.subtitle?.startsWith('ECAM') === true}
-        pattern={`teaching/.*/index\.json$`}
-        title={title}
-      />
+      <Explorer filter={current} pattern={`teaching/.*/index\.json$`} title={title} />
+      <h2>Archive</h2>
+      <Explorer filter={old} pattern={`teaching/.*/index\.json$`} title={title} />
     </Page>
   );
 };
