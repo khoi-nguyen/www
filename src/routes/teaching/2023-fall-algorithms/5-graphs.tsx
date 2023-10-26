@@ -580,7 +580,7 @@ export default () => {
         <ol>
           <li>Topological sort the edges of the graphs</li>
           <li>Transpose the graph</li>
-          <li>Run DFS visit on unvisited nodes in topological order</li>
+          <li>Run DFS visit on unvisited nodes in the order given in Step I.</li>
         </ol>
         <Exercise>
           <p>Implement it</p>
@@ -590,7 +590,7 @@ export default () => {
         <Proposition>
           <p>
             Assume that {tex`S_1, \dots, S_n`} are the strongly connected components of a graph{' '}
-            {tex`G = (V, E)`} sorted in topological order.
+            {tex`G = (V, E)`} in the order given by the SCC algorithm.
           </p>
           <p>
             If {tex`s \in S_i`}, then DFS-Visit will only reach the vertices in{' '}
@@ -629,11 +629,11 @@ export default () => {
         </pre>
         <p>We'll see: Prims, Kruskal</p>
       </Slide>
-      <Slide title="MST: Exercises"></Slide>
       <Slide title="Definitions">
-        <li>Cut: partition of the vertices in two sets</li>
+        <li>Cut: partition of the vertices in two sets {tex`(S, V \setminus S)`}</li>
         <li>
-          Edge <strong>crosses cut</strong> if its vertices are on either side of the cut
+          Edge {tex`(u, v)`} <strong>crosses cut</strong> {tex`S`} if{' '}
+          {tex`u \in S, v \in V \setminus S`} or vice-versa.
         </li>
         <li>
           Cut <strong>respects</strong> {tex`A`} if no edge in {tex`A`} crosses the cut.
