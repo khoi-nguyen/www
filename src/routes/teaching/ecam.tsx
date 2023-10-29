@@ -33,9 +33,9 @@ export default () => {
       <div class="has-text-centered">
         <img src={logo} alt="ECAM Brussels Engineering School" style={{ 'max-height': '200px' }} />
       </div>
-      <Explorer filter={current} pattern={`teaching/.*/index\.json$`} title={title} />
+      <Explorer filter={current} pattern={`teaching/.*/index\.json$`} title={title} showFlags />
       <h2>Archive</h2>
-      <Explorer filter={old} pattern={`teaching/.*/index\.json$`} title={title} />
+      <Explorer filter={old} pattern={`teaching/.*/index\.json$`} title={title} showFlags />
     </Page>
   );
 };
