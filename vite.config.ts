@@ -32,6 +32,11 @@ export default defineConfig({
           'solid-start/server': ['createServerAction$', 'createServerData$'],
         },
         {
+          from: '~/components/Meta',
+          imports: ['Metadata'],
+          type: true,
+        },
+        {
           from: 'solid-js',
           imports: ['Component', 'JSX'],
           type: true,

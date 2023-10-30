@@ -1,7 +1,7 @@
 import { Meta as SolidMeta, Title } from 'solid-start';
 import { langSignal } from '~/lib/signals';
 
-interface MetaProps {
+export interface Metadata {
   adminOnly?: boolean;
   current?: boolean;
   hideHeader?: boolean;
@@ -11,7 +11,7 @@ interface MetaProps {
   description: string;
 }
 
-export default function Meta(props: MetaProps) {
+export default function Meta(props: Metadata) {
   props = mergeProps({ lang: 'en' }, props);
   const [lang, setLang] = langSignal;
   createEffect(() => {
