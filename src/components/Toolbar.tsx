@@ -2,6 +2,7 @@ import { faFolderOpen } from '@fortawesome/free-solid-svg-icons/index.js';
 import {
   faBroom,
   faEyeSlash,
+  faLock,
   faPen,
   faHighlighter,
   faLayerGroup,
@@ -26,6 +27,7 @@ const brushes: Brush[] = [
 ];
 
 export default function Toolbar(props: ToolbarProps) {
+  const [admin, { PasswordField, Form }] = useSession();
   const [color, setColor] = createSignal<string>(brushes[0][0]);
   const [lineWidth, setLineWidth] = createSignal<number>(brushes[0][1]);
   const changeBrush = (brush: Brush) => {
@@ -45,6 +47,8 @@ export default function Toolbar(props: ToolbarProps) {
   const toggleVisibility = () => {
     setZIndex(zIndex() < 0 ? 1 : -1);
   };
+
+  const [showLoginForm, setShowLoginForm] = createSignal<boolean>(false);
 
   return (
     <div class="toolbar">
@@ -71,6 +75,18 @@ export default function Toolbar(props: ToolbarProps) {
       <button class="is-secondary" onClick={toggleVisibility}>
         <Fa icon={faEyeSlash} />
       </button>
+      <Show when={!showLoginForm() && !admin()}>
+        <button class="is-secondary" onClick={() => setShowLoginForm(true)}>
+          <Fa icon={faLock} />
+        </button>
+      </Show>
+      <Show when={!admin() && showLoginForm()}>
+        <Form>
+          <label for="password">Password: </label>
+          <PasswordField />
+          <input type="submit" />
+        </Form>
+      </Show>
     </div>
   );
 }

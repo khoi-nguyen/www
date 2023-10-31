@@ -438,6 +438,11 @@ pre,
     position: absolute;
     z-index: 4;
 
+    form {
+      display: inline;
+      font-size: 24px;
+    }
+
     svg {
       cursor: 'pointer';
     }
