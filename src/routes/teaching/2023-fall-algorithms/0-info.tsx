@@ -268,5 +268,20 @@ export default () => (
       </div>
       <Iframe src="https://kenn7.github.io/algo/session6/" />
     </Slide>
+    <Slide title="7 November 2023">
+      <h3>Homework</h3>
+      <ul>
+        <li>
+          <a href="https://leetcode.com/problems/min-cost-to-connect-all-points/">
+            Min cost to connect all points
+          </a>
+        </li>
+        <li>
+          <a href="https://leetcode.com/problems/cheapest-flights-within-k-stops/">
+            Cheapest flights within k stops
+          </a>
+        </li>
+      </ul>
+    </Slide>
   </Slideshow>
 );
