@@ -9,6 +9,8 @@ export default () => {
         filter={(page) => page.current === true}
         showFlags
       />
+      <h2>Archive</h2>
+      <Explorer pattern="teaching/.*/index.json$" filter={(page) => !page.current} showFlags />
     </Page>
   );
 };
