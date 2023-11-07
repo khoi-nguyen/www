@@ -608,16 +608,92 @@ export default () => {
             {tex`w : E \to \R`}.
           </p>
         </Definition>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Weighted_network.svg/1024px-Weighted_network.svg.png" />
       </Slide>
       <Slide title="Minimum spanning tree">
         <Problem>
           <p>
-            Given an undirected weighted and connecte graph {tex`((V, E), w)`}, find a spanning
+            Given an undirected weighted and connected graph {tex`((V, E), w)`}, find a spanning
             subtree {tex`T \sub E`} with smallest total weight.
           </p>
         </Problem>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Minimum_spanning_tree.svg/1024px-Minimum_spanning_tree.svg.png"
+          height={600}
+        />
       </Slide>
-      <Slide title="Generic MST algorithm">
+      <Slide title="Edge contraction">
+        <Definition title="Edge contraction">
+          <p>{tex`G / e`}: Remove edge and merge the vertices it previously joined</p>
+        </Definition>
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Edge_contraction.svg"
+          height={400}
+        />
+        <Question>
+          <p>What did we do about common neighbours?</p>
+        </Question>
+      </Slide>
+      <Slide title="Dynamic programming solution">
+        <ol>
+          <li>
+            <strong>Guess edge {tex`e`} in a MST</strong>
+          </li>
+          <li>Contract {tex`e`}</li>
+          <li>Recurse</li>
+          <li>
+            Decontract {tex`e`} and add {tex`e`} to MST
+          </li>
+        </ol>
+        <Remark title="Greedy">
+          <p>We will remove the guessing part by proving that the greedy choice is optimal</p>
+        </Remark>
+        <Question>
+          <p>What's the time complexity?</p>
+        </Question>
+      </Slide>
+      <Slide title="Correctness of the DP algorithm">
+        <Proposition>
+          <p>
+            Assume {tex`e`} belongs to some MST {tex`T^*`} of {tex`G`}. If {tex`T'`} is a MST of{' '}
+            {tex`G / e`}, then {tex`T' \cup \{e\}`} is a MST of G
+          </p>
+        </Proposition>
+        <p>Sketch proof</p>
+        {tex`
+          \begin{align*}
+            w(T' \cup \{e\}) &= w(T') + w(e)\\
+            &\leq w(T^* \setminus \{e\}) + w(e) = w(T^*)
+          \end{align*}
+        `}
+      </Slide>
+      <Slide title="Definitions">
+        <ul>
+          <li>Cut: partition of the vertices in two sets {tex`(S, V \setminus S)`}</li>
+          <li>
+            Edge {tex`(u, v)`} <strong>crosses cut</strong> {tex`S`} if{' '}
+            {tex`u \in S, v \in V \setminus S`} or vice-versa.
+          </li>
+          <li>
+            Cut <strong>respects</strong> {tex`A`} if no edge in {tex`A`} crosses the cut.
+          </li>
+          <li>
+            <strong>light edge crossing a cut</strong>: minimal weight of any edge entering the cut.
+          </li>
+        </ul>
+      </Slide>
+      <Slide title="Criterion for safe edge">
+        <p>The greedy choice works.</p>
+        <Proposition>
+          <p>Assume {tex`A \subset E`} is a subset of some MST.</p>
+          <p>
+            If {tex`S`} is a cut respecting {tex`A`} and {tex`(u, v)`} is a light edge crossing{' '}
+            {tex`(S, V \setminus S)`}, then {tex`(u, v)`} is also part of some MST.
+          </p>
+        </Proposition>
+        <p>We've reduced guessing an edge to using a particular cut respecting {tex`A`}.</p>
+      </Slide>
+      <Slide title="Greedy Generic MST algorithm">
         <pre>
           {py`
             A = {}
@@ -629,27 +705,145 @@ export default () => {
         </pre>
         <p>We'll see: Prims, Kruskal</p>
       </Slide>
-      <Slide title="Definitions">
-        <li>Cut: partition of the vertices in two sets {tex`(S, V \setminus S)`}</li>
-        <li>
-          Edge {tex`(u, v)`} <strong>crosses cut</strong> {tex`S`} if{' '}
-          {tex`u \in S, v \in V \setminus S`} or vice-versa.
-        </li>
-        <li>
-          Cut <strong>respects</strong> {tex`A`} if no edge in {tex`A`} crosses the cut.
-        </li>
-        <li>
-          <strong>light edge crossing a cut</strong>: minimal weight of any edge entering the cut.
-        </li>
+      <Slide title="Prim's Algorithm: Idea">
+        <ul>
+          <li>Start at vertex {tex`s`}</li>
+          <li>
+            Cut will be the <strong>visited vertices</strong>
+          </li>
+          <li>
+            Maintain a priority queue containing <strong>crossing edges</strong>. Prioritize lighter
+            edges.
+          </li>
+        </ul>
+        <Example>
+          <p>Find the MST of the following graph</p>
+          <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230223140007/mstdrawio.png" />
+        </Example>
       </Slide>
-      <Slide title="Criterion for safe edge">
+      <Slide title="Prim's Algorithm: Python implementation">
+        <Jupyter
+          solution={py`
+            import heapq
+            def MST(V, adj):
+                pq = [] # (weight, vertex)
+                visited = [False] * len(V)
+                total_weight = 0
+                heapq.heappush(pq, (0, 0))
+                while pq:
+                    w, u = heapq.heappop(pq)
+                    if visited[u]:
+                        continue
+                    total_weight += w
+                    visited[u] = True
+                    for v, w in adj[u]:
+                        if not visited[v]:
+                            heapq.heappush(pq, (w, v))
+                return total_weight
+          `}
+        >
+          {py`
+            import heapq
+            def MST(V, adj):
+                pq = [] # (weight, vertex)
+                visited = [False] * len(V)
+                total_weight = 0
+                return total_weight
+          `}
+        </Jupyter>
+        <Question>
+          <p>How would we get the tree itself?</p>
+        </Question>
+      </Slide>
+      <Slide title="Prim: Time complexity">
         <Proposition>
-          <p>Assume {tex`A \subset E`} is a subset of some MST.</p>
-          <p>
-            If {tex`S`} is a cut respecting {tex`A`} and {tex`(u, v)`} is a light edge crossing{' '}
-            {tex`(S, V \setminus S)`}, then {tex`(u, v)`} is safe for {tex`A`}.
-          </p>
+          <p>The time complexity of this algorithm is {tex`\bigo((V + E) \log V)`}</p>
         </Proposition>
+        {tex`
+          V \times \left(
+            \bigo(1) +
+            \underbrace{\bigo(V \log V)}_{\text{pop}}
+            + \underbrace{\bigo(E \log V)}_{\text{push}}
+          \right)
+        `}
+      </Slide>
+      <Slide title="Kruskal's algorithm">
+        <img
+          src="https://media.geeksforgeeks.org/wp-content/uploads/20210727035309/UntitledDiagram92.png"
+          width="100%"
+        />
+      </Slide>
+      <Slide title="Union-Find structure">
+        <Idea>
+          <p>Keep track of connected components</p>
+        </Idea>
+        <p>We'll need two operations to apply Kruskal</p>
+        <ul>
+          <li>
+            <strong>Union</strong>: unites two components
+          </li>
+          <li>
+            <strong>Find</strong>: finds an element's component
+          </li>
+        </ul>
+      </Slide>
+      <Slide title="Union-Find structure: Python implementation">
+        <Jupyter>
+          {py`
+            class UnionFind:
+                def __init__(self, n):
+                    self.parent = list(range(n))
+
+                def find(self, x):
+                    if self.parent[x] != x:
+                        self.parent[x] = self.find(self.parent[x])
+                    return self.parent[x]
+
+                def union(self, x, y):
+                    root_x = self.find(x)
+                    root_y = self.find(y)
+                    if root_x != root_y:
+                        self.parent[root_x] = root_y
+          `}
+        </Jupyter>
+      </Slide>
+      <Slide title="Kruskal's implementation">
+        <Jupyter
+          before={py`
+            class UnionFind:
+                def __init__(self, n):
+                    self.parent = list(range(n))
+
+                def find(self, x):
+                    if self.parent[x] != x:
+                        self.parent[x] = self.find(self.parent[x])
+                    return self.parent[x]
+
+                def union(self, x, y):
+                    root_x = self.find(x)
+                    root_y = self.find(y)
+                    if root_x != root_y:
+                        self.parent[root_x] = root_y
+          `}
+          solution={py`
+            def kruskal(edges, n):
+                edges.sort(key=lambda edge: edge[2])
+                mst = []
+                uf = UnionFind(n)
+
+                for edge in edges:
+                    u, v, weight = edge
+                    if uf.find(u) != uf.find(v):
+                        mst.append(edge)
+                        uf.union(u, v)
+                return mst
+          `}
+        >
+          {py`
+            def kruskal(edges, n):
+                pass
+          `}
+        </Jupyter>
       </Slide>
     </Slideshow>
   );
