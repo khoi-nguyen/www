@@ -1,9 +1,14 @@
 import SpinnerSVG from '~/assets/spinner.svg';
 
-export default function Spinner() {
+interface SpinnerProps {
+  inline?: boolean;
+}
+
+export default function Spinner(props: SpinnerProps) {
+  const img = <img src={SpinnerSVG} alt="Loading" />;
   return (
-    <div class="has-text-centered">
-      <img src={SpinnerSVG} alt="Loading" />
-    </div>
+    <Show when={!props.inline} fallback={img}>
+      <div class="has-text-centered">{img}</div>
+    </Show>
   );
 }
