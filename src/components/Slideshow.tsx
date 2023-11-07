@@ -33,7 +33,7 @@ export default function Slideshow(props: SlideshowProps) {
 
   const [admin] = useSession();
   const [state, setState] = createSignal<'unsaved' | 'saving' | 'saved'>('saved');
-  const [, saveAction] = createServerAction$(writeBoard);
+  const [saving, saveAction] = createServerAction$(writeBoard);
   const url = useLocation().pathname;
   const onBoardChange = () => {
     setState('unsaved');
@@ -45,6 +45,11 @@ export default function Slideshow(props: SlideshowProps) {
       setState('saved');
     }
   };
+  createEffect(() => {
+    if ((state() === 'saved' || state() === 'saving') && saving.error) {
+      setState('unsaved');
+    }
+  });
 
   const dimensions = { width: 1920, height: 1080 };
   let deck: InstanceType<typeof import('reveal.js')>;
