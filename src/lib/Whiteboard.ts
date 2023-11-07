@@ -129,7 +129,7 @@ export default class Whiteboard {
    * @param data
    */
   emit(eventName: BoardEventName, data: any): void {
-    const event = new CustomEvent('change', { detail: { eventName, data } });
+    const event = new CustomEvent('boardChange', { detail: { eventName, data } });
     this.canvas.dispatchEvent(event);
     this.hasUnsavedChanges = true;
   }

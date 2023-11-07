@@ -32,11 +32,17 @@ export default function Slideshow(props: SlideshowProps) {
   const boards = createMemo<Stroke[][][]>(() => cloneDeep(receivedBoards()!));
 
   const [admin] = useSession();
+  const [state, setState] = createSignal<'unsaved' | 'saving' | 'saved'>('saved');
   const [, saveAction] = createServerAction$(writeBoard);
   const url = useLocation().pathname;
+  const onBoardChange = () => {
+    setState('unsaved');
+  };
   const save = async () => {
-    if (admin()) {
+    if (admin() && state() === 'unsaved') {
+      setState('saving');
       await saveAction({ url, contents: boards() });
+      setState('saved');
     }
   };
 
@@ -64,6 +70,7 @@ export default function Slideshow(props: SlideshowProps) {
       return () => {
         boards()[i].push([]);
         const newCount = vboardCount().map((count, j) => (i === j ? count + 1 : count));
+        setState('unsaved');
         setVboardCount(newCount);
         deck.sync();
       };
@@ -73,6 +80,7 @@ export default function Slideshow(props: SlideshowProps) {
       const emptyBoard = boards()[h - 1][v].length <= 1;
       if (emptyBoard && v >= 1) {
         boards()[h - 1].splice(v, 1);
+        setState('unsaved');
         setVboardCount(vboardCount().map((count, j) => (j === h - 1 ? count - 1 : count)));
       }
       deck.up();
@@ -112,7 +120,13 @@ export default function Slideshow(props: SlideshowProps) {
                 {(j) => (
                   <section class="slide" ref={slideRef}>
                     {slide(j)}
-                    <Whiteboard container={slideRef} strokes={boards()[i()][j]} {...dimensions} />
+                    <Whiteboard
+                      container={slideRef}
+                      strokes={boards()[i()][j]}
+                      {...dimensions}
+                      state={state()}
+                      onBoardChange={onBoardChange}
+                    />
                   </section>
                 )}
               </For>

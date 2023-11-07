@@ -2,6 +2,7 @@ import { faFolderOpen } from '@fortawesome/free-solid-svg-icons/index.js';
 import {
   faBroom,
   faEyeSlash,
+  faFloppyDisk,
   faLock,
   faPen,
   faHighlighter,
@@ -11,6 +12,7 @@ import type Whiteboard from '~/lib/Whiteboard';
 
 interface ToolbarProps {
   whiteboard: Whiteboard;
+  state: 'unsaved' | 'saving' | 'saved';
 }
 
 type Brush = [string, number];
@@ -75,6 +77,14 @@ export default function Toolbar(props: ToolbarProps) {
       <button class="is-secondary" onClick={toggleVisibility}>
         <Fa icon={faEyeSlash} />
       </button>
+      <Show when={admin()}>
+        <Show when={props.state === 'saving'}>
+          <Spinner inline />
+        </Show>
+        <Show when={props.state === 'unsaved'}>
+          <Fa icon={faFloppyDisk} />
+        </Show>
+      </Show>
       <Show when={!showLoginForm() && !admin()}>
         <button class="is-secondary" onClick={() => setShowLoginForm(true)}>
           <Fa icon={faLock} />
