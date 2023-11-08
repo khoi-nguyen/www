@@ -1,4 +1,9 @@
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons/index.js';
+import { io } from 'socket.io-client';
+import { userId } from '~/lib/uid';
+import type { PollAnswer } from '~/routes/api/poll';
+
+type PollAnswers<T> = { [key: string]: PollAnswer<T> };
 
 interface BasicPollProps<T> {
   children: JSX.Element | JSX.Element[] | string;
@@ -6,17 +11,31 @@ interface BasicPollProps<T> {
   id?: string;
   mark: (value: T) => Promise<boolean> | boolean;
   setValue: (newValue: T) => void;
+  showAnswers?: (answers: PollAnswers<T>) => JSX.Element | JSX.Element[];
   value: T;
 }
 
+const socket = io({ path: '/api/poll' });
 export function BasicPoll<T>(props: BasicPollProps<T>) {
+  const [answers, setAnswers] = createStore<PollAnswers<T>>({});
+  const [admin] = useSession();
   const [status, setStatus] = createSignal<'pending' | 'correct' | 'incorrect'>('pending');
   createEffect(
     on(
       () => props.value,
       async () => {
-        localStorage.setItem('poll-' + props.id, JSON.stringify(props.value));
-        setStatus((await props.mark(props.value)) ? 'correct' : 'incorrect');
+        const correct = await props.mark(props.value);
+        if (props.id) {
+          localStorage.setItem('poll-' + props.id, JSON.stringify(props.value));
+          const pollAnswer: PollAnswer<T> = {
+            correct,
+            pollId: props.id,
+            userId: userId(),
+            value: props.value,
+          };
+          socket.emit('send-poll-answer', pollAnswer);
+        }
+        setStatus(correct ? 'correct' : 'incorrect');
       },
       { defer: true },
     ),
@@ -28,6 +47,11 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
       const value = JSON.parse(storedValue) as T;
       props.setValue(value);
       setStatus((await props.mark(value)) ? 'correct' : 'incorrect');
+    }
+    if (props.id && admin()) {
+      socket.on('poll-answer-received', (data: PollAnswer<T>) => {
+        setAnswers(data.userId, data);
+      });
     }
   });
 
@@ -41,6 +65,7 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
           {' '}
           <Fa icon={status() === 'correct' ? faCheck : faXmark} />
         </Show>
+        <Show when={admin()}>{props.showAnswers && props.showAnswers(answers)}</Show>
       </div>
     </>
   );
@@ -50,6 +75,7 @@ interface PollProps {
   children?: JSX.Element | JSX.Element[] | string;
   id: string;
   mark: (value: string) => Promise<boolean> | boolean;
+  showAnswers?: (answers: PollAnswers<string>) => JSX.Element | JSX.Element[];
 }
 
 export default function Poll(props: PollProps) {
@@ -67,6 +93,7 @@ export default function Poll(props: PollProps) {
         mark={props.mark}
         value={submittedValue()}
         setValue={setValue}
+        showAnswers={props.showAnswers}
         fallback={value()}
       >
         <input type="text" value={value()} onInput={handleInput} />
