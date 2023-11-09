@@ -736,7 +736,7 @@ export default () => {
                         continue
                     total_weight += w
                     visited[u] = True
-                    for v, w in adj[u]:
+                    for w, v in adj[u]:
                         if not visited[v]:
                             heapq.heappush(pq, (w, v))
                 return total_weight
