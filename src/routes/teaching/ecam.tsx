@@ -35,7 +35,10 @@ export default () => {
       </div>
       <Explorer filter={current} pattern={`teaching/.*/index\.json$`} title={title} showFlags />
       <h2>Archive</h2>
-      <Explorer filter={old} pattern={`teaching/.*/index\.json$`} title={title} showFlags />
+      <details>
+        <summary>Previous courses</summary>
+        <Explorer filter={old} pattern={`teaching/.*/index\.json$`} title={title} showFlags />
+      </details>
     </Page>
   );
 };
