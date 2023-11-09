@@ -838,12 +838,18 @@ export default () => {
                         uf.union(u, v)
                 return mst
           `}
+          hideUntil={new Date('2023-11-09')}
         >
           {py`
             def kruskal(edges, n):
                 pass
           `}
         </Jupyter>
+      </Slide>
+      <Slide title="Kruskal: correctness">
+        <Proposition title="Kruskal: correctness">
+          <p>Kruskal's algorithm gives a MST.</p>
+        </Proposition>
       </Slide>
     </Slideshow>
   );
