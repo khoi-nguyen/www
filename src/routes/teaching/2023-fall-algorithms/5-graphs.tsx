@@ -848,7 +848,7 @@ export default () => {
       </Slide>
       <Slide title="Kruskal: correctness">
         <Proposition title="Kruskal: correctness">
-          <p>Kruskal's algorithm gives an MST.</p>
+          <p>Kruskal's algorithm returns an MST.</p>
         </Proposition>
       </Slide>
     </Slideshow>
