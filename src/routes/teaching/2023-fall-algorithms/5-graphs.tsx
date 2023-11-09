@@ -850,6 +850,9 @@ export default () => {
         <Proposition title="Kruskal: correctness">
           <p>Kruskal's algorithm returns an MST.</p>
         </Proposition>
+        <Question title="Time complexity">
+          <p>What is the time complexity?</p>
+        </Question>
       </Slide>
     </Slideshow>
   );
