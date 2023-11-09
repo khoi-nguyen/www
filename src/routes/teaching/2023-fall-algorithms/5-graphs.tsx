@@ -838,7 +838,7 @@ export default () => {
                         uf.union(u, v)
                 return mst
           `}
-          hideUntil={new Date('2023-11-09')}
+          hideUntil={new Date('2023-11-10')}
         >
           {py`
             def kruskal(edges, n):
@@ -848,7 +848,7 @@ export default () => {
       </Slide>
       <Slide title="Kruskal: correctness">
         <Proposition title="Kruskal: correctness">
-          <p>Kruskal's algorithm gives a MST.</p>
+          <p>Kruskal's algorithm gives an MST.</p>
         </Proposition>
       </Slide>
     </Slideshow>
