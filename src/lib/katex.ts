@@ -15,6 +15,7 @@ const macros = {
   '\\defeq': '\\stackrel{\\mathsf{def}}{=}',
   '\\e': '\\mathrm{e}',
   '\\epsilon': '\\varepsilon',
+  '\\grad': '\\vec{\\nabla}',
   '\\i': '\\mathrm{i}',
   '\\ip': '\\langle #1, #2 \\rangle',
   '\\mat': '\\mathsf{#1}',
