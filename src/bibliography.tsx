@@ -29,11 +29,11 @@ export default {
     ),
   ],
   stewart: [
-    'Stewart (2015)',
-    'Stewart (2015)',
+    'Stewart (2020)',
+    'Stewart (2020)',
     () => (
       <>
-        Stewart, J. (2015). <em>Calculus</em>. Cengage Learning.
+        Stewart, J. (2020). <em>Calculus</em>. Cengage Learning.
       </>
     ),
   ],
