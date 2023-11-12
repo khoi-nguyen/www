@@ -2,6 +2,7 @@ import type { IconDefinition } from '@fortawesome/fontawesome-common-types';
 import {
   faBook,
   faCircleQuestion,
+  faHistory,
   faImage,
   faInfoCircle,
   faLightbulb,
@@ -93,6 +94,11 @@ export function Problem(props: SpecificEnvironmentProps) {
 
 export function Proposition(props: SpecificEnvironmentProps) {
   return <Environment name="Proposition" icon={faBook} {...props} />;
+}
+
+export function Recall(props: SpecificEnvironmentProps) {
+  const name = () => (lang() === 'fr' ? 'Rappel' : 'Recall');
+  return <Environment name={name()} icon={faHistory} {...props} />;
 }
 
 export function Remark(props: SpecificEnvironmentProps) {
