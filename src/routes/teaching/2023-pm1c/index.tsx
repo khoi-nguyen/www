@@ -17,7 +17,7 @@ export default () => {
           ANNENKOFF David (ANN), GUERRIERI Rolando (R5G), JOLY Marius (MJ5), MARCHAL Jonas (JM5),
           NGUYEN Khoi (NGY)
         </dd>
-        <dt>Resources</dt>
+        <dt>Ressources</dt>
         <dd>
           <ul>
             <li>
