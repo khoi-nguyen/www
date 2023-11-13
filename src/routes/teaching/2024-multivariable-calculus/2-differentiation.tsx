@@ -53,6 +53,15 @@ export default () => (
         </p>
       </Remark>
     </Slide>
+    <Slide title={() => <>Fonctions de classe {tex`C^k`}</>}>
+      <Definition title={() => <>Classe {tex`C^k`}</>}>
+        <p>
+          Soit {tex`\Omega \subset \R^n`}. On désigne par {tex`C^k(\Omega, \R^p)`} l'ensemble des
+          fonctions {tex`f : \Omega \to \R^p`} dont les dérivées existent et sont continues jusqu'à
+          l'ordre {tex`k`}.
+        </p>
+      </Definition>
+    </Slide>
     <Slide title="Differentiabilité">
       <Proposition title="Différentiabilité">
         <p>Si {tex`f \in C^1(\Omega)`}, alors</p>
