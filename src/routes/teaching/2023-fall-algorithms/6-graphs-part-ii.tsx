@@ -50,7 +50,7 @@ export default () => {
                             heapq.heappush(pq, (distance, v))
                 return distances
           `}
-          hideUntil={new Date('2023-11-10')}
+          hideUntil={new Date('2023-11-15')}
         >
           {py`
             def dijkstra(V, adj, w, s):
@@ -67,6 +67,9 @@ export default () => {
         </Jupyter>
       </Slide>
       <Slide title="Dijkstra: correctness and complexity">
+        {tex`
+          \delta(s, v) \defeq \min_{s \rightsquigarrow v} \sum_{e \in \text{edge}(s \rightsquigarrow v)} w(e)
+        `}
         <Proposition title="Dijkstra: correctness">
           <p>After a vertex {tex`v`} leaves the queue,</p>
           {tex`
@@ -113,6 +116,18 @@ export default () => {
             }
           `}
         </Editor>
+      </Slide>
+      <Slide title="Exercises: A*">
+        <Exercise>
+          <p>How would you find the actual shortest path?</p>
+          <p>Define a heuristic to avoid a particular airport</p>
+        </Exercise>
+        <Exercise>
+          <p>Why doesn't the algorithm work for negative weights?</p>
+        </Exercise>
+      </Slide>
+      <Slide title="Exercises">
+        <Iframe src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw12.pdf" />
       </Slide>
     </Slideshow>
   );
