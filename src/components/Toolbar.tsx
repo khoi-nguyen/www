@@ -21,6 +21,8 @@ const brushes: Brush[] = [
   ['#255994', 2],
   ['darkred', 2],
   ['green', 2],
+  ['darkorange', 2],
+  ['gray', 2],
   ['black', 2],
   ['rgba(241, 231, 64, 0.4)', 30],
   ['rgba(93, 226, 60, 0.4)', 30],
