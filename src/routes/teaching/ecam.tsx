@@ -36,7 +36,7 @@ export default () => {
       <Explorer filter={current} pattern={`teaching/.*/index\.json$`} title={title} showFlags />
       <h2>Archive</h2>
       <details>
-        <summary>Previous courses</summary>
+        <summary>Ancien cours</summary>
         <Explorer filter={old} pattern={`teaching/.*/index\.json$`} title={title} showFlags />
       </details>
     </Page>
