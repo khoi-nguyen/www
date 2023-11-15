@@ -11,3 +11,7 @@ export const js = (strings: TemplateStringsArray, ...values: (string | number)[]
 export const html = (strings: TemplateStringsArray, ...values: (string | number)[]) => {
   return <Editor lang="html">{dedent(String.raw(strings, ...values))}</Editor>;
 };
+
+export const ts = (strings: TemplateStringsArray, ...values: (string | number)[]) => {
+  return <Editor lang="ts">{dedent(String.raw(strings, ...values))}</Editor>;
+};
