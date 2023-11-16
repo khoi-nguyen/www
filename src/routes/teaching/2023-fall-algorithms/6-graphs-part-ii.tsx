@@ -129,6 +129,9 @@ export default () => {
       <Slide title="Exercises">
         <Iframe src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw12.pdf" />
       </Slide>
+      <Slide title="Dijkstra: recap">
+        <Youtube src="https://www.youtube.com/watch?v=EFg3u_E6eHU" zoom={2} />
+      </Slide>
       <Slide title="Bellman-Ford">
         <p>
           Dijkstra is an efficient algorithm if the weights associated with the edges are{' '}
