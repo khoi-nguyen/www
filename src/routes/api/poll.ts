@@ -10,7 +10,7 @@ export interface PollAnswer<T> {
   value: T;
 }
 
-interface ExtendedAPIEvent extends APIEvent {
+export interface ExtendedAPIEvent extends APIEvent {
   httpServer: HTTPServer & { io?: IOServer };
 }
 
