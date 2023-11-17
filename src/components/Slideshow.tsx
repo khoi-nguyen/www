@@ -51,6 +51,15 @@ export default function Slideshow(props: SlideshowProps) {
     }
   });
 
+  // Automatically save periodically
+  let timerHandle: ReturnType<typeof setTimeout>;
+  createEffect(() => {
+    clearTimeout(timerHandle);
+    if (state() === 'unsaved') {
+      timerHandle = setTimeout(save, 10 * 1000);
+    }
+  });
+
   const dimensions = { width: 1920, height: 1080 };
   let deck: InstanceType<typeof import('reveal.js')>;
   const [vboardCount, setVboardCount] = createSignal<number[]>(slides.map(() => 1));
