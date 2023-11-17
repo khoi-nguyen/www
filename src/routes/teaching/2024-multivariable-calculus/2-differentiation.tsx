@@ -132,6 +132,17 @@ export default () => (
       {tex`
         \frac {\partial f} {\partial x_i \partial x_j}
       `}
+      <Remark title="Tenseur de courbure de Riemann">
+        <p>En mathématiques et en physique théorique, la quantité</p>
+        {tex`
+          (\partial_i \partial_j - \partial_j \partial_i) f
+        `}
+        <p>
+          est utilisée pour mesurer la <strong>courbure</strong> de l'espace ou de l'espace-temps.
+          En ces termes, le théorème de Schwarz nous indique que nous travaillons dans un espace
+          plat.
+        </p>
+      </Remark>
     </Slide>
     <Slide title="Critère d'existence de gradient">
       <p>
