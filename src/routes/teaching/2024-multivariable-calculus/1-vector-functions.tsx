@@ -2,8 +2,90 @@ import meta from './1-vector-functions.json';
 
 export default () => (
   <Slideshow meta={meta}>
-    <Slide title="Limites">
-      <p></p>
+    <Slide title="Fonctions à valeur vectorielle" cite={['stewart', 'p. 928']}>
+      <Definition>
+        <p>
+          Une <strong>fonction vectorielle</strong> est une fonction {tex`\vec r`} telle que{' '}
+          {tex`\dom \vec r \subset \R`} et {tex`\range \vec r \subset \R^3`}.
+        </p>
+      </Definition>
+      <Remark>
+        <ul>
+          <li>L'ensemble d'arrivée peut être autre chose que {tex`3`}</li>
+          <li>
+            Une fonction vectorielle {tex`\vec r`} est caractérisée par {tex`3`} fonctions réelles:
+            {tex`
+              \vec r(t) = f(t) \vec i + g(t) \vec j + h(t) \vec k
+            `}
+          </li>
+        </ul>
+      </Remark>
+      <Example>
+        <p>La fonction</p>
+        {tex`
+          \vec r(t) = (t^3, \ln (3 - t), \sqrt t)
+        `}
+        <p>a pour composantes</p>
+        {tex`
+          f(t) = t^3 \qquad g(t) = \ln (3 - t) \qquad h(t) = \sqrt t.
+        `}
+        <p>Son domaine est {tex`[0, 3[`}.</p>
+      </Example>
+    </Slide>
+    <Slide title="Exemples de fonctions vectorielles">
+      <p>
+        Les fonctions vectorielles sont utilisées entre autres pour représenter des quantités comme
+        la <strong>position</strong>, la <strong>vitesse</strong> ou l'<strong>accélération</strong>
+        .
+      </p>
+      <Jupyter>
+        {py`
+          import matplotlib.pyplot as plt
+          from numpy import *
+          ax = plt.figure().add_subplot(projection='3d')
+
+          t = linspace(0, 20, 200)
+          x, y, z = cos(t), sin(t), t
+          plt.plot(x, y, z)
+        `}
+      </Jupyter>
+    </Slide>
+    <Slide title="Limites" cite={['stewart', 'p. 928']}>
+      <p>La limite d'une fonction se définit par la limite des composantes.</p>
+      <Definition>
+        <p>Soit {tex`\vec r(t) = (f(t), g(t), h(t))`}. On écrit</p>
+        {tex`
+          \lim_{t \to a} \vec r(t) = \left(
+            \lim_{t \to a} f(t),
+            \lim_{t \to a} g(t),
+            \lim_{t \to a} h(t)
+          \right)
+        `}
+      </Definition>
+      <Example>
+        <p>
+          Calculer {tex`\lim_{t \to 0} \vec r(t)`}, où{' '}
+          {tex`\vec r(t) \defeq (1 + t^3) \vec i + t e^{-t} \vec j + \frac {\sin t} t \vec k`}
+        </p>
+      </Example>
+      <Jupyter>
+        {py`
+          from sympy import *
+          t = Symbol("t")
+          r = Matrix([1 + t**3, t * exp(-t), sin(t) / t])
+          r.limit(t, 0)
+        `}
+      </Jupyter>
+    </Slide>
+    <Slide title="Continuité" cite={['stewart', 'p. 929']}>
+      <Definition>
+        <p>
+          Une fonction {tex`r`} est <strong>continue</strong> en {tex`a`} si
+        </p>
+        {tex`
+          \lim_{t \to a} \vec r(t) = \vec r(a)
+        `}
+      </Definition>
     </Slide>
     <Slide title="Derivée d'une fonction vectorielle" cite={['stewart', 'p. 936']}>
       <Definition title="Dérivée">
