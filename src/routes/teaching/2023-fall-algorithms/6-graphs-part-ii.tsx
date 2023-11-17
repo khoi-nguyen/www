@@ -302,8 +302,8 @@ export default () => {
         </dl>
       </Slide>
       <Slide title="Python implementation of the first attempt">
-        <Jupyter>
-          {py`
+        <Jupyter
+          solution={py`
             cache = {}
             V = [] # set of vertices
             def APSP(u, v, k):
@@ -318,6 +318,17 @@ export default () => {
                 cache[(u, v, k)] = ans
                 return ans
           `}
+          hideUntil={new Date('2023-11-18')}
+        >
+          {py`
+            cache = {}
+            def APSP(u, v, k):
+                if (u, v, k) in cache:
+                    return cache[(u, v, k)]
+                # Base cases
+                # Recursion
+                # Caching & return
+          `}
         </Jupyter>
         <Exercise>
           <p>What is the time complexity?</p>
@@ -330,6 +341,79 @@ export default () => {
             complexity be?
           </p>
         </Question>
+      </Slide>
+      <Slide title="Floyd-Warshall">
+        <p>
+          Before, <code>APSP(u, v, k)</code> added the constraint that the SP used at most {tex`k`}{' '}
+          edges. The guessing part is {tex`\bigo(V)`}.
+        </p>
+        <Idea>
+          <p>
+            <code>FW(u, v, k)</code>: minimum weight of a path via first {tex`k`} vertices.
+          </p>
+        </Idea>
+        <Fragment>
+          <dl>
+            <dt>Subproblem</dt>
+            <dd>
+              <code>FW(u, v, k)</code>: minimum weight of path via first {tex`k`} vertices
+            </dd>
+            <dt>Guess</dt>
+            <dd>Should we include the {tex`(k+1)`}th vertex?</dd>
+            <dt>Base cases</dt>
+            <dd>
+              {tex`
+                \text{FW}(u, u, k) =
+              `}
+              {tex`
+                \text{FW}(u, v, 0) =
+                \begin{cases}
+                  \\ \\
+                \end{cases}
+              `}
+            </dd>
+            <dt>Recursion</dt>
+            <dd>
+              {tex`
+                \text{FW}(u, v, k) = \qquad \qquad \\ \qquad
+              `}
+            </dd>
+            <dt>Time complexity</dt>
+            <dd>
+              <p></p>
+            </dd>
+          </dl>
+        </Fragment>
+      </Slide>
+      <Slide title="Python implementation of Floyd-Warshall">
+        <Jupyter
+          solution={py`
+            V = []
+            adj = {}
+            w = {} # w[(u, v)]
+            def FW(u, v, k):
+                if (u, v, k) in cache:
+                    return cache[(u, v, k)]
+                if u == v:
+                    weight = 0
+                elif k == 0:
+                    weight = w[(u,v)] if (u, v) in w else float("inf")
+                else:
+                    weight = FW(u, k, k - 1) + FW(k, v, k - 1)
+                    weight = min(weight, FW(u v, k - 1))
+                cache[(u, v, k)] = weight
+                return weight
+          `}
+          hideUntil={new Date('2023-11-18')}
+        >
+          {py`
+            V = []
+            adj = {}
+            w = {} # w[(u, v)]
+            def FW(u, v, k):
+                pass
+          `}
+        </Jupyter>
       </Slide>
     </Slideshow>
   );
