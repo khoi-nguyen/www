@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     AutoImport({
       include: [/\.[tj]sx?$/],
-      dirs: ['./src/components', './src/lib/literals'],
+      dirs: ['./src/components', './src/components/maths', './src/lib/literals'],
       imports: [
         {
           '~/stores/session': ['useSession'],
