@@ -19,9 +19,6 @@ export default function Jupyter(props: JupyterProps) {
     setIsLoading(true);
     setCodeToRun((props.before || '') + '\n' + code());
   };
-  const handleUpdate = (value: string) => {
-    setCode(value);
-  };
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.shiftKey && event.code === 'Enter') {
       event.preventDefault();
@@ -43,7 +40,7 @@ export default function Jupyter(props: JupyterProps) {
         </div>
         <div class="editor">
           <Editor
-            onUpdate={handleUpdate}
+            onUpdate={setCode}
             onKeyDown={handleKeyDown}
             solution={props.solution}
             hideUntil={props.hideUntil}
