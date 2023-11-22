@@ -8,7 +8,7 @@ export const js = (strings: TemplateStringsArray, ...values: (string | number)[]
   return <Editor lang="js">{dedent(String.raw(strings, ...values))}</Editor>;
 };
 
-export const html = (strings: TemplateStringsArray, ...values: (string | number)[]) => {
+export const html5 = (strings: TemplateStringsArray, ...values: (string | number)[]) => {
   return <Editor lang="html">{dedent(String.raw(strings, ...values))}</Editor>;
 };
 
