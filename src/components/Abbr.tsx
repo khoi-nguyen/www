@@ -18,6 +18,7 @@ const abbreviations = {
   NYU: 'New York University',
   PGCE: 'Postgraduate Certificate of Education',
   PhD: 'Philosophiæ Doctor',
+  UI: 'User Interface',
 };
 
 interface AbbrProps {
