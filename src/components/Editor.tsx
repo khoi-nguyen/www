@@ -10,6 +10,7 @@ interface EditorProps {
   onUpdate?: (code: string) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
   hideUntil?: Date;
+  readOnly?: boolean;
   solution?: string;
 }
 
@@ -60,9 +61,17 @@ export default function Editor(props: EditorProps) {
     return new Date() > props.hideUntil || admin();
   };
 
+  const classes = () => {
+    const classList = [`language-${props.lang}`];
+    if (!props.readOnly) {
+      classList.push('clickable');
+    }
+    return classList.join(' ');
+  };
+
   return (
     <>
-      <pre class={`language-${props.lang} clickable`}>{textArea}</pre>
+      <pre class={classes()}>{textArea}</pre>
       <Show when={showSolutionButton()}>
         <button onClick={solve}>Solve</button>
       </Show>
