@@ -10,7 +10,7 @@ export const css = (strings: TemplateStringsArray, ...values: (string | number)[
 
 export const js = (strings: TemplateStringsArray, ...values: (string | number)[]) => {
   return (
-    <Editor lang="js" readOnly>
+    <Editor lang="tsx" readOnly>
       {dedent(String.raw(strings, ...values))}
     </Editor>
   );
@@ -26,7 +26,7 @@ export const html5 = (strings: TemplateStringsArray, ...values: (string | number
 
 export const ts = (strings: TemplateStringsArray, ...values: (string | number)[]) => {
   return (
-    <Editor lang="ts" readOnly>
+    <Editor lang="tsx" readOnly>
       {dedent(String.raw(strings, ...values))}
     </Editor>
   );

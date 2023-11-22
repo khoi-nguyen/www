@@ -1,7 +1,8 @@
 import type { CodeJar } from 'codejar';
 import Prism from 'prismjs';
+import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-python';
-import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-tsx';
 import 'prismjs/themes/prism-coy.css';
 
 interface EditorProps {
