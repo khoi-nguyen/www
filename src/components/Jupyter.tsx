@@ -4,6 +4,7 @@ interface JupyterProps {
   children: JSX.Element;
   before?: string;
   hideUntil?: Date;
+  run?: boolean;
   solution?: string;
 }
 
@@ -13,6 +14,12 @@ export default function Jupyter(props: JupyterProps) {
   );
   const [codeToRun, setCodeToRun] = createSignal('');
   const [isLoading, setIsLoading] = createSignal<boolean>(false);
+
+  createEffect(() => {
+    if (props.run && code()) {
+      run();
+    }
+  });
 
   const run = () => {
     setCodeToRun('');
