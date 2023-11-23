@@ -15,7 +15,7 @@ export default function Jupyter(props: JupyterProps) {
   const [codeToRun, setCodeToRun] = createSignal('');
   const [isLoading, setIsLoading] = createSignal<boolean>(false);
 
-  createEffect(() => {
+  onMount(() => {
     if (props.run && code()) {
       run();
     }
