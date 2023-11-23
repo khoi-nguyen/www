@@ -304,12 +304,17 @@ pre,
     padding: 0.4em 0.6em;
 
     &.definition,
+    &.example,
     &.exercise {
       background: #01802b;
     }
 
     &.question {
       background: #2e78a3;
+    }
+
+    &.remark {
+      background: darkred;
     }
 
     &.theorem {
