@@ -38,7 +38,7 @@ export default () => (
         la <strong>position</strong>, la <strong>vitesse</strong> ou l'<strong>accélération</strong>
         .
       </p>
-      <Jupyter>
+      <Jupyter run>
         {py`
           import matplotlib.pyplot as plt
           from numpy import *
