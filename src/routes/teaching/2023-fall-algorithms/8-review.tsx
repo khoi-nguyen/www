@@ -8,7 +8,7 @@ export default () => (
           Apply a graph algorithm by hand and show your work
           <ul>
             <li>BFS, DFS, Topological sort</li>
-            <li>Dijkstra/Ford-Bellman</li>
+            <li>Dijkstra/Ford-Bellman, A*</li>
             <li>Kruskal, Prim</li>
           </ul>
         </li>
