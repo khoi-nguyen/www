@@ -1,4 +1,5 @@
 const abbreviations = {
+  API: 'Application Programming Interface',
   BSc: 'Bachelor of Science',
   CAS: 'Computer Algebra System',
   CSS: 'Cascading Style Sheets',
@@ -18,6 +19,8 @@ const abbreviations = {
   NYU: 'New York University',
   PGCE: 'Postgraduate Certificate of Education',
   PhD: 'Philosophiæ Doctor',
+  SPA: 'Single Page Application',
+  SSR: 'Server Side Rendering',
   UI: 'User Interface',
 };
 
@@ -26,5 +29,9 @@ interface AbbrProps {
 }
 
 export default function Abbr(props: AbbrProps) {
-  return <abbr title={abbreviations[props.key]}>{props.key}</abbr>;
+  return (
+    <abbr title={abbreviations[props.key]} class="clickable">
+      {props.key}
+    </abbr>
+  );
 }
