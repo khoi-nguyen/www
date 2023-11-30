@@ -94,5 +94,49 @@ export default () => (
         `}
       </Jupyter>
     </Slide>
+    <Slide title="Exercise 4">
+      <Exercise>
+        <p>
+          Given a string {tex`s`} and a set of valid words {tex`D`}, design an algorithm that
+          determines if the input string can be segmented into a space-separated sequence of valid
+          words.
+        </p>
+        <p>
+          For example, if {tex`D = \{am, are, I, important, is, you\}`} and the input string is
+          "Iamimportant", the string can be split into <em>I am important</em>
+        </p>
+      </Exercise>
+      <p>
+        Assuming that checking containment in {tex`D`} takes constant time, your algorithm should
+        run in {tex`\bigo(n^2)`}.
+      </p>
+    </Slide>
+    <Slide title="Exercise 5: Graphs">
+      <Exercise>
+        <p>
+          Let {tex`G`} be a directed graph, whose edges are coloured either red or blue. We want to
+          find the shortest path from some vertex {tex`s`} to some vertex {tex`t`}.
+        </p>
+        <p>
+          One additional constaint: our shortest path must consist of first red edges (though
+          potentially 0 of them), and then exclusively blue edges (or 0).
+        </p>
+      </Exercise>
+      <p>Hints:</p>
+      <ul>
+        <li>Consider the graph {tex`G`} with only the red edges</li>
+        <li>Consider the graph {tex`G^T`} with only the blue edges</li>
+      </ul>
+    </Slide>
+    <Slide title="Coloured graphs again">
+      <p>
+        Consider a connected undirected graph where each edge has an integer weight as well as a
+        color which is either red or blue. Give an efficient algorithm to find an MST of the graph
+        with the smallest number of red edges. In other words, among all possible MSTs, the
+        algorithm should output one that has the least number of red edges. Your algorithm should
+        run in time O(|E| log |V |). Prove the correctness of your solution. (Hint: reduce the
+        problem to a standard MST problem on weighted graphs without edge colors).
+      </p>
+    </Slide>
   </Slideshow>
 );
