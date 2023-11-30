@@ -134,8 +134,13 @@ export default () => (
         color which is either red or blue. Give an efficient algorithm to find an MST of the graph
         with the smallest number of red edges. In other words, among all possible MSTs, the
         algorithm should output one that has the least number of red edges. Your algorithm should
-        run in time O(|E| log |V |). Prove the correctness of your solution. (Hint: reduce the
-        problem to a standard MST problem on weighted graphs without edge colors).
+        run in time O(|E| log |V |). Prove the correctness of your solution.
+      </p>
+      <p>
+        <em>
+          (Hint: reduce the problem to a standard MST problem on weighted graphs without edge
+          colors)
+        </em>
       </p>
     </Slide>
   </Slideshow>
