@@ -106,7 +106,7 @@ export default () => (
       dates={[new Date('2023-09')]}
     >
       <ul>
-        <li>Taught courses: Mathematics for Engineers, Web Architecture</li>
+        <li>Taught courses: Calculus, Multivariable Calculus, Web Development, Web Architecture</li>
       </ul>
     </Line>
 
