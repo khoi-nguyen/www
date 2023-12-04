@@ -2,7 +2,7 @@ import '@fontsource/noto-color-emoji/emoji.css';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 
 const languages = {
-  en: 'US',
+  en: 'GB',
   fr: 'FR',
 } as const;
 
