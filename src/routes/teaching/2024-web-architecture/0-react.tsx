@@ -3,6 +3,61 @@ import meta from './0-react.json';
 export default () => {
   return (
     <Slideshow meta={meta}>
+      <Slide title="Syllabus">
+        <h3>Tentative syllabus (subject to change)</h3>
+        <ol>
+          <li>
+            Functional Component Architecture with <a href="https://react.dev/">React</a>
+          </li>
+          <li>
+            <Abbr key="SPA" /> with <a href="https://reactrouter.com/en/main">React Router</a>
+          </li>
+          <li>
+            <Abbr key="SSR" /> and Isomorphic JS with Next.js
+          </li>
+          <li>Authentication</li>
+          <li>
+            <a href="https://graphql.org/">GraphQL</a> <em>(if time allows)</em>
+          </li>
+          <li>
+            Mobile development with React Native <em>(if time allows)</em>
+          </li>
+          <li>
+            State of the art (signals, hydration, ...) <em>(if time allows)</em>
+          </li>
+        </ol>
+        <h3>Aims</h3>
+        <ol>
+          <li>Write scalable and maintainable apps</li>
+          <li>Write high quality code</li>
+          <li>Understand the strengths and drawbacks of isomorphic Javascript development</li>
+          <li>Make good architecture choices for hybrid development</li>
+        </ol>
+      </Slide>
+      <Slide title="Why should we use JS frameworks?">
+        <Question>
+          <p>Why should we use JS frameworks?</p>
+        </Question>
+        <Fragment>
+          <p>
+            To deal with <strong>mutations</strong>: You need to read the entire code to know what a
+            node represents.
+          </p>
+          {ts`
+            const node = document.getElementById('some-id');
+
+            // Changing its content
+            node.innerHTML = "<strong>I'm happy</strong>";
+
+            node.onClick(() =>
+              node.innerHTML = "<em>I'm sad</em>";
+            );
+
+            node.style = { color: 'red' };
+          `}
+          <p></p>
+        </Fragment>
+      </Slide>
       <Slide title="About React">
         <dl>
           <dt>Original author</dt>
