@@ -172,6 +172,34 @@ export default () => {
           </li>
         </ul>
       </Slide>
+      <Slide title="Exemple de question d'examen">
+        <p>
+          Votre nom est Mohamed Henni et une partie non négligeable de votre travaille consiste à
+          régulièrement acheter des télévisions. Vous aimeriez une interface Web qui tienne deux
+          listes: une liste de télévisions usées, et une liste de télévisions que vous aimeriez
+          acheter. Votre interface doit afficher le montant total dépensé en télévisions.
+        </p>
+        <p>
+          Pour chaque télévision, vous aimeriez afficher la marque, le prix et la taille. Pour les
+          télévisions achetées, vous aimeriez également indiquer si elle est encore fonctionnelle ou
+          sinon comment la télévision a été cassée (batte, tentative de roue, etc.).
+        </p>
+        <p>
+          Une télévision est tout d'abord ajoutée à la liste des télévisions désirées. Cette liste
+          comporte des boutons pour indiquer que la télévision a été achetée. En cliquant sur le
+          bouton, la télévision passe à la liste des télévisions achetées, mais fonctionnelles. Il
+          sera ensuite possible de préciser comment elle aura été cassée.
+        </p>
+        <ul>
+          <li>Structure MVC avec une table SQL</li>
+          <li>Publier sur votre VM</li>
+          <li>Bonus: si c'est une single page application</li>
+          <li>
+            Bonus++: si c'est une single page application quand l'utilisateur peut exécuter du
+            Javascript, mais l'application fonctionne quand même sans Javascript.
+          </li>
+        </ul>
+      </Slide>
     </Slideshow>
   );
 };
