@@ -72,8 +72,8 @@ export default () => (
       </Proposition>
       <Remark>
         <p>
-          Ce résultat n'est absolument pas évident: les dérivées partielles ne décrivent le
-          comportement de la fonction que dans les directions parallèles aux axes.
+          Ce résultat n'est pas évident: les dérivées partielles ne décrivent le comportement de la
+          fonction que dans les directions parallèles aux axes.
         </p>
       </Remark>
       {tex`
@@ -83,9 +83,37 @@ export default () => (
         + \dots
         + v_m \frac {\partial f} {\partial x_m}(\vec x)
       `}
+      <Proof sketch>
+        {tex`
+          \begin{align*}
+            \partial_{\vec v} f(\vec x) &\defeq
+            \lim_{t \to 0} \frac {f(\vec x + t \vec v) - f(\vec x)} {t}\\
+            &= \underbrace{
+              \lim_{t \to 0} \frac {f(\vec x + t \vec v) - f(\vec x + t v_1 \vec {e_1})} t
+            }_{= v_2 \partial_2 f(\vec x)}
+            + \underbrace{
+              \lim_{t \to 0} \frac {f(\vec x + t v_1 \vec {e_1}) - f(\vec x)} t
+            }_{= v_1 \partial_1 f(\vec x)}
+          \end{align*}
+        `}
+      </Proof>
     </Slide>
     <Slide title="Interprétation du gradient">
       <Geogebra id="QhfcuhqA" />
+    </Slide>
+    <Slide title="Descente de gradient">
+      <Jupyter>
+        {py`
+          from sympy import *
+          x, y = symbols("x y")
+          f = x**2 + y**2
+          grad = lambdify((x, y), Matrix([f.diff(x), f.diff(y)]))
+
+          for i in range(100):
+              x, y = Matrix([x, y]) - 0.01 * grad(x, y)
+          x, y
+        `}
+      </Jupyter>
     </Slide>
     <Slide title="Règle de la composée">
       <Recall title="Règle de la composée en dimension 1">
