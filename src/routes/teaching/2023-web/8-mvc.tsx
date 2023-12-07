@@ -3,6 +3,35 @@ import meta from './8-mvc.json';
 export default () => {
   return (
     <Slideshow meta={meta}>
+      <Slide title="Rappel: promesses et asynchronisme">
+        <p>
+          Certaines opérations nécéssitent du temps avant que la réponse arrive (e.g{' '}
+          <code>fetch</code>). Pour ne pas bloquer le main thread, elles retournent une{' '}
+          <strong>promesse de réponse</strong>.
+        </p>
+        {js`
+          const value = fetch('nguyen.me.uk') // value est une promesse
+        `}
+        <p>
+          Plus tard, la promesse sera <strong>résolue</strong>, et fournira la réponse attendue
+        </p>
+        <h3>
+          ES2017: <code>async/await</code>
+        </h3>
+        <p>
+          Une fonction marquée <code>async</code> peut être "mise en pause". Chaque instruction
+          marquée <code>await</code> libère le main thread jusqu'à ce qu'elle puisse retourner le{' '}
+          <strong>résultat</strong> de la promesse. La fonction elle-même est modifiée pour
+          retourner une promesse.
+        </p>
+        {js`
+          async function fetchPlanet(id) {
+            const res = await fetch('https://laboweb.ecam.be/planet/' + id);
+            const json = await res.json();
+            return json;
+          }
+        `}
+      </Slide>
       <Slide
         title={() => (
           <>
