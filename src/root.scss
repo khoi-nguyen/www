@@ -402,6 +402,11 @@ pre,
       }
     }
 
+    > div:first-child {
+      height: 100%;
+      overflow: auto;
+    }
+
     div > h1 {
       background-color: #23373b;
       color: #ebf0ef;
