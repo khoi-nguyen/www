@@ -8,7 +8,6 @@ export default () => (
       <Abbr key="NYU" /> as a lecturer in Mathematics and Computer Science. The main purpose of this
       website is to host my <A href="/teaching">teaching resources</A> for my students.
     </p>
-    <p>Bonjour</p>
     <h2>Useful Links</h2>
     <ul>
       <li>
