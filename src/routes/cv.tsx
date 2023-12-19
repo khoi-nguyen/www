@@ -51,7 +51,8 @@ export default () => (
           Extra-curricular: Half-blue for playing the Table Tennis Varsity match against Cambridge
         </li>
         <li>
-          Final essay on a Python/Typescript platform I wrote to generate and mark mathematics
+          Final essay on a Python/Typescript platform I wrote to generate exercises and mark the
+          students' work
         </li>
       </ul>
     </Line>
