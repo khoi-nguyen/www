@@ -21,7 +21,9 @@ const abbreviations = {
   ORM: 'Object-relational mapping',
   PGCE: 'Postgraduate Certificate of Education',
   PhD: 'Philosophiæ Doctor',
+  PHP: 'PHP Hypertext Preprocessor',
   SPA: 'Single Page Application',
+  SQL: 'Structured Query Language',
   SSR: 'Server Side Rendering',
   UI: 'User Interface',
 };
