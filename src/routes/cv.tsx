@@ -50,6 +50,10 @@ export default () => (
         <li>
           Extra-curricular: Half-blue for playing the Table Tennis Varsity match against Cambridge
         </li>
+        <li>
+          Final essay on a Python/Typescript platform I wrote to generate exercises and mark the
+          students' work
+        </li>
       </ul>
     </Line>
 
@@ -106,7 +110,8 @@ export default () => (
       dates={[new Date('2023-09')]}
     >
       <ul>
-        <li>Taught courses: Calculus, Multivariable Calculus, Web Development, Web Architecture</li>
+        <li>Taught courses: Calculus, Multivariable Calculus, Web Development</li>
+        <li>Programming languages used: TypeScript, Python</li>
       </ul>
     </Line>
 
@@ -132,7 +137,7 @@ export default () => (
           Taught courses: <Abbr key="IGCSE" />, <Abbr key="IBDP" />, A Levels
         </li>
         <li>
-          Supervision of <Abbr key="IBDP" /> Extended Essays
+          Supervision of <Abbr key="IBDP" /> Extended Essays in Mathematics and Computer Science
         </li>
         <li>Oxbridge entrance exams and mock interview preparation</li>
       </ul>
@@ -171,11 +176,18 @@ export default () => (
 
     <dl>
       <dt>Languages</dt>
-      <dd>English (C2), French (C2), Spanish (C1)</dd>
+      <dd>English (C2), French (C2), Spanish (C1), Vietnamese (A0)</dd>
       <dt>Programming</dt>
-      <dd>TypeScript (React, Vue, Svelte), Python, Julia, PHP, SQL</dd>
+      <dd>
+        TypeScript (React, Vue, Svelte, Solid), Python (numpy, scipy, sympy), Julia,{' '}
+        <Abbr key="PHP" />, <Abbr key="SQL" />, GraphQL, Shell
+      </dd>
       <dt>Typesetting</dt>
-      <dd>{tex`\LaTeX`}, LibreOffice</dd>
+      <dd>{tex`\LaTeX`}, Typst</dd>
+      <dt>Operating systems</dt>
+      <dd>Linux</dd>
+      <dt>Other tools</dt>
+      <dd>Docker, vim</dd>
     </dl>
   </Page>
 );
