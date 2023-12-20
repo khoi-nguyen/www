@@ -119,14 +119,14 @@ export default () => {
         </Example>
         <Example title="Modifier une entrée">
           {js`
-            const task = Task.load({ id: 3 });
+            const task = await Task.load({ id: 3 });
             task.update({ task: "Buy fish" });
             await task.save();
           `}
         </Example>
         <Example title="Lister des entrées">
           {js`
-            const tasks = Task.loadMany();
+            const tasks = await Task.loadMany();
           `}
         </Example>
       </Slide>
