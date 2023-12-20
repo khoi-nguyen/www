@@ -1,4 +1,3 @@
-import '@fontsource/noto-color-emoji/emoji.css';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 
 const languages = {
@@ -17,5 +16,5 @@ export default function Flag(props: FlagProps) {
       : props.code;
     return getUnicodeFlagIcon(code);
   };
-  return <span class="emoji">{flag()}</span>;
+  return <span>{flag()}</span>;
 }
