@@ -22,7 +22,7 @@ export default () => {
       <Explorer
         pattern="teaching/.*/index.json$"
         filter={(page) =>
-          page.current === true && (!search() || page.title.indexOf(search()) !== -1)
+          page.current === false && (!search() || page.title.indexOf(search()) !== -1)
         }
         showFlags
       />
