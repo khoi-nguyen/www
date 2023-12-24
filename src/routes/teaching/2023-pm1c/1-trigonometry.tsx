@@ -267,7 +267,6 @@ export default () => {
         </Example>
       </Slide>
       <Slide title="Cercle trigonométrique">
-        <UnitCircle scale={0.75} />
         <ul>
           <li>
             Le <strong>cercle trigonométrique</strong> est un cercle centré à l'origine de rayon{' '}
