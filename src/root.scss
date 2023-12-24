@@ -218,6 +218,15 @@ pre,
   margin-bottom: 1em;
 }
 
+.button {
+  background: #255994;
+  border-radius: 0.5em;
+  border: 0px;
+  color: white;
+  cursor: pointer;
+  padding: 0.5em 0.75em;
+}
+
 .card {
   box-shadow:
     0 0.5em 1em -0.125em rgba(black, 0.1),
