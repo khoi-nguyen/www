@@ -4,11 +4,14 @@ interface JupyterProps {
   children: JSX.Element;
   before?: string;
   hideUntil?: Date;
+  lang?: 'python' | 'react';
   run?: boolean;
   solution?: string;
 }
 
 export default function Jupyter(props: JupyterProps) {
+  props = mergeProps({ lang: 'python' as const }, props);
+  const editorLang = () => (props.lang === 'react' ? 'tsx' : props.lang);
   const [code, setCode] = createSignal(
     Array.isArray(props.children) ? props.children.join('\n') : String(props.children),
   );
@@ -47,6 +50,7 @@ export default function Jupyter(props: JupyterProps) {
         </div>
         <div class="editor">
           <Editor
+            lang={editorLang()}
             onUpdate={setCode}
             onKeyDown={handleKeyDown}
             solution={props.solution}
@@ -56,7 +60,12 @@ export default function Jupyter(props: JupyterProps) {
           </Editor>
         </div>
       </div>
-      <Python code={codeToRun()} onExecuted={() => setIsLoading(false)} />
+      <Show when={props.lang === 'python'}>
+        <Python code={codeToRun()} onExecuted={() => setIsLoading(false)} />
+      </Show>
+      <Show when={props.lang === 'react'}>
+        <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} react />
+      </Show>
     </>
   );
 }
