@@ -4,11 +4,13 @@ import { createUniqueId } from 'solid-js';
 interface JavascriptProps {
   code?: string;
   react?: boolean;
+  reactAppName?: string;
   children?: JSX.Element;
   onExecuted?: () => void;
 }
 
 export default function Javascript(props: JavascriptProps) {
+  props = mergeProps({ reactAppName: 'App' }, props);
   const id = createUniqueId();
 
   const code = () => {
@@ -24,7 +26,7 @@ export default function Javascript(props: JavascriptProps) {
         ${String(props.children) || ''}
         if (${props.react ? 1 : 0} === 1) {
           const root = ReactDOM.createRoot(document.getElementById('${id}'));
-          root.render(<App />);
+          root.render(<${props.reactAppName} />);
         }
       })();
     `;
