@@ -250,33 +250,6 @@ export default () => {
         </Question>
         <Exercise>
           <p>What is the meaning of 111010001111101000</p>
-          {dot`
-            graph {
-              root [label=" "];
-              0 [label=" "];
-              1 [label=" "];
-              00 [label=" "];
-              01 [label="e"];
-              000 [label="l"];
-              001 [label="m"];
-              10 [label="i"];
-              11 [label=" "];
-              111 [label=" "];
-              1110 [label="s"];
-              1111 [label="p"];
-              root -- 0;
-              root -- 1;
-              0 -- 00;
-              0 -- 01;
-              00 -- 000;
-              00 -- 001;
-              1 -- 10;
-              1 -- 11;
-              11 -- 111;
-              111 -- 1110;
-              111 -- 1111;
-            }
-          `}
         </Exercise>
       </Slide>
       <Slide title="Optimality">
