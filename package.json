@@ -39,7 +39,6 @@
     "dedent-js": "^1.0.1",
     "katex": "^0.16.9",
     "lodash-es": "^4.17.21",
-    "mermaid": "^10.6.1",
     "normalize.css": "^8.0.1",
     "prismjs": "^1.29.0",
     "pyodide": "^0.23.4",
