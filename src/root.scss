@@ -92,6 +92,10 @@ input {
   &:focus {
     outline: 1px $grey solid;
   }
+
+  &[type='submit'] {
+    @extend .button;
+  }
 }
 
 main {
