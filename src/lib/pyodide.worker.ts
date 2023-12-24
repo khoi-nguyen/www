@@ -1,3 +1,4 @@
+/// <reference path="../../node_modules/@types/sharedworker/index.d.ts" />
 import dedent from 'dedent-js';
 import { loadPyodide } from 'pyodide';
 import type { PyodideInterface } from 'pyodide';
