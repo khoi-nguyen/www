@@ -30,6 +30,7 @@ export default defineConfig({
           'solid-js/store': ['createStore'],
           'solid-start': ['A', 'useLocation', 'useNavigate', 'useRouteData'],
           'solid-start/server': ['createServerAction$', 'createServerData$'],
+          'dedent-js': [['default', 'dedent']],
         },
         {
           from: '~/components/Meta',
