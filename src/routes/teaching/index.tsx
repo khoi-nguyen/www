@@ -2,7 +2,17 @@ import meta from './index.json';
 import type { Page } from '~/components/Explorer';
 
 function isMatch(page: Page, searchString: string): boolean {
-  return !searchString || page.title.toLowerCase().indexOf(searchString.toLowerCase()) !== -1;
+  if (!searchString) {
+    return true;
+  }
+  for (const [_, value] of Object.entries(page)) {
+    if (typeof value === 'string' || value instanceof String) {
+      if (value.toLowerCase().indexOf(searchString.toLowerCase()) !== -1) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 export default () => {
