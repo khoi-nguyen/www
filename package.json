@@ -34,6 +34,7 @@
   "dependencies": {
     "@fontsource/fira-sans": "^5.0.17",
     "@fontsource/noto-color-emoji": "^5.0.16",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "codejar": "^4.2.0",
     "country-flag-icons": "^1.5.7",

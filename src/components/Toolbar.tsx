@@ -1,3 +1,4 @@
+import { faPython } from '@fortawesome/free-brands-svg-icons';
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons/index.js';
 import {
   faBroom,
@@ -52,6 +53,11 @@ export default function Toolbar(props: ToolbarProps) {
     setZIndex(zIndex() < 0 ? 1 : -1);
   };
 
+  const [showPythonRepl, setShowPythonRepl] = createSignal(false);
+  const togglePythonRepl = () => {
+    setShowPythonRepl(!showPythonRepl());
+  };
+
   const [showLoginForm, setShowLoginForm] = createSignal<boolean>(false);
 
   return (
@@ -78,6 +84,17 @@ export default function Toolbar(props: ToolbarProps) {
       </button>
       <button class="is-secondary" onClick={toggleVisibility}>
         <Fa icon={faEyeSlash} />
+      </button>
+      <div class="python-repl" style={{ display: showPythonRepl() ? 'block' : 'none' }}>
+        <Jupyter lang="python">
+          {dedent`
+            from sympy import *
+            x, y, z, t = symbols("x y z t")
+          `}
+        </Jupyter>
+      </div>
+      <button class="is-secondary" onClick={togglePythonRepl}>
+        <Fa icon={faPython} />
       </button>
       <Show when={admin()}>
         <Show when={props.state === 'saving'}>

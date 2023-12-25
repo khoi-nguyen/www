@@ -499,6 +499,20 @@ pre,
   }
 }
 
+.toolbar {
+  width: 100%;
+}
+
+.python-repl {
+  background: white;
+  bottom: 50px;
+  font-size: 0.7em;
+  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+  z-index: 200;
+}
+
 .split {
   width: 50%;
 }
