@@ -1,6 +1,10 @@
 import meta from './index.json';
 import type { Page } from '~/components/Explorer';
 
+function transform(str: string): string {
+  return value.toLowerCase();
+}
+
 function isMatch(page: Page, searchString: string): boolean {
   if (!searchString) {
     return true;
@@ -17,6 +21,16 @@ function isMatch(page: Page, searchString: string): boolean {
 
 export default () => {
   const [search, setSearch] = createSignal('');
+  const [showArchive, setShowArchive] = createSignal(false);
+
+  createEffect(() => {
+    if (search() && !showArchive()) {
+      setShowArchive(true);
+    } else if (!search()) {
+      setShowArchive(false);
+    }
+  });
+
   return (
     <Page meta={meta}>
       <div class="columns is-vcentered">
@@ -37,11 +51,14 @@ export default () => {
         showFlags
       />
       <h2>Archive</h2>
-      <Explorer
-        pattern="teaching/.*/index.json$"
-        filter={(page) => page.current === false && isMatch(page, search())}
-        showFlags
-      />
+      <details open={showArchive()}>
+        <summary>Show previous courses</summary>
+        <Explorer
+          pattern="teaching/.*/index.json$"
+          filter={(page) => page.current === false && isMatch(page, search())}
+          showFlags
+        />
+      </details>
     </Page>
   );
 };
