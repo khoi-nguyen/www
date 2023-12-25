@@ -128,18 +128,21 @@ export default () => {
         <Editor lang="bash">npm install</Editor>
       </Slide>
       <Slide title="React: a first example">
-        {ts`
-          function Button() {
-            const [count, setCount] = useState(0);
-            const increaseCount = () => setCount(count + 1);
+        <Jupyter lang="react">
+          {dedent`
+            function Button() {
+              const [count, setCount] = React.useState(0);
+              const increaseCount = () => setCount(count + 1);
 
-            return (
-              <button onClick={increaseCount}>
-                Count: {count}
-              </button>
-            );
-          }
-        `}
+              return (
+                <button onClick={increaseCount}>
+                  Count: {count}
+                </button>
+              );
+            }
+            const App = () => <Button />;
+          `}
+        </Jupyter>
         <Question>
           <p>
             Why do we need <code>setCount</code>?
