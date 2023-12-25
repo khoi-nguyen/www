@@ -2,7 +2,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface JupyterProps {
   children: JSX.Element;
-  columns: boolean;
+  columns?: boolean;
   before?: string;
   hideUntil?: Date;
   lang?: 'python' | 'react';
