@@ -1,6 +1,7 @@
 interface HtmlProps {
   code?: string;
   children?: JSX.Element;
+  onExecuted?: () => void;
 }
 
 export default function Html(props: HtmlProps) {
@@ -15,6 +16,9 @@ export default function Html(props: HtmlProps) {
   createEffect(() => {
     if (shadow) {
       shadow.innerHTML = code();
+    }
+    if (props.onExecuted) {
+      props.onExecuted();
     }
   });
 

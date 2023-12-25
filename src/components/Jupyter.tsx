@@ -5,7 +5,7 @@ interface JupyterProps {
   columns?: boolean;
   before?: string;
   hideUntil?: Date;
-  lang?: 'python' | 'react';
+  lang?: 'python' | 'react' | 'html';
   run?: boolean;
   solution?: string;
 }
@@ -67,6 +67,9 @@ export default function Jupyter(props: JupyterProps) {
         </Show>
         <Show when={props.lang === 'react'}>
           <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} react />
+        </Show>
+        <Show when={props.lang === 'html'}>
+          <Html code={codeToRun()} onExecuted={() => setIsLoading(false)} />
         </Show>
       </div>
     </div>
