@@ -80,7 +80,7 @@ export default () => {
         </Question>
       </Slide>
       <Slide title="React in 100 seconds">
-        <Youtube src="https://www.youtube.com/watch?v=Tn6-PIqc4UM" />
+        <Youtube src="https://www.youtube.com/watch?v=Tn6-PIqc4UM" zoom={1.5} />
       </Slide>
       <Slide title="5 min university">
         <Question>
