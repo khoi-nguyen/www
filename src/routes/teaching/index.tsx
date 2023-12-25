@@ -12,7 +12,12 @@ export default () => {
       <div class="columns is-vcentered">
         <h1>Teaching</h1>
         <div>
-          <input type="text" value={search()} onInput={(event) => setSearch(event.target.value)} />
+          <input
+            type="text"
+            value={search()}
+            onInput={(event) => setSearch(event.target.value)}
+            placeholder="Search"
+          />
         </div>
       </div>
       <h2>Current Courses</h2>
