@@ -1,4 +1,9 @@
 import meta from './index.json';
+import type { Page } from '~/components/Explorer';
+
+function isMatch(page: Page, searchString: string): boolean {
+  return !searchString || page.title.toLowerCase().indexOf(searchString.toLowerCase()) !== -1;
+}
 
 export default () => {
   const [search, setSearch] = createSignal('');
@@ -13,17 +18,13 @@ export default () => {
       <h2>Current Courses</h2>
       <Explorer
         pattern="teaching/.*/index.json$"
-        filter={(page) =>
-          page.current === true && (!search() || page.title.indexOf(search()) !== -1)
-        }
+        filter={(page) => page.current === true && isMatch(page, search())}
         showFlags
       />
       <h2>Archive</h2>
       <Explorer
         pattern="teaching/.*/index.json$"
-        filter={(page) =>
-          page.current === false && (!search() || page.title.indexOf(search()) !== -1)
-        }
+        filter={(page) => page.current === false && isMatch(page, search())}
         showFlags
       />
     </Page>
