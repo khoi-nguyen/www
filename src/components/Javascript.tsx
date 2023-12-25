@@ -33,7 +33,8 @@ export default function Javascript(props: JavascriptProps) {
   };
 
   createEffect(async () => {
-    eval(transform(code(), { presets: ['react'] }).code as string);
+    const tcode = transform(code(), { presets: ['react'] }).code as string;
+    Function(tcode)();
     if (props.onExecuted) {
       props.onExecuted();
     }
