@@ -2,6 +2,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface JupyterProps {
   children: JSX.Element;
+  columns: boolean;
   before?: string;
   hideUntil?: Date;
   lang?: 'python' | 'react';
@@ -36,7 +37,7 @@ export default function Jupyter(props: JupyterProps) {
     }
   };
   return (
-    <>
+    <div classList={{ columns: props.columns }}>
       <div class="columns">
         <div class="run-button">
           <Show when={!isLoading()}>
@@ -60,12 +61,14 @@ export default function Jupyter(props: JupyterProps) {
           </Editor>
         </div>
       </div>
-      <Show when={props.lang === 'python'}>
-        <Python code={codeToRun()} onExecuted={() => setIsLoading(false)} />
-      </Show>
-      <Show when={props.lang === 'react'}>
-        <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} react />
-      </Show>
-    </>
+      <div>
+        <Show when={props.lang === 'python'}>
+          <Python code={codeToRun()} onExecuted={() => setIsLoading(false)} />
+        </Show>
+        <Show when={props.lang === 'react'}>
+          <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} react />
+        </Show>
+      </div>
+    </div>
   );
 }
