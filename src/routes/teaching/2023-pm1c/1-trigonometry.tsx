@@ -319,7 +319,6 @@ export default () => {
         </Proposition>
       </Slide>
       <Slide title="Identités fondamentales" cite={['stewart', 'p. A28']}>
-        <UnitCircle scale={0.75} />
         <Proposition>
           {tex`
             \sin^2 x + \cos^2 x = 1,\quad
