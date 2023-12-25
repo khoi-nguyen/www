@@ -14,16 +14,18 @@ export default () => (
         <A href="/cv">Curriculum Vitæ</A>
       </li>
       <li>
-        <A href="/teaching/">My teaching page</A>
+        <A href="/teaching/">Teaching</A>
       </li>
       <li>
-        <a href="https://spiral.imperial.ac.uk/handle/10044/1/44081">My Thesis</a>
+        <a href="https://spiral.imperial.ac.uk/handle/10044/1/44081">
+          <Abbr key="PhD" /> Thesis
+        </a>
       </li>
       <li>
-        <a href="https://github.com/khoi-nguyen">My GitHub page</a>
+        <a href="https://github.com/khoi-nguyen">GitHub</a>
       </li>
       <li>
-        <a href="https://www.linkedin.com/in/binh-khoi-nguyen/">My LinkedIn page</a>
+        <a href="https://www.linkedin.com/in/binh-khoi-nguyen/">LinkedIn</a>
       </li>
     </ul>
   </Page>
