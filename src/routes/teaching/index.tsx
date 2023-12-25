@@ -1,10 +1,6 @@
 import meta from './index.json';
 import type { Page } from '~/components/Explorer';
 
-function transform(str: string): string {
-  return value.toLowerCase();
-}
-
 function isMatch(page: Page, searchString: string): boolean {
   if (!searchString) {
     return true;
