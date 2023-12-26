@@ -1,5 +1,5 @@
-import { transform } from '@babel/standalone';
 import { createUniqueId } from 'solid-js';
+import { transpile } from '~/lib/transpile';
 
 interface JavascriptProps {
   code?: string;
@@ -33,8 +33,7 @@ export default function Javascript(props: JavascriptProps) {
   };
 
   createEffect(async () => {
-    const tcode = transform(code(), { presets: ['react'] }).code as string;
-    Function(tcode)();
+    Function(transpile(code()))();
     if (props.onExecuted) {
       props.onExecuted();
     }
