@@ -24,15 +24,21 @@ export default () => (
       Pseudo-Differential Calculus to non-compact Lie Groups.
     </p>
     <p>
-      I started teaching in 2017, obtaining my teaching qualification from the{' '}
+      I started teaching in 2017, and got my teaching qualification from the{' '}
       <a href="https://ox.ac.uk">University of Oxford</a> in 2019. Before becoming a lecturer, I
       mostly worked as a Teacher of Mathematics in international schools such as{' '}
       <a href="https://britishschool.be">The British School of Brussels</a> and{' '}
       <a href="https://www.madrid-soto.kingscollegeschools.org/en">
         King's College, The British School of Madrid
       </a>
-      . I think a lot about how to use front-end technologies to better teach mathematics and
-      programming.
+      .
+    </p>
+    <p>
+      I think a lot about how to use front-end technologies to better teach mathematics and
+      programming. I write my teaching resources in <Abbr key="JSX" />. All the code I write is
+      available on <a href="https://github.com/khoi-nguyen">Github</a> and is licensed under the{' '}
+      <Abbr key="GNU" />{' '}
+      <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">General Public License v3.0</a>.
     </p>
     <h2>Useful Links</h2>
     <ul>

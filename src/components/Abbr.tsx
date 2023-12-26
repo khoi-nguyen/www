@@ -8,6 +8,7 @@ const abbreviations = {
   ECAM: 'École Centrale des Arts et Métiers',
   GCSE: 'General Certificate of Secondary Education',
   GEI: 'Génie Électronique et Informatique',
+  GNU: "GNU's Not Unix",
   HTML: 'HyperText Markup Language',
   IBDP: 'International Baccalaureate Diploma Programme',
   IGCSE: 'International General Certificate of Secondary Education',
