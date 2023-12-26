@@ -29,7 +29,7 @@ export default function Page(props: PageProps) {
             </strong>
           </li>
           <li>
-            <A href="/cv/">
+            <A href="/cv">
               <Fa icon={faAddressCard} /> <Abbr key="CV" />
             </A>
           </li>
