@@ -19,6 +19,9 @@ export default () => {
   const [search, setSearch] = createSignal('');
   const [showArchive, setShowArchive] = createSignal(false);
 
+  let input: HTMLInputElement;
+  onMount(() => input.focus());
+
   createEffect(() => {
     if (search() && !showArchive()) {
       setShowArchive(true);
@@ -37,6 +40,7 @@ export default () => {
             value={search()}
             onInput={(event) => setSearch(event.target.value)}
             placeholder="Search"
+            ref={input!}
           />
         </div>
       </div>
