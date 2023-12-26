@@ -1,5 +1,5 @@
 import { Meta as SolidMeta, Title } from 'solid-start';
-import { langSignal } from '~/lib/signals';
+import { lang, setLang } from '~/lib/signals';
 
 export interface Metadata {
   adminOnly?: boolean;
@@ -13,7 +13,6 @@ export interface Metadata {
 
 export default function Meta(props: Metadata) {
   props = mergeProps({ lang: 'en' }, props);
-  const [lang, setLang] = langSignal;
   createEffect(() => {
     if (props.lang !== lang() && props.lang) {
       setLang(props.lang);

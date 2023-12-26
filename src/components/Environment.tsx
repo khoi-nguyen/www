@@ -11,7 +11,7 @@ import {
   faQuoteLeft,
   faScrewdriverWrench,
 } from '@fortawesome/free-solid-svg-icons/index.js';
-import { langSignal } from '~/lib/signals';
+import { lang } from '~/lib/signals';
 
 interface SpecificEnvironmentProps {
   children?: JSX.Element;
@@ -23,8 +23,6 @@ interface SpecificEnvironmentProps {
 interface EnvironmentProps extends SpecificEnvironmentProps {
   name: string;
 }
-
-const [lang] = langSignal;
 
 export function Environment(props: EnvironmentProps) {
   return (

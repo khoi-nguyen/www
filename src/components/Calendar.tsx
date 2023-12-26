@@ -4,9 +4,7 @@ import enLocale from '@fullcalendar/core/locales/en-gb';
 import frLocale from '@fullcalendar/core/locales/fr';
 import icalendarPlugin from '@fullcalendar/icalendar';
 import listPlugin from '@fullcalendar/list';
-import { langSignal } from '~/lib/signals';
-
-const [lang] = langSignal;
+import { lang } from '~/lib/signals';
 
 interface CalendarProps {
   filter?: (event: EventImpl) => boolean;

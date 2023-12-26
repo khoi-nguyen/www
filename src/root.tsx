@@ -2,11 +2,10 @@
 import './root.scss';
 import { Suspense } from 'solid-js';
 import { Body, ErrorBoundary, FileRoutes, Head, Html, Meta, Routes, Scripts } from 'solid-start';
-import { langSignal } from '~/lib/signals';
+import { lang } from '~/lib/signals';
 import { SessionProvider } from '~/stores/session';
 
 export default function Root() {
-  const [lang] = langSignal;
   return (
     <Html lang={lang()}>
       <Head>

@@ -1,1 +1,3 @@
-export const langSignal = createSignal('en');
+const [lang, setLang] = createSignal<'en' | 'fr'>('en');
+
+export { lang, setLang };
