@@ -1,4 +1,5 @@
 import meta from './cv.json';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBirthdayCake, faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons/index.js';
 
 function calculateAge(dob: Date): number {
@@ -29,6 +30,9 @@ export default () => (
           </li>
           <li>
             <Fa icon={faGlobe} /> <A href="/">https://nguyen.me.uk</A>
+          </li>
+          <li>
+            <Fa icon={faGithub} /> <a href="https://github.com/khoi-nguyen">khoi-nguyen</a>
           </li>
         </ul>
       </div>
