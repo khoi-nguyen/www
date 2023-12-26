@@ -17,6 +17,8 @@ const header: Component<{ children: JSX.Element }> = (props) => <>{props.childre
 export default function Page(props: PageProps) {
   const Wrapper = props.header || header;
   const [admin, { logout }] = useSession();
+  const location = useLocation();
+  const path = () => location.pathname + (location.pathname.endsWith('/') ? 'index.tsx' : '');
   return (
     <>
       <nav id="navbar">
@@ -69,7 +71,10 @@ export default function Page(props: PageProps) {
               alt="CC BY-NC-ND"
             />{' '}
             Khôi Nguyễn, 2023 — <Fa icon={faGithub} />{' '}
-            <a href="https://github.com/khoi-nguyen/www/">Source code</a>.
+            <a href={`https://github.com/khoi-nguyen/www/tree/master/src/routes${path()}`}>
+              Source code
+            </a>
+            .
           </p>
         </footer>
       </Show>
