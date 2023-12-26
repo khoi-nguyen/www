@@ -16,5 +16,5 @@ export default function Flag(props: FlagProps) {
       : props.code;
     return getUnicodeFlagIcon(code);
   };
-  return <span>{flag()}</span>;
+  return <span class="emoji">{flag()}</span>;
 }

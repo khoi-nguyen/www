@@ -137,13 +137,6 @@ export default () => {
         </table>
         <Question title="Comment convertir?">
           <p>Simplement employer une règle de trois, ou la règle suivante:</p>
-          <Mermaid scale={2}>
-            {String.raw`
-              graph LR
-                D(degrés) --"× π/180"--> R(radians)
-                R --"× 180/π"--> D
-            `}
-          </Mermaid>
         </Question>
         <Example title="Conversions">
           <p>Convertir 1 radian en degrés</p>
@@ -274,7 +267,6 @@ export default () => {
         </Example>
       </Slide>
       <Slide title="Cercle trigonométrique">
-        <UnitCircle scale={0.75} />
         <ul>
           <li>
             Le <strong>cercle trigonométrique</strong> est un cercle centré à l'origine de rayon{' '}
@@ -327,7 +319,6 @@ export default () => {
         </Proposition>
       </Slide>
       <Slide title="Identités fondamentales" cite={['stewart', 'p. A28']}>
-        <UnitCircle scale={0.75} />
         <Proposition>
           {tex`
             \sin^2 x + \cos^2 x = 1,\quad

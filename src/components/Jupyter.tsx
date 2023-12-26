@@ -2,13 +2,17 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface JupyterProps {
   children: JSX.Element;
+  columns?: boolean;
   before?: string;
   hideUntil?: Date;
+  lang?: 'python' | 'react' | 'html';
   run?: boolean;
   solution?: string;
 }
 
 export default function Jupyter(props: JupyterProps) {
+  props = mergeProps({ lang: 'python' as const }, props);
+  const editorLang = () => (props.lang === 'react' ? 'tsx' : props.lang);
   const [code, setCode] = createSignal(
     Array.isArray(props.children) ? props.children.join('\n') : String(props.children),
   );
@@ -33,7 +37,7 @@ export default function Jupyter(props: JupyterProps) {
     }
   };
   return (
-    <>
+    <div classList={{ columns: props.columns }}>
       <div class="columns">
         <div class="run-button">
           <Show when={!isLoading()}>
@@ -47,6 +51,7 @@ export default function Jupyter(props: JupyterProps) {
         </div>
         <div class="editor">
           <Editor
+            lang={editorLang()}
             onUpdate={setCode}
             onKeyDown={handleKeyDown}
             solution={props.solution}
@@ -56,7 +61,17 @@ export default function Jupyter(props: JupyterProps) {
           </Editor>
         </div>
       </div>
-      <Python code={codeToRun()} onExecuted={() => setIsLoading(false)} />
-    </>
+      <div>
+        <Show when={props.lang === 'python'}>
+          <Python code={codeToRun()} onExecuted={() => setIsLoading(false)} />
+        </Show>
+        <Show when={props.lang === 'react'}>
+          <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} react />
+        </Show>
+        <Show when={props.lang === 'html'}>
+          <Html code={codeToRun()} onExecuted={() => setIsLoading(false)} />
+        </Show>
+      </div>
+    </div>
   );
 }

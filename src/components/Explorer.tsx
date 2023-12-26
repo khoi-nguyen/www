@@ -2,7 +2,7 @@ import { faPrint } from '@fortawesome/free-solid-svg-icons/index.js';
 import { sortBy } from 'lodash-es';
 
 type Metadata = Parameters<typeof Meta>[0];
-interface Page extends Metadata {
+export interface Page extends Metadata {
   path: string;
 }
 type SortFunction = (page: Page) => string | number;

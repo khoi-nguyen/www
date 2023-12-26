@@ -15,7 +15,7 @@ export default () => {
       </Show>
       <Show when={admin()}>
         <p>You are already logged in.</p>
-        <button onClick={logout}>Log out</button>
+        <Button onClick={logout}>Log out</Button>
       </Show>
     </Page>
   );

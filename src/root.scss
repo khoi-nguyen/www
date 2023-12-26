@@ -71,6 +71,12 @@ dl {
   }
 }
 
+footer {
+  @extend .container;
+  border-top: 1px solid $light;
+  font-size: 0.8em;
+}
+
 header {
   margin: 1.7em 0;
   @extend .hgroup;
@@ -91,6 +97,10 @@ input {
 
   &:focus {
     outline: 1px $grey solid;
+  }
+
+  &[type='submit'] {
+    @extend .button;
   }
 }
 
@@ -216,6 +226,15 @@ pre,
 
 .block {
   margin-bottom: 1em;
+}
+
+.button {
+  background: #255994;
+  border-radius: 0.5em;
+  border: 0px;
+  color: white;
+  cursor: pointer;
+  padding: 0.5em 0.75em;
 }
 
 .card {
@@ -484,6 +503,20 @@ pre,
       margin: 0;
     }
   }
+}
+
+.toolbar {
+  width: 100%;
+}
+
+.python-repl {
+  background: white;
+  bottom: 50px;
+  font-size: 0.7em;
+  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+  z-index: 200;
 }
 
 .split {

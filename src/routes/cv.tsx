@@ -1,4 +1,5 @@
 import meta from './cv.json';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBirthdayCake, faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons/index.js';
 
 function calculateAge(dob: Date): number {
@@ -30,13 +31,17 @@ export default () => (
           <li>
             <Fa icon={faGlobe} /> <A href="/">https://nguyen.me.uk</A>
           </li>
+          <li>
+            <Fa icon={faGithub} /> <a href="https://github.com/khoi-nguyen">khoi-nguyen</a>
+          </li>
         </ul>
       </div>
     )}
+    hideFooter
   >
     <h2>Education</h2>
 
-    <Line
+    <CvLine
       title={
         <>
           <Abbr key="PGCE" /> in Mathematics
@@ -55,9 +60,9 @@ export default () => (
           students' work
         </li>
       </ul>
-    </Line>
+    </CvLine>
 
-    <Line
+    <CvLine
       title={
         <>
           <Abbr key="PhD" /> in Mathematics
@@ -73,9 +78,9 @@ export default () => (
         </li>
         <li>Funding: Competitive departmental scolarship</li>
       </ul>
-    </Line>
+    </CvLine>
 
-    <Line
+    <CvLine
       title={
         <>
           <Abbr key="MASt" /> in Mathematics
@@ -95,11 +100,11 @@ export default () => (
           Offered a <Abbr key="PhD" /> position based on academic performance
         </li>
       </ul>
-    </Line>
+    </CvLine>
 
     <h2>Experience</h2>
 
-    <Line
+    <CvLine
       title="Lecturer in Mathematics and Computer Science"
       employer={
         <a href="https://ecam.be">
@@ -113,9 +118,9 @@ export default () => (
         <li>Taught courses: Calculus, Multivariable Calculus, Web Development</li>
         <li>Programming languages used: TypeScript, Python</li>
       </ul>
-    </Line>
+    </CvLine>
 
-    <Line
+    <CvLine
       title="Lecturer in Mathematics and Computer Science"
       employer={<a href="https://nyu.edu">New York University</a>}
       location="Paris"
@@ -125,9 +130,9 @@ export default () => (
         <li>Taught courses: Numerical Analysis, Algorithms</li>
         <li>Programming languages used: Python, Julia</li>
       </ul>
-    </Line>
+    </CvLine>
 
-    <Line
+    <CvLine
       title="Teacher of Mathematics and Computer Science"
       employer={<a href="https://britishschool.be">The British School of Brussels</a>}
       dates={[new Date('2021-08'), new Date('2023-01')]}
@@ -141,9 +146,9 @@ export default () => (
         </li>
         <li>Oxbridge entrance exams and mock interview preparation</li>
       </ul>
-    </Line>
+    </CvLine>
 
-    <Line
+    <CvLine
       title="Teacher of Mathematics and Computer Science"
       employer={
         <a href="https://www.kingscollegeschools.org">
@@ -158,9 +163,9 @@ export default () => (
         </li>
         <li>Oxbridge entrance exams and mock interview preparation</li>
       </ul>
-    </Line>
+    </CvLine>
 
-    <Line
+    <CvLine
       title="Teacher of Mathematics"
       employer={
         <a href="https://www.federation-wallonie-bruxelles.be/">Féderation Wallonie-Bruxelles</a>
@@ -170,7 +175,7 @@ export default () => (
       <ul>
         <li>Language of instruction: French</li>
       </ul>
-    </Line>
+    </CvLine>
 
     <h2>Skills</h2>
 
@@ -191,37 +196,3 @@ export default () => (
     </dl>
   </Page>
 );
-
-interface LineProps {
-  children?: JSX.Element;
-  dates: (Date | undefined)[];
-  employer: string | JSX.Element;
-  location?: string | JSX.Element;
-  title: string | JSX.Element;
-}
-
-function Line(props: LineProps) {
-  const showDate = (date?: Date) => {
-    if (!date) {
-      return;
-    }
-    return date.toLocaleString('en-US', { month: 'short', year: 'numeric' });
-  };
-  return (
-    <div class="cv-line block">
-      <hgroup class="columns">
-        <h4 class="is-8">
-          {props.title}, {props.employer} <Show when={props.location}>({props.location})</Show>
-        </h4>
-        <p class="is-4">
-          {props.dates.length === 1 && 'Since '}
-          {props.dates
-            .filter((x) => x !== undefined)
-            .map(showDate)
-            .join(' — ')}
-        </p>
-      </hgroup>
-      {props.children}
-    </div>
-  );
-}

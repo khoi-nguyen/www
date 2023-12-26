@@ -23,7 +23,7 @@ export default function Editor(props: EditorProps) {
   onMount(async () => {
     const CodeJar = await import('codejar');
     const highlight = (element: HTMLElement) => Prism.highlightElement(element);
-    editor = CodeJar.CodeJar(textArea, highlight, { tab: '\t' });
+    editor = CodeJar.CodeJar(textArea, highlight, { tab: '\t', addClosing: false });
     editor.updateCode(String(props.children));
 
     editor.onUpdate((code: string) => {
