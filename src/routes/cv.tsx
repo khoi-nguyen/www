@@ -37,6 +37,7 @@ export default () => (
         </ul>
       </div>
     )}
+    hideFooter
   >
     <h2>Education</h2>
 

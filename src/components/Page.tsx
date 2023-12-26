@@ -1,3 +1,4 @@
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
   faAddressCard,
   faChalkboardTeacher,
@@ -8,6 +9,7 @@ interface PageProps {
   children: JSX.Element;
   meta: Parameters<typeof Meta>[0];
   header?: Component<{ children: JSX.Element }>;
+  hideFooter?: boolean;
 }
 
 const header: Component<{ children: JSX.Element }> = (props) => <>{props.children}</>;
@@ -59,6 +61,18 @@ export default function Page(props: PageProps) {
           {props.children}
         </Show>
       </main>
+      <Show when={!props.hideFooter}>
+        <footer class="has-text-centered">
+          <p>
+            <img
+              src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-nd.svg"
+              alt="CC BY-NC-ND"
+            />{' '}
+            Khôi Nguyễn, 2023 — <Fa icon={faGithub} />{' '}
+            <a href="https://github.com/khoi-nguyen/www/">Source code</a>.
+          </p>
+        </footer>
+      </Show>
     </>
   );
 }

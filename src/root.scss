@@ -71,6 +71,12 @@ dl {
   }
 }
 
+footer {
+  @extend .container;
+  border-top: 1px solid $light;
+  font-size: 0.8em;
+}
+
 header {
   margin: 1.7em 0;
   @extend .hgroup;
