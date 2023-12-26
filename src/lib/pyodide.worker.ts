@@ -19,10 +19,9 @@ export interface MessageFromWorker extends Message {
 
 let pyodide: PyodideInterface;
 
-const indexURL = 'https://cdn.jsdelivr.net/pyodide/v0.23.4/full/';
 async function load() {
   pyodide = await loadPyodide({
-    indexURL: import.meta.env.MODE === 'development' ? '/pyodide/' : indexURL,
+    indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.23.4/full/',
   });
 }
 const loadPromise = load();
