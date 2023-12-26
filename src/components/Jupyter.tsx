@@ -2,11 +2,23 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js';
 
 interface JupyterProps {
   children: JSX.Element;
+
+  /** Show results in an adjacent column if true */
   columns?: boolean;
+
+  /** Will be prepended to the executed code but will not be shown */
   before?: string;
+
+  /** If set, will hide the 'solve' button until a certain date */
   hideUntil?: Date;
+
+  /** Input language */
   lang?: 'python' | 'react' | 'html';
+
+  /** Whether to run the code on mount */
   run?: boolean;
+
+  /** Add a 'solve' button which changes the code to the solution */
   solution?: string;
 }
 
