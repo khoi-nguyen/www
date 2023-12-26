@@ -25,6 +25,7 @@ export default function Editor(props: EditorProps) {
     const highlight = (element: HTMLElement) => Prism.highlightElement(element);
     editor = CodeJar.CodeJar(textArea, highlight, { tab: '\t', addClosing: false });
     editor.updateCode(String(props.children));
+    textArea.style.whiteSpace = 'pre';
 
     editor.onUpdate((code: string) => {
       if (props.onUpdate) {
