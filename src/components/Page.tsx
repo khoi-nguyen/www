@@ -18,7 +18,7 @@ export default function Page(props: PageProps) {
   const Wrapper = props.header || header;
   const [admin, { logout }] = useSession();
   const location = useLocation();
-  const path = () => location.pathname + (location.pathname.endsWith('/') ? 'index.tsx' : '');
+  const path = () => location.pathname + (location.pathname.endsWith('/') ? 'index' : '') + '.tsx';
   return (
     <>
       <nav id="navbar">
