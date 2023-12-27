@@ -18,7 +18,10 @@ export default (props: CalendarProps) => {
   const host = (<div />) as HTMLDivElement;
 
   onMount(() => {
-    const calendar = new Calendar(host, {
+    const root = host.attachShadow({ mode: 'open' });
+    const mount = (<div />) as HTMLDivElement;
+    root.appendChild(mount);
+    const calendar = new Calendar(mount, {
       height: 'auto',
       plugins: [listPlugin, icalendarPlugin, timeGridPlugin],
       initialView: props.initialView,
@@ -41,5 +44,5 @@ export default (props: CalendarProps) => {
     calendar.render();
   });
 
-  return <>{host}</>;
+  return host;
 };
