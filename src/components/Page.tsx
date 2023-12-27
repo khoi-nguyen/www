@@ -2,6 +2,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
   faAddressCard,
   faChalkboardTeacher,
+  faEnvelope,
   faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons/index.js';
 
@@ -31,6 +32,11 @@ export default function Page(props: PageProps) {
           <li>
             <A href="/cv">
               <Fa icon={faAddressCard} /> <Abbr key="CV" />
+            </A>
+          </li>
+          <li>
+            <A href="/contact">
+              <Fa icon={faEnvelope} /> Contact
             </A>
           </li>
           <li>
