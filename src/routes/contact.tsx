@@ -1,5 +1,6 @@
 import meta from './contact.json';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import type { EventImpl } from '@fullcalendar/core/internal';
 
 interface EmailProps {
   address: string;
@@ -11,6 +12,23 @@ function Email(props: EmailProps) {
       <Fa icon={faEnvelope} /> {props.address}
     </a>
   );
+}
+
+function changeEvent(event: EventImpl) {
+  let title = event.title;
+  const titles = {
+    'AW4C-T1-4MBA-A': 'Web Architecture (BA)',
+    'AW4C-L1-4MBA-A': 'Web Architecture (BA, Labo)',
+    'AW4L-L1-4MIN': 'Web Architecture (IN)',
+  };
+  if (title in titles) {
+    title = titles[title as keyof typeof titles];
+  }
+  const location = event.extendedProps.location;
+  if (location) {
+    title += ` (${location})`;
+  }
+  event.setProp('title', title);
 }
 
 export default () => (
@@ -37,6 +55,6 @@ export default () => (
     <h2>
       <Abbr key="ECAM" /> timetable
     </h2>
-    <Calendar initialView="timeGridWeek" />
+    <Calendar initialView="timeGridWeek" changeEvent={changeEvent} />
   </Page>
 );
