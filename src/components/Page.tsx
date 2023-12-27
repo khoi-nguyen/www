@@ -2,7 +2,6 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
   faAddressCard,
   faChalkboardTeacher,
-  faFeather,
   faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons/index.js';
 
@@ -37,11 +36,6 @@ export default function Page(props: PageProps) {
           <li>
             <A href="/teaching/">
               <Fa icon={faChalkboardTeacher} /> Teaching
-            </A>
-          </li>
-          <li>
-            <A href="/blog/">
-              <Fa icon={faFeather} /> Blog
             </A>
           </li>
           <Show when={admin()}>
