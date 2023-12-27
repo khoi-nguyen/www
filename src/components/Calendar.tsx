@@ -9,6 +9,7 @@ import { lang } from '~/lib/signals';
 
 interface CalendarProps {
   initialView?: 'listMonth' | 'timeGridWeek';
+  changeEvent?: (event: EventImpl) => void;
   filter?: (event: EventImpl) => boolean;
 }
 
@@ -29,6 +30,8 @@ export default (props: CalendarProps) => {
       eventDidMount: function (info) {
         if (props.filter && !props.filter(info.event)) {
           info.event.setProp('display', 'none');
+        } else if (props.changeEvent) {
+          props.changeEvent(info.event);
         }
       },
       allDaySlot: false,

@@ -19,7 +19,17 @@ export default () => {
           </dl>
         </div>
         <div>
-          <Calendar filter={(event) => event.title.startsWith('AW4C')} />
+          <Calendar
+            changeEvent={(event) => {
+              let title = event.title.indexOf('-T1-') > -1 ? 'Cours théorique' : 'Labo';
+              const location = event.extendedProps.location;
+              if (location) {
+                title += ` (${location})`;
+              }
+              event.setProp('title', title);
+            }}
+            filter={(event) => event.title.startsWith('AW4C')}
+          />
         </div>
       </div>
     </Page>
