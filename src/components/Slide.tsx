@@ -2,10 +2,18 @@ import type bibliography from '~/bibliography';
 
 interface SlideProps {
   children?: JSX.Element;
+
+  /** Add citation */
   cite?: [keyof typeof bibliography, JSX.Element | string];
+
+  /** Whether the children are columns */
   columns?: boolean;
+
+  /** Whether to split slide and have a blank right-hand side */
   split?: boolean;
-  title?: string | (() => JSX.Element);
+
+  /** Slide title (as string or JSX component */
+  title?: string | (() => JSX.Element) | JSX.Element;
 }
 
 function display(x: number) {
