@@ -1,4 +1,3 @@
-import dedent from 'dedent-js';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
@@ -30,5 +29,8 @@ const macros = {
 };
 
 export default function render(tex: string, displayMode = false) {
-  return katex.renderToString(dedent(tex), { macros, displayMode, output: 'html' });
+  if (displayMode && tex.indexOf('\\begin{align') === -1) {
+    tex = '\\begin{align*}' + tex + '\\end{align*}';
+  }
+  return katex.renderToString(tex, { macros, displayMode, output: 'html' });
 }
