@@ -5,14 +5,14 @@ export interface Metadata {
   adminOnly?: boolean;
   current?: boolean;
   hideHeader?: boolean;
-  lang?: string;
+  lang?: 'en' | 'fr';
   subtitle?: string;
   title: string;
   description: string;
 }
 
 export default function Meta(props: Metadata) {
-  props = mergeProps({ lang: 'en' }, props);
+  props = mergeProps({ lang: 'en' as const }, props);
   createEffect(() => {
     if (props.lang !== lang() && props.lang) {
       setLang(props.lang);
