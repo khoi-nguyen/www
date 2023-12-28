@@ -1,4 +1,10 @@
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import {
+  faGithub,
+  faCreativeCommons,
+  faCreativeCommonsBy,
+  faCreativeCommonsNc,
+  faCreativeCommonsNd,
+} from '@fortawesome/free-brands-svg-icons';
 import {
   faAddressCard,
   faChalkboardTeacher,
@@ -72,11 +78,9 @@ export default function Page(props: PageProps) {
       <Show when={!props.hideFooter}>
         <footer class="has-text-centered">
           <p>
-            <img
-              src="https://mirrors.creativecommons.org/presskit/buttons/80x15/svg/by-nc-nd.svg"
-              alt="CC BY-NC-ND"
-            />{' '}
-            Khôi Nguyễn, 2023 — <Fa icon={faGithub} />{' '}
+            <Fa icon={faCreativeCommons} /> <Fa icon={faCreativeCommonsBy} />{' '}
+            <Fa icon={faCreativeCommonsNc} /> <Fa icon={faCreativeCommonsNd} /> Khôi Nguyễn, 2023 —{' '}
+            <Fa icon={faGithub} />{' '}
             <a href={`https://github.com/khoi-nguyen/www/tree/master/src/routes${path()}`}>
               Source code
             </a>
