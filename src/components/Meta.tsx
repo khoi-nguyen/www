@@ -5,7 +5,7 @@ export interface Metadata {
   adminOnly?: boolean;
   current?: boolean;
   hideHeader?: boolean;
-  lang?: 'en' | 'fr';
+  lang?: string;
   subtitle?: string;
   title: string;
   description: string;
