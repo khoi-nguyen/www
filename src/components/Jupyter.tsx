@@ -46,7 +46,7 @@ export default function Jupyter(props: JupyterProps) {
     setCodeToRun((props.before || '') + '\n' + code());
   };
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.shiftKey && event.code === 'Enter') {
+    if ((event.shiftKey || event.ctrlKey) && event.code === 'Enter') {
       event.preventDefault();
       run();
     }
