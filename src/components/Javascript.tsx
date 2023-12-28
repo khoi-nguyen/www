@@ -39,9 +39,5 @@ export default function Javascript(props: JavascriptProps) {
     }
   });
 
-  return (
-    <>
-      <div id={id}></div>
-    </>
-  );
+  return <div id={id} />;
 }
