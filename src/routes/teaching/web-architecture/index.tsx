@@ -16,7 +16,11 @@ export default () => {
           </dl>
         </div>
         <div>
-          <Calendar filter={(event) => event.title.startsWith('AW4L')} />
+          <Calendar
+            changeEvent={(event) => event.setProp('title', 'Web Architecture')}
+            filter={(event) => event.title.startsWith('AW4L')}
+            showLocation
+          />
         </div>
       </div>
     </Page>
