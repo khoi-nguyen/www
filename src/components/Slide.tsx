@@ -12,7 +12,7 @@ interface SlideProps {
   /** Whether to split slide and have a blank right-hand side */
   split?: boolean;
 
-  /** Slide title (as string or JSX component */
+  /** Slide title */
   title?: string | (() => JSX.Element) | JSX.Element;
 }
 
