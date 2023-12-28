@@ -7,6 +7,7 @@ import 'prismjs/themes/prism-coy.css';
 
 interface EditorProps {
   children?: JSX.Element;
+  code?: string;
   lang?: keyof typeof Prism.languages;
   onUpdate?: (code: string) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
@@ -19,12 +20,13 @@ export default function Editor(props: EditorProps) {
   props = mergeProps({ lang: 'python' }, props);
   const textArea = (<code />) as HTMLElement;
   let editor: CodeJar;
+  const code = () => String(props.children || '') + String(props.code || '');
 
   onMount(async () => {
     const CodeJar = await import('codejar');
     const highlight = (element: HTMLElement) => Prism.highlightElement(element);
     editor = CodeJar.CodeJar(textArea, highlight, { tab: '\t', addClosing: false });
-    editor.updateCode(String(props.children));
+    editor.updateCode(code());
     textArea.style.whiteSpace = 'pre';
 
     editor.onUpdate((code: string) => {
@@ -38,6 +40,12 @@ export default function Editor(props: EditorProps) {
         props.onKeyDown(event);
       }
     };
+  });
+
+  createEffect(() => {
+    if (editor) {
+      editor.updateCode(code());
+    }
   });
 
   onCleanup(() => {

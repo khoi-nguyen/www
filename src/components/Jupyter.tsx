@@ -20,6 +20,9 @@ interface JupyterProps {
 
   /** Add a 'solve' button which changes the code to the solution */
   solution?: string;
+
+  /** Only transpile the code, don't run it */
+  transpileOnly?: boolean;
 }
 
 export default function Jupyter(props: JupyterProps) {
@@ -77,8 +80,11 @@ export default function Jupyter(props: JupyterProps) {
         <Show when={props.lang === 'python'}>
           <Python code={codeToRun()} onExecuted={() => setIsLoading(false)} />
         </Show>
-        <Show when={props.lang === 'react'}>
+        <Show when={props.lang === 'react' && !props.transpileOnly}>
           <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} react />
+        </Show>
+        <Show when={props.lang === 'react' && props.transpileOnly}>
+          <Transpile code={codeToRun()} onChange={() => setIsLoading(false)} />
         </Show>
         <Show when={props.lang === 'html'}>
           <Html code={codeToRun()} onExecuted={() => setIsLoading(false)} />
