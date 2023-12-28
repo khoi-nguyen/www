@@ -34,12 +34,15 @@ export default (props: CalendarProps) => {
       eventDidMount: function (info) {
         if (props.filter && !props.filter(info.event)) {
           info.event.setProp('display', 'none');
-        } else if (props.changeEvent) {
-          props.changeEvent(info.event);
-        } else if (props.showLocation) {
-          const location = info.event.extendedProps.location;
-          if (location) {
-            info.event.setProp('title', `${info.event.title} (${location})`);
+        } else {
+          if (props.changeEvent) {
+            props.changeEvent(info.event);
+          }
+          if (props.showLocation) {
+            const location = info.event.extendedProps.location;
+            if (location) {
+              info.event.setProp('title', `${info.event.title} (${location})`);
+            }
           }
         }
       },
