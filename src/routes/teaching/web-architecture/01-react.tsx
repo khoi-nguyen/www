@@ -117,15 +117,19 @@ export default () => {
       </Slide>
       <Slide title="Install React">
         <ol>
-          <li>Install Node</li>
           <li>
-            Create a directory and <code>cd</code>
+            Install <a href="https://nodejs.org/en">Node</a>
           </li>
           <li>
-            Run <code>npm install</code>
+            Run <code>npm create vite@latest &lt;project_name&gt;</code>.
+          </li>
+          <li>
+            Select <code>React</code> as a framework and <code>TypeScript</code> as a variant.
+          </li>
+          <li>
+            Run <code>npm install</code> in the newly created directory.
           </li>
         </ol>
-        <Editor lang="bash">npm install</Editor>
       </Slide>
       <Slide title="React: a first example">
         <Jupyter lang="react">
@@ -149,26 +153,29 @@ export default () => {
           </p>
         </Question>
       </Slide>
-      <Slide title={() => <Abbr key="JSX" />}>
+      <Slide title={() => <Abbr key="JSX" />} split={false}>
         <p>
           The <Abbr key="HTML" /> you see in the return clauses in in reality syntactic sugar called{' '}
           <Abbr key="JSX" />.
         </p>
-        <Example>
-          {html5`
-            <MyButton color="blue" shadowSize={2}>
-              Click Me
+        <p>
+          A tool called <a href="https://babeljs.io">Babel</a> compiles it to Javascript.
+        </p>
+        <Jupyter lang="react" transpileOnly columns>
+          {dedent`
+            <MyButton shadowSize={2} onClick={() => alert('click')}>
+              <strong>Click Me</strong>
             </MyButton>
           `}
-          gets transpiled to
-          {ts`
-            React.createElement(
-              MyButton,
-              {color: 'blue', shadowSize: 2},
-              'Click Me'
-            )
-          `}
-        </Example>
+        </Jupyter>
+      </Slide>
+      <Slide
+        title={() => (
+          <>
+            <Abbr key="JSX" /> vs <Abbr key="HTML" />
+          </>
+        )}
+      >
         <Remark title="Differences with HTML">
           <ul>
             <li>
