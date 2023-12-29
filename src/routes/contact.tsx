@@ -50,7 +50,17 @@ export default () => (
         </ul>
       </dd>
       <dt>Office</dt>
-      <dd>1E07</dd>
+      <dd>
+        <address>
+          1E07
+          <br />
+          50 Promenade de l'Alma
+          <br />
+          Brussels 1200
+          <br />
+          BELGIUM
+        </address>
+      </dd>
     </dl>
     <h2>
       <Abbr key="ECAM" /> timetable
