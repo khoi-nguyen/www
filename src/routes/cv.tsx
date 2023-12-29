@@ -3,12 +3,11 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBirthdayCake, faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons/index.js';
 
 function calculateAge(dob: Date): number {
-  const currentDate = new Date();
-  const birthDate = new Date(dob);
-  let age = currentDate.getFullYear() - birthDate.getFullYear();
+  const date = new Date();
+  let age = date.getFullYear() - dob.getFullYear();
   if (
-    currentDate.getMonth() < birthDate.getMonth() ||
-    (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
+    date.getMonth() < dob.getMonth() ||
+    (date.getMonth() === dob.getMonth() && date.getDate() < dob.getDate())
   ) {
     age--;
   }
