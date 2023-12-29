@@ -1,3 +1,5 @@
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-coy.css';
 import { transpile } from '~/lib/transpile';
 
 interface TranspileProps {
@@ -12,5 +14,11 @@ export default function Transpile(props: TranspileProps) {
       props.onChange();
     }),
   );
-  return <Editor lang="javascript" code={tcode()} />;
+  const html = () => Prism.highlight(tcode(), Prism.languages.javascript, 'javascript');
+
+  return (
+    <pre>
+      <code innerHTML={html()} />
+    </pre>
+  );
 }
