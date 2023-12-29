@@ -52,7 +52,7 @@ export default function Jupyter(props: JupyterProps) {
     }
   };
   return (
-    <div classList={{ columns: props.columns }}>
+    <div classList={{ columns: props.columns, block: true }}>
       <div class="columns">
         <div class="run-button">
           <Show when={!isLoading()}>
