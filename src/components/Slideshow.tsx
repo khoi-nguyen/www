@@ -1,7 +1,5 @@
-import { cloneDeep } from 'lodash-es';
 import 'reveal.js/dist/reveal.css';
-import type { Stroke } from '~/lib/Whiteboard';
-import { loadBoard, writeBoard } from '~/server/boards';
+import { makeContext, BoardContext } from '~/stores/boards';
 
 interface SlideshowProps {
   children: JSX.Element | JSX.Element[];
@@ -25,39 +23,10 @@ export default function Slideshow(props: SlideshowProps) {
   let slideRef: HTMLElement;
   const slides = getSlides(props);
 
-  const receivedBoards = createServerData$<Stroke[][][], [string, string, number]>(loadBoard, {
-    initialValue: slides.map(() => [[]]),
-    key: () => ['boards', useLocation().pathname, slides.length],
-  });
-  const boards = createMemo<Stroke[][][]>(() => cloneDeep(receivedBoards()!));
-
-  const [admin] = useSession();
-  const [state, setState] = createSignal<'unsaved' | 'saving' | 'saved'>('saved');
-  const [saving, saveAction] = createServerAction$(writeBoard);
-  const url = useLocation().pathname;
-  const onBoardChange = () => {
-    setState('unsaved');
-  };
-  const save = async () => {
-    if (admin() && state() === 'unsaved') {
-      setState('saving');
-      await saveAction({ url, contents: boards() });
-      setState('saved');
-    }
-  };
-  createEffect(() => {
-    if ((state() === 'saved' || state() === 'saving') && saving.error) {
-      setState('unsaved');
-    }
-  });
+  const context = makeContext(slides.length);
 
   const dimensions = { width: 1920, height: 1080 };
   let deck: InstanceType<typeof import('reveal.js')>;
-  const [vboardCount, setVboardCount] = createSignal<number[]>(slides.map(() => 1));
-  createEffect(() => {
-    const count = boards().map((vboards: Stroke[][]) => vboards.length);
-    setVboardCount(count);
-  });
   onMount(async () => {
     const Reveal = (await import('reveal.js')).default;
     deck = new Reveal({
@@ -71,37 +40,30 @@ export default function Slideshow(props: SlideshowProps) {
       transition: 'none',
     });
     deck.initialize();
-    const addBoard = (i: number) => {
-      return () => {
-        boards()[i].push([]);
-        const newCount = vboardCount().map((count, j) => (i === j ? count + 1 : count));
-        setState('unsaved');
-        setVboardCount(newCount);
-        deck.sync();
-      };
-    };
     deck.addKeyBinding('38', () => {
       const { h, v } = deck.getIndices();
-      const emptyBoard = boards()[h - 1][v].length <= 1;
+      const emptyBoard = context.boards()[h - 1][v].length <= 1;
       if (emptyBoard && v >= 1) {
-        boards()[h - 1].splice(v, 1);
-        setState('unsaved');
-        setVboardCount(vboardCount().map((count, j) => (j === h - 1 ? count - 1 : count)));
+        context.boards()[h - 1].splice(v, 1);
+        context.handleBoardChange();
+        context.setVboardCount(
+          context.vboardCount().map((count, j) => (j === h - 1 ? count - 1 : count)),
+        );
       }
       deck.up();
     });
     deck.addKeyBinding('40', () => {
       const { h, v } = deck.getIndices();
-      if (v === boards()[h - 1].length - 1) {
-        if (boards()[h - 1][v].length <= 1) {
+      if (v === context.boards()[h - 1].length - 1) {
+        if (context.boards()[h - 1][v].length <= 1) {
           return;
         }
-        addBoard(h - 1)();
+        context.addBoard(h - 1)();
       }
       deck.sync();
       deck.down();
     });
-    deck.on('slidechanged', save);
+    deck.on('slidechanged', context.save);
   });
   onCleanup(async () => {
     if (deck) {
@@ -110,35 +72,37 @@ export default function Slideshow(props: SlideshowProps) {
   });
 
   return (
-    <div class="reveal">
-      <div class="slides">
-        <section class="slide title-slide">
-          <div>
-            <Meta {...props.meta} />
-            {admin()}
-          </div>
-        </section>
-        <For each={slides}>
-          {(slide, i) => (
-            <section>
-              <For each={[...Array(vboardCount()[i()]).keys()]}>
-                {(j) => (
-                  <section class="slide" ref={slideRef}>
-                    {slide(j)}
-                    <Whiteboard
-                      container={slideRef}
-                      strokes={boards()[i()][j]}
-                      {...dimensions}
-                      state={state()}
-                      onBoardChange={onBoardChange}
-                    />
-                  </section>
-                )}
-              </For>
-            </section>
-          )}
-        </For>
+    <BoardContext.Provider value={context}>
+      <div class="reveal">
+        <div class="slides">
+          <section class="slide title-slide">
+            <div>
+              <Meta {...props.meta} />
+              {context.admin()}
+            </div>
+          </section>
+          <For each={slides}>
+            {(slide, i) => (
+              <section>
+                <For each={[...Array(context.vboardCount()[i()]).keys()]}>
+                  {(j) => (
+                    <section class="slide" ref={slideRef}>
+                      {slide(j)}
+                      <Whiteboard
+                        container={slideRef}
+                        strokes={context.boards()[i()][j]}
+                        {...dimensions}
+                        state={context.state()}
+                        onBoardChange={context.handleBoardChange}
+                      />
+                    </section>
+                  )}
+                </For>
+              </section>
+            )}
+          </For>
+        </div>
       </div>
-    </div>
+    </BoardContext.Provider>
   );
 }
