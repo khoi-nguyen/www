@@ -5,19 +5,16 @@ interface WhiteboardProps {
   container: HTMLElement;
   height: number;
   strokes: Stroke[];
-  state: 'unsaved' | 'saving' | 'saved';
-  onBoardChange?: () => any;
   width: number;
 }
 
 export default (props: WhiteboardProps) => {
   const canvas = (<canvas width={props.width} height={props.height} />) as HTMLCanvasElement;
   const whiteboard = new Whiteboard(props.container, canvas, props.strokes);
+  const context = useBoards();
   onMount(() => {
     whiteboard.init();
-    if (props.onBoardChange) {
-      whiteboard.canvas.addEventListener('boardChange', props.onBoardChange);
-    }
+    whiteboard.canvas.addEventListener('boardChange', context.handleBoardChange);
   });
 
   createEffect(() => {
@@ -28,7 +25,7 @@ export default (props: WhiteboardProps) => {
   return (
     <>
       {canvas}
-      <Toolbar whiteboard={whiteboard} state={props.state} />
+      <Toolbar whiteboard={whiteboard} />
     </>
   );
 };

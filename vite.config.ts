@@ -10,6 +10,7 @@ export default defineConfig({
       imports: [
         {
           '~/stores/session': ['useSession'],
+          '~/stores/boards': ['useBoards'],
           'solid-js': [
             'children',
             'createEffect',

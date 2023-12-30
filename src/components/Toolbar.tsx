@@ -13,7 +13,6 @@ import type Whiteboard from '~/lib/Whiteboard';
 
 interface ToolbarProps {
   whiteboard: Whiteboard;
-  state: 'unsaved' | 'saving' | 'saved';
 }
 
 type Brush = [string, number];
@@ -40,6 +39,7 @@ export default function Toolbar(props: ToolbarProps) {
     setLineWidth(brush[1]);
     props.whiteboard.changeBrush(...brush);
   };
+  const context = useBoards();
 
   const [zIndex, setZIndex] = createSignal<number>(1);
   createEffect(() => {
@@ -97,10 +97,10 @@ export default function Toolbar(props: ToolbarProps) {
         <Fa icon={faPython} />
       </button>
       <Show when={admin()}>
-        <Show when={props.state === 'saving'}>
+        <Show when={context.state() === 'saving'}>
           <Spinner inline />
         </Show>
-        <Show when={props.state === 'unsaved'}>
+        <Show when={context.state() === 'unsaved'}>
           <Fa icon={faFloppyDisk} />
         </Show>
       </Show>
