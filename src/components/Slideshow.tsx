@@ -44,11 +44,7 @@ export default function Slideshow(props: SlideshowProps) {
       const { h, v } = deck.getIndices();
       const emptyBoard = context.boards()[h - 1][v].length <= 1;
       if (emptyBoard && v >= 1) {
-        context.boards()[h - 1].splice(v, 1);
-        context.handleBoardChange();
-        context.setVboardCount(
-          context.vboardCount().map((count, j) => (j === h - 1 ? count - 1 : count)),
-        );
+        context.deleteBoard(h - 1, v);
       }
       deck.up();
     });
@@ -92,8 +88,6 @@ export default function Slideshow(props: SlideshowProps) {
                         container={slideRef}
                         strokes={context.boards()[i()][j]}
                         {...dimensions}
-                        state={context.state()}
-                        onBoardChange={context.handleBoardChange}
                       />
                     </section>
                   )}

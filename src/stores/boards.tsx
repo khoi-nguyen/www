@@ -45,15 +45,19 @@ export function makeContext(slideCount: number) {
       setVboardCount(newCount);
     };
   };
+  const deleteBoard = (i: number, j: number) => {
+    boards()[i].splice(j, 1);
+    handleBoardChange();
+    setVboardCount(vboardCount().map((count, k) => (k === i ? count - 1 : count)));
+  };
 
   return {
     addBoard,
+    deleteBoard,
     admin,
     boards,
     handleBoardChange,
-    receivedBoards,
     save,
-    setVboardCount,
     state,
     vboardCount,
   };
