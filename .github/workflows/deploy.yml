@@ -11,11 +11,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Add SSH Key
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          mkdir -p /home/runner/.ssh
+          ssh-keyscan ngy.ecam.be >> /home/runner/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/github_actions
+          chmod 600 /home/runner/.ssh/github_actions
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add /home/runner/.ssh/github_actions
       - name: Deploy
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           git remote add deploy ssh://khoi@ngy.ecam.be:8022/git/www
           git push deploy master
