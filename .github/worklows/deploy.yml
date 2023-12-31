@@ -1,0 +1,20 @@
+name: Deploy to nguyen.me.uk
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Deploy
+        run: |
+          ssh-keyscan ngy.ecam.be >> ~/.ssh/known_hosts
+          git remove add deploy khoi@ngy.ecam.be:~/git/www
+          git push deploy master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
