@@ -6,7 +6,7 @@ interface HtmlProps {
 
 export default function Html(props: HtmlProps) {
   const code = () => (props.children ? String(props.children) : String(props.code));
-  const iframe = (<iframe width="100%" />) as HTMLIFrameElement;
+  const iframe = (<iframe width="100%" class="clickable" />) as HTMLIFrameElement;
   iframe.onload = () => {
     if (iframe.contentWindow) {
       iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
