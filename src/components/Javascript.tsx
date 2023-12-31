@@ -1,4 +1,3 @@
-import { createUniqueId } from 'solid-js';
 import { transpile } from '~/lib/transpile';
 
 interface JavascriptProps {
@@ -11,33 +10,32 @@ interface JavascriptProps {
 
 export default function Javascript(props: JavascriptProps) {
   props = mergeProps({ reactAppName: 'App' }, props);
-  const id = createUniqueId();
 
   const code = () => {
+    const code = props.code ? props.code : String(props.children);
+    if (!props.react || !code) {
+      return code;
+    }
     return String.raw`
-      (async () => {
-        if (${props.react ? 1 : 0} === 1) {
-          await Promise.all([
-            import('https://unpkg.com/react@18.2.0/umd/react.development.js'),
-            import('https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js'),
-          ]);
-        }
-        ${props.code || ''}
-        ${String(props.children) || ''}
-        if (${props.react ? 1 : 0} === 1) {
-          const root = ReactDOM.createRoot(document.getElementById('${id}'));
-          root.render(<${props.reactAppName} />);
-        }
-      })();
+      <div id="app">
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+      <script>
+        ${transpile(code)}
+        const root = ReactDOM.createRoot(document.getElementById('app'));
+        ${transpile('root.render(<' + props.reactAppName + ' />);')}
+      </script>
     `;
   };
 
-  createEffect(async () => {
-    Function(transpile(code()))();
-    if (props.onExecuted) {
-      props.onExecuted();
-    }
-  });
+  createEffect(
+    on(code, () => {
+      if (props.onExecuted) {
+        props.onExecuted();
+      }
+    }),
+  );
 
-  return <div id={id} />;
+  return <Html code={code()} />;
 }
