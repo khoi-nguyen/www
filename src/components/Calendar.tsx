@@ -1,10 +1,4 @@
-import { Calendar } from '@fullcalendar/core';
 import type { EventImpl } from '@fullcalendar/core/internal';
-import enLocale from '@fullcalendar/core/locales/en-gb';
-import frLocale from '@fullcalendar/core/locales/fr';
-import icalendarPlugin from '@fullcalendar/icalendar';
-import listPlugin from '@fullcalendar/list';
-import timeGridPlugin from '@fullcalendar/timegrid';
 import { lang } from '~/lib/signals';
 
 interface CalendarProps {
@@ -18,11 +12,22 @@ export default (props: CalendarProps) => {
   props = mergeProps({ initialView: 'listMonth' as const }, props);
   const host = (<div />) as HTMLDivElement;
 
-  onMount(() => {
+  onMount(async () => {
     const root = host.attachShadow({ mode: 'open' });
     const mount = (<div />) as HTMLDivElement;
     root.appendChild(mount);
-    const calendar = new Calendar(mount, {
+
+    const [fc, enLocale, frLocale, icalendarPlugin, listPlugin, timeGridPlugin] = await Promise.all(
+      [
+        import('@fullcalendar/core'),
+        (await import('@fullcalendar/core/locales/en-gb')).default,
+        (await import('@fullcalendar/core/locales/fr')).default,
+        (await import('@fullcalendar/icalendar')).default,
+        (await import('@fullcalendar/list')).default,
+        (await import('@fullcalendar/timegrid')).default,
+      ],
+    );
+    const calendar = new fc.Calendar(mount, {
       height: 'auto',
       plugins: [listPlugin, icalendarPlugin, timeGridPlugin],
       initialView: props.initialView,
