@@ -13,7 +13,7 @@ export default function Javascript(props: JavascriptProps) {
 
   const code = () => {
     const code = props.code ? props.code : String(props.children);
-    if (!props.react || !code) {
+    if (!props.react) {
       return code;
     }
     return String.raw`
