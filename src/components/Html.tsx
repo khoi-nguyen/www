@@ -15,12 +15,12 @@ const style = (code: string) => dedent`
   </body>
   <script type="text/javascript">
     var ro = new ResizeObserver(entries => {
-    for (let entry of entries) {
-      const cr = entry.contentRect;
-      window.frameElement.style.height = cr.height + 30 + "px";
-    }
-  });
-  ro.observe(document.body);
+      for (let entry of entries) {
+        const cr = entry.contentRect;
+        window.frameElement.style.height = cr.height + 30 + "px";
+      }
+    });
+    ro.observe(document.body);
   </script>
 `;
 
