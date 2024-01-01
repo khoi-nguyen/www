@@ -28,15 +28,13 @@ export default function Javascript(props: JavascriptProps) {
     }
     let code = props.code ? props.code : String(props.children);
     if (props.svelte) {
-      const { js } = compile(code);
-      code = js.code.replace('import "svelte/internal/disclose-version";', '');
-      code = code.replace('svelte/internal', 'https://cdn.skypack.dev/svelte@4.2.8/internal');
+      const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte@4.2.8' });
       return dedent`
         <div id="app">
         </div>
         <script type="module">
-          ${code}
-          const app = new Component({target: document.getElementById('app')});
+          ${js.code}
+          const app = new Component({ target: document.getElementById('app') });
         </script>
       `;
     } else if (props.react) {
