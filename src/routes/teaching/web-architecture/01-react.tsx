@@ -134,7 +134,7 @@ export default () => {
       <Slide title="React: a first example">
         <Jupyter lang="react">
           {dedent`
-            function Button() {
+            function App() {
               const [count, setCount] = useState(0);
               const increaseCount = () => setCount(count + 1);
 
@@ -144,7 +144,6 @@ export default () => {
                 </button>
               );
             }
-            const App = () => <Button />;
           `}
         </Jupyter>
         <Question>
