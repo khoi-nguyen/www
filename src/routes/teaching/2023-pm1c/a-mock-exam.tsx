@@ -1,4 +1,4 @@
-import meta from './a-mock-exam.json';
+import meta from './a-mock-exam.json'
 
 export default () => {
   return (
@@ -262,5 +262,5 @@ export default () => {
         </Fragment>
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

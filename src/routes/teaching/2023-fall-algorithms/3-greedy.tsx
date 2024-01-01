@@ -1,5 +1,5 @@
-import meta from './3-greedy.json';
-import dedent from 'dedent-js';
+import meta from './3-greedy.json'
+import dedent from 'dedent-js'
 
 export default () => {
   const treeNode = py`
@@ -19,7 +19,7 @@ export default () => {
                     yield v
                 for v in self.right.encode(encoding + '1'):
                     yield v
-  `;
+  `
   return (
     <Slideshow meta={meta}>
       <Slide title="Interval scheduling problem">
@@ -486,5 +486,5 @@ export default () => {
         </ul>
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

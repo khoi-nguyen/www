@@ -1,31 +1,31 @@
-import meta from './index.json';
-import type { Page } from '~/components/Explorer';
+import meta from './index.json'
+import type { Page } from '~/components/Explorer'
 
 function isMatch(page: Page, searchString: string): boolean {
   if (!searchString) {
-    return true;
+    return true
   }
   for (const [_, value] of Object.entries(page)) {
     if (typeof value === 'string' || value instanceof String) {
       if (value.toLowerCase().indexOf(searchString.toLowerCase()) !== -1) {
-        return true;
+        return true
       }
     }
   }
-  return false;
+  return false
 }
 
 export default () => {
-  const [search, setSearch] = createSignal('');
-  const [showArchive, setShowArchive] = createSignal(false);
+  const [search, setSearch] = createSignal('')
+  const [showArchive, setShowArchive] = createSignal(false)
 
   createEffect(() => {
     if (search() && !showArchive()) {
-      setShowArchive(true);
+      setShowArchive(true)
     } else if (!search()) {
-      setShowArchive(false);
+      setShowArchive(false)
     }
-  });
+  })
 
   return (
     <Page meta={meta}>
@@ -56,5 +56,5 @@ export default () => {
         />
       </details>
     </Page>
-  );
-};
+  )
+}

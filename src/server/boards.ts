@@ -1,25 +1,25 @@
-import type { Stroke } from '~/lib/Whiteboard';
-import { readJSONFile, writeJSONFile } from '~/server/utils';
+import type { Stroke } from '~/lib/Whiteboard'
+import { readJSONFile, writeJSONFile } from '~/server/utils'
 
-const prefix = './data/';
+const prefix = './data/'
 
 const fileFromUrl = (url: string) => {
-  return prefix + url.replace(/^\/?(.*?)\/?$/, '$1') + '.json';
-};
+  return prefix + url.replace(/^\/?(.*?)\/?$/, '$1') + '.json'
+}
 
 export function loadBoard(key: [string, string, number]) {
-  const [, url, slideCount] = key;
-  const path = fileFromUrl(url);
-  const data = readJSONFile(path, '[]');
+  const [, url, slideCount] = key
+  const path = fileFromUrl(url)
+  const data = readJSONFile(path, '[]')
   while (data.length < slideCount) {
-    data.push([[]]);
+    data.push([[]])
   }
-  return data;
+  return data
 }
 
 export async function writeBoard(
   data: { url: string; contents: Stroke[][][] },
   event: ServerFunctionEvent,
 ) {
-  await writeJSONFile(fileFromUrl(data.url), data.contents, event);
+  await writeJSONFile(fileFromUrl(data.url), data.contents, event)
 }

@@ -1,7 +1,7 @@
-import meta from './login.json';
+import meta from './login.json'
 
 export default () => {
-  const [admin, { logout, loggingIn, PasswordField, Form }] = useSession();
+  const [admin, { logout, loggingIn, PasswordField, Form }] = useSession()
 
   return (
     <Page meta={meta}>
@@ -18,5 +18,5 @@ export default () => {
         <Button onClick={logout}>Log out</Button>
       </Show>
     </Page>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
-import meta from './00-typescript.json';
+import meta from './00-typescript.json'
 
 export default () => {
   return (
@@ -34,5 +34,5 @@ export default () => {
         `}
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

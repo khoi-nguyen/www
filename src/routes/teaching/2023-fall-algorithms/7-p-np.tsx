@@ -1,4 +1,4 @@
-import meta from './7-p-np.json';
+import meta from './7-p-np.json'
 
 export default () => (
   <Slideshow meta={meta}>
@@ -109,4 +109,4 @@ export default () => (
       </Proposition>
     </Slide>
   </Slideshow>
-);
+)

@@ -1,18 +1,18 @@
 interface CvLineProps {
-  children?: JSX.Element;
-  dates: (Date | undefined)[];
-  employer: string | JSX.Element;
-  location?: string | JSX.Element;
-  title: string | JSX.Element;
+  children?: JSX.Element
+  dates: (Date | undefined)[]
+  employer: string | JSX.Element
+  location?: string | JSX.Element
+  title: string | JSX.Element
 }
 
 export default function CvLine(props: CvLineProps) {
   const showDate = (date?: Date) => {
     if (!date) {
-      return;
+      return
     }
-    return date.toLocaleString('en-US', { month: 'short', year: 'numeric' });
-  };
+    return date.toLocaleString('en-US', { month: 'short', year: 'numeric' })
+  }
   return (
     <div class="cv-line block">
       <hgroup class="columns">
@@ -29,5 +29,5 @@ export default function CvLine(props: CvLineProps) {
       </hgroup>
       {props.children}
     </div>
-  );
+  )
 }

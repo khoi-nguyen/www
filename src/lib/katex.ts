@@ -1,6 +1,6 @@
-import katex from 'katex';
-import 'katex/dist/katex.min.css';
-import { lang } from '~/lib/signals';
+import katex from 'katex'
+import 'katex/dist/katex.min.css'
+import { lang } from '~/lib/signals'
 
 const macros = () => ({
   '\\C': '\\mathbb{C}',
@@ -28,11 +28,11 @@ const macros = () => ({
   '\\placeholder': '\\mathord{\\color{lightgray}\\bullet}',
   '\\vec': lang() === 'en' ? '\\mathbf{\\boldsymbol{#1}}' : null,
   '\\P': '\\mathbb{P}',
-});
+})
 
 export default function render(tex: string, displayMode = false) {
   if (displayMode && tex.indexOf('\\begin{align') === -1) {
-    tex = '\\begin{align*}' + tex + '\\end{align*}';
+    tex = '\\begin{align*}' + tex + '\\end{align*}'
   }
-  return katex.renderToString(tex, { macros: macros(), displayMode, output: 'html' });
+  return katex.renderToString(tex, { macros: macros(), displayMode, output: 'html' })
 }

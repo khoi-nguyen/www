@@ -1,4 +1,4 @@
-import meta from './6-graphs-part-ii.json';
+import meta from './6-graphs-part-ii.json'
 
 export default () => {
   return (
@@ -416,5 +416,5 @@ export default () => {
         </Jupyter>
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

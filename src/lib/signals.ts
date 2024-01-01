@@ -1,3 +1,3 @@
-const [lang, setLang] = createSignal('en');
+const [lang, setLang] = createSignal('en')
 
-export { lang, setLang };
+export { lang, setLang }

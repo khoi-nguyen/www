@@ -1,21 +1,21 @@
-import type { EventImpl } from '@fullcalendar/core/internal';
-import { lang } from '~/lib/signals';
+import type { EventImpl } from '@fullcalendar/core/internal'
+import { lang } from '~/lib/signals'
 
 interface CalendarProps {
-  initialView?: 'listMonth' | 'timeGridWeek';
-  changeEvent?: (event: EventImpl) => void;
-  showLocation?: boolean;
-  filter?: (event: EventImpl) => boolean;
+  initialView?: 'listMonth' | 'timeGridWeek'
+  changeEvent?: (event: EventImpl) => void
+  showLocation?: boolean
+  filter?: (event: EventImpl) => boolean
 }
 
 export default (props: CalendarProps) => {
-  props = mergeProps({ initialView: 'listMonth' as const }, props);
-  const host = (<div />) as HTMLDivElement;
+  props = mergeProps({ initialView: 'listMonth' as const }, props)
+  const host = (<div />) as HTMLDivElement
 
   onMount(async () => {
-    const root = host.attachShadow({ mode: 'open' });
-    const mount = (<div />) as HTMLDivElement;
-    root.appendChild(mount);
+    const root = host.attachShadow({ mode: 'open' })
+    const mount = (<div />) as HTMLDivElement
+    root.appendChild(mount)
 
     const [fc, enLocale, frLocale, icalendarPlugin, listPlugin, timeGridPlugin] = await Promise.all(
       [
@@ -26,7 +26,7 @@ export default (props: CalendarProps) => {
         (await import('@fullcalendar/list')).default,
         (await import('@fullcalendar/timegrid')).default,
       ],
-    );
+    )
     const calendar = new fc.Calendar(mount, {
       height: 'auto',
       plugins: [listPlugin, icalendarPlugin, timeGridPlugin],
@@ -38,15 +38,15 @@ export default (props: CalendarProps) => {
       },
       eventDidMount: function (info) {
         if (props.filter && !props.filter(info.event)) {
-          info.event.setProp('display', 'none');
+          info.event.setProp('display', 'none')
         } else {
           if (props.changeEvent) {
-            props.changeEvent(info.event);
+            props.changeEvent(info.event)
           }
           if (props.showLocation) {
-            const location = info.event.extendedProps.location;
+            const location = info.event.extendedProps.location
             if (location) {
-              info.event.setProp('title', `${info.event.title} (${location})`);
+              info.event.setProp('title', `${info.event.title} (${location})`)
             }
           }
         }
@@ -54,9 +54,9 @@ export default (props: CalendarProps) => {
       allDaySlot: false,
       slotMinTime: '08:00:00',
       slotMaxTime: '18:00:00',
-    });
-    calendar.render();
-  });
+    })
+    calendar.render()
+  })
 
-  return host;
-};
+  return host
+}

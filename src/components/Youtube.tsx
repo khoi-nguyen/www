@@ -1,8 +1,8 @@
 interface YoutubeProps {
-  height?: number;
-  src: string;
-  width?: number;
-  zoom?: number;
+  height?: number
+  src: string
+  width?: number
+  zoom?: number
 }
 
 export default function Youtube(props: YoutubeProps) {
@@ -17,5 +17,5 @@ export default function Youtube(props: YoutubeProps) {
         allowfullscreen
       />
     </div>
-  );
+  )
 }

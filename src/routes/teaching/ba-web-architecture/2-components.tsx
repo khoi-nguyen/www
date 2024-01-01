@@ -1,4 +1,4 @@
-import meta from './2-components.json';
+import meta from './2-components.json'
 
 export default () => {
   return (
@@ -43,5 +43,5 @@ export default () => {
         </Jupyter>
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

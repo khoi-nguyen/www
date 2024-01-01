@@ -1,4 +1,4 @@
-import meta from './index.json';
+import meta from './index.json'
 
 export default () => (
   <Page meta={meta}>
@@ -61,4 +61,4 @@ export default () => (
       </li>
     </ul>
   </Page>
-);
+)

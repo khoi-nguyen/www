@@ -1,20 +1,20 @@
-import getUnicodeFlagIcon from 'country-flag-icons/unicode';
+import getUnicodeFlagIcon from 'country-flag-icons/unicode'
 
 const languages = {
   en: 'GB',
   fr: 'FR',
-} as const;
+} as const
 
 interface FlagProps {
-  code: string;
+  code: string
 }
 
 export default function Flag(props: FlagProps) {
   const flag = () => {
     const code = languages.hasOwnProperty(props.code)
       ? languages[props.code as keyof typeof languages]
-      : props.code;
-    return getUnicodeFlagIcon(code);
-  };
-  return <span class="emoji">{flag()}</span>;
+      : props.code
+    return getUnicodeFlagIcon(code)
+  }
+  return <span class="emoji">{flag()}</span>
 }

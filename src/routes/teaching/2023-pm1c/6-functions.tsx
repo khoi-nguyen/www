@@ -1,4 +1,4 @@
-import meta from './6-functions.json';
+import meta from './6-functions.json'
 
 export default () => {
   return (
@@ -242,5 +242,5 @@ export default () => {
         <Iframe src="https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/unevariable/limitecontinuite&type=fexo" />
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

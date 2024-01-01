@@ -1,9 +1,9 @@
 // @refresh reload
-import './root.scss';
-import { Suspense } from 'solid-js';
-import { Body, ErrorBoundary, FileRoutes, Head, Html, Meta, Routes, Scripts } from 'solid-start';
-import { lang } from '~/lib/signals';
-import { SessionProvider } from '~/stores/session';
+import './root.scss'
+import { Suspense } from 'solid-js'
+import { Body, ErrorBoundary, FileRoutes, Head, Html, Meta, Routes, Scripts } from 'solid-start'
+import { lang } from '~/lib/signals'
+import { SessionProvider } from '~/stores/session'
 
 export default function Root() {
   return (
@@ -25,5 +25,5 @@ export default function Root() {
         <Scripts />
       </Body>
     </Html>
-  );
+  )
 }

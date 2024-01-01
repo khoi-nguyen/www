@@ -1,4 +1,4 @@
-import meta from './2-dynamic-programming.json';
+import meta from './2-dynamic-programming.json'
 
 export default () => {
   return (
@@ -796,5 +796,5 @@ export default () => {
         <Iframe src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw5.pdf" />
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

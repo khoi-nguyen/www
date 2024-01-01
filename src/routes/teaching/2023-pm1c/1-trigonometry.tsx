@@ -1,4 +1,4 @@
-import meta from './1-trigonometry.json';
+import meta from './1-trigonometry.json'
 
 export default () => {
   return (
@@ -428,5 +428,5 @@ export default () => {
         </Theorem>
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

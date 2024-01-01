@@ -1,4 +1,4 @@
-import meta from './0-introduction.json';
+import meta from './0-introduction.json'
 
 export default () => {
   return (
@@ -56,5 +56,5 @@ export default () => {
         </Jupyter>
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

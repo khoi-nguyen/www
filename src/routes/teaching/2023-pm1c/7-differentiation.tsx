@@ -1,4 +1,4 @@
-import meta from './7-differentiation.json';
+import meta from './7-differentiation.json'
 
 export default () => {
   return (
@@ -312,5 +312,5 @@ export default () => {
         <Iframe src="https://pmt.physicsandmathstutor.com/download/Maths/A-level/C2/Topic-Qs/Edexcel-Set-1/C2%20%20Differentiation%20-%20Stationary%20points.pdf" />
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

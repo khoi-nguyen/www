@@ -27,10 +27,10 @@ const abbreviations = {
   SQL: 'Structured Query Language',
   SSR: 'Server Side Rendering',
   UI: 'User Interface',
-};
+}
 
 interface AbbrProps {
-  key: keyof typeof abbreviations;
+  key: keyof typeof abbreviations
 }
 
 export default function Abbr(props: AbbrProps) {
@@ -38,5 +38,5 @@ export default function Abbr(props: AbbrProps) {
     <abbr title={abbreviations[props.key]} class="clickable">
       {props.key}
     </abbr>
-  );
+  )
 }

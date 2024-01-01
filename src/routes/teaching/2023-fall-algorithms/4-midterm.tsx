@@ -1,4 +1,4 @@
-import meta from './4-midterm.json';
+import meta from './4-midterm.json'
 
 export default () => {
   return (
@@ -50,5 +50,5 @@ export default () => {
         <Iframe src="https://jeffe.cs.illinois.edu/teaching/algorithms/book/03-dynprog.pdf" />
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

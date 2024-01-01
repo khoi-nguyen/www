@@ -1,14 +1,14 @@
-import meta from './cv.json';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faBirthdayCake, faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons/index.js';
+import meta from './cv.json'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faBirthdayCake, faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons/index.js'
 
 function calculateAge(dob: Date): number {
-  const now = new Date();
-  let age = now.getFullYear() - dob.getFullYear();
+  const now = new Date()
+  let age = now.getFullYear() - dob.getFullYear()
   if (now < new Date(now.getFullYear(), dob.getMonth(), dob.getDate())) {
-    age--;
+    age--
   }
-  return age;
+  return age
 }
 
 export default () => (
@@ -191,4 +191,4 @@ export default () => (
       <dd>Docker, vim</dd>
     </dl>
   </Page>
-);
+)

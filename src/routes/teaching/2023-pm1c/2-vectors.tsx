@@ -1,4 +1,4 @@
-import meta from './2-vectors.json';
+import meta from './2-vectors.json'
 
 export default () => {
   return (
@@ -382,5 +382,5 @@ export default () => {
         <Iframe src="https://pmt.physicsandmathstutor.com/download/Maths/A-level/FP3/Topic-Qs/Edexcel-Set-2/Ch.5%20Vectors.pdf" />
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

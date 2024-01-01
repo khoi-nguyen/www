@@ -1,6 +1,6 @@
 interface ProofProps {
-  children?: JSX.Element | JSX.Element[];
-  sketch?: boolean;
+  children?: JSX.Element | JSX.Element[]
+  sketch?: boolean
 }
 
 export default function Proof(props: ProofProps) {
@@ -11,5 +11,5 @@ export default function Proof(props: ProofProps) {
       </summary>
       {props.children}
     </details>
-  );
+  )
 }

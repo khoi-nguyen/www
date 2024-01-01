@@ -1,4 +1,4 @@
-import meta from './2-differentiation.json';
+import meta from './2-differentiation.json'
 
 export default () => (
   <Slideshow meta={meta}>
@@ -193,4 +193,4 @@ export default () => (
       `}
     </Slide>
   </Slideshow>
-);
+)

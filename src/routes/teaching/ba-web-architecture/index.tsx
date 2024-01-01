@@ -1,7 +1,7 @@
-import meta from './index.json';
+import meta from './index.json'
 
 export default () => {
-  const location = useLocation();
+  const location = useLocation()
   return (
     <Page meta={meta}>
       <h2>Ressources</h2>
@@ -21,8 +21,8 @@ export default () => {
         <div>
           <Calendar
             changeEvent={(event) => {
-              let title = event.title.indexOf('-T1-') > -1 ? 'Cours théorique' : 'Labo';
-              event.setProp('title', title);
+              let title = event.title.indexOf('-T1-') > -1 ? 'Cours théorique' : 'Labo'
+              event.setProp('title', title)
             }}
             filter={(event) => event.title.startsWith('AW4C')}
             showLocation
@@ -30,5 +30,5 @@ export default () => {
         </div>
       </div>
     </Page>
-  );
-};
+  )
+}

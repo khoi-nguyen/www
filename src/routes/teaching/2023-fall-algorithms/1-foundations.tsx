@@ -1,5 +1,5 @@
-import meta from './1-foundations.json';
-import complexityChart from '~/assets/complexity_chart.svg';
+import meta from './1-foundations.json'
+import complexityChart from '~/assets/complexity_chart.svg'
 
 export const insertionSort = py`
   def insertion_sort(A):
@@ -11,7 +11,7 @@ export const insertionSort = py`
               j -= 1
           A[j + 1] = key
       return A
-`;
+`
 
 export const mergeSort = py`
   def merge_sort(A):
@@ -24,7 +24,7 @@ export const mergeSort = py`
           smallest = L.pop(0) if L[0] <= R[0] else R.pop(0)
           result.append(smallest)
       return result + L + R
-`;
+`
 
 const karatsuba = py`
   def karatsuba(x, y):
@@ -42,7 +42,7 @@ const karatsuba = py`
       c = karatsuba(x_high + x_low, y_high + y_low) - a - b
 
       return a * 10 ** (2 * m) + c * 10 ** m + b
-`;
+`
 
 const CountTable = (props: { max: number }) => (
   <table>
@@ -61,7 +61,7 @@ const CountTable = (props: { max: number }) => (
       </tr>
     </tbody>
   </table>
-);
+)
 
 const countingSort = py`
   def counting_sort(A, k):
@@ -71,7 +71,7 @@ const countingSort = py`
       for value, frequency in enumerate(count):
           result += [value] * frequency
       return result
-`;
+`
 
 const stableCountingSort = py`
   def stable_counting_sort(A, key, k):
@@ -84,14 +84,14 @@ const stableCountingSort = py`
       for i in range(k):
           result.extend(count[i])
       return result
-`;
+`
 
 const radixSort = py`
   def radix_sort(A, k):
       for i in range(k):
           A = stable_counting_sort(A, lambda x: int(str(x)[-i-1]), 10)
       return A
-`;
+`
 
 export default () => (
   <Slideshow meta={meta}>
@@ -1066,4 +1066,4 @@ export default () => (
       <Iframe src="https://cims.nyu.edu/~regev/teaching/basic_algorithms_spring_2022/hw4.pdf" />
     </Slide>
   </Slideshow>
-);
+)

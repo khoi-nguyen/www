@@ -1,7 +1,7 @@
-import meta from './index.json';
+import meta from './index.json'
 
 export default () => {
-  const location = useLocation();
+  const location = useLocation()
   return (
     <Page meta={meta}>
       <h2>Informations pratiques</h2>
@@ -24,5 +24,5 @@ export default () => {
       </dl>
       <Explorer pattern={`${location.pathname}/?[0-9a-z]+-.*json$`} showPDF />
     </Page>
-  );
-};
+  )
+}

@@ -1,7 +1,7 @@
 interface HtmlProps {
-  code?: string;
-  children?: JSX.Element;
-  onExecuted?: () => void;
+  code?: string
+  children?: JSX.Element
+  onExecuted?: () => void
 }
 
 const style = (code: string) => dedent`
@@ -22,18 +22,18 @@ const style = (code: string) => dedent`
     });
     ro.observe(document.body);
   </script>
-`;
+`
 
 export default function Html(props: HtmlProps) {
-  const code = () => (props.children ? String(props.children) : String(props.code));
-  const iframe = (<iframe width="100%" class="clickable" />) as HTMLIFrameElement;
+  const code = () => (props.children ? String(props.children) : String(props.code))
+  const iframe = (<iframe width="100%" class="clickable" />) as HTMLIFrameElement
 
   createEffect(() => {
-    iframe.srcdoc = style(code());
+    iframe.srcdoc = style(code())
     if (props.onExecuted) {
-      props.onExecuted();
+      props.onExecuted()
     }
-  });
+  })
 
-  return iframe;
+  return iframe
 }

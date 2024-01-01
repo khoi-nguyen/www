@@ -1,30 +1,30 @@
-import runPython from '~/lib/pyodide.api';
+import runPython from '~/lib/pyodide.api'
 
 interface PythonProps {
-  code?: string;
-  children?: JSX.Element;
-  onExecuted?: () => void;
+  code?: string
+  children?: JSX.Element
+  onExecuted?: () => void
 }
 
 export default function Python(props: PythonProps) {
-  const [mounted, setMounted] = createSignal(false);
+  const [mounted, setMounted] = createSignal(false)
   onMount(() => {
-    setMounted(true);
-  });
+    setMounted(true)
+  })
 
   const code = () => {
     if (!mounted()) {
-      return undefined;
+      return undefined
     }
-    return props.children ? String(props.children) : props.code;
-  };
+    return props.children ? String(props.children) : props.code
+  }
 
-  const [result] = createResource(code, runPython);
+  const [result] = createResource(code, runPython)
   createEffect(() => {
     if (!result.loading && props.onExecuted) {
-      props.onExecuted();
+      props.onExecuted()
     }
-  });
+  })
   return (
     <div class="block">
       <Show when={result.state === 'ready' && result()} fallback={<Spinner />}>
@@ -44,5 +44,5 @@ export default function Python(props: PythonProps) {
         )}
       </Show>
     </div>
-  );
+  )
 }

@@ -1,23 +1,23 @@
-import { Meta as SolidMeta, Title } from 'solid-start';
-import { lang, setLang } from '~/lib/signals';
+import { Meta as SolidMeta, Title } from 'solid-start'
+import { lang, setLang } from '~/lib/signals'
 
 export interface Metadata {
-  adminOnly?: boolean;
-  current?: boolean;
-  hideHeader?: boolean;
-  lang?: string;
-  subtitle?: string;
-  title: string;
-  description: string;
+  adminOnly?: boolean
+  current?: boolean
+  hideHeader?: boolean
+  lang?: string
+  subtitle?: string
+  title: string
+  description: string
 }
 
 export default function Meta(props: Metadata) {
-  props = mergeProps({ lang: 'en' as const }, props);
+  props = mergeProps({ lang: 'en' as const }, props)
   createEffect(() => {
     if (props.lang !== lang() && props.lang) {
-      setLang(props.lang);
+      setLang(props.lang)
     }
-  });
+  })
 
   return (
     <>
@@ -30,5 +30,5 @@ export default function Meta(props: Metadata) {
         </header>
       </Show>
     </>
-  );
+  )
 }

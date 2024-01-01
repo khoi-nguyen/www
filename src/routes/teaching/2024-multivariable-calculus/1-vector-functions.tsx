@@ -1,4 +1,4 @@
-import meta from './1-vector-functions.json';
+import meta from './1-vector-functions.json'
 
 export default () => (
   <Slideshow meta={meta}>
@@ -161,4 +161,4 @@ export default () => (
       </Jupyter>
     </Slide>
   </Slideshow>
-);
+)

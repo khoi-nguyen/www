@@ -1,4 +1,4 @@
-import meta from './8-review.json';
+import meta from './8-review.json'
 
 export default () => (
   <Slideshow meta={meta}>
@@ -144,4 +144,4 @@ export default () => (
       </p>
     </Slide>
   </Slideshow>
-);
+)

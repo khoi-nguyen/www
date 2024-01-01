@@ -1,36 +1,36 @@
-import type bibliography from '~/bibliography';
+import type bibliography from '~/bibliography'
 
 interface SlideTitleProps {
   /** Add citation */
-  cite?: [keyof typeof bibliography, JSX.Element | string];
+  cite?: [keyof typeof bibliography, JSX.Element | string]
 
   /** Slide title */
-  title?: string | (() => JSX.Element) | JSX.Element;
+  title?: string | (() => JSX.Element) | JSX.Element
 }
 
 interface SlideProps extends SlideTitleProps {
-  children?: JSX.Element;
+  children?: JSX.Element
 
   /** Whether the children are columns */
-  columns?: boolean;
+  columns?: boolean
 
   /** Whether to split slide and have a blank right-hand side */
-  split?: boolean;
+  split?: boolean
 }
 
 function display(x: number) {
-  return (x > 9 ? '' : '0') + String(x);
+  return (x > 9 ? '' : '0') + String(x)
 }
 
 function datetime() {
-  const date = new Date();
-  return `${display(date.getHours())}:${display(date.getMinutes())}`;
+  const date = new Date()
+  return `${display(date.getHours())}:${display(date.getMinutes())}`
 }
 
 function SlideTitle(props: SlideTitleProps) {
-  const [time, setTime] = createSignal(datetime());
-  const clock = setInterval(() => setTime(datetime()), 1000);
-  onCleanup(() => clearInterval(clock));
+  const [time, setTime] = createSignal(datetime())
+  const clock = setInterval(() => setTime(datetime()), 1000)
+  onCleanup(() => clearInterval(clock))
 
   return (
     <h1 class="columns">
@@ -47,11 +47,11 @@ function SlideTitle(props: SlideTitleProps) {
       </div>
       <div class="time is-narrow">{time()}</div>
     </h1>
-  );
+  )
 }
 
 export default function Slide(props: SlideProps) {
-  props = mergeProps({ split: !props.columns }, props);
+  props = mergeProps({ split: !props.columns }, props)
 
   return (
     <div>
@@ -62,5 +62,5 @@ export default function Slide(props: SlideProps) {
         {props.children}
       </div>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import meta from './index.json';
+import meta from './index.json'
 
 export default () => {
-  const location = useLocation();
+  const location = useLocation()
   return (
     <Page meta={meta}>
       <h1>Ressources</h1>
@@ -70,5 +70,5 @@ export default () => {
         }
       `}
     </Page>
-  );
-};
+  )
+}

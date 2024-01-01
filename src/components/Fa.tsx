@@ -1,11 +1,11 @@
-import type { IconDefinition } from '@fortawesome/fontawesome-common-types';
+import type { IconDefinition } from '@fortawesome/fontawesome-common-types'
 
 interface FaProps {
-  icon: IconDefinition;
+  icon: IconDefinition
 }
 
 export default function Fa(props: FaProps) {
-  const i = () => props.icon.icon;
+  const i = () => props.icon.icon
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,5 +15,5 @@ export default function Fa(props: FaProps) {
     >
       <path d={i()[4] as string} />
     </svg>
-  );
+  )
 }

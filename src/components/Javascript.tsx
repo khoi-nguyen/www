@@ -1,44 +1,44 @@
-import { transpile } from '~/lib/transpile';
+import { transpile } from '~/lib/transpile'
 
 interface JavascriptProps {
-  code?: string;
-  mode?: 'react' | 'svelte';
-  reactAppName?: string;
-  children?: JSX.Element;
-  onExecuted?: () => void;
+  code?: string
+  mode?: 'react' | 'svelte'
+  reactAppName?: string
+  children?: JSX.Element
+  onExecuted?: () => void
 }
 
 /**
  * Fix imports so that they're done over CDN
  */
 function fixImports(code: string): string {
-  const importRegex = /(import\s+.+\s+from\s+)['"](.+)['"]\s*;?/g;
+  const importRegex = /(import\s+.+\s+from\s+)['"](.+)['"]\s*;?/g
   return code.replace(
     importRegex,
     (_, begin, packageName) => `${begin}'https://cdn.skypack.dev/${packageName}';`,
-  );
+  )
 }
 
 export default function Javascript(props: JavascriptProps) {
-  props = mergeProps({ reactAppName: 'App' }, props);
-  const [ready, setReady] = createSignal(false);
-  let compile: typeof import('svelte/compiler').compile;
+  props = mergeProps({ reactAppName: 'App' }, props)
+  const [ready, setReady] = createSignal(false)
+  let compile: typeof import('svelte/compiler').compile
 
   onMount(async () => {
     if (props.mode === 'svelte') {
-      const compiler = await import('svelte/compiler');
-      compile = compiler.compile;
+      const compiler = await import('svelte/compiler')
+      compile = compiler.compile
     }
-    setReady(true);
-  });
+    setReady(true)
+  })
 
   const code = () => {
     if (!ready()) {
-      return '';
+      return ''
     }
-    let code = fixImports(props.code ? props.code : String(props.children));
+    let code = fixImports(props.code ? props.code : String(props.children))
     if (props.mode === 'svelte') {
-      const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte' });
+      const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte' })
       return dedent`
         <div id="app">
         </div>
@@ -46,7 +46,7 @@ export default function Javascript(props: JavascriptProps) {
           ${js.code}
           const app = new Component({ target: document.getElementById('app') });
         </script>
-      `;
+      `
     } else if (props.mode === 'react') {
       return dedent`
         <div id="app">
@@ -59,23 +59,23 @@ export default function Javascript(props: JavascriptProps) {
           const root = ReactDOM.createRoot(document.getElementById('app'));
           root.render(React.createElement(${props.reactAppName}, null));
         </script>
-      `;
+      `
     } else {
       return dedent`
         <script type="module">
           ${code}
         </script>
-      `;
+      `
     }
-  };
+  }
 
   createEffect(
     on(code, () => {
       if (props.onExecuted) {
-        props.onExecuted();
+        props.onExecuted()
       }
     }),
-  );
+  )
 
-  return <Html code={code()} />;
+  return <Html code={code()} />
 }

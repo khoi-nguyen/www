@@ -1,6 +1,6 @@
 interface ButtonProps {
-  children?: JSX.Element | JSX.Element[];
-  onClick?: (event: MouseEvent) => void;
+  children?: JSX.Element | JSX.Element[]
+  onClick?: (event: MouseEvent) => void
 }
 
 export default function Button(props: ButtonProps) {
@@ -10,5 +10,5 @@ export default function Button(props: ButtonProps) {
         {props.children}
       </button>
     </>
-  );
+  )
 }

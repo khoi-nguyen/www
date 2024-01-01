@@ -1,6 +1,6 @@
-import solid from 'solid-start/vite';
-import AutoImport from 'unplugin-auto-import/vite';
-import { defineConfig } from 'vite';
+import solid from 'solid-start/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -55,4 +55,4 @@ export default defineConfig({
   worker: {
     format: 'es',
   },
-});
+})

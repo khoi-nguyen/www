@@ -1,4 +1,4 @@
-import meta from './9-reciprocals.json';
+import meta from './9-reciprocals.json'
 
 export default () => {
   return (
@@ -170,5 +170,5 @@ export default () => {
         <Iframe src="https://pmt.physicsandmathstutor.com//download/Maths/A-level/Pure/Trigonometry-2/OCR-Set-A/Further%20Trigonometric%20Identities%20and%20Equations.pdf" />
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

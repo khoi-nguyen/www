@@ -1,6 +1,6 @@
-import meta from './0-info.json';
-import { Info } from './index.jsx';
-import { chapters } from './syllabus';
+import meta from './0-info.json'
+import { Info } from './index.jsx'
+import { chapters } from './syllabus'
 
 export default () => (
   <Slideshow meta={meta}>
@@ -284,4 +284,4 @@ export default () => (
       </ul>
     </Slide>
   </Slideshow>
-);
+)

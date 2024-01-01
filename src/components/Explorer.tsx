@@ -1,48 +1,48 @@
-import { faPrint } from '@fortawesome/free-solid-svg-icons/index.js';
-import { sortBy } from 'lodash-es';
+import { faPrint } from '@fortawesome/free-solid-svg-icons/index.js'
+import { sortBy } from 'lodash-es'
 
-type Metadata = Parameters<typeof Meta>[0];
+type Metadata = Parameters<typeof Meta>[0]
 export interface Page extends Metadata {
-  path: string;
+  path: string
 }
-type SortFunction = (page: Page) => string | number;
+type SortFunction = (page: Page) => string | number
 interface ExplorerProps {
-  filter?: (page: Page) => boolean;
-  pattern: string;
-  showFlags?: boolean;
-  showPDF?: boolean;
-  sortBy?: SortFunction;
-  title?: (page: Page) => string | JSX.Element;
+  filter?: (page: Page) => boolean
+  pattern: string
+  showFlags?: boolean
+  showPDF?: boolean
+  sortBy?: SortFunction
+  title?: (page: Page) => string | JSX.Element
 }
 
-const defaultFilter = () => true;
-const defaultSort: SortFunction = (page) => page.path;
+const defaultFilter = () => true
+const defaultSort: SortFunction = (page) => page.path
 
 export default function Explorer(props: ExplorerProps) {
-  const navigate = useNavigate();
-  const modules = import.meta.glob('~/routes/**/*.json');
+  const navigate = useNavigate()
+  const modules = import.meta.glob('~/routes/**/*.json')
   const [pages] = createResource(props.pattern, async (pattern) => {
-    const regex = new RegExp(pattern);
+    const regex = new RegExp(pattern)
     return await Promise.all(
       Object.keys(modules)
         .filter((path) => {
-          return regex.test(path.replace('~/routes', ''));
+          return regex.test(path.replace('~/routes', ''))
         })
         .map(async (path) => {
-          const meta = (await modules[path]()) as Parameters<typeof Meta>[0];
+          const meta = (await modules[path]()) as Parameters<typeof Meta>[0]
           return {
             path: path.replace(/\/src\/routes(.*?)(index)?\.json$/, '$1'),
             ...meta,
-          } as Page;
+          } as Page
         }),
-    );
-  });
+    )
+  })
   const filtered = () => {
     return sortBy(
       (pages() || []).filter(props.filter || defaultFilter),
       props.sortBy || defaultSort,
-    );
-  };
+    )
+  }
 
   return (
     <div class="grid">
@@ -76,5 +76,5 @@ export default function Explorer(props: ExplorerProps) {
         )}
       </For>
     </div>
-  );
+  )
 }

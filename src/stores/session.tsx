@@ -1,33 +1,33 @@
-import { createContext, useContext } from 'solid-js';
-import { login, logout, isAdmin } from '~/server/auth';
+import { createContext, useContext } from 'solid-js'
+import { login, logout, isAdmin } from '~/server/auth'
 
 interface SessionProviderProps {
-  children?: JSX.Element;
+  children?: JSX.Element
 }
 
 export function makeContext() {
-  const admin = createServerData$(isAdmin);
-  const [_, handleLogout] = createServerAction$(logout);
-  const [loggingIn, { Form }] = createServerAction$(login);
-  const PasswordField = () => <input type="password" name="password" />;
+  const admin = createServerData$(isAdmin)
+  const [_, handleLogout] = createServerAction$(logout)
+  const [loggingIn, { Form }] = createServerAction$(login)
+  const PasswordField = () => <input type="password" name="password" />
 
   return [
     () => admin() === true,
     {
       logout: () => {
-        handleLogout();
+        handleLogout()
       },
       loggingIn,
       PasswordField,
       Form,
     },
-  ] as const;
+  ] as const
 }
 
-type SessionContextType = ReturnType<typeof makeContext>;
-const SessionContext = createContext<SessionContextType>();
-export const useSession = () => useContext(SessionContext)!;
+type SessionContextType = ReturnType<typeof makeContext>
+const SessionContext = createContext<SessionContextType>()
+export const useSession = () => useContext(SessionContext)!
 
 export function SessionProvider(props: SessionProviderProps) {
-  return <SessionContext.Provider value={makeContext()}>{props.children}</SessionContext.Provider>;
+  return <SessionContext.Provider value={makeContext()}>{props.children}</SessionContext.Provider>
 }

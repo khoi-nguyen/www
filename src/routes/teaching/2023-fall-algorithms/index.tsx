@@ -1,4 +1,4 @@
-import meta from './index.json';
+import meta from './index.json'
 
 export const Info = () => (
   <dl>
@@ -49,10 +49,10 @@ export const Info = () => (
       </ul>
     </dd>
   </dl>
-);
+)
 
 export default () => {
-  const location = useLocation();
+  const location = useLocation()
   return (
     <Page meta={meta}>
       <h2>Practical information</h2>
@@ -60,5 +60,5 @@ export default () => {
       <h2>Teaching resources</h2>
       <Explorer pattern={`${location.pathname}/?[0-9]+-.*json$`} showPDF />
     </Page>
-  );
-};
+  )
+}

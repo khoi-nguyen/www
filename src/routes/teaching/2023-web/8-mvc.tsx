@@ -1,4 +1,4 @@
-import meta from './8-mvc.json';
+import meta from './8-mvc.json'
 
 export default () => {
   return (
@@ -201,5 +201,5 @@ export default () => {
         </ul>
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

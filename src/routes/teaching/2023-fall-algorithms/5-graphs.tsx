@@ -1,4 +1,4 @@
-import meta from './5-graphs.json';
+import meta from './5-graphs.json'
 
 export default () => {
   return (
@@ -855,5 +855,5 @@ export default () => {
         </Question>
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

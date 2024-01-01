@@ -1,56 +1,56 @@
-import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js';
+import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js'
 
 interface JupyterProps {
-  children: JSX.Element;
+  children: JSX.Element
 
   /** Show results in an adjacent column if true */
-  columns?: boolean;
+  columns?: boolean
 
   /** Will be prepended to the executed code but will not be shown */
-  before?: string;
+  before?: string
 
   /** If set, will hide the 'solve' button until a certain date */
-  hideUntil?: Date;
+  hideUntil?: Date
 
   /** Input language */
-  lang?: 'python' | 'react' | 'html' | 'svelte';
+  lang?: 'python' | 'react' | 'html' | 'svelte'
 
   /** Whether to run the code on mount */
-  run?: boolean;
+  run?: boolean
 
   /** Add a 'solve' button which changes the code to the solution */
-  solution?: string;
+  solution?: string
 
   /** Only transpile the code, don't run it */
-  transpileOnly?: boolean;
+  transpileOnly?: boolean
 }
 
 export default function Jupyter(props: JupyterProps) {
-  props = mergeProps({ lang: 'python' as const }, props);
-  const editorLang = () => (props.lang === 'react' ? 'tsx' : props.lang);
+  props = mergeProps({ lang: 'python' as const }, props)
+  const editorLang = () => (props.lang === 'react' ? 'tsx' : props.lang)
   const [code, setCode] = createSignal(
     Array.isArray(props.children) ? props.children.join('\n') : String(props.children),
-  );
-  const [codeToRun, setCodeToRun] = createSignal('');
-  const [isLoading, setIsLoading] = createSignal<boolean>(false);
+  )
+  const [codeToRun, setCodeToRun] = createSignal('')
+  const [isLoading, setIsLoading] = createSignal<boolean>(false)
 
   onMount(() => {
     if (props.run && code()) {
-      run();
+      run()
     }
-  });
+  })
 
   const run = () => {
-    setCodeToRun('');
-    setIsLoading(true);
-    setCodeToRun((props.before || '') + '\n' + code());
-  };
+    setCodeToRun('')
+    setIsLoading(true)
+    setCodeToRun((props.before || '') + '\n' + code())
+  }
   const handleKeyDown = (event: KeyboardEvent) => {
     if ((event.shiftKey || event.ctrlKey) && event.code === 'Enter') {
-      event.preventDefault();
-      run();
+      event.preventDefault()
+      run()
     }
-  };
+  }
   return (
     <div classList={{ columns: props.columns, block: true }}>
       <div class="columns">
@@ -94,5 +94,5 @@ export default function Jupyter(props: JupyterProps) {
         </Show>
       </div>
     </div>
-  );
+  )
 }

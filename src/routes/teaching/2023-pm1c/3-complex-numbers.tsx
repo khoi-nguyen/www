@@ -1,4 +1,4 @@
-import meta from './3-complex-numbers.json';
+import meta from './3-complex-numbers.json'
 
 export default () => {
   return (
@@ -305,5 +305,5 @@ export default () => {
         <p>Dans ce langage, un inducteur se comporte comme une "résistance complexe".</p>
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

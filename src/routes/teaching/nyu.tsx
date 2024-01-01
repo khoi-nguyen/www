@@ -1,5 +1,5 @@
-import meta from './nyu.json';
-import logo from '~/assets/nyu.svg';
+import meta from './nyu.json'
+import logo from '~/assets/nyu.svg'
 
 export default () => {
   return (
@@ -12,5 +12,5 @@ export default () => {
         pattern={`teaching/.*/index\.json$`}
       />
     </Page>
-  );
-};
+  )
+}

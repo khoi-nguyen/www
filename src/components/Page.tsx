@@ -4,28 +4,28 @@ import {
   faCreativeCommonsBy,
   faCreativeCommonsNc,
   faCreativeCommonsNd,
-} from '@fortawesome/free-brands-svg-icons';
+} from '@fortawesome/free-brands-svg-icons'
 import {
   faAddressCard,
   faChalkboardTeacher,
   faEnvelope,
   faRightFromBracket,
-} from '@fortawesome/free-solid-svg-icons/index.js';
+} from '@fortawesome/free-solid-svg-icons/index.js'
 
 interface PageProps {
-  children: JSX.Element;
-  meta: Parameters<typeof Meta>[0];
-  header?: Component<{ children: JSX.Element }>;
-  hideFooter?: boolean;
+  children: JSX.Element
+  meta: Parameters<typeof Meta>[0]
+  header?: Component<{ children: JSX.Element }>
+  hideFooter?: boolean
 }
 
-const header: Component<{ children: JSX.Element }> = (props) => <>{props.children}</>;
+const header: Component<{ children: JSX.Element }> = (props) => <>{props.children}</>
 
 export default function Page(props: PageProps) {
-  const Wrapper = props.header || header;
-  const [admin, { logout }] = useSession();
-  const location = useLocation();
-  const path = () => location.pathname + (location.pathname.endsWith('/') ? 'index' : '') + '.tsx';
+  const Wrapper = props.header || header
+  const [admin, { logout }] = useSession()
+  const location = useLocation()
+  const path = () => location.pathname + (location.pathname.endsWith('/') ? 'index' : '') + '.tsx'
   return (
     <>
       <nav id="navbar">
@@ -89,5 +89,5 @@ export default function Page(props: PageProps) {
         </footer>
       </Show>
     </>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import meta from './4-equations.json';
+import meta from './4-equations.json'
 
 export default () => {
   return (
@@ -279,5 +279,5 @@ export default () => {
         <Iframe src="https://s3.amazonaws.com/algebra-worksheets/Matrix-Algebra-Tutor/Matrix+Algebra+tutor+-+Workdheet+5+-+Gaussian+Elimination+and+Gauss-Jordan+Elimination.pdf" />
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

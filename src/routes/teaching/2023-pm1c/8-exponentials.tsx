@@ -1,4 +1,4 @@
-import meta from './8-exponentials.json';
+import meta from './8-exponentials.json'
 
 export default () => {
   return (
@@ -230,5 +230,5 @@ export default () => {
         <Iframe src="https://pmt.physicsandmathstutor.com//download/Maths/A-level/Pure/Exponentials-and-Logarithms-1/Edexcel-Set-B/Laws%20of%20Logarithms.pdf" />
       </Slide>
     </Slideshow>
-  );
-};
+  )
+}

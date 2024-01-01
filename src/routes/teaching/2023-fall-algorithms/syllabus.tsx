@@ -1,7 +1,7 @@
 const meta = {
   title: 'Syllabus',
   description: 'Syllabus for the NYU Algorithms course',
-};
+}
 
 export const chapters = [
   () => (
@@ -64,10 +64,10 @@ export const chapters = [
       </ul>
     </>
   ),
-];
+]
 
 export default () => (
   <Page meta={meta}>
     <For each={chapters}>{(chapter) => chapter()}</For>
   </Page>
-);
+)
