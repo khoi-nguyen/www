@@ -1,4 +1,3 @@
-import { compile } from 'svelte/compiler';
 import { transpile } from '~/lib/transpile';
 
 interface JavascriptProps {
@@ -12,8 +11,21 @@ interface JavascriptProps {
 
 export default function Javascript(props: JavascriptProps) {
   props = mergeProps({ reactAppName: 'App' }, props);
+  const [ready, setReady] = createSignal(false);
+  let compile: (code: string) => string;
+
+  onMount(async () => {
+    if (props.svelte) {
+      const compiler = await import('svelte/compiler');
+      compile = compiler.compile;
+    }
+    setReady(true);
+  });
 
   const code = () => {
+    if (!ready()) {
+      return '';
+    }
     let code = props.code ? props.code : String(props.children);
     if (props.svelte) {
       const { js } = compile(code);
