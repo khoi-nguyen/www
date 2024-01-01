@@ -6,7 +6,7 @@ interface HtmlProps {
 
 const style = (code: string) => dedent`
   <style>
-    body {
+    body, input, textarea, button {
       font-size: 1.5em;
     }
   </style>
