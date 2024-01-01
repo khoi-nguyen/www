@@ -46,13 +46,15 @@
     "katex": "^0.16.9",
     "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1",
+    "prism-svelte": "^0.5.0",
     "prismjs": "^1.29.0",
     "pyodide": "^0.23.4",
     "reveal.js": "^5.0.2",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
     "solid-js": "^1.8.7",
-    "solid-start": "^0.3.10"
+    "solid-start": "^0.3.10",
+    "svelte": "^4.2.8"
   },
   "engines": {
     "node": ">=18"

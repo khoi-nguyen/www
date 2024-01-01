@@ -13,7 +13,7 @@ interface JupyterProps {
   hideUntil?: Date;
 
   /** Input language */
-  lang?: 'python' | 'react' | 'html';
+  lang?: 'python' | 'react' | 'html' | 'svelte';
 
   /** Whether to run the code on mount */
   run?: boolean;
@@ -79,6 +79,9 @@ export default function Jupyter(props: JupyterProps) {
       <div>
         <Show when={props.lang === 'python'}>
           <Python code={codeToRun()} onExecuted={() => setIsLoading(false)} />
+        </Show>
+        <Show when={props.lang === 'svelte'}>
+          <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} svelte />
         </Show>
         <Show when={props.lang === 'react' && !props.transpileOnly}>
           <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} react />

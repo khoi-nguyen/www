@@ -4,6 +4,7 @@ import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-tsx';
 import 'prismjs/themes/prism-coy.css';
+import 'prism-svelte';
 
 interface EditorProps {
   children?: JSX.Element;
