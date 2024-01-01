@@ -27,7 +27,7 @@ export default function Javascript(props: JavascriptProps) {
     }
     let code = props.code ? props.code : String(props.children);
     if (props.mode === 'svelte') {
-      const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte@4.2.8' });
+      const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte' });
       return dedent`
         <div id="app">
         </div>
