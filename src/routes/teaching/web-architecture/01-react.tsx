@@ -135,7 +135,7 @@ export default () => {
         <Jupyter lang="react">
           {dedent`
             function Button() {
-              const [count, setCount] = React.useState(0);
+              const [count, setCount] = useState(0);
               const increaseCount = () => setCount(count + 1);
 
               return (
