@@ -8,6 +8,17 @@ interface JavascriptProps {
   onExecuted?: () => void;
 }
 
+/**
+ * Fix imports so that they're done over CDN
+ */
+function fixImports(code: string): string {
+  const importRegex = /(import\s+.+\s+from\s+)['"](.+)['"]\s*;?/g;
+  return code.replace(
+    importRegex,
+    (_, begin, packageName) => `${begin}'https://cdn.skypack.dev/${packageName}'`,
+  );
+}
+
 export default function Javascript(props: JavascriptProps) {
   props = mergeProps({ reactAppName: 'App' }, props);
   const [ready, setReady] = createSignal(false);
@@ -25,7 +36,7 @@ export default function Javascript(props: JavascriptProps) {
     if (!ready()) {
       return '';
     }
-    let code = props.code ? props.code : String(props.children);
+    let code = fixImports(props.code ? props.code : String(props.children));
     if (props.mode === 'svelte') {
       const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte' });
       return dedent`
