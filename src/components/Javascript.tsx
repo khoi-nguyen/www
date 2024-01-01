@@ -11,7 +11,7 @@ interface JavascriptProps {
 export default function Javascript(props: JavascriptProps) {
   props = mergeProps({ reactAppName: 'App' }, props);
   const [ready, setReady] = createSignal(false);
-  let compile: (code: string) => string;
+  let compile: typeof import('svelte/compiler').compile;
 
   onMount(async () => {
     if (props.mode === 'svelte') {
