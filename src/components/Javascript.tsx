@@ -14,9 +14,13 @@ export default function Javascript(props: JavascriptProps) {
   const code = () => {
     const code = props.code ? props.code : String(props.children);
     if (!props.react) {
-      return code;
+      return dedent`
+        <script type="module">
+          ${code}
+        </script>
+      `;
     }
-    return String.raw`
+    return dedent`
       <div id="app">
       </div>
       <script type="module">
@@ -25,7 +29,7 @@ export default function Javascript(props: JavascriptProps) {
 
         ${transpile(code)}
         const root = ReactDOM.createRoot(document.getElementById('app'));
-        ${transpile('root.render(<' + props.reactAppName + ' />);')}
+        root.render(React.createElement(${props.reactAppName}, null));
       </script>
     `;
   };
