@@ -19,9 +19,10 @@ export default function Javascript(props: JavascriptProps) {
     return String.raw`
       <div id="app">
       </div>
-      <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-      <script>
+      <script type="module">
+        import React, { useState, useEffect, useMemo } from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+        import ReactDOM from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+
         ${transpile(code)}
         const root = ReactDOM.createRoot(document.getElementById('app'));
         ${transpile('root.render(<' + props.reactAppName + ' />);')}
