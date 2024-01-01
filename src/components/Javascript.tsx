@@ -15,7 +15,7 @@ function fixImports(code: string): string {
   const importRegex = /(import\s+.+\s+from\s+)['"](.+)['"]\s*;?/g;
   return code.replace(
     importRegex,
-    (_, begin, packageName) => `${begin}'https://cdn.skypack.dev/${packageName}'`,
+    (_, begin, packageName) => `${begin}'https://cdn.skypack.dev/${packageName}';`,
   );
 }
 
