@@ -2,9 +2,8 @@ import { transpile } from '~/lib/transpile';
 
 interface JavascriptProps {
   code?: string;
-  react?: boolean;
+  mode?: 'react' | 'svelte';
   reactAppName?: string;
-  svelte?: boolean;
   children?: JSX.Element;
   onExecuted?: () => void;
 }
@@ -15,7 +14,7 @@ export default function Javascript(props: JavascriptProps) {
   let compile: (code: string) => string;
 
   onMount(async () => {
-    if (props.svelte) {
+    if (props.mode === 'svelte') {
       const compiler = await import('svelte/compiler');
       compile = compiler.compile;
     }
@@ -27,7 +26,7 @@ export default function Javascript(props: JavascriptProps) {
       return '';
     }
     let code = props.code ? props.code : String(props.children);
-    if (props.svelte) {
+    if (props.mode === 'svelte') {
       const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte@4.2.8' });
       return dedent`
         <div id="app">
@@ -37,7 +36,7 @@ export default function Javascript(props: JavascriptProps) {
           const app = new Component({ target: document.getElementById('app') });
         </script>
       `;
-    } else if (props.react) {
+    } else if (props.mode === 'react') {
       return dedent`
         <div id="app">
         </div>

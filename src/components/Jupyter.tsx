@@ -81,10 +81,10 @@ export default function Jupyter(props: JupyterProps) {
           <Python code={codeToRun()} onExecuted={() => setIsLoading(false)} />
         </Show>
         <Show when={props.lang === 'svelte'}>
-          <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} svelte />
+          <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} mode="svelte" />
         </Show>
         <Show when={props.lang === 'react' && !props.transpileOnly}>
-          <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} react />
+          <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} mode="react" />
         </Show>
         <Show when={props.lang === 'react' && props.transpileOnly}>
           <Transpile code={codeToRun()} onChange={() => setIsLoading(false)} />
