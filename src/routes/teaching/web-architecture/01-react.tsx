@@ -153,6 +153,26 @@ export default () => {
           </p>
         </Question>
       </Slide>
+      <Slide title="Aside: Svelte">
+        <p>
+          I highly encourage you to have a look at other frameworks. Svelte is known for being
+          extremely readable.
+        </p>
+        <Jupyter lang="svelte">
+          {dedent`
+            <script>
+              let count = 0;
+              function increaseCount() {
+                count += 1;
+              }
+            </script>
+
+            <button on:click={increaseCount}>
+              Count: {count}
+            </button>
+          `}
+        </Jupyter>
+      </Slide>
       <Slide title={() => <Abbr key="JSX" />} split={false}>
         <p>
           The <Abbr key="HTML" /> you see in the return clauses in in reality syntactic sugar called{' '}
