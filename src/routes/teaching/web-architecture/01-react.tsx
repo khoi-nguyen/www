@@ -278,6 +278,109 @@ export default () => {
           <p>Components are rerendered at every prop change</p>
         </Remark>
       </Slide>
+      <Slide title="Pitfalls of React's reactivity model" columns>
+        <div>
+          <Exercise>
+            <p>
+              Write a component that shows a clock in the hh:mm:ss format and a counter that
+              increases every second.
+            </p>
+          </Exercise>
+          <Javascript mode="svelte">
+            {dedent`
+              <script>
+                import moment from 'moment'
+                let count = 0
+                let time = ''
+                setInterval(() => {
+                  count += 1
+                  time = moment().format('LTS')
+                }, 1000)
+              </script>
+
+              <p>It is {time}</p>
+              <p>Count: {count}</p>
+            `}
+          </Javascript>
+          <Remark>
+            <p>
+              Unless you've done some React before, your first attempt will most likely be wrong.
+              Can you explain why?
+            </p>
+          </Remark>
+          <Idea>
+            <ul>
+              <li>
+                Have a look at the <code>setInterval</code> function.
+              </li>
+              <li>
+                Read up on React's <code>useEffect</code> hook.
+              </li>
+            </ul>
+          </Idea>
+        </div>
+        <div>
+          <Jupyter
+            lang="react"
+            solution={dedent`
+              import moment from 'moment'
+
+              function App() {
+                const [count, setCount] = useState(0)
+                const [time, setTime] = useState(moment().format('LTS'))
+                // Wrap with useEffect(?, []) to execute *once*
+                useEffect(() => {
+                  setInterval(() => {
+                    // As this is only run once, count = 0
+                    setCount(prev => prev + 1)
+                    setTime(moment().format('LTS'))
+                  }, 1000)
+                }, [])
+                return (
+                  <>
+                    <p>It is {time}</p>
+                    <p>Count: {count}</p>
+                  </>
+                )
+              }
+            `}
+          >
+            {dedent`
+              import moment from 'moment'
+
+              function App() {
+                const [count, setCount] = useState(0)
+                const [time, setTime] = useState(moment().format('LTS'))
+
+                return (
+                  <>
+                    <p>It is {time}</p>
+                    <p>Count: {count}</p>
+                  </>
+                )
+              }
+            `}
+          </Jupyter>
+        </div>
+      </Slide>
+      <Slide title="Aside: Svelte and Solidjs" columns>
+        <Jupyter lang="svelte" run>
+          {dedent`
+            <script>
+              import moment from 'moment'
+              let count = 0
+              let time
+              setInterval(() => {
+                count += 1
+                time = moment().format('LTS')
+              }, 1000)
+            </script>
+
+            <p>It is {time}</p>
+            <p>Count: {count}</p>
+          `}
+        </Jupyter>
+      </Slide>
       <Slide
         title={() => (
           <>
