@@ -84,7 +84,7 @@ export default function Editor(props: EditorProps) {
     <>
       <pre class={classes()}>{textArea}</pre>
       <Show when={showSolutionButton()}>
-        <button onClick={solve}>Solve</button>
+        <Button onClick={solve}>Solve</Button>
       </Show>
     </>
   );
