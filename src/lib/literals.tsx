@@ -2,9 +2,13 @@ import { JupyterProps } from '~/components/Jupyter'
 
 type Literal<T> = (strings: TemplateStringsArray, ...values: (string | number)[]) => T
 
-function createLiteral<T>(fn: (str: string) => T = dedent): Literal<T> {
+function createLiteral<T>(fn: (str: string) => T = dedent, applyDedent = true): Literal<T> {
   return (strings, ...values) => {
-    return fn(dedent(String.raw(strings, ...values)))
+    if (applyDedent) {
+      return fn(dedent(String.raw(strings, ...values)))
+    } else {
+      return fn(String.raw(strings, ...values))
+    }
   }
 }
 
@@ -15,7 +19,10 @@ export function jupyter(props: Omit<JupyterProps, 'children'> = {}) {
 export const py = createLiteral<JSX.Element>()
 export const ipy = jupyter()
 
-export const tex = createLiteral((code) => <Maths tex={code} display={code.startsWith('\n')} />)
+export const tex = createLiteral(
+  (code) => <Maths tex={code} display={code.startsWith('\n')} />,
+  false,
+)
 
 export const react = {
   run: createLiteral<JSX.Element>((code) => <Javascript mode="react">{code}</Javascript>),
