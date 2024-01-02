@@ -2,7 +2,7 @@ import meta from './3-greedy.json'
 import dedent from 'dedent-js'
 
 export default () => {
-  const treeNode = py`
+  const treeNode = py.raw`
     class Node:
         left = None
         right = None

@@ -1,7 +1,7 @@
 import meta from './1-foundations.json'
 import complexityChart from '~/assets/complexity_chart.svg'
 
-export const insertionSort = py`
+export const insertionSort = py.raw`
   def insertion_sort(A):
       for i in range(1, len(A)):
           key = A[i]
@@ -13,7 +13,7 @@ export const insertionSort = py`
       return A
 `
 
-export const mergeSort = py`
+export const mergeSort = py.raw`
   def merge_sort(A):
       if len(A) <= 1:
           return A
@@ -26,7 +26,7 @@ export const mergeSort = py`
       return result + L + R
 `
 
-const karatsuba = py`
+const karatsuba = py.raw`
   def karatsuba(x, y):
       if x < 10 or y < 10:
           return x * y
@@ -63,7 +63,7 @@ const CountTable = (props: { max: number }) => (
   </table>
 )
 
-const countingSort = py`
+const countingSort = py.raw`
   def counting_sort(A, k):
       count, result = [0] * k, []
       for element in A:
@@ -73,7 +73,7 @@ const countingSort = py`
       return result
 `
 
-const stableCountingSort = py`
+const stableCountingSort = py.raw`
   def stable_counting_sort(A, key, k):
       result = []
       count = []
@@ -86,7 +86,7 @@ const stableCountingSort = py`
       return result
 `
 
-const radixSort = py`
+const radixSort = py.raw`
   def radix_sort(A, k):
       for i in range(k):
           A = stable_counting_sort(A, lambda x: int(str(x)[-i-1]), 10)
