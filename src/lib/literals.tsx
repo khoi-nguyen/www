@@ -37,17 +37,26 @@ export const react = {
   run: createLiteral<JSX.Element>((code) => <Javascript mode="react">{code}</Javascript>),
   jupyter: jupyter({ lang: 'react' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="tsx" code={code} />),
+  raw: createLiteral<string>((code) => code),
 }
 
 export const svelte = {
   run: createLiteral<JSX.Element>((code) => <Javascript mode="svelte">{code}</Javascript>),
   jupyter: jupyter({ lang: 'svelte' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="svelte" code={code} />),
+  raw: createLiteral<string>((code) => code),
 }
 
 export const js = {
   run: createLiteral<JSX.Element>((code) => <Javascript>{code}</Javascript>),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="tsx" readOnly code={code} />),
+  raw: createLiteral<string>((code) => code),
 }
 
 export const ts = js
+
+export const html = {
+  run: createLiteral<JSX.Element>((code) => <Html>{code}</Html>),
+  hl: createLiteral<JSX.Element>((code) => <Editor lang="html" readOnly code={code} />),
+  raw: createLiteral<string>((code) => code),
+}

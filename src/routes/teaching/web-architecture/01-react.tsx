@@ -93,7 +93,7 @@ export default () => {
               <Abbr key="UI" /> components
             </strong>{' '}
             ({tex`\approx`} html tags)
-            {html5`
+            {html.hl`
               <Slide title="5 min university">
                 <Question>
                   <p>What is React?</p>
@@ -256,7 +256,7 @@ export default () => {
           </p>
         </Idea>
         <Example title="Simple component with props">
-          {html5`
+          {html.hl`
             <Slide title="Title of my beautiful slide">
               <p>Slide contents</p>
             </Slide>

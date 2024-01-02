@@ -8,7 +8,7 @@ export default () => {
       <Explorer pattern={`${location.pathname}/?[0-9a-z]+-.*json$`} showPDF />
       <h2>Solution de certains exercices</h2>
       <h3>Refuge animalier</h3>
-      {html5`
+      {html.hl`
       <form>
         <label>Type de l'animal</label>
         <select name="type" value="cat">
@@ -27,7 +27,7 @@ export default () => {
       <p>La moyenne d'âge des chats est <span id="catMean">0</span></p>
 
       `}
-      {js`
+      {js.hl`
         // Fonction permettant de créer un objet spécial
         // qui met automatiquement le DOM à jour à chaque changement
         //
