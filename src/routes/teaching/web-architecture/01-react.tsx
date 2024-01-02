@@ -43,7 +43,7 @@ export default () => {
             To deal with <strong>mutations</strong>: You need to read the entire code to know what a
             node represents.
           </p>
-          {ts`
+          {ts.hl`
             const node = document.getElementById('some-id');
 
             // Changing its content
@@ -104,7 +104,7 @@ export default () => {
           <li>
             <strong>Declarative</strong>: performs <strong>DOM mutations</strong> for you (no need
             for <code>.innerHTML</code> etc.)
-            {ts`
+            {ts.hl`
               <button onClick={increaseCount}>
                 Count: {count}
               </button>
@@ -225,11 +225,11 @@ export default () => {
           </p>
         </Idea>
         <Definition>
-          {ts`
+          {ts.hl`
             const [variable, setVariable] = useState(defaultVal);
           `}
         </Definition>
-        {ts`
+        {ts.hl`
           function Component() {
             const [variable, setVariable] = useState(true);
             return (
@@ -261,7 +261,7 @@ export default () => {
               <p>Slide contents</p>
             </Slide>
           `}
-          {ts`
+          {ts.hl`
             function Slide(props) {
               return (
                 <section className="slide">
@@ -389,7 +389,7 @@ export default () => {
         )}
       >
         <Definition title="useEffect hook">
-          {ts`
+          {ts.hl`
             useEffect(callback, [...dependencies]);
           `}
           <p>
@@ -397,7 +397,7 @@ export default () => {
             be a <strong>synchronous</strong> function.
           </p>
         </Definition>
-        {ts`
+        {ts.hl`
           function Counter() {
             const [count, setCount] = useState(0);
 
@@ -420,7 +420,7 @@ export default () => {
         </Remark>
       </Slide>
       <Slide title="Example: data fetching">
-        {ts`
+        {ts.hl`
           async fetchTodoList() {
             // ...
           }

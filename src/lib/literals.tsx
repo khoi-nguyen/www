@@ -44,3 +44,10 @@ export const svelte = {
   jupyter: jupyter({ lang: 'svelte' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="svelte" code={code} />),
 }
+
+export const js = {
+  run: createLiteral<JSX.Element>((code) => <Javascript>{code}</Javascript>),
+  hl: createLiteral<JSX.Element>((code) => <Editor lang="tsx" readOnly code={code} />),
+}
+
+export const ts = js

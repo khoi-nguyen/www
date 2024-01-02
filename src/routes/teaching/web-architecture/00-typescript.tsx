@@ -19,7 +19,7 @@ export default () => {
         </ul>
       </Slide>
       <Slide title="TypeScript">
-        {ts`
+        {ts.hl`
           type Penguin = {
             name: string;
             age: number;
