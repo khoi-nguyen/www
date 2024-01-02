@@ -1,6 +1,6 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js'
 
-interface JupyterProps {
+export interface JupyterProps {
   children: JSX.Element
 
   /** Show results in an adjacent column if true */
