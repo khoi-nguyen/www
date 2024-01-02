@@ -9,7 +9,7 @@ export default () => {
           <code>fetch</code>). Pour ne pas bloquer le main thread, elles retournent une{' '}
           <strong>promesse de réponse</strong>.
         </p>
-        {js`
+        {js.hl`
           const value = fetch('nguyen.me.uk') // value est une promesse
         `}
         <p>
@@ -24,7 +24,7 @@ export default () => {
           <strong>résultat</strong> de la promesse. La fonction elle-même est modifiée pour
           retourner une promesse.
         </p>
-        {js`
+        {js.hl`
           async function fetchPlanet(id) {
             const res = await fetch('https://laboweb.ecam.be/planet/' + id);
             const json = await res.json();
@@ -45,7 +45,7 @@ export default () => {
           </p>
         </Environment>
         <Example title="Créer un utilisateur avec un ORM">
-          {js`
+          {js.hl`
             const user = new User();
             user.update({ name: "Tuxie", language: "es" })
             user.save();
@@ -106,26 +106,26 @@ export default () => {
       </Slide>
       <Slide title="Modèle: utilisation">
         <Example title="Créer une entrée">
-          {js`
+          {js.hl`
             const task = new Task();
             task.update({ task: "Feed Tuxie" });
             await task.save();
           `}
         </Example>
         <Example title="Supprimer une entrée">
-          {js`
+          {js.hl`
             await Task.delete({ task: "Feed Tuxie" });
           `}
         </Example>
         <Example title="Modifier une entrée">
-          {js`
+          {js.hl`
             const task = await Task.load({ id: 3 });
             task.update({ task: "Buy fish" });
             await task.save();
           `}
         </Example>
         <Example title="Lister des entrées">
-          {js`
+          {js.hl`
             const tasks = await Task.loadMany();
           `}
         </Example>
