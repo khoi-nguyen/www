@@ -38,22 +38,20 @@ export default () => {
         )}
         split={false}
       >
-        <Jupyter lang="html" columns>
-          {dedent`
-            <h1>Ceci est un titre</h1>
-            <p class="lead">Bonjour, ceci est un paragraphe</p>
-            <p>Ceci est un autre paragraphe.</p>
+        {jupyter({ lang: 'html', columns: true })`
+          <h1>Ceci est un titre</h1>
+          <p class="lead">Bonjour, ceci est un paragraphe</p>
+          <p>Ceci est un autre paragraphe.</p>
 
-            <style>
-              h1 {
-                color: red;
-              }
-              .lead {
-                color: blue;
-              }
-            </style>
-          `}
-        </Jupyter>
+          <style>
+            h1 {
+              color: red;
+            }
+            .lead {
+              color: blue;
+            }
+          </style>
+        `}
       </Slide>
     </Slideshow>
   )
