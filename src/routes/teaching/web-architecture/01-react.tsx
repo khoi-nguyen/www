@@ -132,20 +132,18 @@ export default () => {
         </ol>
       </Slide>
       <Slide title="React: a first example">
-        <Jupyter lang="react">
-          {dedent`
-            function App() {
-              const [count, setCount] = useState(0);
-              const increaseCount = () => setCount(count + 1);
+        {react.jupyter`
+          function App() {
+            const [count, setCount] = useState(0);
+            const increaseCount = () => setCount(count + 1);
 
-              return (
-                <button onClick={increaseCount}>
-                  Count: {count}
-                </button>
-              );
-            }
-          `}
-        </Jupyter>
+            return (
+              <button onClick={increaseCount}>
+                Count: {count}
+              </button>
+            );
+          }
+        `}
         <Question>
           <p>
             Why do we need <code>setCount</code>?
@@ -157,20 +155,18 @@ export default () => {
           I highly encourage you to have a look at other frameworks. Svelte is known for being
           extremely readable.
         </p>
-        <Jupyter lang="svelte">
-          {dedent`
-            <script>
-              let count = 0;
-              function increaseCount() {
-                count += 1;
-              }
-            </script>
+        {svelte.jupyter`
+          <script>
+            let count = 0;
+            function increaseCount() {
+              count += 1;
+            }
+          </script>
 
-            <button on:click={increaseCount}>
-              Count: {count}
-            </button>
-          `}
-        </Jupyter>
+          <button on:click={increaseCount}>
+            Count: {count}
+          </button>
+        `}
       </Slide>
       <Slide title={() => <Abbr key="JSX" />} split={false}>
         <p>
@@ -180,13 +176,11 @@ export default () => {
         <p>
           A tool called <a href="https://babeljs.io">Babel</a> compiles it to Javascript.
         </p>
-        <Jupyter lang="react" transpileOnly columns>
-          {dedent`
-            <MyButton shadowSize={2} onClick={() => alert('click')}>
-              <strong>Click Me</strong>
-            </MyButton>
-          `}
-        </Jupyter>
+        {jupyter({ lang: 'react', transpileOnly: true, columns: true })`
+          <MyButton shadowSize={2} onClick={() => alert('click')}>
+            <strong>Click Me</strong>
+          </MyButton>
+        `}
       </Slide>
       <Slide
         title={() => (
@@ -286,22 +280,20 @@ export default () => {
               increases every second.
             </p>
           </Exercise>
-          <Javascript mode="svelte">
-            {dedent`
-              <script>
-                import moment from 'moment'
-                let count = 0
-                let time = ''
-                setInterval(() => {
-                  count += 1
-                  time = moment().format('LTS')
-                }, 1000)
-              </script>
+          {svelte.run`
+            <script>
+              import moment from 'moment'
+              let count = 0
+              let time = ''
+              setInterval(() => {
+                count += 1
+                time = moment().format('LTS')
+              }, 1000)
+            </script>
 
-              <p>It is {time}</p>
-              <p>Count: {count}</p>
-            `}
-          </Javascript>
+            <p>It is {time}</p>
+            <p>Count: {count}</p>
+          `}
           <Remark>
             <p>
               Unless you've done some React before, your first attempt will most likely be wrong.
