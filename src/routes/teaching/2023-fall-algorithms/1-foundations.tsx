@@ -114,7 +114,7 @@ export default () => (
       </Fragment>
       <Fragment index={2}>
         <Jupyter>
-          {py`
+          {py.raw`
             right_hand = [3, 7, 4, 1, 2, 7, 3]
             left_hand = []
 
@@ -133,7 +133,7 @@ export default () => (
       </p>
       <Jupyter>
         {insertionSort}
-        {py`
+        {py.raw`
           insertion_sort([3, 7, 8, 1, 2, 7, 3])
         `}
       </Jupyter>
@@ -187,7 +187,7 @@ export default () => (
         We are interested in {tex`T(n)`}, where {tex`T`} is the <strong>time</strong> an algorithm
         takes to solve a problem of <strong>size</strong> {tex`n`}.
       </p>
-      {plot`
+      {py.plot`
         x = np.arange(0.0, 100, 1)
         y = 2 * x**2
         z = 2 * x ** 2 - 4 * x + 10
@@ -222,7 +222,7 @@ export default () => (
       <p>
         As an <strong>abuse of notation</strong>, we shall write {tex`f(n) = \bigo(n)`}.
       </p>
-      {plot`
+      {py.plot`
         x = np.arange(0.0, 30, 0.1)
         f = x ** 2 + 5 * np.sin(3 * x) * x
         g = 1.4 * x ** 2
@@ -245,7 +245,7 @@ export default () => (
       <p>
         As an <strong>abuse of notation</strong>, we shall write {tex`f(n) = \bigtheta(n)`}.
       </p>
-      {plot`
+      {py.plot`
         x = np.arange(0.0, 30, 0.1)
         f = x ** 2 + 5 * np.sin(3 * x) * x
         g = 1.4 * x ** 2
@@ -300,7 +300,7 @@ export default () => (
       </Exercise>
       <div>
         <Jupyter>
-          {py`
+          {py.raw`
             # Type your code here
             # if you're too lazy to start your text editor
             4 + 7
@@ -341,7 +341,7 @@ export default () => (
     <Slide title="Merge sort">
       <Jupyter>
         {mergeSort}
-        {py`
+        {py.raw`
 
           merge_sort([2, -1, 3, -4, 7, 3, 1])
         `}
@@ -362,13 +362,13 @@ export default () => (
       <div>
         <h2>Insertion sort</h2>
         <Jupyter>
-          {py`
+          {py.raw`
             import time
             start = time.time()
 
           `}
           {insertionSort}
-          {py`
+          {py.raw`
 
             for i in range(10**6):
                 A = [1, 4, 3, 2, 7, 3, 6]
@@ -381,13 +381,13 @@ export default () => (
       <div>
         <h2>Merge sort</h2>
         <Jupyter>
-          {py`
+          {py.raw`
             import time
             start = time.time()
 
           `}
           {mergeSort}
-          {py`
+          {py.raw`
 
             for i in range(10**6):
                 A = [1, 4, 3, 2, 7, 3, 6]
@@ -565,7 +565,7 @@ export default () => (
         The real quicksort is <strong>in place</strong>. Here, we use the first element as pivot.
       </p>
       <Jupyter>
-        {py`
+        {py.raw`
           def quicksort(A):
               if len(A) <= 1:
                   return A
@@ -593,7 +593,7 @@ export default () => (
     </Slide>
     <Slide title="In-place partitioning" cite={['clrs', 'p. 184']}>
       <Jupyter>
-        {py`
+        {py.raw`
           def quicksort(A, start, end):
               if len(A[start:end]) <= 1:
                   return None
@@ -718,7 +718,7 @@ export default () => (
           `}
         </Problem>
         <Jupyter>
-          {py`
+          {py.raw`
             def closest_pair(p):
                 min_distance = float('inf')
                 pair = []
@@ -822,7 +822,7 @@ export default () => (
     </Slide>
     <Slide title="Counting sort: Python implementation">
       <Jupyter solution={countingSort + '\ncounting_sort([0, 4, 3, 2, 7, 3, 4], 10)'}>
-        {py`
+        {py.raw`
           def counting_sort(A, k):
               pass
 
@@ -864,7 +864,7 @@ export default () => (
         </p>
       </Exercise>
       <Jupyter>
-        {py`
+        {py.raw`
           def last_digit_sort(A):
               pass
         `}
@@ -884,7 +884,7 @@ export default () => (
     <Slide title="Stable counting sort">
       <Jupyter>
         {stableCountingSort}
-        {py`
+        {py.raw`
           key = lambda x: x % 10
           stable_counting_sort([31, 27, 49, 27, 43], key, 10)
         `}
@@ -1038,7 +1038,7 @@ export default () => (
     </Slide>
     <Slide title="FFT in Python">
       <Editor>
-        {py`
+        {py.raw`
           from math import pi
 
           def fft(x, N, s):

@@ -146,7 +146,7 @@ export default () => {
       </Slide>
       <Slide title="PageRank: solution" columns>
         <Editor>
-          {py`
+          {py.raw`
             import pandas as pd
             from scipy import sparse
             from numpy import array, sqrt, argmax
@@ -165,7 +165,7 @@ export default () => {
           `}
         </Editor>
         <Editor>
-          {py`
+          {py.raw`
             # Adjacency matrix
             I, J, V = [], [], []
             for link in links.iterrows():
@@ -229,7 +229,7 @@ export default () => {
           <p>Write an algorithm that perform breadth-first search from a given source node s.</p>
         </Exercise>
         <Editor>
-          {py`
+          {py.raw`
             V = [0, 1, 2]
             Adj = {
               0: [1, 2],
@@ -258,7 +258,7 @@ export default () => {
             node.
           </p>
           <Editor
-            solution={py`
+            solution={py.raw`
               def BFS(s, Adj):
                 level = {s: 0}
                 i = 1
@@ -277,7 +277,7 @@ export default () => {
             `}
             hideUntil={new Date('2023-10-20')}
           >
-            {py`
+            {py.raw`
               def BFS(s, Adj):
                 level = {s: 0}
                 i = 1
@@ -311,7 +311,7 @@ export default () => {
           <p>Implement DFS, when you're given the set of vertices and an adjacency list.</p>
         </Exercise>
         <Editor
-          solution={py`
+          solution={py.raw`
             parent = {}
 
             def DFS_visit(Adj, s):
@@ -327,7 +327,7 @@ export default () => {
                       DFS_visit(Adj, s)
           `}
         >
-          {py`
+          {py.raw`
           `}
         </Editor>
       </Slide>
@@ -354,7 +354,7 @@ export default () => {
           <li>Careful not to repeat</li>
         </ul>
         <Editor>
-          {py`
+          {py.raw`
             parent = {}
 
             def DFS_visit(Adj, s):
@@ -373,7 +373,7 @@ export default () => {
       </Slide>
       <Slide title="Sudoku: solution" split={false}>
         <Jupyter>
-          {py`
+          {py.raw`
             def sudoku(grid):
                 if 0 not in grid:
                     return grid
@@ -471,7 +471,7 @@ export default () => {
           <p>Modify DFS to implement topological sort</p>
         </Exercise>
         <Editor
-          solution={py`
+          solution={py.raw`
             parent = {}
             topologically_sorted = []
 
@@ -490,7 +490,7 @@ export default () => {
           `}
           hideUntil={new Date('2023-10-25')}
         >
-          {py`
+          {py.raw`
             parent = {}
 
             def DFS_visit(Adj, s):
@@ -695,7 +695,7 @@ export default () => {
       </Slide>
       <Slide title="Greedy Generic MST algorithm">
         <pre>
-          {py`
+          {py.raw`
             A = {}
             while A is not spanning:
                 find safe edge e
@@ -723,7 +723,7 @@ export default () => {
       </Slide>
       <Slide title="Prim's Algorithm: Python implementation">
         <Jupyter
-          solution={py`
+          solution={py.raw`
             import heapq
             def MST(V, adj):
                 pq = [] # (weight, vertex)
@@ -742,7 +742,7 @@ export default () => {
                 return total_weight
           `}
         >
-          {py`
+          {py.raw`
             import heapq
             def MST(V, adj):
                 pq = [] # (weight, vertex)
@@ -789,7 +789,7 @@ export default () => {
       </Slide>
       <Slide title="Union-Find structure: Python implementation">
         <Jupyter>
-          {py`
+          {py.raw`
             class UnionFind:
                 def __init__(self, n):
                     self.parent = list(range(n))
@@ -809,7 +809,7 @@ export default () => {
       </Slide>
       <Slide title="Kruskal's implementation">
         <Jupyter
-          before={py`
+          before={py.raw`
             class UnionFind:
                 def __init__(self, n):
                     self.parent = list(range(n))
@@ -825,7 +825,7 @@ export default () => {
                     if root_x != root_y:
                         self.parent[root_x] = root_y
           `}
-          solution={py`
+          solution={py.raw`
             def kruskal(edges, n):
                 edges.sort(key=lambda edge: edge[2])
                 mst = []
@@ -840,7 +840,7 @@ export default () => {
           `}
           hideUntil={new Date('2023-11-10')}
         >
-          {py`
+          {py.raw`
             def kruskal(edges, n):
                 pass
           `}

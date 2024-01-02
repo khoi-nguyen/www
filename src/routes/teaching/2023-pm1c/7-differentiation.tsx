@@ -96,7 +96,7 @@ export default () => {
           droite.
         </p>
         <Python>
-          {py`
+          {py.raw`
             import matplotlib.pyplot as plt
             import numpy as np
             x = np.linspace(0.5, 10, 1000)
@@ -161,7 +161,7 @@ export default () => {
           `}
         </Theorem>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x = Symbol("x")
             y = x**2 * sin(x)
@@ -226,7 +226,7 @@ export default () => {
           </ul>
         </Definition>
         <Python>
-          {py`
+          {py.raw`
             import matplotlib.pyplot as plt
             import numpy as np
             x = np.linspace(0.5, 10, 1000)
@@ -274,7 +274,7 @@ export default () => {
           </ol>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x = Symbol("x")
             y = x**2 - 2*x - 24*sqrt(x)

@@ -25,7 +25,7 @@ export default () => {
           {tex`\vec {AB}`}.
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             A = np.array([2, -3, 4])
             B = np.array([-2, 1, 1])
@@ -63,7 +63,7 @@ export default () => {
           </p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             a = np.array([4, 0, 3])
             b = np.array([-2, 1, 5])
@@ -109,7 +109,7 @@ export default () => {
           <p>Trouve le vecteur unitaire dans la direction de {tex`2 \vec i - \vec j - 2 \vec k`}</p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             a = np.array([2, -1, -2])
             norm = np.linalg.norm(a)
@@ -144,7 +144,7 @@ export default () => {
           </p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             np.dot(np.array([-1, 7, 4]), np.array([6, 2, -1/2]))
           `}
@@ -167,7 +167,7 @@ export default () => {
           </p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             a = np.array([2, 2, -1])
             b = np.array([5, -3, 2])
@@ -186,7 +186,7 @@ export default () => {
           </p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             np.dot(np.array([2, 2, -1]), np.array([5, -4, 2]))
           `}
@@ -211,7 +211,7 @@ export default () => {
           </p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             b = np.array([1, 1, 2])
             a = np.array([-2, 3, 1])
@@ -242,7 +242,7 @@ export default () => {
           </p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             a = np.array([1, 3, 4])
             b = np.array([2, 7, -5])
@@ -282,7 +282,7 @@ export default () => {
           <p>Trouve l'aire du triangle passant par les points mentionnés ci-dessus</p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             P = np.array([1, 4, 6])
             Q = np.array([-2, 5, -1])
@@ -339,7 +339,7 @@ export default () => {
           </p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             import numpy as np
             a = np.array([1, 4, -7])
             b = np.array([2, -1, 4])

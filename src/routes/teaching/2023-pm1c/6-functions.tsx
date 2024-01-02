@@ -71,7 +71,7 @@ export default () => {
           f(x) = \frac {x^3 - x} {x - 1}
         `}
         <Python>
-          {py`
+          {py.raw`
             import matplotlib.pyplot as plt
             import numpy as np
             x = np.linspace(0.9, 1.1, 1000)
@@ -168,7 +168,7 @@ export default () => {
           `}
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x = Symbol("x")
             limit((x - 1) / (x**2 - 1), x, 1)

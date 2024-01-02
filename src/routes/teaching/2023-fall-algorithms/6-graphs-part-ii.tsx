@@ -35,7 +35,7 @@ export default () => {
       </Slide>
       <Slide title="Dijkstra's algorithm">
         <Jupyter
-          solution={py`
+          solution={py.raw`
             def dijkstra(V, adj, w, s):
                 distances = { u: 0 if s == u else float('inf') for u in V }
                 pq = [(0, s)]
@@ -52,7 +52,7 @@ export default () => {
           `}
           hideUntil={new Date('2023-11-15')}
         >
-          {py`
+          {py.raw`
             def dijkstra(V, adj, w, s):
                 distances = { u: 0 if s == u else float('inf') for u in V }
                 pq = [(0, s)]
@@ -105,7 +105,7 @@ export default () => {
         </Exercise>
         <p>Apply A* to the graph below:</p>
         <Editor>
-          {py`
+          {py.raw`
             V = ['JFK', 'SFO', 'ORL', 'LAX', 'DFW']
             adj = {
               'JFK': [('SFO',1), ('LAX',2)],
@@ -156,7 +156,7 @@ export default () => {
           </p>
         </Exercise>
         <Jupyter
-          solution={py`
+          solution={py.raw`
             def bellman_ford(V, E, s):
                 d = { u: 0 if u == s else float('inf') for u in V }
                 for i in range(len(V) - 1):
@@ -169,7 +169,7 @@ export default () => {
           `}
           hideUntil={new Date('2023-11-17')}
         >
-          {py`
+          {py.raw`
             def bellman_ford(V, E, s):
                 d = { u: 0 if u == s else float('inf') for u in V }
                 for i in range(len(V) - 1):
@@ -241,7 +241,7 @@ export default () => {
           </p>
         </Exercise>
         <Jupyter
-          solution={py`
+          solution={py.raw`
             def bellman_ford(V, E, s):
                 d = { u: 0 if u == s else float('inf') for u in V }
                 for i in range(len(V) - 1):
@@ -254,7 +254,7 @@ export default () => {
           `}
           hideUntil={new Date('2023-11-17')}
         >
-          {py`
+          {py.raw`
             def bellman_ford(V, E, s):
                 pass
           `}
@@ -303,7 +303,7 @@ export default () => {
       </Slide>
       <Slide title="Python implementation of the first attempt">
         <Jupyter
-          solution={py`
+          solution={py.raw`
             cache = {}
             V = [] # set of vertices
             def APSP(u, v, k):
@@ -320,7 +320,7 @@ export default () => {
           `}
           hideUntil={new Date('2023-11-18')}
         >
-          {py`
+          {py.raw`
             cache = {}
             def APSP(u, v, k):
                 if (u, v, k) in cache:
@@ -387,7 +387,7 @@ export default () => {
       </Slide>
       <Slide title="Python implementation of Floyd-Warshall">
         <Jupyter
-          solution={py`
+          solution={py.raw`
             V = []
             adj = {}
             w = {} # w[(u, v)]
@@ -406,7 +406,7 @@ export default () => {
           `}
           hideUntil={new Date('2023-11-18')}
         >
-          {py`
+          {py.raw`
             V = []
             adj = {}
             w = {} # w[(u, v)]

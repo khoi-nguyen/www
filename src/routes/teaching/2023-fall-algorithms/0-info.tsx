@@ -40,7 +40,7 @@ export default () => (
         or click the icon on the left.
       </p>
       <Jupyter>
-        {py`
+        {py.raw`
           0.1 * 0.1 == 0.01
         `}
       </Jupyter>
@@ -165,7 +165,7 @@ export default () => (
             integers, it results a the digits of the product of the two numbers associated with the
             arrays.
             <Code>
-              {py`
+              {py.raw`
                 karatsuba([1, 3], [1, 2]) # returns [1, 5, 6]
               `}
             </Code>
@@ -178,7 +178,7 @@ export default () => (
             Use your Karatsuba implementation and a <em>divide-and-conquer</em> approach to write an
             algorithm that computes the {tex`n`}th power of a number. You may not use
             <Code>
-              {py`
+              {py.raw`
                 power([1, 3, 4, 2], 2) # return 1342**2
               `}
             </Code>
@@ -215,7 +215,7 @@ export default () => (
             integers, it results a the digits of the product of the two numbers associated with the
             arrays.
             <Code>
-              {py`
+              {py.raw`
                 karatsuba([1, 3], [1, 2]) # returns [1, 5, 6]
               `}
             </Code>
@@ -228,7 +228,7 @@ export default () => (
             Use your Karatsuba implementation and a <em>divide-and-conquer</em> approach to write an
             algorithm that computes the {tex`n`}th power of a number. You may not use
             <Code>
-              {py`
+              {py.raw`
                 power([1, 3, 4, 2], 2) # return 1342**2
               `}
             </Code>

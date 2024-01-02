@@ -14,7 +14,7 @@ export default () => {
         </Exercise>
         <Jupyter
           hideUntil={new Date('2023-09-22')}
-          solution={py`
+          solution={py.raw`
             def fibonacci(n):
                 if n <= 1:
                     return 1
@@ -23,7 +23,7 @@ export default () => {
             fibonacci(4)
           `}
         >
-          {py`
+          {py.raw`
             def fibonacci(n):
                 pass
 
@@ -51,7 +51,7 @@ export default () => {
         </Exercise>
         <Jupyter
           hideUntil={new Date('2023-09-01')}
-          solution={py`
+          solution={py.raw`
             memo = {}
             def fibonacci(n):
                 if n in memo:
@@ -65,7 +65,7 @@ export default () => {
             fibonacci(50)
           `}
         >
-          {py`
+          {py.raw`
             def fibonacci(n):
                 pass
 
@@ -81,7 +81,7 @@ export default () => {
           In practice, there is a <strong>decorator</strong> that does all the work for you.
         </p>
         <Jupyter>
-          {py`
+          {py.raw`
             import functools
 
             @functools.cache
@@ -103,7 +103,7 @@ export default () => {
         </Question>
         <Jupyter
           hideUntil={new Date('2023-09-22')}
-          solution={py`
+          solution={py.raw`
             def fibonacci(n):
                 a, b, f = 0, 1, 0
                 for k in range(n):
@@ -114,7 +114,7 @@ export default () => {
             fibonacci(50)
           `}
         >
-          {py`
+          {py.raw`
             def fibonacci(n):
                 pass
 
@@ -177,7 +177,7 @@ export default () => {
         </p>
         <Jupyter
           hideUntil={new Date('2023-09-22')}
-          solution={py`
+          solution={py.raw`
             price = [0, 1, 10, 13, 18, 20, 31, 32]
 
             def cut_rod(n):
@@ -191,7 +191,7 @@ export default () => {
             cut_rod(7)
         `}
         >
-          {py`
+          {py.raw`
             price = [0, 1, 10, 13, 18, 20, 31, 32]
 
             def cut_rod(n):
@@ -211,7 +211,7 @@ export default () => {
           </p>
         </Exercise>
         <Jupyter>
-          {py`
+          {py.raw`
             def cut_rod(n):
                 r = [0]
                 # Solve cut_rod(j)
@@ -337,7 +337,7 @@ export default () => {
           <p>Write a top-down implementation of LCS</p>
         </Exercise>
         <Jupyter
-          solution={py`
+          solution={py.raw`
             import functools
 
             @functools.cache
@@ -352,7 +352,7 @@ export default () => {
           `}
           hideUntil={new Date('2023-09-27')}
         >
-          {py`
+          {py.raw`
             def lcs(X, Y):
                 pass
 
@@ -422,7 +422,7 @@ export default () => {
           <p>Below is a bottom-up implementation of LCS. What's its time complexity?</p>
         </Exercise>
         <Jupyter>
-          {py`
+          {py.raw`
             def lcs(X, Y):
                 m, n = len(X), len(Y)
                 C = [[0] * (n + 1)]
@@ -508,7 +508,7 @@ export default () => {
           <p>Change the implementation so it actually computes the LCS and not only its length.</p>
         </Exercise>
         <Jupyter>
-          {py`
+          {py.raw`
             def lcs(X, Y):
                 m, n = len(X), len(Y)
                 C = [[0] * (n + 1)]
@@ -659,7 +659,7 @@ export default () => {
         </Exercise>
         <Jupyter
           hideUntil={new Date('2023-09-29')}
-          solution={py`
+          solution={py.raw`
             from functools import cache
 
             w = [1, 2, 5, 6, 7]
@@ -678,7 +678,7 @@ export default () => {
             knapsack(4, 11)
         `}
         >
-          {py`
+          {py.raw`
             from functools import cache
 
             w = [1, 2, 5, 6, 7]
@@ -749,7 +749,7 @@ export default () => {
         </Exercise>
         <Jupyter
           hideUntil={new Date('2023-09-29')}
-          solution={py`
+          solution={py.raw`
             w = [1, 2, 5, 6, 7]
             v = [1, 6, 18, 22, 28]
             W, n = 11, len(w)
@@ -764,7 +764,7 @@ export default () => {
             M[-1][-1]
           `}
         >
-          {py`
+          {py.raw`
             w = [1, 2, 5, 6, 7]
             v = [1, 6, 18, 22, 28]
             W, n = 11, len(w)

@@ -68,7 +68,7 @@ export default () => {
       <Slide title="DP solution">
         <Jupyter
           hideUntil={new Date('2023-10-04')}
-          solution={py`
+          solution={py.raw`
             import functools
             a = [[1, 3], [2, 4], [3, 5]]
 
@@ -85,7 +85,7 @@ export default () => {
             c(lambda x: True)
           `}
         >
-          {py`
+          {py.raw`
             import functools
             a = [[1, 3], [2, 4], [3, 5]]
 
@@ -130,7 +130,7 @@ export default () => {
           <p>Implement a greedy version of the interval scheduling problem</p>
         </Exercise>
         <Jupyter
-          solution={py`
+          solution={py.raw`
             a = [[1, 3], [3, 5], [2, 4]]
             a.sort(key=lambda x: x[1])
 
@@ -143,7 +143,7 @@ export default () => {
             selection
           `}
         >
-          {py`
+          {py.raw`
             a = [[1, 3], [3, 5], [2, 4]]
           `}
         </Jupyter>
@@ -175,7 +175,7 @@ export default () => {
         <div>
           <Jupyter
             hideUntil={new Date('2023-10-03')}
-            solution={py`
+            solution={py.raw`
               def can_jump(array):
                   if not array:
                       return True
@@ -187,7 +187,7 @@ export default () => {
                   return max_distance >= len(array) - 1
             `}
           >
-            {py`
+            {py.raw`
               def can_jump(array):
                   pass
             `}
@@ -382,7 +382,7 @@ export default () => {
       </Slide>
       <Slide title="Min-Heaps in Python's standard library">
         <Editor>
-          {py`
+          {py.raw`
             import heapq
 
             # Transform list into heap in O(n)
@@ -402,7 +402,7 @@ export default () => {
           </p>
         </Question>
         <Jupyter>
-          {py`
+          {py.raw`
             import heapq
             S = [100, 4, 7, 10, 3, 2, 0]
             heapq.heapify(S)
@@ -413,7 +413,7 @@ export default () => {
       <Slide title="Huffman encoding: implementation">
         <Jupyter>
           {treeNode}
-          {py`
+          {py.raw`
             a = Node(0.1, 'a')
             a.left, a.right = Node(0.1, 'b'), Node(0.1, 'c')
             list(a.encode())
@@ -429,7 +429,7 @@ export default () => {
         <Jupyter
           before={treeNode}
           hideUntil={new Date('2023-10-06')}
-          solution={py`
+          solution={py.raw`
             import heapq
 
             freq = {}
@@ -451,7 +451,7 @@ export default () => {
             list(pq[0].encode())
           `}
         >
-          {py`
+          {py.raw`
             import heapq
 
             freq = {}

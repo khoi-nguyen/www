@@ -159,7 +159,7 @@ export default () => {
             pas à expérimenter!
           </p>
           <Jupyter>
-            {py`
+            {py.raw`
               from sympy import *
               [60 * pi / 180, 5 * pi / 4 * 180 / pi]
             `}
@@ -217,7 +217,7 @@ export default () => {
           </p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             # Set up L = r theta
             from sympy import *
             L, r, theta = symbols("L r theta")

@@ -19,7 +19,7 @@ export default () => (
     <Slide title="Divide and conquer">
       <p>Divide and conquer with arrays. Note that strings are arrays too.</p>
       <Editor>
-        {py`
+        {py.raw`
           def divide_and_conquer(A):
               # Base cases: A = [], A = [x]
               # TODO: complete
@@ -37,7 +37,7 @@ export default () => (
     </Slide>
     <Slide title="Dynamic programming">
       <Editor>
-        {py`
+        {py.raw`
           cache = {}
           def DP(*args):
               # Check cache
@@ -72,7 +72,7 @@ export default () => (
         <a href="https://leetcode.com/problems/find-the-town-judge/">Leetcode</a>
       </p>
       <Jupyter>
-        {py`
+        {py.raw`
         `}
       </Jupyter>
     </Slide>
@@ -81,7 +81,7 @@ export default () => (
         <a href="https://leetcode.com/problems/find-center-of-star-graph/">Leetcode</a>
       </p>
       <Jupyter>
-        {py`
+        {py.raw`
         `}
       </Jupyter>
     </Slide>
@@ -90,7 +90,7 @@ export default () => (
         <a href="https://leetcode.ca/all/1135.html">Leetcode</a>
       </p>
       <Jupyter>
-        {py`
+        {py.raw`
         `}
       </Jupyter>
     </Slide>

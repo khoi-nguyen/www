@@ -39,7 +39,7 @@ export default () => (
         .
       </p>
       <Jupyter run>
-        {py`
+        {py.raw`
           import matplotlib.pyplot as plt
           from numpy import *
           ax = plt.figure().add_subplot(projection='3d')
@@ -69,7 +69,7 @@ export default () => (
         </p>
       </Example>
       <Jupyter>
-        {py`
+        {py.raw`
           from sympy import *
           t = Symbol("t")
           r = Matrix([1 + t**3, t * exp(-t), sin(t) / t])
@@ -108,7 +108,7 @@ export default () => (
         </ol>
       </Example>
       <Jupyter>
-        {py`
+        {py.raw`
           from sympy import *
           t = Symbol("t")
           r = Matrix([1 + t**3, t * exp(-t), sin(2*t)])
@@ -152,7 +152,7 @@ export default () => (
         `}
       </Example>
       <Jupyter>
-        {py`
+        {py.raw`
           from sympy import *
           t = symbols("t")
           r = Matrix([2 * cos(t), sin(t), 2 * t])

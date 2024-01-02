@@ -5,7 +5,7 @@ export default () => {
     <Slideshow meta={meta}>
       <Slide title="Pente d'une droite">
         <Python>
-          {py`
+          {py.raw`
             import matplotlib.pyplot as plt
             import numpy as np
             x = np.linspace(0, 5, 10)
@@ -29,7 +29,7 @@ export default () => {
       </Slide>
       <Slide title="Pente et croissance">
         <Python>
-          {py`
+          {py.raw`
             import matplotlib.pyplot as plt
             import numpy as np
             x = np.linspace(0, 5, 10)
@@ -89,7 +89,7 @@ export default () => {
           </ul>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x, y, m, p = symbols("x y m p")
             line = Eq(y, 3 * x + p) 

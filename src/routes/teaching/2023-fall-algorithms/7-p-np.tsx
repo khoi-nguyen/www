@@ -17,7 +17,7 @@ export default () => (
         </p>
       </Remark>
       <Jupyter>
-        {py`
+        {py.raw`
           from math import factorial
           factorial(14)
         `}

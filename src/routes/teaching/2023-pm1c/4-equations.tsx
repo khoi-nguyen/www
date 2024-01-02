@@ -11,7 +11,7 @@ export default () => {
           `}
         </Proposition>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             a, b = symbols("a b")
             expand((a + b) ** 2)
@@ -32,7 +32,7 @@ export default () => {
           </ol>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x = Symbol("x")
             solve(Eq(3 * x + 7, 11))
@@ -53,7 +53,7 @@ export default () => {
           `}
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x = Symbol("x")
             solve((x + 2) * (x ** 2 - 9) * (exp(x) - 4))
@@ -69,7 +69,7 @@ export default () => {
           `}
         </Proposition>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x, alpha, beta = symbols("x alpha beta")
             expand((x + alpha) * (x + beta))
@@ -84,7 +84,7 @@ export default () => {
           </ol>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x = Symbol("x")
             factor(x ** 2 + 5 * x + 6)
@@ -129,7 +129,7 @@ export default () => {
           <p>possède une solution, trouver la valeur de {tex`k`}.</p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             k = Symbol("k")
             a, b, c = k, 4 * k + 1, 3 * k + 1
@@ -158,7 +158,7 @@ export default () => {
           `}
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x, y = symbols("x y")
             solve([Eq(y, 2 * x - 3), Eq(x**2 + y**2, 2)], [x, y])
@@ -176,7 +176,7 @@ export default () => {
           `}
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x, y, z = symbols("x y z")
             solve([
@@ -203,7 +203,7 @@ export default () => {
           `}
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x, y, z, m = symbols("x y z m")
             solve([
@@ -225,7 +225,7 @@ export default () => {
           `}
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x, y, z, a = symbols("x y z a")
             solve([
@@ -253,7 +253,7 @@ export default () => {
         </div>
         <div>
           <Jupyter>
-            {py`
+            {py.raw`
               import matplotlib.pyplot as plt
               import numpy as np
               x = np.linspace(-5, 5, 100)

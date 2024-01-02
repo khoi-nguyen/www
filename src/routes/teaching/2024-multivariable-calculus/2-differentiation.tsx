@@ -103,7 +103,7 @@ export default () => (
     </Slide>
     <Slide title="Descente de gradient">
       <Jupyter>
-        {py`
+        {py.raw`
           from sympy import *
           x, y = symbols("x y")
           f = x**2 + y**2

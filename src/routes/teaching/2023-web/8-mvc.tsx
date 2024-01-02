@@ -61,7 +61,7 @@ export default () => {
       <Slide title="Un ORM simple">
         <Instruction pluralize>
           <Editor lang="bash">
-            {py`
+            {py.raw`
               git clone https://github.com/khoi-nguyen/LW3L-orm
               npm install
               npm run dev
@@ -80,7 +80,7 @@ export default () => {
           informations
         </p>
         <Editor>
-          {py`
+          {py.raw`
             class Model {
               static table = "";
               static primary = [];
@@ -91,7 +91,7 @@ export default () => {
           Ceci se fait par l'<strong>héritage</strong>:
         </p>
         <Editor>
-          {py`
+          {py.raw`
             class Task extends Model {
               static table = "schema.tasks";
               static primary = ["id"];

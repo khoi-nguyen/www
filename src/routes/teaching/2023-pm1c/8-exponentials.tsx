@@ -99,7 +99,7 @@ export default () => {
           <p>Le membre de droite est calculable par un ordinateur et a un sens sur les complexes</p>
         </Remark>
         <Jupyter>
-          {py`
+          {py.raw`
             from math import factorial
 
             # Calcule une valeur approchée de e^x

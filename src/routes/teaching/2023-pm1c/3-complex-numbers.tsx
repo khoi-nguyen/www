@@ -23,7 +23,7 @@ export default () => {
         </Remark>
         <p>Les règles algébriques des nombres réels sont étendues pour inclure {tex`i`}.</p>
         <Jupyter>
-          {py`
+          {py.raw`
             1j * 1j
           `}
         </Jupyter>
@@ -33,7 +33,7 @@ export default () => {
           <p>Calcule {tex`(-1 + 3i) (2 - 5i)`}</p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             (-1 + 3j) * (2 - 5j)
           `}
         </Jupyter>
@@ -43,7 +43,7 @@ export default () => {
           </p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             simplify((-1 + 3 * I) / (2 + 5 * I))
           `}
@@ -60,7 +60,7 @@ export default () => {
           `}
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             x = Symbol("x")
             solve(x ** 2 + x + 1)
@@ -163,7 +163,7 @@ export default () => {
           `}
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             a = 1
             b = 1
@@ -244,7 +244,7 @@ export default () => {
           <p>Calcule {tex`\left(\frac 1 2 + \frac 1 2 i\right)^{10}`}</p>
         </Example>
         <Jupyter>
-          {py`
+          {py.raw`
             from sympy import *
             z = Rational(1/2) + Rational(1/2) * I
             expand(z ** 10)
