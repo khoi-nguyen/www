@@ -60,17 +60,5 @@ export default () => (
         <a href="https://www.linkedin.com/in/binh-khoi-nguyen/">LinkedIn</a>
       </li>
     </ul>
-    {svelte.jupyter`
-      <script>
-        let count = 0
-        function increaseCount() {
-          count += 1
-        }
-      </script>
-
-      <button on:click={increaseCount}>
-        Count: {count}
-      </button>
-    `}
   </Page>
 )
