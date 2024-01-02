@@ -18,6 +18,15 @@ export function jupyter(props: Omit<JupyterProps, 'children'> = {}) {
 
 export const py = createLiteral<JSX.Element>()
 export const ipy = jupyter()
+export const plot = createLiteral<JSX.Element>((code) => {
+  const imports = 'import matplotlib.pyplot as plt\nimport numpy as np\nax=plt.gca()\n'
+  code = imports + code
+  return (
+    <div class="has-text-centered">
+      <Python>{code}</Python>
+    </div>
+  )
+})
 
 export const tex = createLiteral(
   (code) => <Maths tex={code} display={code.startsWith('\n')} />,
