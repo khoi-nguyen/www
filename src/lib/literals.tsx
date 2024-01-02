@@ -59,6 +59,7 @@ export const ts = js
 
 export const html = {
   run: createLiteral<JSX.Element>((code) => <Html>{code}</Html>),
+  jupyter: jupyter({ lang: 'html' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="html" readOnly code={code} />),
   raw: createLiteral<string>(id),
 }
