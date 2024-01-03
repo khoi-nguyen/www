@@ -36,7 +36,7 @@ export default function Javascript(props: JavascriptProps) {
     if (!ready()) {
       return ''
     }
-    let code = fixImports(props.code ? props.code : String(props.children))
+    let code = fixImports(props.code ? props.code : String(props.children || ''))
     if (props.mode === 'svelte') {
       const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte' })
       return dedent`
