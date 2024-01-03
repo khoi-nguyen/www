@@ -14,7 +14,9 @@ interface EditorProps {
   onKeyDown?: (event: KeyboardEvent) => void
   hideUntil?: Date
   readOnly?: boolean
-  solution?: string
+
+  /** A solution or a solve function */
+  solution?: string | ((solve: boolean) => string)
 }
 
 export default function Editor(props: EditorProps) {
@@ -27,7 +29,7 @@ export default function Editor(props: EditorProps) {
     const CodeJar = await import('codejar')
     const highlight = (element: HTMLElement) => Prism.highlightElement(element)
     editor = CodeJar.CodeJar(textArea, highlight, { tab: '\t', addClosing: false })
-    editor.updateCode(code())
+    editor.updateCode(typeof props.solution === 'function' ? props.solution(false) : code())
     textArea.style.whiteSpace = 'pre'
 
     editor.onUpdate((code: string) => {
@@ -58,7 +60,11 @@ export default function Editor(props: EditorProps) {
   const [admin] = useSession()
   const solve = () => {
     if (props.solution) {
-      editor.updateCode(props.solution)
+      if (typeof props.solution === 'function') {
+        editor.updateCode(props.solution(true))
+      } else {
+        editor.updateCode(props.solution)
+      }
     }
   }
 

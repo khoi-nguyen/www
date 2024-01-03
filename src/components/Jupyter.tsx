@@ -1,7 +1,7 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js'
 
 export interface JupyterProps {
-  children: JSX.Element
+  children?: JSX.Element
 
   /** Show results in an adjacent column if true */
   columns?: boolean
@@ -19,7 +19,7 @@ export interface JupyterProps {
   run?: boolean
 
   /** Add a 'solve' button which changes the code to the solution */
-  solution?: string
+  solution?: string | ((solve: boolean) => string)
 
   /** Only transpile the code, don't run it */
   transpileOnly?: boolean

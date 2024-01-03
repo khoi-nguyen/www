@@ -350,9 +350,7 @@ export default () => {
           </Idea>
         </div>
         <div>
-          <Jupyter lang="react" solution={exercises.clock(true)}>
-            {exercises.clock(false)}
-          </Jupyter>
+          <Jupyter lang="react" solution={exercises.clock} />
         </div>
       </Slide>
       <Slide title="Aside: Svelte and Solidjs" columns>
