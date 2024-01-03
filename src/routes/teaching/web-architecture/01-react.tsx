@@ -1,5 +1,34 @@
 import meta from './01-react.json'
 
+const exercises = {
+  counter: react.raw`
+    function Counter() {
+      const [count, setCount] = useState(0)
+      const increaseCount = () => setCount(count + 1)
+
+      return (
+        <button onClick={increaseCount}>
+          Count: {count}
+        </button>
+      )
+    }
+
+    const App = () => <Counter />
+  `,
+  counterWithSvelte: svelte.raw`
+    <script>
+      let count = 0
+      function increaseCount() {
+        count += 1
+      }
+    </script>
+
+    <button on:click={increaseCount}>
+      Count: {count}
+    </button>
+  `,
+} as const
+
 export default () => {
   return (
     <Slideshow meta={meta}>
@@ -132,18 +161,7 @@ export default () => {
         </ol>
       </Slide>
       <Slide title="React: a first example">
-        {react.jupyter`
-          function App() {
-            const [count, setCount] = useState(0);
-            const increaseCount = () => setCount(count + 1);
-
-            return (
-              <button onClick={increaseCount}>
-                Count: {count}
-              </button>
-            );
-          }
-        `}
+        <Jupyter lang="react">{exercises.counter}</Jupyter>
         <Question>
           <p>
             Why do we need <code>setCount</code>?
@@ -155,18 +173,7 @@ export default () => {
           I highly encourage you to have a look at other frameworks. Svelte is known for being
           extremely readable.
         </p>
-        {svelte.jupyter`
-          <script>
-            let count = 0;
-            function increaseCount() {
-              count += 1;
-            }
-          </script>
-
-          <button on:click={increaseCount}>
-            Count: {count}
-          </button>
-        `}
+        <Jupyter lang="svelte">{exercises.counterWithSvelte}</Jupyter>
       </Slide>
       <Slide title={() => <Abbr key="JSX" />} split={false}>
         <p>
