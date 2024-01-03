@@ -314,7 +314,7 @@ export default () => {
         <div>
           <Jupyter
             lang="react"
-            solution={dedent`
+            solution={react.raw`
               import moment from 'moment'
 
               function App() {
@@ -337,7 +337,7 @@ export default () => {
               }
             `}
           >
-            {dedent`
+            {react.raw`
               import moment from 'moment'
 
               function App() {
@@ -357,7 +357,7 @@ export default () => {
       </Slide>
       <Slide title="Aside: Svelte and Solidjs" columns>
         <Jupyter lang="svelte" run>
-          {dedent`
+          {svelte.raw`
             <script>
               import moment from 'moment'
               let count = 0
