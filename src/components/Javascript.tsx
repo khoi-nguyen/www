@@ -3,7 +3,7 @@ import { transpile } from '~/lib/transpile'
 interface JavascriptProps {
   code?: string
   mode?: 'react' | 'svelte'
-  reactAppName?: string
+  appName?: string
   children?: JSX.Element
   onExecuted?: () => void
 }
@@ -20,7 +20,7 @@ function fixImports(code: string): string {
 }
 
 export default function Javascript(props: JavascriptProps) {
-  props = mergeProps({ reactAppName: 'App' }, props)
+  props = mergeProps({ appName: 'App' }, props)
   const [ready, setReady] = createSignal(false)
   let compile: typeof import('svelte/compiler').compile
 
@@ -57,7 +57,7 @@ export default function Javascript(props: JavascriptProps) {
 
           ${transpile(code)}
           const root = ReactDOM.createRoot(document.getElementById('app'));
-          root.render(React.createElement(${props.reactAppName}, null));
+          root.render(React.createElement(${props.appName}, null));
         </script>
       `
     } else {
