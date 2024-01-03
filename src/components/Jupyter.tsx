@@ -1,18 +1,6 @@
 import { faPlay } from '@fortawesome/free-solid-svg-icons/index.js'
 
-type Languages = {
-  /** Input language */
-  lang?: 'python' | 'html' | 'svelte'
-}
-
-type ReactProps = {
-  lang: 'react'
-
-  /** Only transpile the code, don't run it */
-  transpileOnly?: boolean
-}
-
-export type JupyterProps = {
+export interface JupyterProps {
   children: JSX.Element
 
   /** Show results in an adjacent column if true */
@@ -24,12 +12,18 @@ export type JupyterProps = {
   /** If set, will hide the 'solve' button until a certain date */
   hideUntil?: Date
 
+  /** Input language */
+  lang?: 'python' | 'react' | 'html' | 'svelte'
+
   /** Whether to run the code on mount */
   run?: boolean
 
   /** Add a 'solve' button which changes the code to the solution */
   solution?: string
-} & (ReactProps | Languages)
+
+  /** Only transpile the code, don't run it */
+  transpileOnly?: boolean
+}
 
 export default function Jupyter(props: JupyterProps) {
   props = mergeProps({ lang: 'python' as const }, props)
