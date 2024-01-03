@@ -2,8 +2,6 @@ import { JupyterProps } from '~/components/Jupyter'
 
 type Literal<T> = (strings: TemplateStringsArray, ...values: (string | number)[]) => T
 
-const id = <T,>(x: T) => x
-
 function createLiteral<T>(fn: (str: string) => T, applyDedent = true): Literal<T> {
   return (strings, ...values) => {
     if (applyDedent) {
@@ -14,6 +12,8 @@ function createLiteral<T>(fn: (str: string) => T, applyDedent = true): Literal<T
   }
 }
 
+const raw = createLiteral<string>((x) => x)
+
 export function jupyter(props: Omit<JupyterProps, 'children'> = {}) {
   return createLiteral<JSX.Element>((code) => <Jupyter {...props}>{code}</Jupyter>)
 }
@@ -22,7 +22,7 @@ export const py = {
   run: createLiteral<JSX.Element>((code) => <Python>{code}</Python>),
   jupyter: jupyter(),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="python" readOnly code={code} />),
-  raw: createLiteral<string>(id),
+  raw,
   plot: createLiteral<JSX.Element>((code) => {
     const imports = 'import matplotlib.pyplot as plt\nimport numpy as np\nax=plt.gca()\n'
     code = imports + code
@@ -52,7 +52,7 @@ export const react = {
   run: createLiteral<JSX.Element>((code) => <Javascript mode="react">{code}</Javascript>),
   jupyter: jupyter({ lang: 'react' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="tsx" code={code} />),
-  raw: createLiteral<string>(id),
+  raw,
   if: makeIf,
 }
 
@@ -60,14 +60,14 @@ export const svelte = {
   run: createLiteral<JSX.Element>((code) => <Javascript mode="svelte">{code}</Javascript>),
   jupyter: jupyter({ lang: 'svelte' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="svelte" code={code} />),
-  raw: createLiteral<string>(id),
+  raw,
   if: makeIf,
 }
 
 export const js = {
   run: createLiteral<JSX.Element>((code) => <Javascript>{code}</Javascript>),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="tsx" readOnly code={code} />),
-  raw: createLiteral<string>(id),
+  raw,
   if: makeIf,
 }
 
@@ -77,6 +77,6 @@ export const html = {
   run: createLiteral<JSX.Element>((code) => <Html>{code}</Html>),
   jupyter: jupyter({ lang: 'html' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="html" readOnly code={code} />),
-  raw: createLiteral<string>(id),
+  raw,
   if: makeIf,
 }
