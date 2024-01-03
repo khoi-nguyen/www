@@ -27,19 +27,21 @@ const exercises = {
       Count: {count}
     </button>
   `,
-  clock: react.raw`
+  clock: (solve: boolean) => react.raw`
     import moment from 'moment'
 
     function App() {
       const [count, setCount] = useState(0)
       const [time, setTime] = useState(moment().format('LTS'))
 
+${react.if(solve)`
       useEffect(() => {
         setInterval(() => {
           setCount(prev => prev + 1)
           setTime(moment().format('LTS'))
         }, 1000)
       }, [])
+`}
 
       return (
         <>
@@ -329,7 +331,7 @@ export default () => {
               increases every second.
             </p>
           </Exercise>
-          <Javascript mode="react">{exercises.clock}</Javascript>
+          <Javascript mode="react">{exercises.clock(true)}</Javascript>
           <Remark>
             <p>
               Unless you've done some React before, your first attempt will most likely be wrong.
@@ -348,22 +350,8 @@ export default () => {
           </Idea>
         </div>
         <div>
-          <Jupyter lang="react" solution={exercises.clock}>
-            {react.raw`
-              import moment from 'moment'
-
-              function App() {
-                const [count, setCount] = useState(0)
-                const [time, setTime] = useState(moment().format('LTS'))
-
-                return (
-                  <>
-                    <p>It is {time}</p>
-                    <p>Count: {count}</p>
-                  </>
-                )
-              }
-            `}
+          <Jupyter lang="react" solution={exercises.clock(true)}>
+            {exercises.clock(false)}
           </Jupyter>
         </div>
       </Slide>
