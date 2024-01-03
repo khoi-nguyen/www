@@ -18,6 +18,15 @@ export function jupyter(props: Omit<JupyterProps, 'children'> = {}) {
   return createLiteral<JSX.Element>((code) => <Jupyter {...props}>{code}</Jupyter>)
 }
 
+function makeIf(solve: boolean) {
+  return createLiteral<string>((code) => {
+    if (!solve) {
+      return ''
+    }
+    return code.substring(1, code.length - 1)
+  }, false)
+}
+
 export const py = {
   run: createLiteral<JSX.Element>((code) => <Python>{code}</Python>),
   jupyter: jupyter(),
@@ -32,21 +41,13 @@ export const py = {
       </div>
     )
   }),
+  if: makeIf,
 }
 
 export const tex = createLiteral(
   (code) => <Maths tex={code} display={code.startsWith('\n')} />,
   false,
 )
-
-function makeIf(solve: boolean) {
-  return createLiteral<string>((code) => {
-    if (!solve) {
-      return ''
-    }
-    return code.substring(1, code.length - 1)
-  }, false)
-}
 
 export const react = {
   run: createLiteral<JSX.Element>((code) => <Javascript mode="react">{code}</Javascript>),
