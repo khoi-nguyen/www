@@ -33,16 +33,16 @@ const exercises = {
     function App() {
       const [count, setCount] = useState(0)
       const [time, setTime] = useState(moment().format('LTS'))
-
 ${react.if(solve)`
+
       useEffect(() => {
         setInterval(() => {
           setCount(prev => prev + 1)
           setTime(moment().format('LTS'))
         }, 1000)
       }, [])
-`}
 
+`}
       return (
         <>
           <p>It is {time}</p>
