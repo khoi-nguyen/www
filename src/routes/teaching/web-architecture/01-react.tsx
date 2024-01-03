@@ -27,6 +27,28 @@ const exercises = {
       Count: {count}
     </button>
   `,
+  clock: react.raw`
+    import moment from 'moment'
+
+    function App() {
+      const [count, setCount] = useState(0)
+      const [time, setTime] = useState(moment().format('LTS'))
+
+      useEffect(() => {
+        setInterval(() => {
+          setCount(prev => prev + 1)
+          setTime(moment().format('LTS'))
+        }, 1000)
+      }, [])
+
+      return (
+        <>
+          <p>It is {time}</p>
+          <p>Count: {count}</p>
+        </>
+      )
+    }
+  `,
 } as const
 
 export default () => {
@@ -287,20 +309,7 @@ export default () => {
               increases every second.
             </p>
           </Exercise>
-          {svelte.run`
-            <script>
-              import moment from 'moment'
-              let count = 0
-              let time = ''
-              setInterval(() => {
-                count += 1
-                time = moment().format('LTS')
-              }, 1000)
-            </script>
-
-            <p>It is {time}</p>
-            <p>Count: {count}</p>
-          `}
+          <Javascript mode="react">{exercises.clock}</Javascript>
           <Remark>
             <p>
               Unless you've done some React before, your first attempt will most likely be wrong.
@@ -319,31 +328,7 @@ export default () => {
           </Idea>
         </div>
         <div>
-          <Jupyter
-            lang="react"
-            solution={react.raw`
-              import moment from 'moment'
-
-              function App() {
-                const [count, setCount] = useState(0)
-                const [time, setTime] = useState(moment().format('LTS'))
-                // Wrap with useEffect(?, []) to execute *once*
-                useEffect(() => {
-                  setInterval(() => {
-                    // As this is only run once, count = 0
-                    setCount(prev => prev + 1)
-                    setTime(moment().format('LTS'))
-                  }, 1000)
-                }, [])
-                return (
-                  <>
-                    <p>It is {time}</p>
-                    <p>Count: {count}</p>
-                  </>
-                )
-              }
-            `}
-          >
+          <Jupyter lang="react" solution={exercises.clock}>
             {react.raw`
               import moment from 'moment'
 
