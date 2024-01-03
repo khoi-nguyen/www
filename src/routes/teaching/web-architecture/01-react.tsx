@@ -49,6 +49,26 @@ const exercises = {
       )
     }
   `,
+  todo: (solve: boolean) => react.raw`
+    function App() {
+      const [newTask, setNewTask] = useState()
+      const [tasks, setTasks] = useState([])
+${react.if(solve)`
+      const addTask = () => {
+        setTasks([...tasks, newTask])
+      }
+      return (
+        <>
+          <input value={newTask} onChange={(e) => setNewTask(e.target.value)} />
+          <button onClick={addTask}>Submit</button>
+          <ul>
+            {tasks.map(task => <li>{task}</li>)}
+          </ul>
+        </>
+      )
+`}
+    }
+  `,
 } as const
 
 export default () => {
