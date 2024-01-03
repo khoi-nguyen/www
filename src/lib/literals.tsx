@@ -39,11 +39,21 @@ export const tex = createLiteral(
   false,
 )
 
+function makeIf(solve: boolean) {
+  return createLiteral<string>((code) => {
+    if (!solve) {
+      return ''
+    }
+    return code.substring(1, code.length - 1)
+  }, false)
+}
+
 export const react = {
   run: createLiteral<JSX.Element>((code) => <Javascript mode="react">{code}</Javascript>),
   jupyter: jupyter({ lang: 'react' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="tsx" code={code} />),
   raw: createLiteral<string>(id),
+  if: makeIf,
 }
 
 export const svelte = {
@@ -51,12 +61,14 @@ export const svelte = {
   jupyter: jupyter({ lang: 'svelte' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="svelte" code={code} />),
   raw: createLiteral<string>(id),
+  if: makeIf,
 }
 
 export const js = {
   run: createLiteral<JSX.Element>((code) => <Javascript>{code}</Javascript>),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="tsx" readOnly code={code} />),
   raw: createLiteral<string>(id),
+  if: makeIf,
 }
 
 export const ts = js
@@ -66,4 +78,5 @@ export const html = {
   jupyter: jupyter({ lang: 'html' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="html" readOnly code={code} />),
   raw: createLiteral<string>(id),
+  if: makeIf,
 }
