@@ -36,10 +36,11 @@ const exercises = {
 ${react.if(solve)`
 
       useEffect(() => {
-        setInterval(() => {
+        const interval = setInterval(() => {
           setCount(prev => prev + 1)
           setTime(moment().format('LTS'))
         }, 1000)
+        return () => clearInterval(interval)
       }, [])
 
 `}
