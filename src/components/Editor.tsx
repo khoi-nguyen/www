@@ -23,13 +23,21 @@ export default function Editor(props: EditorProps) {
   props = mergeProps({ lang: 'python' }, props)
   const textArea = (<code />) as HTMLElement
   let editor: CodeJar
-  const code = () => String(props.children || '') + String(props.code || '')
+  const code = () => {
+    if (typeof props.solution === 'function') {
+      return props.solution(false)
+    } else if (props.code) {
+      return props.code
+    } else {
+      return String(props.children || '')
+    }
+  }
 
   onMount(async () => {
     const CodeJar = await import('codejar')
     const highlight = (element: HTMLElement) => Prism.highlightElement(element)
     editor = CodeJar.CodeJar(textArea, highlight, { tab: '\t', addClosing: false })
-    editor.updateCode(typeof props.solution === 'function' ? props.solution(false) : code())
+    editor.updateCode(code())
     textArea.style.whiteSpace = 'pre'
 
     editor.onUpdate((code: string) => {
