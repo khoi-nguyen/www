@@ -2,25 +2,16 @@ import meta from './01-react.json'
 
 const exercises = {
   counter: react.raw`
-    function Counter() {
+    function App() {
       const [count, setCount] = useState(0)
       const increaseCount = () => setCount(count + 1)
-
-      return (
-        <button onClick={increaseCount}>
-          Count: {count}
-        </button>
-      )
+      return <button onClick={increaseCount}>Count: {count}</button>
     }
-
-    const App = () => <Counter />
   `,
   counterWithSvelte: svelte.raw`
     <script>
       let count = 0
-      function increaseCount() {
-        count += 1
-      }
+      const increaseCount = () => count++
     </script>
 
     <button on:click={increaseCount}>
