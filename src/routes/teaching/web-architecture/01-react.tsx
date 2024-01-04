@@ -196,6 +196,31 @@ export default () => {
           </li>
         </ol>
       </Slide>
+      <Slide title="React: pure components" split={false}>
+        <Jupyter lang="react" columns run>
+          {react.raw`
+            function Pokemon(props) {
+              const value = props.hp / props.max
+              return (
+                <p>
+                  {props.name}<br />
+                  HP: <meter value={value} low={0.1} /><br />
+                  {props.hp} / {props.max}
+                </p>
+              )
+            }
+
+            function App() {
+              return (
+                <>
+                  <Pokemon name="Mewtwo" max={416} hp={300} />
+                  <Pokemon name="Pikachu" max={274} hp={20} />
+                </>
+              )
+            }
+          `}
+        </Jupyter>
+      </Slide>
       <Slide title="React: a first example">
         <Jupyter lang="react">{exercises.counter}</Jupyter>
         <Question>
