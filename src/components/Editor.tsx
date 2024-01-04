@@ -24,19 +24,23 @@ export default function Editor(props: EditorProps) {
   const textArea = (<code />) as HTMLElement
   let editor: CodeJar
   const code = () => {
-    if (typeof props.solution === 'function') {
-      return props.solution(false)
-    } else if (props.code) {
+    if (props.code) {
       return props.code
+    } else if (props.children) {
+      return String(props.children)
+    } else if (typeof props.solution === 'function') {
+      return props.solution(false)
     } else {
-      return String(props.children || '')
+      return ''
     }
   }
 
+  const [ready, setReady] = createSignal(false)
   onMount(async () => {
     const CodeJar = await import('codejar')
     const highlight = (element: HTMLElement) => Prism.highlightElement(element)
     editor = CodeJar.CodeJar(textArea, highlight, { tab: '\t', addClosing: false })
+    setReady(true)
     editor.updateCode(code())
     textArea.style.whiteSpace = 'pre'
 
@@ -54,8 +58,8 @@ export default function Editor(props: EditorProps) {
   })
 
   createEffect(() => {
-    if (editor) {
-      editor.updateCode(code())
+    if (ready() && editor) {
+      editor.updateCode(props.code || String(props.children || ''))
     }
   })
 
