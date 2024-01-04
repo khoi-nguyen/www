@@ -7,16 +7,8 @@ interface ModalProps {
 }
 
 export default function Modal(props: ModalProps) {
-  let dialog: HTMLDialogElement
-  createEffect(() => {
-    if (dialog && props.open) {
-      dialog.showModal()
-    } else if (dialog && !props.open) {
-      dialog.close()
-    }
-  })
   return (
-    <dialog ref={dialog!}>
+    <dialog open={props.open}>
       <div class="columns">
         <div class="is-narrow">
           <button onClick={props.onClose}>
