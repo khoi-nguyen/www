@@ -47,15 +47,6 @@ button {
 
 dialog {
   @extend .card;
-  border: 0;
-  left: 50%;
-  max-height: 80%;
-  overflow: auto;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  z-index: 999;
 }
 
 dialog::backdrop {
