@@ -77,5 +77,19 @@ export default function Javascript(props: JavascriptProps) {
     }),
   )
 
-  return <Html code={code()} />
+  const [open, setOpen] = createSignal(false)
+
+  return (
+    <>
+      <Html code={code()} />
+      <Modal open={open()} onClose={() => setOpen(false)}>
+        <Editor lang="html" code={code()} />
+      </Modal>
+      <p>
+        <small>
+          <a onClick={() => setOpen(!open())}>Show transpiled code</a>
+        </small>
+      </p>
+    </>
+  )
 }
