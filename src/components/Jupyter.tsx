@@ -25,10 +25,17 @@ export interface JupyterProps {
   transpileOnly?: boolean
 }
 
+function getInitialValue(props: JupyterProps) {
+  if (typeof props.solution === 'function') {
+    return props.solution(false)
+  }
+  return Array.isArray(props.children) ? props.children.join('\n') : String(props.children)
+}
+
 export default function Jupyter(props: JupyterProps) {
   props = mergeProps({ lang: 'python' as const }, props)
   const editorLang = () => (props.lang === 'react' ? 'tsx' : props.lang)
-  const initial = Array.isArray(props.children) ? props.children.join('\n') : String(props.children)
+  const initial = getInitialValue(props)
   const [code, setCode] = createSignal(initial)
   const [codeToRun, setCodeToRun] = createSignal('')
   const [isLoading, setIsLoading] = createSignal<boolean>(false)
