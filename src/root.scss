@@ -37,12 +37,30 @@ body {
 button {
   @extend .clickable;
   background: transparent;
+  border: 0;
 
   &.is-secondary {
-    border: 0;
     color: $grey;
     cursor: pointer;
   }
+}
+
+dialog {
+  @extend .card;
+  border: 0;
+  left: 50%;
+  max-height: 80%;
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  z-index: 999;
+}
+
+dialog::backdrop {
+  background-color: black;
+  opacity: 0.7;
 }
 
 dl {
