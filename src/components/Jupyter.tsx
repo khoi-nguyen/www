@@ -28,9 +28,8 @@ export interface JupyterProps {
 export default function Jupyter(props: JupyterProps) {
   props = mergeProps({ lang: 'python' as const }, props)
   const editorLang = () => (props.lang === 'react' ? 'tsx' : props.lang)
-  const [code, setCode] = createSignal(
-    Array.isArray(props.children) ? props.children.join('\n') : String(props.children),
-  )
+  const initial = Array.isArray(props.children) ? props.children.join('\n') : String(props.children)
+  const [code, setCode] = createSignal(initial)
   const [codeToRun, setCodeToRun] = createSignal('')
   const [isLoading, setIsLoading] = createSignal<boolean>(false)
 
@@ -72,7 +71,7 @@ export default function Jupyter(props: JupyterProps) {
             solution={props.solution}
             hideUntil={props.hideUntil}
           >
-            {code()}
+            {initial}
           </Editor>
         </div>
       </div>
