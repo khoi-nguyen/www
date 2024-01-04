@@ -9,12 +9,14 @@ interface ModalProps {
 export default function Modal(props: ModalProps) {
   return (
     <dialog open={props.open}>
-      <div style={{ 'text-align': 'right' }}>
-        <button onClick={props.onClose}>
-          <Fa icon={faCircleXmark} />
-        </button>
+      <div class="columns">
+        <div class="is-narrow">
+          <button onClick={props.onClose}>
+            <Fa icon={faCircleXmark} />
+          </button>
+        </div>
+        <div>{props.children}</div>
       </div>
-      {props.children}
     </dialog>
   )
 }
