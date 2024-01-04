@@ -43,8 +43,8 @@ export default function Javascript(props: JavascriptProps) {
         <div id="app">
         </div>
         <script type="module">
-          ${js.code}
-          const app = new Component({ target: document.getElementById('app') });
+        ${js.code}
+        const app = new Component({ target: document.getElementById('app') });
         </script>
       `
     } else if (props.mode === 'react') {
@@ -52,18 +52,18 @@ export default function Javascript(props: JavascriptProps) {
         <div id="app">
         </div>
         <script type="module">
-          import React, { useState, useEffect, useMemo } from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-          import ReactDOM from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
+        import React, { useState, useEffect, useMemo } from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
+        import ReactDOM from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
 
-          ${transpile(code)}
-          const root = ReactDOM.createRoot(document.getElementById('app'));
-          root.render(React.createElement(${props.appName}, null));
+        ${transpile(code)}
+        const root = ReactDOM.createRoot(document.getElementById('app'));
+        root.render(React.createElement(${props.appName}, null));
         </script>
       `
     } else {
       return dedent`
         <script type="module">
-          ${code}
+        ${code}
         </script>
       `
     }
@@ -82,14 +82,16 @@ export default function Javascript(props: JavascriptProps) {
   return (
     <>
       <Html code={code()} />
-      <Modal open={open()} onClose={() => setOpen(false)}>
-        <Editor lang="html" code={code()} />
-      </Modal>
-      <p>
-        <small>
-          <a onClick={() => setOpen(!open())}>Show transpiled code</a>
-        </small>
-      </p>
+      <Show when={props.mode}>
+        <Modal open={open()} onClose={() => setOpen(false)}>
+          <Editor lang="html" code={code()} />
+        </Modal>
+        <p>
+          <small>
+            <a onClick={() => setOpen(!open())}>Show transpiled code</a>
+          </small>
+        </p>
+      </Show>
     </>
   )
 }
