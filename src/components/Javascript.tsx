@@ -86,11 +86,11 @@ export default function Javascript(props: JavascriptProps) {
         <Modal open={open()} onClose={() => setOpen(false)}>
           <Editor lang="html" code={code()} />
         </Modal>
-        <p>
+        <div>
           <small>
             <a onClick={() => setOpen(!open())}>Show transpiled code</a>
           </small>
-        </p>
+        </div>
       </Show>
     </>
   )
