@@ -26,7 +26,7 @@ const style = (code: string) => dedent`
     var ro = new ResizeObserver(entries => {
       for (let entry of entries) {
         const cr = entry.contentRect;
-        window.frameElement.style.height = cr.height + 5 + "px";
+        window.frameElement.style.height = cr.height + 2 + "px";
       }
     });
     ro.observe(document.body);
