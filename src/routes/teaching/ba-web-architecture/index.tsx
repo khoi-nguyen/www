@@ -4,8 +4,10 @@ export default () => {
   const location = useLocation()
   return (
     <Page meta={meta}>
-      <h2>Ressources</h2>
+      <h2>Cours théorique</h2>
       <Explorer pattern={`${location.pathname}/?[0-9a-z]+-.*json$`} showPDF />
+      <h2>Labos</h2>
+      <Explorer pattern={`${location.pathname}/?labo-[0-9a-z]+-.*json$`} showPDF />
       <div class="columns">
         <div>
           <h2>Informations pratiques</h2>
