@@ -114,7 +114,7 @@ export default () => {
             // Changing its content
             node.innerHTML = "<strong>I'm happy</strong>";
 
-            node.onClick(() =>
+            node.onclick(() =>
               node.innerHTML = "<em>I'm sad</em>";
             );
 
@@ -199,7 +199,7 @@ export default () => {
       <Slide title="React: pure components" split={false}>
         <Jupyter lang="react" columns run>
           {react.raw`
-            function Pokemon(props) {
+            function Health(props) {
               const value = props.hp / props.max
               return (
                 <p>
@@ -213,8 +213,8 @@ export default () => {
             function App() {
               return (
                 <>
-                  <Pokemon name="Mewtwo" max={416} hp={300} />
-                  <Pokemon name="Pikachu" max={274} hp={20} />
+                  <Health name="Mewtwo" max={416} hp={300} />
+                  <Health name="Pikachu" max={274} hp={20} />
                 </>
               )
             }
