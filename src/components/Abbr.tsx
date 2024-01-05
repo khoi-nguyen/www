@@ -5,6 +5,7 @@ const abbreviations = {
   CSS: 'Cascading Style Sheets',
   CV: 'Curriculum Vitæ',
   DOM: 'Document Object Model',
+  DX: 'Developer Experience',
   ECAM: 'École Centrale des Arts et Métiers',
   GCSE: 'General Certificate of Secondary Education',
   GEI: 'Génie Électronique et Informatique',
@@ -18,15 +19,18 @@ const abbreviations = {
   MP3: 'Moving Picture Experts Group Layer-3 Audio',
   MVC: 'Model View Controller',
   MIT: 'Massachusetts Institute of Technology',
+  MPA: 'Multiple Page Application',
   NYU: 'New York University',
   ORM: 'Object-relational mapping',
   PGCE: 'Postgraduate Certificate of Education',
   PhD: 'Philosophiæ Doctor',
   PHP: 'PHP Hypertext Preprocessor',
+  REST: 'Representational State Transfer',
   SPA: 'Single Page Application',
   SQL: 'Structured Query Language',
   SSR: 'Server Side Rendering',
   UI: 'User Interface',
+  UX: 'User Experience',
 }
 
 interface AbbrProps {
