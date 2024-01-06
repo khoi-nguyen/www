@@ -57,7 +57,7 @@ onconnect = (e: MessageEvent) => {
 
     const lines = code.split('\n')
     const lastLine = lines[lines.length - 1]
-    const assignment = /^(\b\w+\b)\s*=/
+    const assignment = /^(\b\w+\b)\s*=[^=]/
     const match = lastLine.match(assignment)
     if (match) {
       code += `\n${match[1]}`
