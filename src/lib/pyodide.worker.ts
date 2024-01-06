@@ -55,6 +55,14 @@ onconnect = (e: MessageEvent) => {
       format = 'matplotlib'
     }
 
+    const lines = code.split('\n')
+    const lastLine = lines[lines.length - 1]
+    const assignment = /^(\b\w+\b)\s*=/
+    const match = lastLine.match(assignment)
+    if (match) {
+      code += `\n${match[1]}`
+    }
+
     let output
     try {
       output = await pyodide.runPythonAsync(code)
