@@ -18,5 +18,7 @@ jobs:
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -p 8022 ngy.ecam.be >> ~/.ssh/known_hosts
+      - name: Deploying
+        run: |
           git remote add deploy [khoi@ngy.ecam.be:8022]:git/www
           git push -f deploy master
