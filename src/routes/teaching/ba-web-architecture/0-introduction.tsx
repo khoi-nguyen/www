@@ -30,9 +30,7 @@ export default () => {
               <li>
                 <Abbr key="ORM" />
               </li>
-              <li>
-                <Abbr key="SSR" />
-              </li>
+              <li>Authentification</li>
               <li>
                 <Abbr key="REST" /> et GraphQL
               </li>
@@ -99,20 +97,22 @@ export default () => {
           </li>
         </ul>
         <h3>Exemple</h3>
-        {jupyter({ lang: 'html', columns: true })`
-          <h1>Ceci est un titre</h1>
-          <p class="lead">Bonjour, ceci est un paragraphe</p>
-          <p>Ceci est un autre paragraphe.</p>
+        <Jupyter lang="html" columns>
+          {html.raw`
+            <h1>Ceci est un titre</h1>
+            <p class="lead">Bonjour, ceci est un paragraphe</p>
+            <p>Ceci est un autre paragraphe.</p>
 
-          <style>
-            h1 {
-              color: red;
-            }
-            .lead {
-              color: blue;
-            }
-          </style>
-        `}
+            <style>
+              h1 {
+                color: red;
+              }
+              .lead {
+                color: blue;
+              }
+            </style>
+          `}
+        </Jupyter>
       </Slide>
       <Slide
         title={() => (
