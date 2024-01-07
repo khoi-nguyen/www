@@ -1,4 +1,7 @@
-import meta from './00-typescript.json'
+const meta: Metadata = {
+  title: 'TypeScript',
+  description: 'TypeScript, ES modules, Promises',
+}
 
 export default () => {
   return (

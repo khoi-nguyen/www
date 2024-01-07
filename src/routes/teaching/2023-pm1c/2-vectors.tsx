@@ -1,4 +1,8 @@
-import meta from './2-vectors.json'
+const meta: Metadata = {
+  title: 'Chapitre 2: Vecteurs',
+  description: 'Rappels sur les vecteurs, produit scalaire, produit vectoriel.',
+  lang: 'fr',
+}
 
 export default () => {
   return (

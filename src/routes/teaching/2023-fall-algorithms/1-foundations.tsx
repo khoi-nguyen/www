@@ -1,5 +1,10 @@
-import meta from './1-foundations.json'
 import complexityChart from '~/assets/complexity_chart.svg'
+
+const meta: Metadata = {
+  title: 'Chapter 1: Foundations',
+  subtitle: 'Algorithms',
+  description: 'Definition of algorithms, running time, divide and conquer, solving recurrences.',
+}
 
 export const insertionSort = py.raw`
   def insertion_sort(A):

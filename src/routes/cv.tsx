@@ -1,6 +1,11 @@
-import meta from './cv.json'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faBirthdayCake, faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons/index.js'
+
+const meta: Metadata = {
+  title: 'Curriculum Vitæ',
+  subtitle: 'Khôi Nguyễn',
+  description: "Khôi Nguyễn's Curriculum Vitæ",
+}
 
 function calculateAge(dob: Date): number {
   const now = new Date()

@@ -1,4 +1,8 @@
-import meta from './7-differentiation.json'
+const meta: Metadata = {
+  title: 'Chapitre 7: Dérivées',
+  description: 'Dérivées',
+  lang: 'fr',
+}
 
 export default () => {
   return (

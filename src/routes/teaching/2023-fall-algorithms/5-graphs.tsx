@@ -1,4 +1,7 @@
-import meta from './5-graphs.json'
+const meta: Metadata = {
+  title: 'Chapter 4: Graphs',
+  description: 'DFS, BFS, Topological sort, Minimum Spanning Tree',
+}
 
 export default () => {
   return (

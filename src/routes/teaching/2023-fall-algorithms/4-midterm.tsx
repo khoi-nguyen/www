@@ -1,4 +1,7 @@
-import meta from './4-midterm.json'
+const meta: Metadata = {
+  title: 'Midterm',
+  description: 'Midterm preparation',
+}
 
 export default () => {
   return (

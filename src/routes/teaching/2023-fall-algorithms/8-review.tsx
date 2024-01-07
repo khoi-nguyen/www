@@ -1,4 +1,7 @@
-import meta from './8-review.json'
+const meta: Metadata = {
+  title: 'Chapter 7: Review',
+  description: 'Final',
+}
 
 export default () => (
   <Slideshow meta={meta}>

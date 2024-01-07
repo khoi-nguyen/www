@@ -1,4 +1,8 @@
-import meta from './6-functions.json'
+const meta: Metadata = {
+  title: 'Chapitre 6: Fonctions',
+  description: 'Limites et fonctions',
+  lang: 'fr',
+}
 
 export default () => {
   return (

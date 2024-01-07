@@ -1,4 +1,8 @@
-import meta from './0-introduction.json'
+const meta: Metadata = {
+  title: 'Introduction',
+  lang: 'fr',
+  description: 'Déroulement du cours et objectifs',
+}
 
 export default () => {
   return (

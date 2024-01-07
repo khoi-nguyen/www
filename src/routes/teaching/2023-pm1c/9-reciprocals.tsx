@@ -1,4 +1,8 @@
-import meta from './9-reciprocals.json'
+const meta: Metadata = {
+  title: 'Chapitre 9: Un peu de tout',
+  description: "Fonctions réciproques, l'Hôpital, équations différentielles",
+  lang: 'fr',
+}
 
 export default () => {
   return (

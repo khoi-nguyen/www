@@ -1,5 +1,10 @@
-import meta from './index.json'
 import type { Page } from '~/components/Explorer'
+
+const meta: Metadata = {
+  title: 'Teaching',
+  description: "List of all the courses I've taught since September 2023",
+  hideHeader: true,
+}
 
 function isMatch(page: Page, searchString: string): boolean {
   if (!searchString) {

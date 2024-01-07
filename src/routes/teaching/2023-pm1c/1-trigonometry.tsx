@@ -1,4 +1,8 @@
-import meta from './1-trigonometry.json'
+const meta: Metadata = {
+  title: 'Chapitre 1: Trigonométrie',
+  description: 'Rappels de trigonométrie',
+  lang: 'fr',
+}
 
 export default () => {
   return (

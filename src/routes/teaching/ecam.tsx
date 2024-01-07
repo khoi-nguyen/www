@@ -1,5 +1,11 @@
-import meta from './ecam.json'
 import logo from '~/assets/ecam.svg'
+
+const meta: Metadata = {
+  title: 'École Centrale des Arts et Métiers',
+  description: "List of all the courses I'm teaching at ECAM",
+  lang: 'fr',
+  hideHeader: true,
+}
 
 type Metadata = Parameters<typeof Meta>[0]
 interface Page extends Metadata {

@@ -1,4 +1,8 @@
-import meta from './4-equations.json'
+const meta: Metadata = {
+  title: 'Chapitre 4: Équations',
+  description: 'Équations du premier, du second degré, systèmes linéaires',
+  lang: 'fr',
+}
 
 export default () => {
   return (

@@ -1,6 +1,10 @@
-import meta from './0-info.json'
 import { Info } from './index.jsx'
 import { chapters } from './syllabus'
+
+const meta: Metadata = {
+  title: 'General Information',
+  description: 'Information, syllabus, announcements, homework, recaps',
+}
 
 export default () => (
   <Slideshow meta={meta}>

@@ -1,4 +1,8 @@
-import meta from './5-straight-lines.json'
+const meta: Metadata = {
+  title: 'Chapitre 5: Droites',
+  description: 'Pente, équations vectorielles et cartésiennes',
+  lang: 'fr',
+}
 
 export default () => {
   return (

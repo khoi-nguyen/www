@@ -1,4 +1,4 @@
-const meta = {
+const meta: Metadata = {
   title: 'Syllabus',
   description: 'Syllabus for the NYU Algorithms course',
 }

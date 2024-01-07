@@ -1,4 +1,8 @@
-import meta from './1-vector-functions.json'
+const meta: Metadata = {
+  title: 'Fonctions vectorielles',
+  description: '',
+  lang: 'fr',
+}
 
 export default () => (
   <Slideshow meta={meta}>

@@ -1,5 +1,10 @@
-import meta from './nyu.json'
 import logo from '~/assets/nyu.svg'
+
+const meta: Metadata = {
+  title: 'New York University',
+  description: "List of all the courses I'm teaching at NYU",
+  hideHeader: true,
+}
 
 export default () => {
   return (

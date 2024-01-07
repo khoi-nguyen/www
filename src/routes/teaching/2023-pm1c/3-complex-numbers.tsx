@@ -1,4 +1,8 @@
-import meta from './3-complex-numbers.json'
+const meta: Metadata = {
+  title: 'Chapitre 3: Nombres complexes',
+  description: "Nombres complexes, forme polaire, formule d'Euler",
+  lang: 'fr',
+}
 
 export default () => {
   return (

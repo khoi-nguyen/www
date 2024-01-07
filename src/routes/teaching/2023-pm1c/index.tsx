@@ -1,4 +1,11 @@
-import meta from './index.json'
+const meta: Metadata = {
+  title: 'Pont Mathématique',
+  subtitle: 'ECAM/PM1C 2023 (Q1a)',
+  lang: 'fr',
+  description:
+    "Introduction aux mathématiques de l'enseignement supérieur pour les étudiants de première année",
+  current: false,
+}
 
 export default () => {
   const location = useLocation()

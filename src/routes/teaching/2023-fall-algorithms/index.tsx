@@ -1,4 +1,9 @@
-import meta from './index.json'
+const meta: Metadata = {
+  title: 'Algorithms',
+  subtitle: 'NYU/CS-UH 1052 (Fall 2023)',
+  description: 'An introduction to classical algorithms for computer science students',
+  current: false,
+}
 
 export const Info = () => (
   <dl>

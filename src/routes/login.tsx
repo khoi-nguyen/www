@@ -1,4 +1,7 @@
-import meta from './login.json'
+const meta: Metadata = {
+  title: 'Login',
+  description: 'Login page',
+}
 
 export default () => {
   const [admin, { logout, loggingIn, PasswordField, Form }] = useSession()

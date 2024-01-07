@@ -1,4 +1,10 @@
-import meta from './index.json'
+const meta: Metadata = {
+  title: 'Web Architecture',
+  subtitle: 'ECAM/AW4L-L1 (Q2)',
+  lang: 'en',
+  description: 'React, Next, OAuth and GraphQL',
+  current: true,
+}
 
 export default () => {
   const location = useLocation()

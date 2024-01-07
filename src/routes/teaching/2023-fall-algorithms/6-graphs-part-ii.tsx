@@ -1,4 +1,7 @@
-import meta from './6-graphs-part-ii.json'
+const meta: Metadata = {
+  title: 'Chapter 5: Graphs (part II)',
+  description: 'Dijkstra',
+}
 
 export default () => {
   return (

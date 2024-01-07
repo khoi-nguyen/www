@@ -1,4 +1,7 @@
-import meta from './7-p-np.json'
+const meta: Metadata = {
+  title: 'Chapter 6: P vs NP',
+  description: 'Classification and reductions',
+}
 
 export default () => (
   <Slideshow meta={meta}>

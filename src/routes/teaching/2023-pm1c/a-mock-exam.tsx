@@ -1,4 +1,8 @@
-import meta from './a-mock-exam.json'
+const meta: Metadata = {
+  title: 'Examen blanc',
+  description: "Questions d'examens sur un peu tous les chapitres",
+  lang: 'fr',
+}
 
 export default () => {
   return (

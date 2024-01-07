@@ -1,4 +1,10 @@
-import meta from './index.json'
+const meta: Metadata = {
+  title: 'Outils mathématiques',
+  subtitle: 'ECAM/EM1C-T1 (Q2)',
+  lang: 'fr',
+  description: 'Calcul différentiel et intégral à plusieurs variables',
+  current: true,
+}
 
 export default () => {
   const location = useLocation()

@@ -1,4 +1,7 @@
-import meta from './8-mvc.json'
+const meta: Metadata = {
+  title: 'Model-View-Controller',
+  description: 'ORM and MVC',
+}
 
 export default () => {
   return (

@@ -1,4 +1,8 @@
-import meta from './2-components.json'
+const meta: Metadata = {
+  title: 'Architecture de composants',
+  lang: 'fr',
+  description: 'Svelte',
+}
 
 export default () => {
   return (

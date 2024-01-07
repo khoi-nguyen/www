@@ -1,4 +1,8 @@
-import meta from './8-exponentials.json'
+const meta: Metadata = {
+  title: 'Chapitre 8: Exponentielles et logarithmes',
+  description: 'Exponentielles, logarithmes',
+  lang: 'fr',
+}
 
 export default () => {
   return (

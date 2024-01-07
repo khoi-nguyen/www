@@ -1,4 +1,10 @@
-import meta from './index.json'
+const meta: Metadata = {
+  current: false,
+  description: 'HTML, CSS, Javascript and Node',
+  lang: 'fr',
+  subtitle: 'ECAM/LW3L',
+  title: 'Web Technologies',
+}
 
 export default () => {
   const location = useLocation()

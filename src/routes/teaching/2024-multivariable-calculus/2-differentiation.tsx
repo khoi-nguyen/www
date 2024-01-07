@@ -1,4 +1,9 @@
-import meta from './2-differentiation.json'
+const meta: Metadata = {
+  title: 'Différentiation',
+  lang: 'fr',
+  description: 'Dérivées directionnelles, partielles, gradient',
+  current: true,
+}
 
 export default () => (
   <Slideshow meta={meta}>

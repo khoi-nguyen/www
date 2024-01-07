@@ -1,4 +1,7 @@
-import meta from './2-dynamic-programming.json'
+const meta: Metadata = {
+  title: 'Chapitre 2: Dynamic Programming',
+  description: '',
+}
 
 export default () => {
   return (

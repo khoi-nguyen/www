@@ -1,5 +1,9 @@
-import meta from './3-greedy.json'
 import dedent from 'dedent-js'
+
+const meta: Metadata = {
+  title: 'Chapitre 3: Greedy algorithms',
+  description: '',
+}
 
 export default () => {
   const treeNode = py.raw`

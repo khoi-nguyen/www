@@ -1,4 +1,10 @@
-import meta from './index.json'
+const meta: Metadata = {
+  title: 'Architecture Web (business analysts)',
+  subtitle: 'ECAM/AW4C-4MBA (Q2)',
+  lang: 'fr',
+  description: 'SPA, MPA, SSR, REST, GraphQL',
+  current: true,
+}
 
 export default () => {
   const location = useLocation()

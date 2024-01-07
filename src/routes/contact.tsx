@@ -1,6 +1,10 @@
-import meta from './contact.json'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import type { EventImpl } from '@fullcalendar/core/internal'
+
+const meta: Metadata = {
+  title: 'Contact me',
+  description: 'How to contact me',
+}
 
 interface EmailProps {
   address: string
