@@ -2,7 +2,7 @@
   "name": "www",
   "type": "module",
   "scripts": {
-    "dev": "solid-start dev",
+    "dev": "./bin/meta && solid-start dev",
     "start": "solid-start start",
     "build": "./bin/meta && solid-start build",
     "server": "node dist/server/entry.mjs",
