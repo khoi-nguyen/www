@@ -30,7 +30,7 @@ const Education = () => (
       dates={[new Date('2019-10'), new Date('2020-06')]}
     >
       <ul>
-        <li>Funding: full scholarship</li>
+        <li>Funding: Full scholarship</li>
         <li>
           Extra-curricular: Half-blue for playing the Table Tennis Varsity match against Cambridge
         </li>
@@ -106,7 +106,7 @@ const Experience = () => (
       title="Lecturer in Mathematics and Computer Science"
       employer={<a href="https://nyu.edu">New York University</a>}
       location="Paris"
-      dates={[new Date('2023-01')]}
+      dates={[new Date('2023-01'), new Date('2023-12')]}
     >
       <ul>
         <li>Taught courses: Numerical Analysis, Algorithms</li>
