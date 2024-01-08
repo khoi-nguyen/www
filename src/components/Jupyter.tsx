@@ -6,6 +6,9 @@ export interface JupyterProps {
   /** Show results in an adjacent column if true */
   columns?: boolean
 
+  /** Will be appended to the executed code but will not be shown */
+  after?: string
+
   /** Will be prepended to the executed code but will not be shown */
   before?: string
 
@@ -49,7 +52,7 @@ export default function Jupyter(props: JupyterProps) {
   const run = () => {
     setCodeToRun('')
     setIsLoading(true)
-    setCodeToRun((props.before || '') + '\n' + code())
+    setCodeToRun((props.before || '') + '\n' + code() + (props.after ? '\n' + props.after : ''))
   }
   const handleKeyDown = (event: KeyboardEvent) => {
     if ((event.shiftKey || event.ctrlKey) && event.code === 'Enter') {
