@@ -39,33 +39,26 @@ export default function Javascript(props: JavascriptProps) {
     let code = fixImports(props.code ? props.code : String(props.children || ''))
     if (props.mode === 'svelte') {
       const { js } = compile(code, { sveltePath: 'https://esm.sh/svelte' })
-      return html.raw`
-        <div id="app">
-        </div>
-        <script type="module">
+      code = ts.raw`
         ${js.code}
         const app = new Component({ target: document.getElementById('app') });
-        </script>
       `
     } else if (props.mode === 'react') {
-      return html.raw`
-        <div id="app">
-        </div>
-        <script type="module">
+      code = ts.raw`
         import React, { useState, useEffect, useMemo } from 'https://esm.sh/react';
         import ReactDOM from 'https://esm.sh/react-dom';
         ${transpile(code)}
         const root = ReactDOM.createRoot(document.getElementById('app'));
         root.render(React.createElement(${props.appName!}, null));
-        </script>
-      `
-    } else {
-      return html.raw`
-        <script type="module">
-        ${code}
-        </script>
       `
     }
+    return html.raw`
+      <div id="app">
+      </div>
+      <script type="module">
+      ${code}
+      </script>
+    `
   }
 
   createEffect(
