@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "solid-start dev",
     "start": "solid-start start",
-    "build": "solid-start build",
+    "build": "./bin/meta && solid-start build",
     "server": "node dist/server/entry.mjs",
     "prepare": "husky install"
   },

@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+
+import glob
+import re
+import json
+
+def extract_meta(path: str) -> str:
+    with open(path, 'r', encoding="utf-8") as file:
+        content = file.read()
+        match = re.search(r'const\s+meta:\sMetadata\s*=\s*({[^}]*})', content, re.DOTALL)
+        if match:
+            meta = match.group(1)
+            meta = re.sub(r'(\n\s*)(\w+):', r'\1"\2":', meta, re.DOTALL)
+            meta = meta.replace('true', 'True').replace('false', 'False')
+            return json.dumps(eval(meta), ensure_ascii=False, indent=2)
+        raise ValueError("Missing Metadata")
+
+for file in glob.glob('src/routes/**/*.tsx', recursive=True):
+    meta = extract_meta(file)
+    target = file[0:-4] + ".json"
+    with open(target, "w") as file:
+        file.write(meta + "\n")
