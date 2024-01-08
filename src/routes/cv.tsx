@@ -16,30 +16,8 @@ function calculateAge(dob: Date): number {
   return age
 }
 
-export default () => (
-  <Page
-    meta={meta}
-    header={(props) => (
-      <div class="columns is-vcentered">
-        <div class="is-8">{props.children}</div>
-        <ul class="cv-info is-4">
-          <li>
-            <Fa icon={faBirthdayCake} /> {calculateAge(new Date('1991-01-24'))} years old
-          </li>
-          <li>
-            <Fa icon={faEnvelope} /> <a href="mailto:khoi@nguyen.me.uk">khoi@nguyen.me.uk</a>
-          </li>
-          <li>
-            <Fa icon={faGlobe} /> <A href="/">https://nguyen.me.uk</A>
-          </li>
-          <li>
-            <Fa icon={faGithub} /> <a href="https://github.com/khoi-nguyen">khoi-nguyen</a>
-          </li>
-        </ul>
-      </div>
-    )}
-    hideFooter
-  >
+const Education = () => (
+  <>
     <h2>Education</h2>
 
     <CvLine
@@ -102,7 +80,11 @@ export default () => (
         </li>
       </ul>
     </CvLine>
+  </>
+)
 
+const Experience = () => (
+  <>
     <h2>Experience</h2>
 
     <CvLine
@@ -177,6 +159,35 @@ export default () => (
         <li>Language of instruction: French</li>
       </ul>
     </CvLine>
+  </>
+)
+
+export default () => (
+  <Page
+    meta={meta}
+    header={(props) => (
+      <div class="columns is-vcentered">
+        <div class="is-8">{props.children}</div>
+        <ul class="cv-info is-4">
+          <li>
+            <Fa icon={faBirthdayCake} /> {calculateAge(new Date('1991-01-24'))} years old
+          </li>
+          <li>
+            <Fa icon={faEnvelope} /> <a href="mailto:khoi@nguyen.me.uk">khoi@nguyen.me.uk</a>
+          </li>
+          <li>
+            <Fa icon={faGlobe} /> <A href="/">https://nguyen.me.uk</A>
+          </li>
+          <li>
+            <Fa icon={faGithub} /> <a href="https://github.com/khoi-nguyen">khoi-nguyen</a>
+          </li>
+        </ul>
+      </div>
+    )}
+    hideFooter
+  >
+    <Experience />
+    <Education />
 
     <h2>Skills</h2>
 
