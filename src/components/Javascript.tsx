@@ -15,7 +15,7 @@ function fixImports(code: string): string {
   const importRegex = /(import\s+.+\s+from\s+)['"](.+)['"]\s*;?/g
   return code.replace(
     importRegex,
-    (_, begin, packageName) => `${begin}'https://cdn.skypack.dev/${packageName}';`,
+    (_, begin, packageName) => `${begin}'https://esm.sh/${packageName}';`,
   )
 }
 
@@ -38,7 +38,7 @@ export default function Javascript(props: JavascriptProps) {
     }
     let code = fixImports(props.code ? props.code : String(props.children || ''))
     if (props.mode === 'svelte') {
-      const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte' })
+      const { js } = compile(code, { sveltePath: 'https://esm.sh/svelte' })
       return html.raw`
         <div id="app">
         </div>
@@ -52,9 +52,8 @@ export default function Javascript(props: JavascriptProps) {
         <div id="app">
         </div>
         <script type="module">
-        import React, { useState, useEffect, useMemo } from 'https://cdn.jsdelivr.net/npm/react@18.2.0/+esm';
-        import ReactDOM from 'https://cdn.jsdelivr.net/npm/react-dom@18.2.0/+esm';
-
+        import React, { useState, useEffect, useMemo } from 'https://esm.sh/react';
+        import ReactDOM from 'https://esm.sh/react-dom';
         ${transpile(code)}
         const root = ReactDOM.createRoot(document.getElementById('app'));
         root.render(React.createElement(${props.appName!}, null));
