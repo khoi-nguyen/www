@@ -12,10 +12,9 @@ interface JavascriptProps {
  * Fix imports so that they're done over CDN
  */
 function fixImports(code: string): string {
-  const importRegex = /(import\s+.+\s+from\s+)['"](.+)['"]\s*;?/g
   return code.replace(
-    importRegex,
-    (_, begin, packageName) => `${begin}'https://esm.sh/${packageName}';`,
+    /(import\s+(\w+,?\s*)?(\{[^}]*\})?\s*(from\s*)?)['"](.+)['"]\s*;?/gm,
+    (_, begin, __, ___, ____, packageName) => `${begin}'https://esm.sh/${packageName}';`,
   )
 }
 
@@ -36,17 +35,14 @@ export default function Javascript(props: JavascriptProps) {
     if (!ready()) {
       return ''
     }
-    let code = fixImports(props.code ? props.code : String(props.children || ''))
+    let code = props.code ? props.code : String(props.children || '')
     if (props.mode === 'svelte') {
-      const { js } = compile(code, { sveltePath: 'https://esm.sh/svelte' })
-      code = ts.raw`
-        ${js.code}
-        const app = new Component({ target: document.getElementById('app') });
-      `
+      code = compile(code).js.code
+      code += ts.raw`new Component({ target: document.getElementById('app') });`
     } else if (props.mode === 'react') {
       code = ts.raw`
-        import React, { useState, useEffect, useMemo } from 'https://esm.sh/react';
-        import ReactDOM from 'https://esm.sh/react-dom';
+        import React, { useState, useEffect, useMemo } from 'react';
+        import ReactDOM from 'react-dom';
         ${transpile(code)}
         const root = ReactDOM.createRoot(document.getElementById('app'));
         root.render(React.createElement(${props.appName!}, null));
@@ -56,7 +52,7 @@ export default function Javascript(props: JavascriptProps) {
       <div id="app">
       </div>
       <script type="module">
-      ${code}
+      ${fixImports(code)}
       </script>
     `
   }
