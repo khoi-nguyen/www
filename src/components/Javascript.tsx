@@ -39,7 +39,7 @@ export default function Javascript(props: JavascriptProps) {
     let code = fixImports(props.code ? props.code : String(props.children || ''))
     if (props.mode === 'svelte') {
       const { js } = compile(code, { sveltePath: 'https://cdn.skypack.dev/svelte' })
-      return dedent`
+      return html.raw`
         <div id="app">
         </div>
         <script type="module">
@@ -48,7 +48,7 @@ export default function Javascript(props: JavascriptProps) {
         </script>
       `
     } else if (props.mode === 'react') {
-      return dedent`
+      return html.raw`
         <div id="app">
         </div>
         <script type="module">
@@ -57,11 +57,11 @@ export default function Javascript(props: JavascriptProps) {
 
         ${transpile(code)}
         const root = ReactDOM.createRoot(document.getElementById('app'));
-        root.render(React.createElement(${props.appName}, null));
+        root.render(React.createElement(${props.appName!}, null));
         </script>
       `
     } else {
-      return dedent`
+      return html.raw`
         <script type="module">
         ${code}
         </script>
