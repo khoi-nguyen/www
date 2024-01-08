@@ -30,7 +30,7 @@ const Education = () => (
       dates={[new Date('2019-10'), new Date('2020-06')]}
     >
       <ul>
-        <li>Funding: scholarship from the British government</li>
+        <li>Funding: full scholarship</li>
         <li>
           Extra-curricular: Half-blue for playing the Table Tennis Varsity match against Cambridge
         </li>
@@ -69,12 +69,11 @@ const Education = () => (
       dates={[undefined, new Date('2012-06')]}
     >
       <ul>
-        <li>Thesis: Energy-minimizing maps</li>
+        <li>Thesis: Energy-minimizing maps (Geometric Measure Theory)</li>
         <li>
           Supervisor: Professor{' '}
           <a href="https://www.maths.cam.ac.uk/person/ngw24">Neshan Wickramasekera</a>
         </li>
-        <li>Grade: distinction (highest passing grade)</li>
         <li>
           Offered a <Abbr key="PhD" /> position based on academic performance
         </li>
