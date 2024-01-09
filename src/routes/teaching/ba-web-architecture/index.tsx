@@ -13,7 +13,7 @@ export default () => {
       <h2>Cours théorique</h2>
       <Explorer pattern={`${location.pathname}/?[0-9a-z]{1,2}-.*json$`} showPDF />
       <h2>Labos</h2>
-      <Explorer pattern={`${location.pathname}/?labo-[0-9a-z]+-.*json$`} showPDF />
+      <Explorer pattern={`${location.pathname}/?lab-[0-9a-z]+-.*json$`} showPDF />
       <div class="columns">
         <div>
           <h2>Informations pratiques</h2>
