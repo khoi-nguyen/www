@@ -12,6 +12,6 @@ clean:
 
 watch:
 	@while true; do\
-		make --no-print-directory all;\
+		make -s --no-print-directory all;\
 		inotifywait -qqre close_write .;\
 	done
