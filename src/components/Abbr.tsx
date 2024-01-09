@@ -26,6 +26,7 @@ const abbreviations = {
   PhD: 'Philosophiæ Doctor',
   PHP: 'PHP Hypertext Preprocessor',
   REST: 'Representational State Transfer',
+  SEO: 'Search Engine Optimization',
   SPA: 'Single Page Application',
   SQL: 'Structured Query Language',
   SSR: 'Server Side Rendering',
