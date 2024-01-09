@@ -5,6 +5,7 @@ interface JavascriptProps {
   mode?: 'react' | 'svelte'
   appName?: string
   children?: JSX.Element
+  modules?: { [componentName: string]: string }
   onExecuted?: () => void
 }
 
@@ -32,12 +33,23 @@ export default function Javascript(props: JavascriptProps) {
   })
 
   const code = () => {
+    let extra = ''
     if (!ready()) {
       return ''
     }
     let code = props.code ? props.code : String(props.children || '')
     if (props.mode === 'svelte') {
       code = compile(code).js.code
+      for (const module in props.modules) {
+        const compiled = fixImports(compile(props.modules[module]).js.code)
+        extra += html.raw`
+          <script type="module">
+            ${compiled}
+            window.${module} = Component
+          </script>
+        `
+        code = ts.raw`const ${module} = window.${module}` + '\n' + code
+      }
       code += ts.raw`new Component({ target: document.getElementById('app') });`
     } else if (props.mode === 'react') {
       code = ts.raw`
@@ -51,6 +63,7 @@ export default function Javascript(props: JavascriptProps) {
     return html.raw`
       <div id="app">
       </div>
+      ${extra}
       <script type="module">
       ${fixImports(code)}
       </script>
