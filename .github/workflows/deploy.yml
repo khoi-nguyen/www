@@ -11,14 +11,26 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Copy repository contents
+        uses: appleboy/scp-action@master
+        env:
+          HOST: ngy.ecam.be
+          USERNAME: khoi
+          PORT: 8022
+          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
-          fetch-depth: 0
-      - name: Add SSH Key
-        run: |
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          ssh-keyscan -p 8022 ngy.ecam.be >> ~/.ssh/known_hosts
-      - name: Deploying
-        run: |
-          git remote add deploy [khoi@ngy.ecam.be:8022]:git/www
-          git push -f deploy master
+          source: "."
+          target: "/home/khoi/git/www"
+      - name: Building
+        uses: appleboy/ssh-action@master
+        with:
+          HOST: ngy.ecam.be
+          USERNAME: khoi
+          PORT: 8022
+          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/khoi/git/www
+            npm install
+            git config --unset core.hooksPath
+            npm run build --update-env
+            pm2 restart www
