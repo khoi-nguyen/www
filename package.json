@@ -2,9 +2,9 @@
   "name": "www",
   "type": "module",
   "scripts": {
-    "dev": "./bin/meta && solid-start dev",
+    "dev": "concurrently 'make watch' 'solid-start dev'",
     "start": "solid-start start",
-    "build": "./bin/meta && solid-start build",
+    "build": "make && solid-start build",
     "server": "node dist/server/entry.mjs",
     "prepare": "husky install"
   },
@@ -20,6 +20,7 @@
     "@types/prismjs": "^1.26.3",
     "@types/reveal.js": "^4.4.6",
     "@types/sharedworker": "^0.0.105",
+    "concurrently": "^8.2.2",
     "esbuild": "^0.14.54",
     "husky": "^8.0.3",
     "lint-staged": "^13.3.0",

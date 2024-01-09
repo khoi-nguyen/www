@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-import glob
 import re
 import json
+import sys
 
 def extract_meta(path: str) -> str:
     with open(path, 'r', encoding="utf-8") as file:
@@ -15,8 +15,4 @@ def extract_meta(path: str) -> str:
             return json.dumps(eval(meta), ensure_ascii=False, indent=2)
         raise ValueError("Missing Metadata")
 
-for file in glob.glob('src/routes/**/*.tsx', recursive=True):
-    meta = extract_meta(file)
-    target = file[0:-4] + ".json"
-    with open(target, "w") as file:
-        file.write(meta + "\n")
+print(extract_meta(sys.argv[1]))
