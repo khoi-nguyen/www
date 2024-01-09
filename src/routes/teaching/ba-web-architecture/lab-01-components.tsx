@@ -18,21 +18,65 @@ const CVLine = svelte.raw`
   </div>
 `
 
-const Pokemon = svelte.raw`
-  <script>
-    export let name = ''
-    export let hp = 100
-    export let maxHealth = 100
+interface HealthProps {
+  hp: number
+  maxHealth: number
+  name: string
+}
 
-    $: value = hp / maxHealth
-  </script>
+function Health(props: HealthProps) {
+  const value = () => props.hp / props.maxHealth
+  return (
+    <div>
+      {props.name}
+      <br />
+      HP: <meter value={value()} low={0.1} />
+      <br />
+      {props.hp} / {props.maxHealth}
+    </div>
+  )
+}
 
-  <div>
-    {name}<br />
-    HP: <meter {value} low={0.1} /><br />
-    {hp} / {maxHealth}
-  </div>
-`
+interface PokemonProps {
+  showCatch?: boolean
+}
+
+function Pokemon(props: PokemonProps) {
+  const maxHealth = 416
+  const [hp, setHp] = createSignal(maxHealth)
+  const [attempts, setAttempts] = createSignal(0)
+  const [caught, setCaught] = createSignal(false)
+  const slap = () => setHp(Math.max(hp() - 5, 0))
+  const catchPokemon = () => {
+    const p = 1 - hp() / maxHealth
+    if (Math.random() < p) {
+      setCaught(true)
+    }
+    setAttempts(attempts() + 1)
+  }
+  const reset = () => {
+    setCaught(false)
+    setAttempts(0)
+    setHp(maxHealth)
+  }
+  return (
+    <>
+      <Show when={hp() > 0}>
+        <Health name="Mewtwo" hp={hp()} maxHealth={maxHealth} />
+        <Button onClick={slap}>Slap</Button>
+      </Show>
+      <Show when={props.showCatch && !caught()}>
+        <Button onClick={catchPokemon}>Catch</Button>
+      </Show>
+      <Button onClick={reset}>Reset</Button>
+      <Show when={attempts() > 0 && !caught()}>
+        <p>
+          The pokemon broke free {attempts()} time{attempts() > 1 ? 's' : ''}
+        </p>
+      </Show>
+    </>
+  )
+}
 
 export default () => {
   return (
@@ -72,47 +116,29 @@ export default () => {
           </CVLine>
         `}
       </Jupyter>
-      <h2>Exercice 2: Attrappez-les tous!</h2>
-      <Jupyter lang="svelte" modules={{ Pokemon }} run columns>
-        {svelte.raw`
-          <script>
-            let hp = 20
-            let maxHealth = 416
-            let caught = false
-            let attempted = false
-
-            function slap() {
-              hp -= 5
-            }
-
-            function catchPokemon() {
-              let p = 1 - hp / maxHealth
-              if (Math.random() < p) {
-                caught = true
-              }
-              attempted = true
-            }
-
-            function tryAgain() {
-              hp = maxHealth
-              caught = false
-              attempted = false
-            }
-          </script>
-
-          {#if caught}
-            <p>The pokemon has been caught</p>
-            <button on:click={tryAgain}>Try again</button>
-          {:else}
-            <Pokemon name="Mewtwo" maxHealth={maxHealth} hp={hp} />
-            <button on:click={slap}>Slap</button>
-            <button on:click={catchPokemon}>Catch</button>
-            {#if attempted}
-              <p>Oh no... the Pokemon broke free</p>
-            {/if}
-          {/if}
-        `}
-      </Jupyter>
+      <h2>Exercice 2: Attrappez-les tous! (manipulation d'état et conditions)</h2>
+      <ol>
+        <li>
+          <p>Créez un composant comme celui-ci:</p>{' '}
+          <Health name="Mewtwo" maxHealth={416} hp={300} />
+          <p>
+            Il doit avoir les propriétés suivantes: <em>hp, maxHealth</em> et <em>name</em>. Lorsque
+            le nombre de points de vie est bas, la couleur doit changer:
+          </p>
+          <Health name="Mewtwo" maxHealth={416} hp={25} />
+          <p>
+            <strong>Indication</strong>: utilisez la balise <code>&lt;meter /&gt;</code>
+          </p>
+        </li>
+        <li>
+          Employez ce composant et ajoutez un bouton qui permet de faire descendre le nombre de
+          points de vie. <Pokemon />
+        </li>
+        <li>
+          Ajouter un bouton pour attrapper le Pokemon. La probabilité que la Pokéball réussisse doit
+          dépendre du nombre de PV. <Pokemon showCatch />
+        </li>
+      </ol>
     </Page>
   )
 }
