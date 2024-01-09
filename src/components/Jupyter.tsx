@@ -18,7 +18,7 @@ export interface JupyterProps {
   /** Input language */
   lang?: 'python' | 'react' | 'html' | 'svelte'
 
-  modules: { [name: string]: string }
+  modules?: { [name: string]: string }
 
   /** Whether to run the code on mount */
   run?: boolean
