@@ -1,7 +1,8 @@
 const meta: Metadata = {
   title: 'Introduction',
+  subtitle: 'Chapitre 1',
   lang: 'fr',
-  description: 'Déroulement du cours et objectifs',
+  description: 'Déroulement du cours, objectifs, rappels en HTML/CSS/JavaScript',
 }
 
 export default () => {
@@ -73,11 +74,43 @@ export default () => {
         </p>
         <Environment name="Thèmes centraux">
           <ul>
-            <li>Le Web est une plateforme universelle</li>
-            <li>Le Web a une architecture centralisée</li>
-            <li>Créer une applications web est extrêmement complexe</li>
+            <li>Le web est une plateforme universelle</li>
+            <li>Le web a une architecture centralisée</li>
+            <li>Créer une application web est extrêmement complexe</li>
+            <li>
+              Demandes contradictoires (rapidité, <Abbr key="SEO" />, <Abbr key="UX" />,{' '}
+              <Abbr key="DX" />
+              ), etc.)
+            </li>
           </ul>
         </Environment>
+      </Slide>
+      <Slide title="Pourquoi une application web?">
+        {/* Source: https://aws.amazon.com/what-is/web-application/ */}
+        <Question>
+          <p>Pourquoi développe-t-on des applications web?</p>
+        </Question>
+        <Fragment>
+          <ul>
+            <li>
+              <strong>Accessibilité</strong> depuis n'importe quel type d'appareil, possibilité de
+              partage et de coopération.
+            </li>
+            <li>
+              <strong>Aisance de développement</strong>: relativement simple, multi-plateforme
+            </li>
+            <li>
+              <strong>Simplicité pour l'utilisateur</strong>: pas d'installation, mises à jour
+              automatiques, pas de maintenance côté utilisateur
+            </li>
+            <li>
+              Architecture <strong>serveur/client</strong>
+            </li>
+          </ul>
+        </Fragment>
+      </Slide>
+      <Slide title={() => <Abbr key="DOM" />}>
+        <Figure src="dom-nodes-relationships.png" alt="Relations entre noeuds du DOM" />
       </Slide>
       <Slide
         title={() => (

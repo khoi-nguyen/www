@@ -1,8 +1,8 @@
 const meta: Metadata = {
-  title: 'Composants avec Svelte',
+  title: 'Architecture de composants',
   subtitle: 'Labo 1',
   lang: 'fr',
-  description: 'Architecture de composants',
+  description: 'Composants, état',
   current: true,
 }
 

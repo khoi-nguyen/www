@@ -1,7 +1,8 @@
 const meta: Metadata = {
   title: 'Architecture de composants',
+  subtitle: 'Chapitre 2',
   lang: 'fr',
-  description: 'Svelte',
+  description: 'Composants, état, état dérivé, cycle de vie',
 }
 
 export default () => {
