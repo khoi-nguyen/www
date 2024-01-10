@@ -8,7 +8,7 @@ META := $(ROUTES:.tsx=.json)
 all: $(META)
 
 clean:
-	@rm $(META)
+	@find src/routes -type f -name '*.json' | xargs rm
 
 watch:
 	@while true; do\
