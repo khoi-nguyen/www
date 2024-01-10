@@ -4,7 +4,7 @@ interface HtmlProps {
   onExecuted?: () => void
 }
 
-const style = (code: string) => dedent`
+const style = (code: string) => html.raw`
   <!DOCTYPE html>
   <html>
   <style>
