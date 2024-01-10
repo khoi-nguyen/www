@@ -50,13 +50,6 @@ export default function Page(props: PageProps) {
               <Fa icon={faChalkboardTeacher} /> Teaching
             </A>
           </li>
-          <Show when={admin()}>
-            <li>
-              <A href="#" onclick={logout}>
-                <Fa icon={faRightFromBracket} /> Log out
-              </A>
-            </li>
-          </Show>
         </ul>
       </nav>
       <Breadcrumbs />
@@ -84,7 +77,13 @@ export default function Page(props: PageProps) {
             <a href={`https://github.com/khoi-nguyen/www/tree/master/src/routes${path()}`}>
               Source code
             </a>
-            .
+            <Show when={admin()}>
+              {' '}
+              — <Fa icon={faRightFromBracket} />
+              <A href="#" onclick={logout}>
+                Log out
+              </A>
+            </Show>
           </p>
         </footer>
       </Show>
