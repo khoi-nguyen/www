@@ -27,6 +27,7 @@ const abbreviations = {
   PHP: 'PHP Hypertext Preprocessor',
   REST: 'Representational State Transfer',
   SEO: 'Search Engine Optimization',
+  SFC: 'Single File Components',
   SPA: 'Single Page Application',
   SQL: 'Structured Query Language',
   SSR: 'Server Side Rendering',
