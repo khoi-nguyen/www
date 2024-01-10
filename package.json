@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "concurrently 'make watch' 'solid-start dev'",
     "start": "solid-start start",
-    "build": "make && solid-start build",
+    "build": "make clean && make && solid-start build",
     "server": "node dist/server/entry.mjs",
     "prepare": "husky install"
   },
