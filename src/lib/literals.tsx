@@ -67,6 +67,7 @@ export const svelte = {
 
 export const js = {
   run: createLiteral<JSX.Element>((code) => <Javascript>{code}</Javascript>),
+  jupyter: jupyter({ lang: 'javascript' }),
   hl: createLiteral<JSX.Element>((code) => <Editor lang="tsx" readOnly code={code} />),
   raw,
   if: makeIf,

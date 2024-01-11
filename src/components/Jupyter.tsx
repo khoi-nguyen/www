@@ -16,7 +16,7 @@ export interface JupyterProps {
   hideUntil?: Date
 
   /** Input language */
-  lang?: 'python' | 'react' | 'html' | 'svelte'
+  lang?: 'python' | 'react' | 'html' | 'svelte' | 'javascript'
 
   modules?: { [name: string]: string }
 
@@ -104,6 +104,9 @@ export default function Jupyter(props: JupyterProps) {
         </Show>
         <Show when={props.lang === 'react' && props.transpileOnly}>
           <Transpile code={codeToRun()} onChange={() => setIsLoading(false)} />
+        </Show>
+        <Show when={props.lang === 'javascript'}>
+          <Javascript code={codeToRun()} onExecuted={() => setIsLoading(false)} />
         </Show>
         <Show when={props.lang === 'html'}>
           <Html code={codeToRun()} onExecuted={() => setIsLoading(false)} />
