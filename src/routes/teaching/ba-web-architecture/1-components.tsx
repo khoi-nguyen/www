@@ -441,24 +441,23 @@ export default () => {
       <Slide title="Réactivité: exemple">
         {svelte.jupyter`
           <script>
-            let birthday = ''
+            let birthDate = ''
 
-            function calculateAge(birthday) {
+            function calculateAge(birthDate) {
               const now = new Date()
-              const dob = new Date(birthday)
-              const birthday = Date(now.getFullYear(), dob.getMonth(), dob.getDate())
+              const dob = new Date(birthDate)
               let age = now.getFullYear() - dob.getFullYear()
-              if (now < birthday) {
+              if (now < new Date(now.getFullYear(), dob.getMonth(), dob.getDate())) {
                 age--
               }
               return age
             }
 
-            $: age = calculateAge(birthday)
+            $: age = calculateAge(birthDate)
           </script>
 
           <label>
-            Your birthday: <input bind:value={birthday} />
+            Date of birth: <input bind:value={birthDate} />
           </label>
           <p>You are {age} years old.</p>
         `}
