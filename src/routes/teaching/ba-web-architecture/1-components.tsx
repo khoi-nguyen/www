@@ -66,7 +66,7 @@ const slotExample = svelte.raw`
 export default () => {
   return (
     <Slideshow meta={meta}>
-      <Slide title="Example: mutations">
+      <Slide title="Exemple: mutations">
         <Example>
           <p>
             Implémente <code>addOne</code>, qui augmente le compteur de 1 lorsque l'on clique sur le
@@ -305,7 +305,7 @@ export default () => {
           {hp} / {maxHealth}
         `}
       </Slide>
-      <Slide title="Example: props" columns>
+      <Slide title="Exemple: props" columns>
         <div>
           <h3>Button.svelte</h3>
           <Jupyter lang="svelte">{coloredButtonExample}</Jupyter>
@@ -392,7 +392,7 @@ export default () => {
           {/if}
         `}
       </Slide>
-      <Slide title="Example: Formulaire">
+      <Slide title="Exemple: Formulaire">
         <Jupyter lang="svelte">
           {svelte.raw`
             <script>

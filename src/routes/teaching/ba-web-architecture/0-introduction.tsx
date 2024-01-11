@@ -383,7 +383,7 @@ export default () => {
             let span = document.querySelector('span')
 
             button.onclick = function() {
-              alert('Clic')
+              alert('Bonjour maman')
             }
             input.onblur = function() {
               alert('Vous avez entré: ' + input.value)
