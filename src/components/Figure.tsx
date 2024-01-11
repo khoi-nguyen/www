@@ -1,8 +1,8 @@
 interface FigureProps {
   alt: string
   src: string
-  width?: number
-  height?: number
+  width?: number | string
+  height?: number | string
   children?: JSX.Element | JSX.Element[]
 }
 
