@@ -7,11 +7,12 @@ interface FigureProps {
 }
 
 export default function Figure(props: FigureProps) {
+  const c = children(() => props.children)
   return (
-    <div class="has-text-centered">
+    <div class="has-text-centered" style={{ 'font-size': '0.8em' }}>
       <img src={'/images/' + props.src} alt={props.alt} width={props.width} height={props.height} />
-      <Show when={props.children}>
-        <p>{props.children}</p>
+      <Show when={c()}>
+        <p>{c()}</p>
       </Show>
     </div>
   )
