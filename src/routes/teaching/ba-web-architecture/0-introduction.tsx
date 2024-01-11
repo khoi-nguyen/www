@@ -1,3 +1,5 @@
+import spinnerURL from '~/assets/spinner.svg?url'
+
 const meta: Metadata = {
   title: 'Introduction',
   subtitle: 'Chapitre 1',
@@ -389,12 +391,42 @@ export default () => {
           </script>
         `}
       </Slide>
-      <Slide title="Asynchronisme" split={false}>
-        <p>
-          Parfois, une opération <strong>nécéssite du temps</strong>. Pour ne pas bloquer
-          l'interface, on peut mettre en pause une fonction jusqu'à ce qu'elle ait la réponse avec{' '}
-          <code>await</code> à condition qu'on la marque avec <code>async</code>.
-        </p>
+      <Slide title="Asynchronisme et le McDonalds" columns>
+        <div>
+          <h3>Asynchronisme</h3>
+          <p>
+            Dans le navigateur, le JavaScript se comporte comme un·e caissier·e du McDonalds lorsque
+            les machines de commande sont en panne: les clients ne sont pas servis dans l'ordre.
+          </p>
+          <Figure src="mcdonalds-async.png" alt="Attente au McDonalds" width="600" />
+          <p>
+            Le modèle est plus complexe et requiert un peu de travail, mais au moins l'interface
+            fonctionne quand on charge toujours les données.
+          </p>
+        </div>
+        <div>
+          <h3>Synchronisme</h3>
+          <p>Le comportement par défaut est la file de supermarché</p>
+          <Figure src="supermarket-queue.png" alt="Attente au McDonalds" width="600" />
+          <p>
+            Le modèle est <strong>plus simple</strong> mais on est bloqué si quelqu'un a oublié son
+            portefeuille ou nourrit une famille de 15.
+          </p>
+        </div>
+      </Slide>
+      <Slide title="Asynchronisme: example" split={false}>
+        <div class="columns">
+          <ul>
+            <li>
+              <strong>async</strong>: cette fonction prendra du temps et la réponse ne sera pas
+              immédiate
+            </li>
+            <li>
+              <strong>await</strong>: quitte la file jusqu'à ce que la réponse soit disponible
+            </li>
+          </ul>
+          <div />
+        </div>
         <Jupyter lang="html" columns>
           {html.raw`
             <input />
@@ -403,6 +435,7 @@ export default () => {
               let input = document.querySelector('input')
               let img = document.querySelector('img')
               async function changePokemon(name) {
+                img.src = '${spinnerURL}'
                 const res = await fetch('https://pokeapi.co/api/v2/pokemon/' + name)
                 const data = await res.json()
                 img.src = data.sprites.other['official-artwork']['front_default']
