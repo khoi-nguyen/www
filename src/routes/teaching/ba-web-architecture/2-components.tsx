@@ -6,7 +6,7 @@ const meta: Metadata = {
 }
 
 const mutationsExample = (solve: boolean) => html.raw`
-  <button onclick="increaseCount()">
+  <button onclick="addOne()">
     Count: <span id="counter">0</span>
   </button>
 ${html.if(solve)`
@@ -14,7 +14,7 @@ ${html.if(solve)`
     // État
     let count = 0
 
-    function increaseCount() {
+    function addOne() {
       // Changement d'état
       count = count + 1
 
@@ -25,14 +25,52 @@ ${html.if(solve)`
 `}
 `
 
+const coloredButtonExample = svelte.raw`
+  <script>
+    export let color = 'red'
+    export let text = ''
+    export let action
+  </script>
+
+  <button on:click={action} style={"background: " + color}>
+    {text}
+  </button>
+
+  <style>
+    button {
+      color: white
+    }
+  </style>
+`
+
+const conditionsExample = svelte.raw`
+`
+
+const slotExample = svelte.raw`
+  <script>
+    export let color = 'red'
+    export let action
+  </script>
+
+  <button on:click={action} style={"background: " + color}>
+    <slot />
+  </button>
+
+  <style>
+    button {
+      color: white
+    }
+  </style>
+`
+
 export default () => {
   return (
     <Slideshow meta={meta}>
       <Slide title="Example: mutations">
         <Example>
           <p>
-            Implémente <code>increaseCount</code>, qui augmente le compteur de 1 lorsque l'on clique
-            sur le bouton.
+            Implémente <code>addOne</code>, qui augmente le compteur de 1 lorsque l'on clique sur le
+            bouton.
           </p>
         </Example>
         <Jupyter lang="html" solution={mutationsExample} hideUntil={new Date('2024-01-13')} />
@@ -113,6 +151,44 @@ export default () => {
           </p>
         </Remark>
       </Slide>
+      <Slide
+        title={() => (
+          <>
+            Virtual <Abbr key="DOM" />
+          </>
+        )}
+      >
+        <Figure src="virtual-dom.png" alt="Virtual DOM in React" height={500}>
+          <p>
+            React recrée l'interface à chaque changement d'état dans une copie (le virtual{' '}
+            <Abbr key="DOM" />) et le compare au <Abbr key="DOM" /> du navigateur pour effectuer la
+            mise à jour la plus petite possible).
+          </p>
+        </Figure>
+        <Remark>
+          <p>
+            L'idée de base était de combiner la simplicité d'écrire une <Abbr key="UI" /> de zéro
+            tout en gardant une certaine performance. Aujourd'hui, on se demande si le modèle limite
+            un peu trop la performance.
+          </p>
+        </Remark>
+      </Slide>
+      <Slide title="React: exemple">
+        {react.jupyter`
+          function App() {
+            console.log('Running App...')
+            const [count, setCount] = useState(0)
+            function addOne() {
+              setCount(count + 1)
+            }
+            return (
+              <button onClick={addOne}>
+                Count: {count}
+              </button>
+            )
+          }
+        `}
+      </Slide>
       <Slide title="Frameworks dominants">
         <p>Actuellement, les principaux frameworks sont</p>
         <ul>
@@ -153,25 +229,12 @@ export default () => {
       <Slide title="State of Javascript 2022">
         <Iframe src="https://2022.stateofjs.com/en-US/libraries/front-end-frameworks/" />
       </Slide>
-      <Slide title="Ce que les frameworks ont en commun">
-        <Example>
-          {svelte.hl`
-            <script>
-              let title = ''
-            </script>
-
-            <section>
-              <h1>{title}</h1>
-              <slot />
-            </section>
-          `}
-        </Example>
-        <ul>
-          <li>Syntaxe déclarative</li>
-          <li>Composabilité</li>
-        </ul>
-      </Slide>
       <Slide title="Présentation de Svelte">
+        <p>
+          La plupart des concepts introduits par les frameworks sont les mêmes. Nous les
+          introduiserons par Svelte. La spécificité est de fournir une <Abbr key="DX" /> similaire à
+          React avec plus de performance car on n'emploie pas de Virtual <Abbr key="DOM" />.
+        </p>
         <Figure src="svelte.svg" alt="Logo de svelte" height={250} />
         <dl>
           <dt>Auteur</dt>
@@ -186,31 +249,150 @@ export default () => {
           <dd>JavaScript</dd>
         </dl>
       </Slide>
-      <Slide title="Pourquoi Svelte?">
-        <p>Svelte est relativement nouveau et moins établi que React, Angular ou Vue</p>
-        <ul>
-          <li>Syntaxe plus simple</li>
-          <li>Idées sont les mêmes</li>
-          <li></li>
-        </ul>
-      </Slide>
-      <Slide title="Un premier exemple">
+      <Slide title="Un premier exemple: le compteur">
+        <p>
+          Svelte utilise le principe d'<strong>un composant par fichier</strong> (<Abbr key="SFC" />
+          ), comme <a href="https://vuejs.org">Vue.js</a>. Imaginons que le fichier{' '}
+          <code>Counter.svelte</code> contienne le code suivant:
+        </p>
         <Jupyter lang="svelte">
           {svelte.raw`
             <script>
               let count = 0
-              function increaseCount() {
+              function addOne() {
                 count = count + 1
               }
             </script>
 
-            <button on:click={increaseCount}>
+            <button on:click={addOne}>
               Count: {count}
             </button>
           `}
         </Jupyter>
+        <p>Vous pourrez réutiliser ce composant de la manière suivante:</p>
+        {svelte.hl`
+          <script>
+            import Counter from './Counter.svelte'
+          </script>
+
+          <Counter />
+        `}
       </Slide>
-      <Slide title="Formulaires">
+      <Slide title="Props">
+        <p>Parfois vous voulez utiliser deux instances différentes du même composant.</p>
+        {svelte.hl`
+          <Pokemon name="Mewtwo" hp={300} maxHealth={416} />
+          <Pokemon name="Pikachu" hp={150} maxHealth={211} />
+        `}
+        <Question>
+          <p>
+            Comment faire passer la propriété (prop) <code>name = 'Mewtwo'</code> au composant
+            <code>Pokemon</code>?
+          </p>
+        </Question>
+        <p>
+          En Svelte: avec le mot clé <code>export</code>
+        </p>
+        {svelte.hl`
+          <script>
+            export let name // La valeur nous sera donnée en 'prop'
+            export let hp = 100 // Valeur par défaut
+            export let maxHealth = 100
+          </script>
+
+          {name}<br />
+          HP: <meter value={hp / maxHealth} /><br />
+          {hp} / {maxHealth}
+        `}
+      </Slide>
+      <Slide title="Example: props" columns>
+        <div>
+          <h3>Button.svelte</h3>
+          <Jupyter lang="svelte">{coloredButtonExample}</Jupyter>
+        </div>
+        <div>
+          <h3>App.svelte (ou autre fichier)</h3>
+          <Jupyter lang="svelte" modules={{ Button: coloredButtonExample }}>
+            {svelte.raw`
+              <Button 
+                text="Bonjour"
+                color="blue"
+                action={function() { alert('hola') }}
+              />
+
+              <Button text="Hello" color="green" />
+            `}
+          </Jupyter>
+        </div>
+      </Slide>
+      <Slide title="Affichage conditionnel">
+        <p>
+          Dans Svelte, on peut employer <code>{'{#if ...}'}</code>, <code>{'{:else if ...}'}</code>,{' '}
+          <code>{'{:else}'}</code> et <code>{'{/if}'}</code> pour le rendu conditionnel.
+        </p>
+        {svelte.jupyter`
+          <script>
+            let count = 0
+            function addOne() {
+              count += 1
+            }
+          </script>
+
+          <button on:click={addOne}>
+            Count: {count}
+          </button>
+          {#if count > 10}
+            <p>Le compteur a dépassé 10</p>
+          {:else if count < 5}
+            <p>Le compteur est en dessous de 5</p>
+          {:else}
+            <p>Le compteur est entre 5 et 10</p>
+          {/if}
+        `}
+      </Slide>
+      <Slide title="Slots" columns>
+        <div>
+          <p>
+            La balise spéciale <code>slot</code> est remplacée par les enfants du composants.
+          </p>
+          <h3>Button.svelte</h3>
+          <Jupyter lang="svelte">{slotExample}</Jupyter>
+        </div>
+        <div>
+          <h3>App.svelte (ou autre fichier)</h3>
+          <Jupyter lang="svelte" modules={{ Button: slotExample }}>
+            {svelte.raw`
+              <Button 
+                text="Bonjour"
+                color="blue"
+                action={function() { alert('hola') }}
+              >
+                Hello <strong>world</strong>
+              </Button>
+            `}
+          </Jupyter>
+        </div>
+      </Slide>
+      <Slide title="Two-way binding">
+        <p>
+          Lorsque l'on travaille avec des formulaires, il est nécéssaire de pouvoir lier une
+          variable et la valeur d'un champ de texte. En svelte, ça se fait via la directive{' '}
+          <code>bind:value</code>.
+        </p>
+        {svelte.jupyter`
+          <script>
+            let name = ''
+          </script>
+
+          <p>What's your name?</p>
+          <input bind:value={name} />
+
+          {#if name}
+            <p>Bonjour {name}</p>
+          {/if}
+        `}
+      </Slide>
+      <Slide title="Example: Formulaire">
         <Jupyter lang="svelte">
           {svelte.raw`
             <script>
@@ -233,7 +415,30 @@ export default () => {
           `}
         </Jupyter>
       </Slide>
-      <Slide title="Réactivité">
+      <Slide title="État dérivé">
+        <p>
+          Dans Svelte, une assignation <strong>réactive</strong> est préfixée par <code>$:</code>.
+          De telles quantités sont <strong>recalculées</strong> à chaque{' '}
+          <strong>changement d'une dépendance</strong>.
+        </p>
+        {svelte.jupyter`
+          <script>
+            let grade = 20
+            let total = 20
+            $: percentage = grade / total * 100
+          </script>
+
+          Quelle note avez-vous obtenue à l'examen?
+          <input type="int" bind:value={grade} />
+
+          <p>Vous avez obtenu {percentage}%</p>
+
+          {#if percentage < 50}
+            <p>Rendez-vous en septembre</p>
+          {/if}
+        `}
+      </Slide>
+      <Slide title="Réactivité: exemple">
         {svelte.jupyter`
           <script>
             let birthday = ''
@@ -241,7 +446,12 @@ export default () => {
             function calculateAge(birthday) {
               const now = new Date()
               const dob = new Date(birthday)
-              return now.getFullYear() - dob.getFullYear()
+              const birthday = Date(now.getFullYear(), dob.getMonth(), dob.getDate())
+              let age = now.getFullYear() - dob.getFullYear()
+              if (now < birthday) {
+                age--
+              }
+              return age
             }
 
             $: age = calculateAge(birthday)
