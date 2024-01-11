@@ -414,7 +414,7 @@ export default () => {
           </p>
         </div>
       </Slide>
-      <Slide title="Asynchronisme: example" split={false}>
+      <Slide title="Asynchronisme: exemple" split={false}>
         <div class="columns">
           <ul>
             <li>
