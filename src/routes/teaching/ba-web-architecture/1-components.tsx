@@ -249,6 +249,13 @@ export default () => {
           <dd>JavaScript</dd>
         </dl>
       </Slide>
+      <Slide title="Pourquoi Svelte?">
+        <Figure src="svelte-meme.png" alt="React vs Svelte" width="80%" />
+        <p>
+          Svelte a une syntaxe plus concise que React, et nous permettra de nous concentrer sur les
+          concepts.
+        </p>
+      </Slide>
       <Slide title="Un premier exemple: le compteur">
         <p>
           Svelte utilise le principe d'<strong>un composant par fichier</strong> (<Abbr key="SFC" />
