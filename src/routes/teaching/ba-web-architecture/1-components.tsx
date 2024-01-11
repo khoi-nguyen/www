@@ -317,7 +317,7 @@ export default () => {
               <Button 
                 text="Bonjour"
                 color="blue"
-                action={function() { alert('hola') }}
+                action={function() { alert('bonjour maman') }}
               />
 
               <Button text="Hello" color="green" />
@@ -365,7 +365,7 @@ export default () => {
               <Button 
                 text="Bonjour"
                 color="blue"
-                action={function() { alert('hola') }}
+                action={function() { alert('bonjour maman') }}
               >
                 Hello <strong>world</strong>
               </Button>
