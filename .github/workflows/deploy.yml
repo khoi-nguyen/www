@@ -20,6 +20,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "."
           target: "/home/khoi/git/www"
+          rm: true
       - name: Building
         uses: appleboy/ssh-action@v1.0.3
         with:
