@@ -116,8 +116,19 @@ export default class Whiteboard {
     this.ctx.lineCap = 'round'
     this.ctx.lineJoin = 'round'
     this.ctx.lineWidth = stroke.lineWidth
-    for (const point of stroke.points) {
-      this.ctx.lineTo(...point)
+    if (stroke.points.length < 6) {
+      for (const point of stroke.points) {
+        this.ctx.lineTo(...point)
+      }
+    } else {
+      this.ctx.moveTo(...stroke.points[0])
+      for (let i = 1; i < stroke.points.length - 2; i++) {
+        let x = (stroke.points[i][0] + stroke.points[i + 1][0]) / 2
+        let y = (stroke.points[i][1] + stroke.points[i + 1][1]) / 2
+        this.ctx.quadraticCurveTo(...stroke.points[i], x, y)
+      }
+      const i = stroke.points.length - 2
+      this.ctx.quadraticCurveTo(...stroke.points[i], ...stroke.points[i + 1])
     }
     this.ctx.stroke()
     this.ctx.closePath()
