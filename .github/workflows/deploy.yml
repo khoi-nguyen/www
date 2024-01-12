@@ -9,18 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Copy repository contents
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ngy.ecam.be
-          username: khoi
-          port: 8022
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "."
-          target: "/home/khoi/git/www"
-          rm: true
       - name: Building
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -30,6 +18,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/khoi/git/www
+            git pull
             npm install
             git config --unset core.hooksPath
             npm run build --update-env
