@@ -67,6 +67,12 @@ export default () => {
               Ne pas confondre avec le cours d'architecture web pour les ingénieurs en informatique
             </p>
           </Remark>
+          <Question>
+            <p>Des questions?</p>
+          </Question>
+          <p>
+            N'hésitez pas à me contacter par <strong>email</strong>: NGY@ecam.be
+          </p>
         </div>
       </Slide>
       <Slide title="Attentes">
