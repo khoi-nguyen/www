@@ -20,6 +20,15 @@ export default () => {
             <dt>Local</dt>
             <dd>1E04</dd>
           </dl>
+          <dl>
+            <dt>Nombres de sessions</dt>
+            <dd>
+              <ul>
+                <li>6 blocs de deux cours</li>
+                <li>5 labos</li>
+              </ul>
+            </dd>
+          </dl>
         </div>
         <div>
           <Calendar
