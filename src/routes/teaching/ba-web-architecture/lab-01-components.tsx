@@ -80,65 +80,44 @@ function Pokemon(props: PokemonProps) {
 
 export default () => {
   return (
-    <Page meta={meta}>
-      <h2>Exercice 0: Installer NPM et svelte</h2>
-      <ol>
-        <li>
-          Installez <a href="https://code.visualstudio.com/">Visual Studio Code</a>
-        </li>
-        <li>
-          Allez sur le <a href="https://nodejs.org/en/">site de Node.js</a>.
-        </li>
-        <li>
-          Téléchargez et installez la version LTS correspondante à votre système d'exploitation.
-        </li>
-        <li>
-          Dans le terminal, lancez la commande <code>npm create svelte@latest my-app</code>
-        </li>
-      </ol>
-      <h2>
-        Exercice 1: <Abbr key="CV" /> (composants purs)
-      </h2>
-      <p>
-        Créez un composant <code>CVLine</code> et utilisez-le pour construire votre{' '}
-        <Abbr key="CV" />. Faites-en sorte qu'il soit plus joli que l'exemple ci-dessous.
-      </p>
-      <Jupyter lang="svelte" modules={{ CVLine }} run columns>
-        {svelte.raw`
-          <h2>Expérience professionnelle</h2>
-
-          <h2>Parcours académique</h2>
-
-          <CVLine title="Doctorat en sciences de l'ingénieur" employer="ULB">
-            <ul>
-              <li>Thèse écrite avec Typst mais sans vim</li>
-            </ul>
-          </CVLine>
-        `}
-      </Jupyter>
-      <h2>Exercice 2: Attrappez-les tous! (manipulation d'état et conditions)</h2>
-      <ol>
-        <li>
-          <p>Créez un composant comme celui-ci:</p>{' '}
-          <Health name="Mewtwo" maxHealth={416} hp={300} />
-          <p>
-            Il doit avoir les propriétés suivantes: <em>hp, maxHealth</em> et <em>name</em>. Lorsque
-            le nombre de points de vie est bas, la couleur doit changer:
-          </p>
-          <Health name="Mewtwo" maxHealth={416} hp={25} />
-          <p>
-            <strong>Indication</strong>: utilisez la balise <code>&lt;meter /&gt;</code>
-          </p>
-        </li>
-        <li>
-          Employez ce composant et ajoutez un bouton qui permet de faire descendre le nombre de
-          points de vie. <Pokemon />
-        </li>
-        <li>
-          Ajouter un bouton pour attrapper le Pokemon. La probabilité que la Pokéball réussisse doit
-          dépendre du nombre de PV. <Pokemon showCatch />
-        </li>
-      </ol>
-    </Page>
+    <Slideshow meta={meta}>
+      <Slide title="Installer NPM">
+        <Iframe src="https://nodejs.org" height={600} />
+        <Instruction pluralize>
+          <ul>
+            <li>
+              Allez sur le site web the <strong>nodejs</strong>:{' '}
+              <a href="https://nodejs.org">http://nodejs.org</a>
+            </li>
+            <li>
+              Téléchargez la version appropriée pour votre machine (la version <Abbr key="LTS" />{' '}
+              suffit, il n'est pas nécéssaire de prendre la toute dernière version)
+            </li>
+          </ul>
+        </Instruction>
+      </Slide>
+      <Slide title="Créer un projet Svelte">
+        <Instruction>
+          <ul>
+            <li>Ouvrez le terminal</li>
+            <li>
+              Executez la commande: <code>npm create vite@latest</code> avec les options ci-dessous
+              (vous pouvez appeler le projet comme vous le voulez):
+              <Figure src="svelte-vite-setup.png" alt="Screenshot of npm create vite" />
+            </li>
+            <li>
+              Exécutez ensuite les commandes suivantes:
+              <Editor lang="bash">
+                {dedent`
+                  cd <nom-du-projet>
+                  npm install
+                  npm run dev
+                `}
+              </Editor>
+            </li>
+          </ul>
+        </Instruction>
+      </Slide>
+    </Slideshow>
   )
 }
