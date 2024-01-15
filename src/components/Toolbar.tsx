@@ -28,6 +28,26 @@ const brushes: Brush[] = [
   ['rgba(233, 79, 88, 0.4)', 30],
 ]
 
+function PythonRepl() {
+  const [showPythonRepl, setShowPythonRepl] = createSignal(false)
+  const togglePythonRepl = () => {
+    setShowPythonRepl(!showPythonRepl())
+  }
+  return (
+    <>
+      <div class="python-repl" style={{ display: showPythonRepl() ? 'block' : 'none' }}>
+        {py.jupyter`
+        from sympy import *
+        x, y, z, t = symbols("x y z t")
+      `}
+      </div>
+      <button class="is-secondary" onClick={togglePythonRepl}>
+        <Fa icon={faPython} />
+      </button>
+    </>
+  )
+}
+
 export default function Toolbar(props: ToolbarProps) {
   const [admin, { PasswordField, Form }] = useSession()
   const [color, setColor] = createSignal<string>(brushes[0][0])
@@ -38,11 +58,6 @@ export default function Toolbar(props: ToolbarProps) {
     props.whiteboard.changeBrush(...brush)
   }
   const context = useBoards()
-
-  const [showPythonRepl, setShowPythonRepl] = createSignal(false)
-  const togglePythonRepl = () => {
-    setShowPythonRepl(!showPythonRepl())
-  }
 
   const [showLoginForm, setShowLoginForm] = createSignal<boolean>(false)
 
@@ -65,15 +80,7 @@ export default function Toolbar(props: ToolbarProps) {
       <button class="is-secondary" onClick={() => props.whiteboard.clearBoard(true)}>
         <Fa icon={faBroom} />
       </button>
-      <div class="python-repl" style={{ display: showPythonRepl() ? 'block' : 'none' }}>
-        {py.jupyter`
-          from sympy import *
-          x, y, z, t = symbols("x y z t")
-        `}
-      </div>
-      <button class="is-secondary" onClick={togglePythonRepl}>
-        <Fa icon={faPython} />
-      </button>
+      <PythonRepl />
       <Show when={admin()}>
         <Show when={context.state() === 'saving'}>
           <Spinner inline />
