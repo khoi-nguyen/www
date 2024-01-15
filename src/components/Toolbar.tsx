@@ -37,9 +37,9 @@ function PythonRepl() {
     <>
       <div class="python-repl" style={{ display: showPythonRepl() ? 'block' : 'none' }}>
         {py.jupyter`
-        from sympy import *
-        x, y, z, t = symbols("x y z t")
-      `}
+          from sympy import *
+          x, y, z, t = symbols("x y z t")
+        `}
       </div>
       <button class="is-secondary" onClick={togglePythonRepl}>
         <Fa icon={faPython} />
