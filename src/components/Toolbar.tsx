@@ -66,12 +66,10 @@ export default function Toolbar(props: ToolbarProps) {
         <Fa icon={faBroom} />
       </button>
       <div class="python-repl" style={{ display: showPythonRepl() ? 'block' : 'none' }}>
-        <Jupyter lang="python">
-          {dedent`
-            from sympy import *
-            x, y, z, t = symbols("x y z t")
-          `}
-        </Jupyter>
+        {py.jupyter`
+          from sympy import *
+          x, y, z, t = symbols("x y z t")
+        `}
       </div>
       <button class="is-secondary" onClick={togglePythonRepl}>
         <Fa icon={faPython} />
