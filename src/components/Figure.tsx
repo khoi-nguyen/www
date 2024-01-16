@@ -1,6 +1,8 @@
+import paths from '~/images.json'
+
 interface FigureProps {
   alt: string
-  src: string
+  src: (typeof paths)[number]
   width?: number | string
   height?: number | string
   children?: JSX.Element | JSX.Element[]

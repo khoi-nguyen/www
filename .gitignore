@@ -30,6 +30,7 @@ Thumbs.db
 
 # Auto-import
 auto-imports.d.ts
+src/images.json.d.ts
 
 # Metadata
 src/routes/**/*.json
