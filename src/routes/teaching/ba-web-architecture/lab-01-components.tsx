@@ -145,6 +145,27 @@ export default () => {
           </ol>
         </Instruction>
       </Slide>
+      <Slide title="Installer VS Code et Svelte for VS Code" columns>
+        <div>
+          <Figure src="install-code.png" alt="Svelte Code extension" width={800} />
+          <Instruction pluralize>
+            <ul>
+              <li>
+                Allez sur le site de <a href="https://code.visualstudio.com">VS Code</a>
+              </li>
+              <li>Téléchargez la version adaptée à votre ordinateur</li>
+            </ul>
+          </Instruction>
+        </div>
+        <div>
+          <Figure src="svelte-code-extension.png" alt="Svelte Code extension" width={700} />
+          <Instruction pluralize>
+            <p>
+              Installer l'extension <strong>Svelte for VS Code</strong>
+            </p>
+          </Instruction>
+        </div>
+      </Slide>
       <Slide title="Créer un projet Svelte">
         <Instruction pluralize>
           <ol>
