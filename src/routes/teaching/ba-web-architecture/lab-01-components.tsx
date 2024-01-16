@@ -19,6 +19,56 @@ const CVLine = svelte.raw`
   </div>
 `
 
+function SignUp() {
+  const [email, setEmail] = createSignal('')
+  const emailError = () => {
+    if (!email()) {
+      return ''
+    }
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+    if (!regex.test(email())) {
+      return 'The entered email address is not valid'
+    }
+    return ''
+  }
+
+  const [password, setPassword] = createSignal('')
+  const [password2, setPassword2] = createSignal('')
+  const passwordError = () => {
+    if (!password() && !password2()) {
+      return ''
+    }
+    if (password().length <= 5) {
+      return 'The entered password must have at least 6 characters'
+    }
+    if (password() !== password2()) {
+      return 'The passwords must match'
+    }
+  }
+
+  return (
+    <div class="block clickable">
+      <p>
+        Email: <input type="text" value={email()} onInput={(e) => setEmail(e.target.value)} />
+      </p>
+      <Show when={emailError()}>
+        <p class="incorrect">{emailError()}</p>
+      </Show>
+      <p>
+        Password:{' '}
+        <input type="password" value={password()} onInput={(e) => setPassword(e.target.value)} />
+      </p>
+      <p>
+        Enter your password again:{' '}
+        <input type="password" value={password2()} onInput={(e) => setPassword2(e.target.value)} />
+      </p>
+      <Show when={passwordError()}>
+        <p class="incorrect">{passwordError()}</p>
+      </Show>
+    </div>
+  )
+}
+
 interface HealthProps {
   hp: number
   maxHealth: number
@@ -212,14 +262,63 @@ export default () => {
           </ul>
         </div>
       </Slide>
-      <Slide title="Pokemon">
-        <Exercise>
-          <p>
-            Implémentez une version simplifiée d'une bataille avec un Pokemon sauvage. Au plus le
-            Pokemon a de PV, au plus il doit être difficile à capturer.
-          </p>
-        </Exercise>
-        <Pokemon />
+      <Slide title="Formulaires et Two-way data binding" columns={true}>
+        <div>
+          <Exercise>
+            <p>
+              Implémentez un formulaire simplifié qui permet de créer un compte sur un site. Il doit
+              vérifier les critères suivants:
+            </p>
+            <ul>
+              <li>L'email entré doit être valide (utilisez ChatGPT pour cela)</li>
+              <li>Les deux mots de passe doivent être identiques</li>
+            </ul>
+          </Exercise>
+          <h4>Démo</h4>
+          <SignUp />
+        </div>
+        <div>
+          <h3>Rappels et indications</h3>
+          <ul>
+            <li>
+              On peut <strong>lier</strong> une variable avec un champ via la directive{' '}
+              <code>bind:</code>
+              {svelte.hl`<input bind:value={variableName} />`}
+            </li>
+            <li>
+              L'affichage conditionnel se fait avec <code>{'{#if ...}'}</code>,{' '}
+              <code>{'{:else if ...}'}</code>, <code>{'{:else}'}</code> et <code>{'{/if}'}</code>
+            </li>
+          </ul>
+          <h3>Quickstart</h3>
+          {svelte.jupyter`
+            <script>
+              let email
+            </script>
+
+            <label>Email: <input bind:value={email} /></label>
+            {#if !(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email))}
+              <p class="error">
+                L'email entrée n'est pas valide
+              </p>
+            {/if}
+
+          `}
+        </div>
+      </Slide>
+      <Slide title="Pokemon" columns>
+        <div>
+          <Exercise>
+            <p>
+              Implémentez une version simplifiée d'une bataille avec un Pokemon sauvage. Au plus le
+              Pokemon a de PV, au plus il doit être difficile à capturer.
+            </p>
+          </Exercise>
+          <Pokemon />
+        </div>
+        <div>
+          <h3>Rappels</h3>
+        </div>
       </Slide>
     </Slideshow>
   )
