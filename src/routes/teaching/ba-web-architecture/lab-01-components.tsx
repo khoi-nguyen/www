@@ -205,7 +205,7 @@ export default () => {
       <Slide
         title={() => (
           <>
-            Premier exercice: <Abbr key="CV" />
+            Exercice 1: <Abbr key="CV" />
           </>
         )}
         columns={true}
@@ -262,7 +262,7 @@ export default () => {
           </ul>
         </div>
       </Slide>
-      <Slide title="Formulaires et Two-way data binding" columns={true}>
+      <Slide title="Exercice 2: Formulaires et Two-way data binding" columns>
         <div>
           <Exercise>
             <p>
@@ -306,7 +306,7 @@ export default () => {
           `}
         </div>
       </Slide>
-      <Slide title="Pokemon" columns>
+      <Slide title="Exercice 3: Pokemon">
         <div>
           <Exercise>
             <p>
@@ -315,9 +315,6 @@ export default () => {
             </p>
           </Exercise>
           <Pokemon />
-        </div>
-        <div>
-          <h3>Rappels</h3>
         </div>
       </Slide>
     </Slideshow>
