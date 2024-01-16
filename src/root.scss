@@ -533,6 +533,44 @@ pre,
   width: 50%;
 }
 
+.speech-bubble-right,
+.speech-bubble-left {
+  position: relative;
+  background: #d2e8e9;
+  border-radius: 0.4em;
+  padding: 1em;
+}
+
+.speech-bubble-right:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 35%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #d2e8e9;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -10px;
+  margin-left: -20px;
+}
+
+.speech-bubble-left:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 35%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-left-color: #d2e8e9;
+  border-right: 0;
+  border-top: 0;
+  margin-top: -10px;
+  margin-right: -20px;
+}
+
 @media print {
   a {
     color: $dark;

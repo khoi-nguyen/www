@@ -56,18 +56,16 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
   })
 
   return (
-    <>
-      <div class={'poll ' + status()}>
-        <Show when={props.fallback && status() !== 'pending'} fallback={props.children}>
-          {props.fallback}
-        </Show>
-        <Show when={status() !== 'pending'}>
-          {' '}
-          <Fa icon={status() === 'correct' ? faCheck : faXmark} />
-        </Show>
-        <Show when={admin()}>{props.showAnswers && props.showAnswers(answers)}</Show>
-      </div>
-    </>
+    <div class={'block poll ' + status()}>
+      <Show when={props.fallback && status() !== 'pending'} fallback={props.children}>
+        {props.fallback}
+      </Show>
+      <Show when={status() !== 'pending'}>
+        {' '}
+        <Fa icon={status() === 'correct' ? faCheck : faXmark} />
+      </Show>
+      <Show when={admin()}>{props.showAnswers && props.showAnswers(answers)}</Show>
+    </div>
   )
 }
 
@@ -107,7 +105,7 @@ interface MultipleChoiceProps {
   children?: JSX.Element | JSX.Element[] | string
   choices: (Component<{}> | string)[]
   correct: number
-  id: string
+  id?: string
 }
 
 export function MultipleChoice(props: MultipleChoiceProps) {
@@ -123,9 +121,9 @@ export function MultipleChoice(props: MultipleChoiceProps) {
       >
         <For each={props.choices}>
           {(choice, i) => (
-            <button onClick={() => setValue(i)}>
+            <Button onClick={() => setValue(i)}>
               {typeof choice === 'function' ? choice({}) : choice}
-            </button>
+            </Button>
           )}
         </For>
       </BasicPoll>

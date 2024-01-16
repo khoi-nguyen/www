@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+
+import glob
+import json
+
+images = glob.glob('public/images/*.*', recursive=True)
+images = map(lambda x: x.replace("public/images/", ""), images)
+json_str = json.dumps(list(images), ensure_ascii=False, indent=2)
+print(f"export default {json_str} as const")
