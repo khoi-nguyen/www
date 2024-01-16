@@ -8,13 +8,16 @@ src/images.json.d.ts: public/images
 	@echo "Generating $@"
 	@./bin/meta $< > $@
 
-all: src/images.json.d.ts $(META)
+all: $(META)
+
+dev: $(META) src/images.json.d.ts
 
 clean:
+	@rm -f src/images.json.d.ts
 	@find src/routes -type f -name '*.json' -delete
 
 watch:
 	@while true; do\
-		make -s --no-print-directory all;\
+		make -s --no-print-directory dev;\
 		inotifywait -qqre close_write .;\
 	done
