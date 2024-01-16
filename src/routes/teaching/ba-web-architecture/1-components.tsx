@@ -42,10 +42,6 @@ const coloredButtonExample = svelte.raw`
     }
   </style>
 `
-
-const conditionsExample = svelte.raw`
-`
-
 const slotExample = svelte.raw`
   <script>
     export let color = 'red'
@@ -469,6 +465,76 @@ export default () => {
           <p>You are {age} years old.</p>
         `}
       </Slide>
+      <Slide title="Structure complexes: tableaux et objets" columns>
+        <div>
+          <SpeechBubble height={250}>
+            <p>
+              ¡Che, boludo! Me shamo Tuxie, tengo 7 años y soy un pingüino argentino. ¡No me pongan
+              en el horno por favor!
+            </p>
+          </SpeechBubble>
+          {js.hl`
+            // Exemple d'un objet
+            const tuxie = {
+              name: 'Tuxie',
+              age: 7,
+              nationality: 'Argentinian',
+            }
+          `}
+          <Figure src="tuxie-oven.png" alt="Tuxie in the oven" width={400}>
+            <p>Deux minutes plus tard</p>
+          </Figure>
+        </div>
+        <div>
+          <SpeechBubble image="koi">
+            <p>Bonjour! Je m'appelle Koï et j'ai beaucoup de tâches à accomplir aujourd'hui</p>
+          </SpeechBubble>
+          {js.hl`
+            const tasks = [
+              'Offrandes Tuxie pour qu\'il ne me mange pas',
+              'Donner le cours aux Business Analysts',
+              'Une promenade en mer',
+            ]
+          `}
+          <Figure src="tuxie-painting.png" alt="Painting of Tuxie the penguin" height={300}>
+            <p>Quelques heures plus tard</p>
+          </Figure>
+        </div>
+      </Slide>
+      <Slide title="Interlude: passage par référence ou valeur" columns>
+        <div>
+          <Remark>
+            <p>
+              Il y a une subtilité qu'il faut que pour compreniez avant de travailler avec les
+              objets et les tableaux.
+            </p>
+          </Remark>
+          {js.jupyter`
+            let a = [1, 2, 3]
+            let b = a
+            b.push(4)
+          `}
+          <Question>
+            <p>
+              Est-ce que <code>a</code> et <code>b</code> sont égaux (<code>a === b</code>)?
+            </p>
+          </Question>
+          <MultipleChoice choices={['Vrai', 'Faux']} correct={0} id="array" />
+        </div>
+        <div>
+          {js.jupyter`
+            let a = [1, 2, 3]
+            let b = [1, 2, 3]
+          `}
+          <Question>
+            <p>
+              Est-ce que <code>a</code> et <code>b</code> sont égaux (<code>a === b</code>)?
+            </p>
+          </Question>
+          <MultipleChoice choices={['Vrai', 'Faux']} correct={1} />
+        </div>
+      </Slide>
+      <Slide title="Explication"></Slide>
     </Slideshow>
   )
 }
