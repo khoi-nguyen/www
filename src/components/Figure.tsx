@@ -1,4 +1,4 @@
-import paths from '~/images.json'
+import type paths from '~/images.json'
 
 interface FigureProps {
   alt: string
