@@ -1,7 +1,7 @@
 ROUTES := $(shell find src/routes -type f -name '*.tsx')
 META := $(ROUTES:.tsx=.json)
 
-src/images.json.d.ts:
+src/images.json.d.ts: public/images
 	@./bin/images > $@
 
 %.json : %.tsx
