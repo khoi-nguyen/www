@@ -19,7 +19,7 @@ export default function SpeechBubble(props: SpeechBubbleProps) {
       <div class="is-narrow">
         <img src={images[props.image!]} alt={props.image} height={props.height} />
       </div>
-      <div>{props.children}</div>
+      <div class="speech-bubble-right">{props.children}</div>
     </div>
   )
 }
