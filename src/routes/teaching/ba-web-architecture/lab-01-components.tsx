@@ -241,9 +241,9 @@ export default () => {
               <h1>Curriculum Vitæ</h1>
               <h2>Parcours académique</h2>
               <CVLine 
-                title="Master en mathématiques"
+                title="Master en informatique"
                 employer="ECAM"
-                date=""
+                date="2023"
               >
                 <ul>
                   <li>Bonjour</li>
