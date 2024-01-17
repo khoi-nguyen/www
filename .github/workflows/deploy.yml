@@ -27,6 +27,7 @@ jobs:
           port: 8022
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "dist/*"
+          strip_components: 1
           target: /home/khoi/git/www/dist
           rm: true
       - name: Restarting the server
