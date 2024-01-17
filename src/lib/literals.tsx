@@ -49,6 +49,8 @@ export const tex = createLiteral(
   false,
 )
 
+export const mermaid = createLiteral((code) => <Mermaid>{code}</Mermaid>, false)
+
 export const react = {
   run: createLiteral<JSX.Element>((code) => <Javascript mode="react">{code}</Javascript>),
   jupyter: jupyter({ lang: 'react' }),

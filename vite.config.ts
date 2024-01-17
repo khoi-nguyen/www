@@ -9,7 +9,18 @@ export default defineConfig({
       dirs: ['./src/components'],
       imports: [
         {
-          '~/lib/literals': ['jupyter', 'py', 'plot', 'tex', 'react', 'svelte', 'js', 'ts', 'html'],
+          '~/lib/literals': [
+            'jupyter',
+            'py',
+            'plot',
+            'tex',
+            'mermaid',
+            'react',
+            'svelte',
+            'js',
+            'ts',
+            'html',
+          ],
           '~/stores/session': ['useSession'],
           '~/stores/boards': ['useBoards'],
           'solid-js': [
