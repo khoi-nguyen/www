@@ -2,12 +2,10 @@ import { faPython } from '@fortawesome/free-brands-svg-icons'
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons/index.js'
 import {
   faBroom,
-  faEyeSlash,
   faFloppyDisk,
   faLock,
   faPen,
   faHighlighter,
-  faLayerGroup,
 } from '@fortawesome/free-solid-svg-icons/index.js'
 import type Whiteboard from '~/lib/Whiteboard'
 
@@ -30,8 +28,27 @@ const brushes: Brush[] = [
   ['rgba(233, 79, 88, 0.4)', 30],
 ]
 
+function PythonRepl() {
+  const [showPythonRepl, setShowPythonRepl] = createSignal(false)
+  const togglePythonRepl = () => {
+    setShowPythonRepl(!showPythonRepl())
+  }
+  return (
+    <>
+      <div class="python-repl" style={{ display: showPythonRepl() ? 'block' : 'none' }}>
+        {py.jupyter`
+          from sympy import *
+          x, y, z, t = symbols("x y z t")
+        `}
+      </div>
+      <button class="is-secondary" onClick={togglePythonRepl}>
+        <Fa icon={faPython} />
+      </button>
+    </>
+  )
+}
+
 export default function Toolbar(props: ToolbarProps) {
-  const [admin, { PasswordField, Form }] = useSession()
   const [color, setColor] = createSignal<string>(brushes[0][0])
   const [lineWidth, setLineWidth] = createSignal<number>(brushes[0][1])
   const changeBrush = (brush: Brush) => {
@@ -39,26 +56,6 @@ export default function Toolbar(props: ToolbarProps) {
     setLineWidth(brush[1])
     props.whiteboard.changeBrush(...brush)
   }
-  const context = useBoards()
-
-  const [zIndex, setZIndex] = createSignal<number>(1)
-  createEffect(() => {
-    props.whiteboard.canvas.style.zIndex = String(zIndex())
-    props.whiteboard.canvas.style.display = zIndex() < 0 ? 'none' : 'block'
-  })
-  const toggleZIndex = () => {
-    setZIndex(zIndex() <= 1 ? 3 : 1)
-  }
-  const toggleVisibility = () => {
-    setZIndex(zIndex() < 0 ? 1 : -1)
-  }
-
-  const [showPythonRepl, setShowPythonRepl] = createSignal(false)
-  const togglePythonRepl = () => {
-    setShowPythonRepl(!showPythonRepl())
-  }
-
-  const [showLoginForm, setShowLoginForm] = createSignal<boolean>(false)
 
   return (
     <div class="toolbar">
@@ -79,31 +76,33 @@ export default function Toolbar(props: ToolbarProps) {
       <button class="is-secondary" onClick={() => props.whiteboard.clearBoard(true)}>
         <Fa icon={faBroom} />
       </button>
-      <button class="is-secondary" onClick={toggleZIndex}>
-        <Fa icon={faLayerGroup} />
-      </button>
-      <button class="is-secondary" onClick={toggleVisibility}>
-        <Fa icon={faEyeSlash} />
-      </button>
-      <div class="python-repl" style={{ display: showPythonRepl() ? 'block' : 'none' }}>
-        <Jupyter lang="python">
-          {dedent`
-            from sympy import *
-            x, y, z, t = symbols("x y z t")
-          `}
-        </Jupyter>
-      </div>
-      <button class="is-secondary" onClick={togglePythonRepl}>
-        <Fa icon={faPython} />
-      </button>
-      <Show when={admin()}>
-        <Show when={context.state() === 'saving'}>
-          <Spinner inline />
-        </Show>
-        <Show when={context.state() === 'unsaved'}>
-          <Fa icon={faFloppyDisk} />
-        </Show>
+      <PythonRepl />
+      <SavingState />
+      <LoginState />
+    </div>
+  )
+}
+
+function SavingState() {
+  const [admin] = useSession()
+  const context = useBoards()
+  return (
+    <Show when={admin()}>
+      <Show when={context.state() === 'saving'}>
+        <Spinner inline />
       </Show>
+      <Show when={context.state() === 'unsaved'}>
+        <Fa icon={faFloppyDisk} />
+      </Show>
+    </Show>
+  )
+}
+
+function LoginState() {
+  const [admin, { PasswordField, Form }] = useSession()
+  const [showLoginForm, setShowLoginForm] = createSignal<boolean>(false)
+  return (
+    <>
       <Show when={!showLoginForm() && !admin()}>
         <button class="is-secondary" onClick={() => setShowLoginForm(true)}>
           <Fa icon={faLock} />
@@ -116,6 +115,6 @@ export default function Toolbar(props: ToolbarProps) {
           <input type="submit" />
         </Form>
       </Show>
-    </div>
+    </>
   )
 }
