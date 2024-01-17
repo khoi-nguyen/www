@@ -318,19 +318,16 @@ export default () => {
           <h3>Quickstart</h3>
           {svelte.jupyter`
             <script>
-              let email
-
+              let email = ''
               const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+              // On revérifie la validité à chaque fois qu'email change
               $: valid = regex.test(email)
             </script>
 
             <label>Email: <input bind:value={email} /></label>
             {#if !valid}
-              <p class="error">
-                L'email entrée n'est pas valide
-              </p>
+              <p class="error">Email non valide</p>
             {/if}
-
           `}
         </div>
       </Slide>
