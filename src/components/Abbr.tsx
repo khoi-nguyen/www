@@ -15,6 +15,7 @@ const abbreviations = {
   IGCSE: 'International General Certificate of Secondary Education',
   JPEG: 'Joint Photographic Experts Group',
   JSX: 'JavaScript Syntax Extension',
+  LTS: 'Long-term support',
   MASt: 'Master of Advanced Study',
   MP3: 'Moving Picture Experts Group Layer-3 Audio',
   MVC: 'Model View Controller',
