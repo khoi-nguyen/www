@@ -28,6 +28,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: dist/
           target: /home/khoi/git/www
+          rm: true
       - name: Restarting the server
         uses: appleboy/ssh-action@v1.0.3
         with:
