@@ -9,7 +9,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Building
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Deploying
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ngy.ecam.be
+          username: khoi
+          port: 8022
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: dist/
+          target: /home/khoi/git/www/dist
+      - name: Restarting the server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ngy.ecam.be
@@ -17,9 +36,4 @@ jobs:
           port: 8022
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/khoi/git/www
-            git pull
-            npm install
-            git config --unset core.hooksPath
-            npm run build --update-env
             pm2 restart www
