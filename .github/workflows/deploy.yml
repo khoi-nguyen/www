@@ -26,8 +26,8 @@ jobs:
           username: khoi
           port: 8022
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: dist/
-          target: /home/khoi/git/www
+          source: "dist/*"
+          target: /home/khoi/git/www/dist
           rm: true
       - name: Restarting the server
         uses: appleboy/ssh-action@v1.0.3
@@ -37,4 +37,6 @@ jobs:
           port: 8022
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            cd /home/khoi/git/www
+            git pull
             pm2 restart www
