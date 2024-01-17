@@ -283,7 +283,7 @@ export default () => {
           </ul>
         </div>
       </Slide>
-      <Slide title="Exercice 2: Formulaires et Two-way data binding" columns>
+      <Slide title="Exercice 2: Formulaires et two-way data binding" columns>
         <div>
           <Exercise>
             <p>
@@ -291,7 +291,8 @@ export default () => {
               vérifier les critères suivants:
             </p>
             <ul>
-              <li>L'email entré doit être valide (utilisez ChatGPT pour cela)</li>
+              <li>L'email entré doit être valide (voir indication)</li>
+              <li>Le mot de passe doit avoir au moins 6 caractères</li>
               <li>Les deux mots de passe doivent être identiques</li>
             </ul>
           </Exercise>
@@ -310,15 +311,21 @@ export default () => {
               L'affichage conditionnel se fait avec <code>{'{#if ...}'}</code>,{' '}
               <code>{'{:else if ...}'}</code>, <code>{'{:else}'}</code> et <code>{'{/if}'}</code>
             </li>
+            <li>
+              Une assignation précédée par <code>$:</code> est réactive
+            </li>
           </ul>
           <h3>Quickstart</h3>
           {svelte.jupyter`
             <script>
               let email
+
+              const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+              $: valid = regex.test(email)
             </script>
 
             <label>Email: <input bind:value={email} /></label>
-            {#if !(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email))}
+            {#if !valid}
               <p class="error">
                 L'email entrée n'est pas valide
               </p>
