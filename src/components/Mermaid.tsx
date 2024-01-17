@@ -1,5 +1,3 @@
-import mermaid from 'mermaid'
-
 interface MermaidProps {
   children: string | string[]
 }
@@ -7,10 +5,13 @@ interface MermaidProps {
 export default function Mermaid(props: MermaidProps) {
   let element: HTMLPreElement
   const c = children(() => props.children)
-  const [svg] = createResource(c(), async (children): Promise<string> => {
-    const code = String(children)
+  const [svg, setSvg] = createSignal('')
+
+  onMount(async () => {
+    const mermaid = (await import('mermaid')).default
+    const code = String(c())
     const { svg } = await mermaid.render('graphDiv', code)
-    return svg
+    setSvg(svg)
   })
 
   return (
