@@ -59,6 +59,28 @@ const slotExample = svelte.raw`
   </style>
 `
 
+const todoExample = (solve: boolean) => svelte.raw`
+  <script>
+    let tasks = ['dire bonjour à maman', 'nourrir Tuxie']
+    let task = ''
+${svelte.if(solve)`
+    function addTask() {
+      tasks = [...tasks, task]
+    }
+`}
+  </script>
+
+${svelte.if(solve)`
+  <input bind:value={task} />
+  <button on:click={addTask}>Submit</button>
+`}
+  <ul>
+    {#each tasks as task}
+      <li>{task}</li>
+    {/each}
+  </ul>
+`
+
 export default () => {
   return (
     <Slideshow meta={meta}>
@@ -491,7 +513,7 @@ export default () => {
           </SpeechBubble>
           {js.hl`
             const tasks = [
-              'Offrandes Tuxie pour qu\'il ne me mange pas',
+              'Offrandes à Tuxie pour qu\'il ne me mange pas',
               'Donner le cours aux Business Analysts',
               'Une promenade en mer',
             ]
@@ -534,7 +556,141 @@ export default () => {
           <MultipleChoice choices={['Vrai', 'Faux']} correct={1} />
         </div>
       </Slide>
-      <Slide title="Explication"></Slide>
+      <Slide title="Syntaxe de décomposition (spread syntax)">
+        <Definition title="Spread syntax">
+          <p>
+            <code>...variable</code>: étend un objet ou un tableau en plusieurs arguments
+          </p>
+        </Definition>
+        <Example title="Décomposition d'objets">
+          {js.hl`
+            let tuxie = { name: 'tuxie', age: 7 }
+            // ne change pas la variable
+            tuxie.nationality = 'Argentinian'
+            // change l'objet
+            tuxie = { ...tuxie, language: 'es' }
+          `}
+        </Example>
+        <Example>
+          {js.hl`
+            let numbers = [0, 1, 2, 3, 4, 5]
+            // ne change pas la variable
+            numbers.push(6)
+            // change la variable
+            numbers = [...numbers, 7, 8]
+          `}
+        </Example>
+        <Remark>
+          <p>
+            La syntaxe de décomposition est utile pour déclencher le système de réactivité de
+            Svelte.
+          </p>
+        </Remark>
+      </Slide>
+      <Slide title="Explication">
+        <p>
+          Les arrays et les objets sont passés <strong>par référence</strong>. Une analogie utile
+          serait de remarquer qu'on désigne parfois une maison <strong>par son adresse</strong>.
+        </p>
+        {tex`
+            \texttt{const}\ \overbrace{\texttt{array}}^{\text{adresse}}
+            \ \texttt{=} \
+            \overbrace{\texttt{[1, 2, 3, 4]}}^{\text{maison}}
+          `}
+        <ul>
+          <li>
+            Changer la maison ne signifie pas forcément changer d'adresse.
+            {ts.hl`
+              const array = [1, 2, 3, 4]
+              array.push(5)
+            `}
+            En particulier, <strong>Svelte ne réagira pas</strong> à de tels changements.
+            {svelte.jupyter`
+              <script>
+                let array = [1, 2, 3, 4]
+                function changeArray() {
+                  array.push(5)
+                }
+              </script>
+
+              <pre>{JSON.stringify(array)}</pre>
+              <button on:click={changeArray}>Add one element</button>
+            `}
+          </li>
+        </ul>
+      </Slide>
+      <Slide title="Exemple: la todo list">
+        <Jupyter lang="svelte" solution={todoExample} />
+      </Slide>
+      <Slide
+        title={() => (
+          <>
+            Fetch <Abbr key="API" />
+          </>
+        )}
+      >
+        <Definition>
+          {js.hl`
+            fetch(url, options)
+          `}
+          <ul>
+            <li>Commence le processus de recherche de resource sur un serveur</li>
+            <li>
+              Retourne une <strong>promesse</strong> de réponse
+            </li>
+          </ul>
+        </Definition>
+      </Slide>
+      <Slide title="Exemple: Photo de Pokémon" columns>
+        <Jupyter lang="svelte" columns>
+          {svelte.raw`
+            <script>
+              let name = 'pikachu'
+
+              // Fonction async qui va chercher le src de l'image
+              async function fetchImage(name) {
+                const res = await fetch('https://pokeapi.co/api/v2/pokemon/' + name)
+                const data = await res.json()
+                return data.sprites.other['official-artwork']['front_default']
+              }
+
+              $: picturePromise = fetchImage(name)
+            </script>
+
+            <input bind:value={name} />
+
+            {#await picturePromise}
+              <p>Loading...</p>
+            {:then path}
+              <img src={path} alt={name} />
+            {/await}
+          `}
+        </Jupyter>
+      </Slide>
+      <Slide title="Résumé du chapitre">
+        <ul>
+          <li>
+            <strong>Composant</strong> {tex`\approx`} nouvelle balise <Abbr key="HTML" /> qui
+            contient du <Abbr key="HTML" />, <Abbr key="CSS" /> et JavaScript, dont le but est de
+            représenter un élément d'
+            <Abbr key="UI" />.
+          </li>
+          <li>
+            L'utilisation de composants permet la <strong>réutilisation</strong>, l'
+            <strong>encapsulation</strong> et la <strong>composition</strong>.
+          </li>
+          <li>
+            Les composants sont créés de manière <strong>déclarative</strong>, un framework
+            JavaScript (tel que React ou Svelte) s'occupe de gérer les mutations.
+          </li>
+          <li>
+            Les composants ont énormément <strong>amélioré l'expérience développeur</strong> (
+            <Abbr key="DX" />
+            ), ce qui a mené à une amélioration de l'
+            <Abbr key="UX" />.
+          </li>
+        </ul>
+      </Slide>
     </Slideshow>
   )
 }
