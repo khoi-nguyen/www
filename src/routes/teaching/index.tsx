@@ -51,7 +51,7 @@ export default () => {
         showFlags
       />
       <h2>Archive</h2>
-      <details open={showArchive()} onToggle={toggle}>
+      <details open onToggle={toggle}>
         <summary>{showArchive() ? 'Hide' : 'Show'} previous courses</summary>
         <Explorer
           pattern="teaching/.*/index.json$"
