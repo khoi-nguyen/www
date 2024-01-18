@@ -22,15 +22,15 @@ function isMatch(page: Page, searchString: string): boolean {
 
 export default () => {
   const [search, setSearch] = createSignal('')
-  const [showArchive, setShowArchive] = createSignal(false)
 
+  const [showArchive, setShowArchive] = createSignal(true)
+  const toggle = () => setShowArchive(!showArchive())
   createEffect(() => {
     if (search() && !showArchive()) {
       setShowArchive(true)
-    } else if (!search()) {
-      setShowArchive(false)
     }
   })
+  const action = () => (showArchive() ? 'Hide' : 'Show')
 
   return (
     <Page meta={meta}>
@@ -52,8 +52,8 @@ export default () => {
         showFlags
       />
       <h2>Archive</h2>
-      <details open={showArchive()}>
-        <summary>Show previous courses</summary>
+      <details open={showArchive()} onToggle={toggle}>
+        <summary>{showArchive() ? 'Hide' : 'Show'} previous courses</summary>
         <Explorer
           pattern="teaching/.*/index.json$"
           filter={(page) => page.current === false && isMatch(page, search())}
