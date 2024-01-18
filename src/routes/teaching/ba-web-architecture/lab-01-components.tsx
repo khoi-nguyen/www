@@ -344,7 +344,7 @@ export default () => {
       </Slide>
       <Slide title="Exercice 4: Tic-Tac-Toe" columns>
         <div>
-          <Figure src="tictactoe.gif" width={300} />
+          <Figure src="tictactoe.gif" alt="Tic Tac Toe" width={300} />
           <Exercise>
             <p>Implémentez le jeu du Morpion (ou OXO).</p>
           </Exercise>
