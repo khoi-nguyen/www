@@ -342,6 +342,33 @@ export default () => {
           <Pokemon />
         </div>
       </Slide>
+      <Slide title="Exercice 4: Tic-Tac-Toe" columns>
+        <div>
+          <Figure src="tictactoe.gif" width={300} />
+          <Exercise>
+            <p>Implémentez le jeu du Morpion (ou OXO).</p>
+          </Exercise>
+        </div>
+        <div>
+          <h3>Quickstart</h3>
+          {svelte.jupyter`
+            <script>
+              let currentPlayer = 'X';
+              let board = Array(9).fill(null)
+              let winner = null
+
+              function handleBoxClick(index) {
+                // Ajouter X/O
+                board[index] = currentPlayer
+                board = [...board]
+                // Calcul du gagnant
+                // Preparer le tour suivant
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
+              }
+            </script>
+          `}
+        </div>
+      </Slide>
     </Slideshow>
   )
 }
