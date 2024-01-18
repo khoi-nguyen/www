@@ -30,7 +30,6 @@ export default () => {
       setShowArchive(true)
     }
   })
-  const action = () => (showArchive() ? 'Hide' : 'Show')
 
   return (
     <Page meta={meta}>
