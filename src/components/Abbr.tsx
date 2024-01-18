@@ -11,6 +11,7 @@ const abbreviations = {
   GEI: 'Génie Électronique et Informatique',
   GNU: "GNU's Not Unix",
   HTML: 'HyperText Markup Language',
+  HTTP: 'Hypertext Transfer Protocol',
   IBDP: 'International Baccalaureate Diploma Programme',
   IGCSE: 'International General Certificate of Secondary Education',
   JPEG: 'Joint Photographic Experts Group',
