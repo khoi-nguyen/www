@@ -1,8 +1,8 @@
 const meta: Metadata = {
-  title: 'Single Page Applications',
+  title: 'MPA et SPA',
   subtitle: 'Chapitre 3',
   lang: 'fr',
-  description: 'Protocole HTTP, Routing, Client Side Rendering',
+  description: 'Protocole HTTP, routing, Client Side Rendering, Server Side Rendering, hydration',
 }
 
 export default () => {
@@ -17,7 +17,7 @@ export default () => {
       >
         {mermaid`
           sequenceDiagram
-            actor user as Tuxie
+            actor user as Tuxie le manchot
             participant browser as Navigateur
             participant server as ecam.be
             Note over browser, server: Demande de la page d'accueil
@@ -32,6 +32,27 @@ export default () => {
             server ->> server: Génère la page
             server ->> browser: Réponse contenant le code HTML
             browser ->> browser: Rendu du code HTML
+        `}
+      </Slide>
+      <Slide
+        title={() => (
+          <>
+            Diagramme de séquence d'une <Abbr key="SPA" />
+          </>
+        )}
+      >
+        {mermaid`
+          sequenceDiagram
+            participant browser as Navigateur
+            participant app as Application
+            participant server as Serveur
+            Note over browser, server: Première requête
+            browser ->> server: GET /about
+            server ->> browser: Renvoie l'application complète
+            app ->> browser: Modifie le DOM pour afficher /about
+            Note over browser, server: Liens
+            browser ->> app: demande /autre-page
+            app ->> browser: Modifie le DOM pour afficher /autre-page
         `}
       </Slide>
     </Slideshow>
