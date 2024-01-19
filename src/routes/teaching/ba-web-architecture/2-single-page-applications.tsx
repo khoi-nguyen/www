@@ -49,10 +49,14 @@ export default () => {
             Note over browser, server: Première requête
             browser ->> server: GET /about
             server ->> browser: Renvoie l'application complète
-            app ->> browser: Modifie le DOM pour afficher /about
+            app -->> server: Requêtes
+            server -->> app: Réponses
+            app ->> browser: Affiche /about
             Note over browser, server: Liens
             browser ->> app: demande /autre-page
-            app ->> browser: Modifie le DOM pour afficher /autre-page
+            app -->> server: Requêtes
+            server -->> app: Réponses
+            app ->> browser: Affiche /autre-page
         `}
       </Slide>
     </Slideshow>
