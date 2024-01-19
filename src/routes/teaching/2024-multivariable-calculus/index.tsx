@@ -26,7 +26,7 @@ export default () => {
             <dt>Théorie</dt>
             <dd>NGUYEN Khoi (NGY)</dd>
             <dt>Exercices</dt>
-            <dd>HILLEWAERE Ruben (HIL), JONAS-SZATANSKI Jacek (JSZ), NGUYEN Khoi (NGY)</dd>
+            <dd>GUERRIERI Rolando (R5G), JONAS-SZATANSKI Jacek (JSZ), NGUYEN Khoi (NGY)</dd>
             <dt>Ressources</dt>
             <dd>
               <ul>
