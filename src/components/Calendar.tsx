@@ -2,7 +2,7 @@ import type { EventImpl } from '@fullcalendar/core/internal'
 import { lang } from '~/lib/signals'
 
 interface CalendarProps {
-  initialView?: 'listMonth' | 'timeGridWeek'
+  initialView?: 'listMonth' | 'timeGridWeek' | 'listWeek'
   changeEvent?: (event: EventImpl) => void
   showLocation?: boolean
   filter?: (event: EventImpl) => boolean

@@ -44,6 +44,7 @@ export default () => {
           <Calendar
             changeEvent={changeEvent}
             filter={(event) => event.title.startsWith('EM1C')}
+            initialView="listWeek"
             showLocation
           />
         </div>
