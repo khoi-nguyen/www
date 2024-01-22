@@ -1,5 +1,5 @@
 const meta: Metadata = {
-  title: 'MPA et SPA',
+  title: 'MPA, SPA et SSR',
   subtitle: 'Chapitre 3',
   lang: 'fr',
   description: 'Protocole HTTP, routing, Client Side Rendering, Server Side Rendering, hydration',
@@ -58,6 +58,12 @@ export default () => {
             server -->> app: Réponses
             app ->> browser: Affiche /autre-page
         `}
+      </Slide>
+      <Slide title={() => <Abbr key="MPA" />}>
+        <p>
+          Les pages <Abbr key="HTML" /> sont <strong>générées par le serveur</strong> en utilisant
+          un langage de programmation tel que le <Abbr key="PHP" />, le Python ou le JavaScript.
+        </p>
       </Slide>
     </Slideshow>
   )
