@@ -20,6 +20,14 @@ function isMatch(page: Page, searchString: string): boolean {
   return false
 }
 
+function title(page: Page) {
+  if (!page.split) {
+    return page.title
+  }
+  const suffix = page.path.endsWith('-b/') ? ' (B)' : ' (A)'
+  return page.title + suffix
+}
+
 export default () => {
   const [search, setSearch] = createSignal('')
 
@@ -49,6 +57,7 @@ export default () => {
         pattern="teaching/.*/index.json$"
         filter={(page) => page.current === true && isMatch(page, search())}
         showFlags
+        title={title}
       />
       <h2>Archive</h2>
       <details open onToggle={toggle}>

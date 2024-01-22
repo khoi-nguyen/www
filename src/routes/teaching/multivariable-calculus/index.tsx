@@ -6,6 +6,7 @@ const meta: Metadata = {
   lang: 'fr',
   description: 'Calcul différentiel et intégral à plusieurs variables',
   current: true,
+  split: true,
 }
 
 function changeEvent(event: EventImpl) {

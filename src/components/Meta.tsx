@@ -9,6 +9,7 @@ export interface Metadata {
   subtitle?: string
   title: string
   description: string
+  split?: boolean
 }
 
 export default function Meta(props: Metadata) {

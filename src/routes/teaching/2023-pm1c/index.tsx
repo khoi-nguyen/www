@@ -5,6 +5,7 @@ const meta: Metadata = {
   description:
     "Introduction aux mathématiques de l'enseignement supérieur pour les étudiants de première année",
   current: false,
+  split: true,
 }
 
 export default () => {
