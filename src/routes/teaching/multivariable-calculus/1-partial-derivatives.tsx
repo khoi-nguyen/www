@@ -1,5 +1,6 @@
 const meta: Metadata = {
   title: 'Dérivées partielles',
+  subtitle: 'Chapitre 1',
   description: '',
   lang: 'fr',
 }
