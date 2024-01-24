@@ -6,7 +6,6 @@ import {
   faCreativeCommonsNd,
 } from '@fortawesome/free-brands-svg-icons'
 import {
-  faAddressCard,
   faChalkboardTeacher,
   faEnvelope,
   faRightFromBracket,
@@ -34,11 +33,6 @@ export default function Page(props: PageProps) {
             <strong>
               <A href="/">Khôi Nguyễn</A>
             </strong>
-          </li>
-          <li>
-            <A href="/cv">
-              <Fa icon={faAddressCard} /> <Abbr key="CV" />
-            </A>
           </li>
           <li>
             <A href="/contact">
