@@ -34,6 +34,7 @@ const abbreviations = {
   SQL: 'Structured Query Language',
   SSR: 'Server Side Rendering',
   UI: 'User Interface',
+  URL: 'Uniform Resource Locator',
   UX: 'User Experience',
 }
 
