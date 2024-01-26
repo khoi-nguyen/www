@@ -67,6 +67,17 @@ export default () => {
       </Slide>
       <Slide title={() => <Abbr key="URL" />}>
         <Figure src="URI_syntax_diagram.svg" alt="Syntaxe d'une URL" />
+        {tex`
+          \texttt{http(s)://}
+          \underbrace{\texttt{example.com}}_{\text{domaine}}
+          \overbrace{\texttt{/chemin/vers/une/page}}^{\text{chemin}}
+          \underbrace{\texttt{?a=3\&b=hello}}_{\text{query}}
+        `}
+        <dl>
+          <dt>Domaine</dt>
+          <dd>Adresse du serveur, lisible pour un être humain</dd>
+          <dt>Chemin</dt>
+        </dl>
       </Slide>
       <Slide
         title={() => (
@@ -76,9 +87,50 @@ export default () => {
         )}
       >
         <p>
-          Les échanges <Abbr key="HTTP" /> se font en texte clair.
+          Les échanges <Abbr key="HTTP" /> se font en texte clair. Nous parlerons du{' '}
+          <Abbr key="HTTPS" /> plus tard dans le cours.
+        </p>
+        <Example
+          title={() => (
+            <>
+              Requête <Abbr key="HTTP" />
+            </>
+          )}
+        >
+          <pre>
+            {dedent`
+              GET /teaching HTTP/1.1
+              Accept: text/html,[...]
+              Accept-Encoding: gzip, deflate, br
+              Accept-Language: en-BE,en;q=0.9,es-ES;q=0.8,es;q=0.7,[...]
+              Cache-Control: no-cache
+              Connection: keep-alive
+              Host: nguyen.me.uk
+              Pragma: no-cache
+              Sec-Fetch-Dest: document
+              Sec-Fetch-Mode: navigate
+              Sec-Fetch-Site: none
+              Sec-Fetch-User: ?1
+              Upgrade-Insecure-Requests: 1
+              User-Agent: Mozilla/5.0 (X11; Linux x86_64) [...]
+              sec-ch-ua: "Not_A Brand";v="8", "Chromium";v="120", [...]
+              sec-ch-ua-mobile: ?0
+              sec-ch-ua-platform: "Linux"
+            `}
+          </pre>
+        </Example>
+        <p>
+          Le rôle du <strong>serveur</strong> est de <strong>répondre</strong> à une requête comme
+          celle-ci.
         </p>
       </Slide>
+      <Slide
+        title={() => (
+          <>
+            Exemple d'une réponse <Abbr key="HTTP" />
+          </>
+        )}
+      ></Slide>
       <Slide
         title={() => (
           <>
