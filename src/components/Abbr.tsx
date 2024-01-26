@@ -12,6 +12,7 @@ const abbreviations = {
   GNU: "GNU's Not Unix",
   HTML: 'HyperText Markup Language',
   HTTP: 'Hypertext Transfer Protocol',
+  HTTPS: 'Hypertext Transfer Protocol Secure',
   IBDP: 'International Baccalaureate Diploma Programme',
   IGCSE: 'International General Certificate of Secondary Education',
   JPEG: 'Joint Photographic Experts Group',
