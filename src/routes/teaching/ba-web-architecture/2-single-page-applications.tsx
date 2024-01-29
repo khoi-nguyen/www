@@ -85,44 +85,66 @@ export default () => {
             Requêtes <Abbr key="HTTP" />
           </>
         )}
+        columns
       >
-        <p>
-          Les échanges <Abbr key="HTTP" /> se font en texte clair. Nous parlerons du{' '}
-          <Abbr key="HTTPS" /> plus tard dans le cours.
-        </p>
-        <Example
-          title={() => (
-            <>
-              Requête <Abbr key="HTTP" />
-            </>
-          )}
-        >
-          <pre>
-            {dedent`
-              GET /teaching HTTP/1.1
-              Accept: text/html,[...]
-              Accept-Encoding: gzip, deflate, br
-              Accept-Language: en-BE,en;q=0.9,es-ES;q=0.8,es;q=0.7,[...]
-              Cache-Control: no-cache
-              Connection: keep-alive
-              Host: nguyen.me.uk
-              Pragma: no-cache
-              Sec-Fetch-Dest: document
-              Sec-Fetch-Mode: navigate
-              Sec-Fetch-Site: none
-              Sec-Fetch-User: ?1
-              Upgrade-Insecure-Requests: 1
-              User-Agent: Mozilla/5.0 (X11; Linux x86_64) [...]
-              sec-ch-ua: "Not_A Brand";v="8", "Chromium";v="120", [...]
-              sec-ch-ua-mobile: ?0
-              sec-ch-ua-platform: "Linux"
-            `}
-          </pre>
-        </Example>
-        <p>
-          Le rôle du <strong>serveur</strong> est de <strong>répondre</strong> à une requête comme
-          celle-ci.
-        </p>
+        <div>
+          <p>
+            Les échanges <Abbr key="HTTP" /> se font en texte clair. Nous parlerons du{' '}
+            <Abbr key="HTTPS" /> plus tard dans le cours.
+          </p>
+          <Example
+            title={() => (
+              <>
+                Requête <Abbr key="HTTP" />
+              </>
+            )}
+          >
+            <pre>
+              {dedent`
+                GET /teaching HTTP/1.1
+                Accept: text/html,[...]
+                Accept-Encoding: gzip, deflate, br
+                Accept-Language: en-BE,en;q=0.9,es-ES;q=0.8,es;q=0.7,[...]
+                Cache-Control: no-cache
+                Connection: keep-alive
+                Host: nguyen.me.uk
+                Pragma: no-cache
+                Sec-Fetch-Dest: document
+                Sec-Fetch-Mode: navigate
+                Sec-Fetch-Site: none
+                Sec-Fetch-User: ?1
+                Upgrade-Insecure-Requests: 1
+                User-Agent: Mozilla/5.0 (X11; Linux x86_64) [...]
+                sec-ch-ua: "Not_A Brand";v="8", "Chromium";v="120", [...]
+                sec-ch-ua-mobile: ?0
+                sec-ch-ua-platform: "Linux"
+              `}
+            </pre>
+          </Example>
+          <p>
+            Le rôle du <strong>serveur</strong> est de <strong>répondre</strong> à une requête comme
+            celle-ci.
+          </p>
+        </div>
+        <div>
+          <p>Une requête contient</p>
+          <ul>
+            <li>Une méthode (GET, POST, PUT, DELETE, PATCH)</li>
+            <li>la page ou ressource demandée</li>
+            <li>les formats acceptés</li>
+            <li>
+              des informations sur la plateforme et le navigateur:
+              <ul>
+                <li>type d'appareil</li>
+                <li>langue</li>
+                <li>système d'exploitation</li>
+                <li>version du navigateur</li>
+              </ul>
+            </li>
+            <li>La valeur des cookies (🍪)</li>
+            <li>etc.</li>
+          </ul>
+        </div>
       </Slide>
       <Slide
         title={() => (
@@ -131,6 +153,92 @@ export default () => {
           </>
         )}
       ></Slide>
+      <Slide
+        title={() => (
+          <>
+            Méthodes <Abbr key="HTTP" />
+          </>
+        )}
+      >
+        <p>
+          Voici les principales méthodes <Abbr key="HTTP" />
+        </p>
+        <dl>
+          <dt>GET</dt>
+          <dd>Demande de récupération de données (par défaut)</dd>
+          <dt>POST</dt>
+          <dd>Envoi de données via un formulaire</dd>
+          <dt>DELETE</dt>
+          <dd>Demande de suppression</dd>
+          <dt>PATCH</dt>
+          <dd>Demande de modification partielles</dd>
+          <dt>PUT</dt>
+          <dd>Demande de modification</dd>
+        </dl>
+        <p>
+          Pour plus de détails, vous pouvez visiter la{' '}
+          <a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Methods">documentation</a>
+        </p>
+        <Remark>
+          <p>
+            Ceci est ce qui se passe en théorie. En pratique, le programmeur backend n'est pas
+            obligé d'honorer ces conventions.
+          </p>
+        </Remark>
+      </Slide>
+      <Slide title="Exemple d'implémentation côté serveur en JavaScript">
+        <p>
+          Réponse à <code>GET /pokemon/pikachu</code>:
+        </p>
+        {js.hl`
+          app.get('/pokemon/pikachu'), function(request, response) {
+            response.send('Pika Pika!')
+          })
+        `}
+        <p>
+          Réponse à <code>DELETE /pokemon/pikachu</code>:
+        </p>
+        {js.hl`
+          app.delete('/pokemon/pikachu'), function(request, response) {
+            response.send('Pikachu refuse d\'être supprimé')
+          })
+        `}
+        <Remark>
+          <p>
+            Cette fois-ci, le JavaScript est exécuté <strong>côté serveur</strong>
+          </p>
+        </Remark>
+        {mermaid`
+          sequenceDiagram
+            participant browser as Navigateur
+            participant server as Serveur
+            browser ->> server: Requête
+            server ->> server: Node.js traite la requête
+            server ->> browser: Réponse
+        `}
+      </Slide>
+      <Slide title="Contenu dynamique">
+        <p>
+          Voici un exemple où on utilise l'
+          <Abbr key="URL" /> pour générer une page <Abbr key="HTML" />
+        </p>
+        {js.hl`
+          app.get('/pokemon/:name', function(request, response) {
+            const pokemonName = request.params.name
+            // Étape 1: on cherche le pokemon dans la DB
+            // Étape 2: on renvoie une erreur 404 si on ne trouve rien
+            // Étape 3: on génère une page HTML
+          })
+        `}
+        <p>On peut également utiliser</p>
+        <ul>
+          <li>
+            La <code>query</code> (e.g. <code>?param=value</code>)
+          </li>
+          <li>Les données du formulaires</li>
+          <li>Les cookies</li>
+        </ul>
+      </Slide>
       <Slide
         title={() => (
           <>
