@@ -396,6 +396,30 @@ export default () => {
           </p>
         </Recall>
       </Slide>
+      <Slide title="Exemple: fetch" columns>
+        <Jupyter lang="svelte" columns>
+          {svelte.raw`
+            <script>
+              let name = 'pikachu'
+              
+              async function fetchPokemonData(name) {
+                const res = await fetch('https://pokeapi.co/api/v2/pokemon/' + name)
+                return await res.json()
+              }
+
+              $: dataPromise = fetchPokemonData(name)
+            </script>
+
+            <input bind:value={name} />
+
+            {#await dataPromise}
+              <p>Loading...</p>
+            {:then data}
+              <pre>{JSON.stringify(data, null, 2).substring(0, 600)}</pre>
+            {/await}
+          `}
+        </Jupyter>
+      </Slide>
       <Slide title="Exemple: utilisation de fetch" columns>
         <Jupyter lang="svelte" columns>
           {svelte.raw`
