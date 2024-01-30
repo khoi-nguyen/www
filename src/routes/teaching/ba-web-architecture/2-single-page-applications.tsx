@@ -317,7 +317,7 @@ export default () => {
           </dd>
         </dl>
       </Slide>
-      <Slide title="Contenu dynamique">
+      <Slide title="Exemple: contenu dynamique">
         <p>
           Voici un exemple où on utilise l'
           <Abbr key="URL" /> pour générer une page <Abbr key="HTML" />
@@ -364,6 +364,62 @@ export default () => {
             server ->> browser: Réponse contenant le code HTML
             browser ->> browser: Rendu du code HTML
         `}
+      </Slide>
+      <Slide
+        title={() => (
+          <>
+            L'
+            <Abbr key="API" /> Fetch
+          </>
+        )}
+      >
+        <p>
+          Les requêtes sont normalement effectuées chaque fois qu'un utilisateur clique sur un lien
+          ou soumet un formulaire. Il est cependant possible d'en effectuer directement en
+          JavaScript avec la fonction <code>fetch</code>.
+        </p>
+        <Definition>
+          {js.hl`
+            fetch(url, options)
+          `}
+          <ul>
+            <li>Commence le processus de recherche de resource sur un serveur</li>
+            <li>
+              Retourne une <strong>promesse</strong> de réponse
+            </li>
+          </ul>
+        </Definition>
+        <Recall>
+          <p>
+            Pour obtenir la valeur de la promesse lorsqu'elle sera résolue, utilisez le mot-clé{' '}
+            <code>await</code>
+          </p>
+        </Recall>
+      </Slide>
+      <Slide title="Exemple: utilisation de fetch" columns>
+        <Jupyter lang="svelte" columns>
+          {svelte.raw`
+            <script>
+              let name = 'pikachu'
+
+              async function fetchImage(name) {
+                const res = await fetch('https://pokeapi.co/api/v2/pokemon/' + name)
+                const data = await res.json()
+                return data.sprites.other['official-artwork']['front_default']
+              }
+
+              $: picturePromise = fetchImage(name)
+            </script>
+
+            <input bind:value={name} />
+
+            {#await picturePromise}
+              <p>Loading...</p>
+            {:then path}
+              <img src={path} alt={name} />
+            {/await}
+          `}
+        </Jupyter>
       </Slide>
       <Slide
         title={() => (
