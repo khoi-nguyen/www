@@ -77,6 +77,9 @@ export default () => {
           <dt>Domaine</dt>
           <dd>Adresse du serveur, lisible pour un être humain</dd>
           <dt>Chemin</dt>
+          <dd>Chemin de la ressource, transmise au serveur</dd>
+          <dt>Query string</dt>
+          <dd>Contient des informations sur l'état de l'application</dd>
         </dl>
       </Slide>
       <Slide
@@ -216,6 +219,103 @@ export default () => {
             server ->> server: Node.js traite la requête
             server ->> browser: Réponse
         `}
+      </Slide>
+      <Slide title="Cookies 🍪">
+        <p>Les cookies sont des sortes de document d'identité générés par le serveur.</p>
+        <ol>
+          <li>
+            Le serveur envoie une réponse avec dans l'entête une ou plusieurs instructions{' '}
+            <code>Set-Cookie</code>, éventuellement avec une <em>date d'expiration</em>:
+            <pre>
+              {dedent`
+                HTTP/2.0 200 OK
+                Content-Type: text/html
+                Set-Cookie: name=tuxie; Expires=Fri, 31 Jan 2024 20:00:00 GMT;
+                Set-Cookie: age=8
+
+                [page content]
+              `}
+            </pre>
+          </li>
+          <li>
+            Le navigateur fait toutes les requêtes suivantes en renvoyant les cookies non-expirés:
+            <pre>
+              {dedent`
+                GET /teaching HTTP/1.1
+                Cookie: name=tuxie; age=8
+              `}
+            </pre>
+          </li>
+        </ol>
+        {mermaid`
+          sequenceDiagram
+            participant browser as Navigateur
+            participant server as Server
+            browser ->> server: Requête
+            server ->> browser: Réponse + 🍪
+            browser ->> server: Requête + 🍪
+        `}
+      </Slide>
+      <Slide title="Sites statiques">
+        <p>
+          Dans un site statique, le serveur ne traite généralement que les requêtes GET. Les chemins
+          de l'
+          <Abbr key="URL" /> font référence à un chemin sur le disque dur du serveur relativement à
+          un dossier racine.
+        </p>
+        {mermaid`
+          sequenceDiagram
+            participant browser as Navigateur
+            participant server as Serveur
+            browser ->> server: GET /un/chemin.html
+            server ->> browser: Réponse avec le contenu de /var/www/un/chemin.html
+        `}
+      </Slide>
+      <Slide title={() => <Abbr key="MPA" />}>
+        <p>
+          Dans une <Abbr key="SPA" />, les requêtes sont redirigées vers une{' '}
+          <strong>application</strong> qui se charge de <strong>dynamiquement</strong> créer une
+          réponse.
+        </p>
+        <p>
+          Une page générée peut de cette façon dépendre de l'
+          <Abbr key="URL" /> (en particulier du chemin et de la query string), mais également des{' '}
+          <strong>cookies</strong>.
+        </p>
+        {mermaid`
+          sequenceDiagram
+            participant browser as Navigateur
+            participant server as Serveur
+            participant app as Application
+            browser ->> server: Requête
+            server ->> app: Redirection de la requête
+            app ->> app: Génération dynamique de la réponse
+            app ->> server: Réponse
+            server ->> browser: Réponse
+        `}
+      </Slide>
+      <Slide title="Exemples notables">
+        <dl>
+          <dt>Python</dt>
+          <dd>
+            <a href="https://djangoproject.com/">Django</a>,{' '}
+            <a href="https://flask.palletsprojects.com/">Flask</a>
+          </dd>
+          <dt>Ruby</dt>
+          <dd>
+            <a href="https://rubyonrails.org">Ruby on Rails</a>
+          </dd>
+          <dt>
+            <Abbr key="PHP" />
+          </dt>
+          <dd>
+            <a href="https://laravel.com">Laravel</a>, <a href="http://symfony.com">Symfony</a>
+          </dd>
+          <dt>JavaScript</dt>
+          <dd>
+            <a href="https://expressjs.com">Express</a>
+          </dd>
+        </dl>
       </Slide>
       <Slide title="Contenu dynamique">
         <p>
