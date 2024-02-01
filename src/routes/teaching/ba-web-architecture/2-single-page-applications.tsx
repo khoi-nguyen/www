@@ -256,6 +256,11 @@ export default () => {
             browser ->> server: Requête + 🍪
         `}
       </Slide>
+      <Slide title="Authentification">
+        <Question>
+          <p>Comment implémenteriez-vous l'authentification?</p>
+        </Question>
+      </Slide>
       <Slide title="Sites statiques">
         <p>
           Dans un site statique, le serveur ne traite généralement que les requêtes GET. Les chemins
@@ -365,6 +370,24 @@ export default () => {
             browser ->> browser: Rendu du code HTML
         `}
       </Slide>
+      <Slide title={() => <Abbr key="SPA" />}>
+        <Definition title="SPA">
+          <p>
+            Une <Abbr key="SPA" /> est un site web qui interagit avec l'utilisateur en modifiant la
+            page web courante au lieu de recharger entièrement la page.
+          </p>
+        </Definition>
+        <p>
+          L'objectif est d'obtenir une navigation plus <strong>fluide</strong> pour l'utilisateur.
+          Deux ingrédients sont essentiels pour que cela soit possible:
+        </p>
+        <ul>
+          <li>Pouvoir manuellement déclencher des requêtes (fetch)</li>
+          <li>
+            Contrôler l'adresse dans la barre et l'historique de navigation (client-side routing)
+          </li>
+        </ul>
+      </Slide>
       <Slide
         title={() => (
           <>
@@ -445,6 +468,70 @@ export default () => {
           `}
         </Jupyter>
       </Slide>
+      <Slide title="Client-Side Routing" columns>
+        <div>
+          <h2>Rendu initial</h2>
+          <p>
+            Quelques soit l'
+            <Abbr key="URL" />, le point d'entrée dans l'application est le même. L'application
+            utilise ensuite la variable
+            {js.hl`
+              window.location.pathname
+            `}
+          </p>
+        </div>
+        <div>
+          <h2>Faux Liens</h2>
+          <p>
+            Lorsque l'on clique sur un "lien", l'application change d'état, et fait semblant de
+            changer l'
+            <Abbr key="URL" />.
+          </p>
+          {js.hl`
+            // Exemple d'action lorsqu'on clique sur un lien "About"
+            history.pushState({ component: 'About' }, '/about')
+          `}
+          <Remark>
+            <p>
+              Implémenter le <strong>Client-Side Routing</strong> est complexe. En plus de devoir
+              bien lier les <Abbr key="URL" /> à des états de l'application, il faut aussi gérer les
+              boutons tels que précédent (cf. popstate)
+            </p>
+          </Remark>
+        </div>
+      </Slide>
+      <Slide title="En pratique">
+        <p>
+          Bonne nouvelle, vous ne devrez en pratique jamais implémenter le Client-Side Routing.
+          Regardons comment c'est implémenté dans <a href="https://kit.svelte.dev">SvelteKit</a>.
+        </p>
+        <h2>File-Based Routing</h2>
+        <p>
+          SvelteKit lie l'
+          <Abbr key="URL" /> <code>/about</code> au composant{' '}
+          <code>src/routes/about/+page.svelte</code>
+        </p>
+        <h2>Liens</h2>
+        <p>
+          Utilisez la syntaxe <Abbr key="HTML" /> habituelle:
+        </p>
+        {html.hl`
+          <a href="/about">About</a>
+        `}
+        <Remark>
+          <p>
+            SvelteKit va beaucoup plus loin que ça. Nous expliquerons ça plus loin, mais pour
+            l'instant, contentons-nous de dire que l'application fonctionnerait sur un navigateur
+            sans JavaScript.
+          </p>
+        </Remark>
+      </Slide>
+      <Slide title="Kim Kardashian">
+        <Figure src="kardashian.png" alt="Kardashian's Instagram page throughout the years" />
+        <Question>
+          <p>Que s'est-il passé en 2016?</p>
+        </Question>
+      </Slide>
       <Slide
         title={() => (
           <>
@@ -470,12 +557,27 @@ export default () => {
             app ->> browser: Affiche /autre-page
         `}
       </Slide>
-      <Slide title={() => <Abbr key="MPA" />}>
-        <p>
-          Les pages <Abbr key="HTML" /> sont <strong>générées par le serveur</strong> en utilisant
-          un langage de programmation tel que le <Abbr key="PHP" />, le Python ou le JavaScript.
-        </p>
-      </Slide>
+      <Slide
+        title={() => (
+          <>
+            Désavantages des <Abbr key="SPA" />
+          </>
+        )}
+      ></Slide>
+      <Slide
+        title={() => (
+          <>
+            <Abbr key="MPA" /> vs <Abbr key="SPA" />
+          </>
+        )}
+      ></Slide>
+      <Slide
+        title={() => (
+          <>
+            <Abbr key="SSR" />
+          </>
+        )}
+      ></Slide>
     </Slideshow>
   )
 }
