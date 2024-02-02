@@ -32,6 +32,7 @@ const abbreviations = {
   REST: 'Representational State Transfer',
   SEO: 'Search Engine Optimization',
   SFC: 'Single File Components',
+  SOAP: 'Simple Object Access Protocol',
   SPA: 'Single Page Application',
   SQL: 'Structured Query Language',
   SSR: 'Server Side Rendering',
