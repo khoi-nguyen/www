@@ -801,7 +801,8 @@ export default () => {
             <code>GET /pokemons/pikachu</code> peut donner les informations à propos de Pikachu
           </li>
           <li>
-            <code>PUT/PATCH/POST /pokemons/pikachu</code> Envoie des changements
+            <code>PUT/PATCH/POST /pokemons/pikachu</code> envoie des changements à apporter à
+            Pikachu
           </li>
           <li>
             <code>DELETE /pokemons/pikachu</code> supprimerait Pikachu (le pauvre)
