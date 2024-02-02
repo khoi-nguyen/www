@@ -708,8 +708,9 @@ export default () => {
         </p>
         <ul>
           <li>
-            Au premier rendu, le code est entièrement exécuté <strong>côté serveur</strong> pour
-            donner du <Abbr key="HTML" />. Il ne devrait pas y avoir des aller-retours.
+            Au premier rendu (First Contentful Paint), le code est entièrement exécuté{' '}
+            <strong>côté serveur</strong> pour donner du <Abbr key="HTML" />. Il ne devrait pas y
+            avoir des aller-retours.
           </li>
           <li>
             Après ce premier rendu, l'application n'est pas fonctionnelle. Le JavaScript est
@@ -737,6 +738,19 @@ export default () => {
             </p>
           </SpeechBubble>
         </div>
+      </Slide>
+      <Slide title="Hydration">
+        <p>
+          Chaque fois qu'on résoud un problème en frontend, on en crée un nouveau. Le{' '}
+          <Abbr key="SSR" /> crée le problème de l'<em>hydration</em>, une période durant laquelle
+          la page est affichée mais <em>pas interactive</em>.
+        </p>
+        <Figure src="hydration.png" alt="Le processus d'hydration" />
+        <p>
+          Ce problème n'est pas encore résolu de manière satisfaisante, bien qu'il existe des
+          projets prometteurs tels que <a href="https://qwik.dev">Qwik</a> ou{' '}
+          <a href="https://astro.build">Astro</a>
+        </p>
       </Slide>
     </Slideshow>
   )
