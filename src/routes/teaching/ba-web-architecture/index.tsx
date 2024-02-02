@@ -31,6 +31,14 @@ export default () => {
                 <li>5 labos</li>
               </ul>
             </dd>
+            <dt>Examen</dt>
+            <dd>
+              <ul>
+                <li>
+                  <A href="/teaching/ba-web-architecture/exam">Questions d'examen</A>
+                </li>
+              </ul>
+            </dd>
           </dl>
         </div>
         <div>
