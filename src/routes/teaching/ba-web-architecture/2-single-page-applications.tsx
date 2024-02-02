@@ -752,6 +752,33 @@ export default () => {
           <a href="https://astro.build">Astro</a>
         </p>
       </Slide>
+      <Slide
+        title={() => (
+          <>
+            Deux modèles d'
+            <Abbr key="API" />
+          </>
+        )}
+      >
+        <p>
+          Deux modèles d'
+          <Abbr key="API" /> dominent:
+        </p>
+        <ul>
+          <li>
+            <Abbr key="REST" />
+          </li>
+          <li>GraphQL (Facebook, 2015)</li>
+        </ul>
+        <p>La montée en popularité est expliquée principalement par</p>
+        <ul>
+          <li>la montée en popularité du mobile</li>
+          <li>
+            Les frameworks JavaScript ont poussé le rendu côté client, laissant principalement le
+            rôle de générer des données bruts au backend
+          </li>
+        </ul>
+      </Slide>
     </Slideshow>
   )
 }
