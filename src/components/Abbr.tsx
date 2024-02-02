@@ -16,6 +16,7 @@ const abbreviations = {
   IBDP: 'International Baccalaureate Diploma Programme',
   IGCSE: 'International General Certificate of Secondary Education',
   JPEG: 'Joint Photographic Experts Group',
+  JSON: 'JavaScript Object Notation',
   JSX: 'JavaScript Syntax Extension',
   LTS: 'Long-term support',
   MASt: 'Master of Advanced Study',
@@ -37,6 +38,7 @@ const abbreviations = {
   UI: 'User Interface',
   URL: 'Uniform Resource Locator',
   UX: 'User Experience',
+  XML: 'Extended Markup Language',
 }
 
 interface AbbrProps {
