@@ -622,6 +622,15 @@ export default () => {
       <Slide title="Exemple: la todo list">
         <Jupyter lang="svelte" solution={todoExample} />
       </Slide>
+      <Slide title={() => <Abbr key="JSON" />}>
+        <Definition>
+          <p>
+            Le <Abbr key="JSON" /> est un format de texte léger qui permet l'échange de données
+            entre client et serveur. Sa syntaxe ressemble aux listes et objets de JavaScript.
+          </p>
+        </Definition>
+        <Iframe src="https://learnxinyminutes.com/docs/json/" height={600} />
+      </Slide>
       <Slide
         title={() => (
           <>

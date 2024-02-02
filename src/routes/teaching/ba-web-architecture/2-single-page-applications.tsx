@@ -155,7 +155,58 @@ export default () => {
             Exemple d'une réponse <Abbr key="HTTP" />
           </>
         )}
-      ></Slide>
+      >
+        <p>
+          Lorsque vous chargez une page ou une image, vous effectuez une requête GET. Voici un
+          exemple de réponse.
+        </p>
+        <pre>
+          <code>{dedent`
+            HTTP/1.1 200 OK
+            Access-Control-Allow-Origin: *
+            content-type: text/html
+            Date: Fri, 02 Feb 2024 04:16:38 GMT
+            Connection: keep-alive
+            Keep-Alive: timeout=5
+            Transfer-Encoding: chunked
+
+            [Contenu de la page HTML]
+          `}</code>
+        </pre>
+        <ul>
+          <li>Première ligne: Protocole et code réponse</li>
+          <li>Content-Type: text/javascript, image/png, application/json, ...</li>
+        </ul>
+      </Slide>
+      <Slide title="Exemple d'une requête POST">
+        <p>Voici ce qui se passe lorsque l'on soumet un formulaire:</p>
+        <pre>
+          {dedent`
+            POST /test HTTP/1.1
+            Host: foo.example
+            Content-Type: application/x-www-form-urlencoded
+            Content-Length: 27
+
+            field1=value1&field2=value2
+          `}
+        </pre>
+        <p>
+          Les requêtes sont souvent faites en <Abbr key="JSON" />
+        </p>
+        <pre>
+          {dedent`
+            POST /test HTTP/1.1
+            Host: foo.example
+            Content-Type: application/json
+            Content-Length: ??
+
+            {
+              "field1": "value1",
+              "field2": "value2"
+            }
+          `}
+        </pre>
+      </Slide>
       <Slide
         title={() => (
           <>
@@ -189,39 +240,34 @@ export default () => {
           </p>
         </Remark>
       </Slide>
-      <Slide title="Exemple d'implémentation côté serveur en JavaScript">
+      <Slide title="Codes Réponse">
+        <ul>
+          <li>Réponses informatives (100-199)</li>
+          <li>Réponses de succès (200-299)</li>
+          <li>Messages de redirection (300-399)</li>
+          <li>Erreurs Client (400-499)</li>
+          <li>Erreurs serveur (500-599)</li>
+        </ul>
+        <Example pluralize>
+          <dl>
+            <dt>200 OK</dt>
+            <dd>La requête a réussi</dd>
+            <dt>403 Forbidden</dt>
+            <dd>Le client n'a pas les droits d'accès au contenu</dd>
+            <dt>404 Not Found</dt>
+            <dd>Le serveur n'a pas trouvé la ressource demandée</dd>
+          </dl>
+        </Example>
         <p>
-          Réponse à <code>GET /pokemon/pikachu</code>:
+          Pour plus d'information, consultez la{' '}
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">documentation</a>
         </p>
-        {js.hl`
-          app.get('/pokemon/pikachu'), function(request, response) {
-            response.send('Pika Pika!')
-          })
-        `}
-        <p>
-          Réponse à <code>DELETE /pokemon/pikachu</code>:
-        </p>
-        {js.hl`
-          app.delete('/pokemon/pikachu'), function(request, response) {
-            response.send('Pikachu refuse d\'être supprimé')
-          })
-        `}
-        <Remark>
-          <p>
-            Cette fois-ci, le JavaScript est exécuté <strong>côté serveur</strong>
-          </p>
-        </Remark>
-        {mermaid`
-          sequenceDiagram
-            participant browser as Navigateur
-            participant server as Serveur
-            browser ->> server: Requête
-            server ->> server: Node.js traite la requête
-            server ->> browser: Réponse
-        `}
       </Slide>
       <Slide title="Cookies 🍪">
-        <p>Les cookies sont des sortes de document d'identité générés par le serveur.</p>
+        <p>
+          Les cookies sont des sortes de document d'identité générés par le serveur mais stockés
+          côté client.
+        </p>
         <ol>
           <li>
             Le serveur envoie une réponse avec dans l'entête une ou plusieurs instructions{' '}
@@ -260,6 +306,9 @@ export default () => {
         <Question>
           <p>Comment implémenteriez-vous l'authentification?</p>
         </Question>
+        <Remark>
+          <p>L'utilisateur peut modifier le cookie à la main!</p>
+        </Remark>
       </Slide>
       <Slide title="Sites statiques">
         <p>
@@ -356,18 +405,16 @@ export default () => {
             actor user as Tuxie le manchot
             participant browser as Navigateur
             participant server as ecam.be
-            Note over browser, server: Demande de la page d'accueil
+            Note over browser, server: Demande de la première page
             user ->> browser: https://ecam.be
-            browser ->> server: GET /
+            browser ->> server: Requête (e.g. GET /)
             server ->> server: Génère la page
             server ->> browser: Réponse contenant le code HTML
-            browser ->> browser: Rendu du code HTML
             Note over browser, server: Demande d'une autre page
             user ->> browser: Lien: ecam.be/about
             browser ->> server: GET /about
             server ->> server: Génère la page
             server ->> browser: Réponse contenant le code HTML
-            browser ->> browser: Rendu du code HTML
         `}
       </Slide>
       <Slide title={() => <Abbr key="SPA" />}>
@@ -387,6 +434,12 @@ export default () => {
             Contrôler l'adresse dans la barre et l'historique de navigation (client-side routing)
           </li>
         </ul>
+        <Question>
+          <p>
+            Pourriez-vous penser à des fonctionnalités qui ne sont possibles que dans les{' '}
+            <Abbr key="SPA" />?
+          </p>
+        </Question>
       </Slide>
       <Slide
         title={() => (
@@ -526,10 +579,82 @@ export default () => {
           </p>
         </Remark>
       </Slide>
+      <Slide title={() => <Abbr key="API" />}>
+        <p>
+          En plus de "fausses routes" dans l'application, le backend doit pouvoir servir de vraies
+          routes dont le seul but sera de servir des <strong>données brutes</strong>. Le backend ne
+          répondra plus par du code <Abbr key="HTML" /> mais dans un format tel que le{' '}
+          <Abbr key="JSON" /> ou l'
+          <Abbr key="XML" />.
+        </p>
+        <Figure src="rest.png" alt="REST API" />
+        <Question>
+          <p>
+            Cette façon de procéder est en fait très pratique lorsque vous avez également une
+            application mobile. Voyez-vous pourquoi?
+          </p>
+        </Question>
+      </Slide>
       <Slide title="Kim Kardashian">
         <Figure src="kardashian.png" alt="Kardashian's Instagram page throughout the years" />
         <Question>
           <p>Que s'est-il passé en 2016?</p>
+        </Question>
+      </Slide>
+      <Slide
+        title={() => (
+          <>
+            Routes <Abbr key="API" /> dans SvelteKit
+          </>
+        )}
+      >
+        <p>
+          Le fichier <code>/src/routes/test/+server.js</code> permet de définir une route{' '}
+          <Abbr key="API" /> à l'adresse <code>routes/test</code>. Dans ce fichier, on peut définir
+          des fonctions correspondant aux verbes <Abbr key="HTTP" />.
+        </p>
+        <p>
+          Exemple: <code>src/routes/api/random-number/+server.js</code>
+        </p>
+        {js.hl`
+          import { json } from '@sveltejs/kit';
+          export function GET(event) {
+            const min = Number(event.url.searchParams.get('min'))
+            const max = Number(event.url.searchParams.get('max'))
+            const random = min + Math.random() * (max - min)
+            return json(random)
+          }
+        `}
+      </Slide>
+      <Slide
+        title={() => (
+          <>
+            Fonctionnement d'une <Abbr key="SPA" />
+          </>
+        )}
+      >
+        <ol>
+          <li>
+            Le serveur redirige toutes les <strong>pages</strong> vers la même page (e.g.{' '}
+            <code>/index.html</code>)
+          </li>
+          <li>
+            L'application regarde l'adresse (<code>window.location.pathname</code>) pour déterminer
+            l'état initial de l'application
+          </li>
+          <li>
+            Des requêtes supplémentaires (via fetch) sont effectuées vers un backend ou d'autres{' '}
+            <Abbr key="API" />
+          </li>
+          <li>
+            Lorsque l'on clique sur un lien, on change l'état de l'application et l'adresse dans le
+            navigateur.
+          </li>
+        </ol>
+        <Question>
+          <p>
+            Quelles sont les avantages et les désavantages d'une <Abbr key="SPA" />?
+          </p>
         </Question>
       </Slide>
       <Slide
@@ -560,24 +685,59 @@ export default () => {
       <Slide
         title={() => (
           <>
-            Désavantages des <Abbr key="SPA" />
-          </>
-        )}
-      ></Slide>
-      <Slide
-        title={() => (
-          <>
             <Abbr key="MPA" /> vs <Abbr key="SPA" />
           </>
         )}
-      ></Slide>
+      >
+        <SpeechBubble>
+          <p>
+            Quelles sont les différences entre les <Abbr key="SPA" /> et les <Abbr key="MPA" />?
+          </p>
+        </SpeechBubble>
+      </Slide>
       <Slide
         title={() => (
           <>
             <Abbr key="SSR" />
           </>
         )}
-      ></Slide>
+      >
+        <p>
+          Le but du <Abbr key="SSR" /> est d'obtenir le meilleur des deux mondes. Il nécéssite
+          l'emploi du <strong>JavaScript isomorphe</strong> (c'est-à-dire côté client et serveur).
+        </p>
+        <ul>
+          <li>
+            Au premier rendu, le code est entièrement exécuté <strong>côté serveur</strong> pour
+            donner du <Abbr key="HTML" />. Il ne devrait pas y avoir des aller-retours.
+          </li>
+          <li>
+            Après ce premier rendu, l'application n'est pas fonctionnelle. Le JavaScript est
+            téléchargé et est exécuté <strong>côté client</strong> et l'application devient une{' '}
+            <Abbr key="SPA" />. Ce processus est appelé <strong>hydration</strong>.
+          </li>
+          <li>
+            L'application fonctionne comme une <Abbr key="SPA" />.
+          </li>
+        </ul>
+      </Slide>
+      <Slide title="L'importance du JavaScript" columns>
+        <div>
+          <Figure src="js-for-babies.png" alt="JavaScript for babies" width={500} />
+          <p>
+            Rappelons que pour faire du <Abbr key="SSR" />, le rendu <Abbr key="HTML" /> doit se
+            faire JavaScript du côté backend et du côté frontend. Cela n'exclut pas qu'il y ait des{' '}
+            <Abbr key="API" /> supplémentaires écrites dans d'autres langages de programmation.
+          </p>
+        </div>
+        <div>
+          <SpeechBubble>
+            <p>
+              ¿Por qué me regalaste un libro en inglés? ¿No encontraste la traducción casteshana?
+            </p>
+          </SpeechBubble>
+        </div>
+      </Slide>
     </Slideshow>
   )
 }
