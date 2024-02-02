@@ -755,27 +755,56 @@ export default () => {
       <Slide
         title={() => (
           <>
-            Deux modèles d'
+            Modèles d'
             <Abbr key="API" />
           </>
         )}
       >
         <p>
-          Deux modèles d'
+          Plusieurs modèles d'
           <Abbr key="API" /> dominent:
         </p>
         <ul>
+          <li>
+            <Abbr key="SOAP" />
+          </li>
           <li>
             <Abbr key="REST" />
           </li>
           <li>GraphQL (Facebook, 2015)</li>
         </ul>
-        <p>La montée en popularité est expliquée principalement par</p>
+        <p>
+          L'importance des <Abbr key="API" /> est expliquée principalement par
+        </p>
         <ul>
+          <li>La flexibilité qu'elle permet aux utilisateurs avancés</li>
           <li>la montée en popularité du mobile</li>
           <li>
             Les frameworks JavaScript ont poussé le rendu côté client, laissant principalement le
-            rôle de générer des données bruts au backend
+            rôle de générer des données brutes au backend
+          </li>
+        </ul>
+      </Slide>
+      <Slide title={() => <Abbr key="REST" />}>
+        <p>
+          L'idée de <Abbr key="REST" /> est d'utiliser nativement les méthodes <Abbr key="HTTP" />{' '}
+          et différentes <Abbr key="URL" /> pour donner accès au client aux données qu'elle ou il
+          recherche.
+        </p>
+        <p>Par exemple,</p>
+        <ul>
+          <li>
+            <code>GET /pokemons</code> peut donner la liste de tous les pokemons en{' '}
+            <Abbr key="JSON" />
+          </li>
+          <li>
+            <code>GET /pokemons/pikachu</code> peut donner les informations à propos de Pikachu
+          </li>
+          <li>
+            <code>PUT/PATCH/POST /pokemons/pikachu</code> Envoie des changements
+          </li>
+          <li>
+            <code>DELETE /pokemons/pikachu</code> supprimerait Pikachu (le pauvre)
           </li>
         </ul>
       </Slide>
