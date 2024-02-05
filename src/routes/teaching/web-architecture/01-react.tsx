@@ -10,7 +10,13 @@ const exercises = {
     function App() {
       const [count, setCount] = useState(0)
       const increaseCount = () => setCount(count + 1)
-      return <button onClick={increaseCount}>Count: {count}</button>
+      return (
+        <>
+          <button onClick={increaseCount}>
+            Count: {count}
+          </button>
+        </>
+      )
     }
   `,
   counterWithSvelte: svelte.raw`
@@ -183,6 +189,9 @@ export default () => {
           <li>
             Incredibly <strong>simple</strong> (and beautiful)
           </li>
+          <li>
+            Components are <strong>easier to test</strong>
+          </li>
         </ul>
       </Slide>
       <Slide title="Install React">
@@ -200,8 +209,15 @@ export default () => {
             Run <code>npm install</code> in the newly created directory.
           </li>
         </ol>
+        <Exercise>
+          <p>Set up React using the instructions above</p>
+        </Exercise>
       </Slide>
-      <Slide title="React: pure components" split={false}>
+      <Slide title="Pure components: example" split={false}>
+        <p>
+          Here is a simple example of React code. Components are simply function, and{' '}
+          <code>props</code> is an object that contains the component's <em>attributes</em>.
+        </p>
         <Jupyter lang="react" columns run>
           {react.raw`
             function Health(props) {
@@ -225,21 +241,6 @@ export default () => {
             }
           `}
         </Jupyter>
-      </Slide>
-      <Slide title="React: a first example">
-        <Jupyter lang="react">{exercises.counter}</Jupyter>
-        <Question>
-          <p>
-            Why do we need <code>setCount</code>?
-          </p>
-        </Question>
-      </Slide>
-      <Slide title="Aside: Svelte">
-        <p>
-          I highly encourage you to have a look at other frameworks. Svelte is known for being
-          extremely readable.
-        </p>
-        <Jupyter lang="svelte">{exercises.counterWithSvelte}</Jupyter>
       </Slide>
       <Slide title={() => <Abbr key="JSX" />} split={false}>
         <p>
@@ -278,6 +279,27 @@ export default () => {
           </ul>
         </Remark>
       </Slide>
+      <Slide title={() => <Abbr key="CV" />}>
+        <Exercise>
+          <p>
+            Create a <code>CVLine</code> component, and use it to create your <Abbr key="CV" />
+          </p>
+          <p>This is how your component should be used like this:</p>
+          {js.hl`
+            <CVLine
+              startDate={new Date('2015-09-15')}
+              endDate={new Date('2020-06-30')}
+              title="MEng in Computer Science"
+              employer="ECAM"
+            >
+              <ul>
+                <li>Uninstall Windows</li>
+                <li>I love JavaScript</li>
+              </ul>
+            </CVLine>
+          `}
+        </Exercise>
+      </Slide>
       <Slide
         title={() => (
           <>
@@ -296,25 +318,39 @@ export default () => {
             const [variable, setVariable] = useState(defaultVal);
           `}
         </Definition>
-        {ts.hl`
-          function Component() {
-            const [variable, setVariable] = useState(true);
-            return (
-              <p>
-                variable is currently {String(variable)}
-                <button onClick={() => setVariable(!variable)}>
-                  Click me
-                </button>
-              </p>
-            );
-          }
-        `}
         <Remark>
-          <p>
-            Just changing <code>variable</code> (e.g. <code>variable = false</code>) will not update
-            the <Abbr key="UI" />.
-          </p>
+          <ul>
+            <li>
+              Just changing <code>variable</code> will not update the <Abbr key="UI" />, you{' '}
+              <strong>need</strong> to use the setter function if you want the change to be
+              reflected.
+            </li>
+            <li>
+              <code>useState</code> is an example of <strong>React hook</strong>
+            </li>
+            <li>Hooks can only be called at the top level of a component</li>
+          </ul>
         </Remark>
+      </Slide>
+      <Slide title="React: stateful components">
+        <Jupyter lang="react">{exercises.counter}</Jupyter>
+        <Question>
+          <p>
+            Why do we need <code>setCount</code>?
+          </p>
+        </Question>
+      </Slide>
+      <Slide title="Aside: Svelte">
+        <p>
+          I highly encourage you to have a look at other frameworks. Svelte is known for being
+          extremely readable.
+        </p>
+        <Jupyter lang="svelte">{exercises.counterWithSvelte}</Jupyter>
+      </Slide>
+      <Slide title="Todo application">
+        <Exercise>
+          <p>Create a todo app with React</p>
+        </Exercise>
       </Slide>
       <Slide title="Props">
         <Idea title="Props">
@@ -372,10 +408,10 @@ export default () => {
           </Idea>
         </div>
         <div>
-          <Jupyter lang="react" solution={exercises.clock} />
+          <Jupyter lang="react" solution={exercises.clock} hideUntil={new Date('2024-02-07')} />
         </div>
       </Slide>
-      <Slide title="Aside: Svelte and Solidjs" columns>
+      <Slide title="Aside: Svelte">
         <Jupyter lang="svelte" run>
           {svelte.raw`
             <script>
@@ -456,7 +492,69 @@ export default () => {
           </p>
         </Remark>
       </Slide>
-      <Slide title=""></Slide>
+      <Slide title="Exercise: Pokemon">
+        <Exercise>
+          <p>Implement the following:</p>
+          <PokemonPicture />
+        </Exercise>
+        <p>
+          Use the <a href="https://pokeapi.co">PokéAPI</a>.
+        </p>
+      </Slide>
+      <Slide title="Exercise: Wordle">
+        <p>
+          Implement the word game <a href="https://en.wikipedia.org/wiki/Wordle">wordle</a>
+        </p>
+        <Iframe src="https://sveltekit-template.vercel.app/sverdle" />
+      </Slide>
+      <Slide title="Signal Implementation">
+        <p>
+          We'll implement together a signal implementation of <code>useEffect</code> and{' '}
+          <code>useState</code>.
+        </p>
+        {js.hl`
+          const [count, setCount] = useState(0)
+          useEffect(() => {
+            // Note that count is a function
+            console.log('Count is', count())
+          })
+          // Triggers the useEffect
+          setCount(2)
+        `}
+        <Remark>
+          <p>
+            This implementation has a lot of advantages because we need not follow the rules of
+            hooks, and can create effects with asynchronous functions.
+          </p>
+        </Remark>
+      </Slide>
     </Slideshow>
+  )
+}
+
+function PokemonPicture() {
+  const [name, setName] = createSignal('pikachu')
+  const [src, setSrc] = createSignal<string | null>('')
+  createEffect(async () => {
+    try {
+      const res = await fetch('https://pokeapi.co/api/v2/pokemon/' + name())
+      const data = await res.json()
+      setSrc(data.sprites.other['official-artwork']['front_default'])
+    } catch {
+      setSrc('')
+    }
+  })
+  return (
+    <>
+      <label>
+        Enter a Pokemon name:
+        <input class="clickable" value={name()} onInput={(e) => setName(e.target.value)} />
+      </label>
+      <p>
+        <Show when={src()} fallback={<Spinner />}>
+          {(src) => <img src={src()} />}
+        </Show>
+      </p>
+    </>
   )
 }
