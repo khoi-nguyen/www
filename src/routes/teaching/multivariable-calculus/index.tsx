@@ -20,9 +20,9 @@ export default () => {
   return (
     <Page meta={meta}>
       <h2>Cours théoriques</h2>
-      <Explorer pattern={`${location.pathname}/?[0-9a-z]+-.*json$`} showPDF />
+      <Explorer pattern={`${location.pathname}/?[0-9a-z]+-.*[a-z].*json$`} showPDF />
       <h2>Séances d'exercices</h2>
-      <Explorer pattern={`${location.pathname}/ex-?[0-9a-z]+-.*json$`} showPDF />
+      <Explorer pattern={`${location.pathname}/?ex`} showPDF />
       <div class="columns">
         <div>
           <h2>Informations pratiques</h2>
