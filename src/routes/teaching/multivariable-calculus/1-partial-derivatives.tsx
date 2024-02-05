@@ -68,10 +68,23 @@ export default () => {
           paraboles.
         </p>
         <Example>
-          <p>Esquissez le graphe de la fonction {tex`g(x, y) \defeq \sqrt{9 - x^2 - y^2}`}</p>
+          <p>
+            Esquissez le graphe des fonctions
+            {tex`
+              g(x, y) \defeq \sqrt{9 - x^2 - y^2}\quad
+              h(x, y) \defeq 4x^2 + y^2
+            `}
+          </p>
         </Example>
       </Slide>
       <Slide title="Courbes de niveau" cite={['stewart', 'pp. 977-978']}>
+        <Definition title="Courbes de niveau">
+          <p>
+            Les courbes de niveau d'une fonction {tex`f`} à <strong>deux variables</strong> sont les
+            courbes dont l'équation prend la forme {tex`f(x, y) = k`} pour une valeur {tex`k`}{' '}
+            constante dans l'image de {tex`f`}.
+          </p>
+        </Definition>
         {py.jupyter`
           import numpy as np
           import matplotlib.pyplot as plt
@@ -94,6 +107,18 @@ export default () => {
             {tex`g(x, y) \defeq \sqrt{9 - x^2 - y^2}`} pour les valeurs {tex`k = 0, 1, 2, 3`}
           </p>
         </Example>
+        <Example>
+          <p>
+            Esquissez les courbes de niveau de la fonction {tex`h(x, y) \defeq 4x^2 + y^2 + 1`} pour
+            les valeurs {tex`k = 0, 1, 2, 3`}
+          </p>
+        </Example>
+      </Slide>
+      <Slide title="Fonctions à trois variables ou plus" cite={['stewart', 'pp. 982-983']}>
+        <p>
+          Les idées vues jusqu'à présent s'étendent naturellement aux fonctions à trois variables ou
+          plus (sauf que l'on parle de surfaces de niveau).
+        </p>
       </Slide>
       <Slide title="Dérivées partielles: introduction">
         <Idea>
@@ -118,7 +143,10 @@ export default () => {
         </Remark>
       </Slide>
       <Slide title="Dérivées partielles: guide pratique" cite={['stewart', 'p. 1002']}>
-        <p>Il suffit de traiter les autres variables comme constantes et de d</p>
+        <p>
+          Il suffit de traiter les autres variables comme constantes et de dériver par rapport à la
+          variable concernée
+        </p>
         <Example title="Dérivées partielles">
           <ol>
             <li>
@@ -141,6 +169,42 @@ export default () => {
           f = x**3 + x**2 * y**3 - 2 * y**2
           diff(f, x).subs({x: 2, y: 1})
         `}
+      </Slide>
+      <Slide title="Dérivées partielles: interprétation" cite={['stewart', 'p. 1002']}>
+        <Geogebra id="qp39qpnd" />
+      </Slide>
+      <Slide title="Interprétation des dérivées partielles: exemple" cite={['stewart', 'p. 1002']}>
+        <Example>
+          <p>
+            Soit {tex`f(x, y) \defeq 4 - x^2 - 2y^2`}. Trouvez {tex`f_x(1, 1)`} et {tex`f_y(1, 1)`}{' '}
+            et interprétez ces nombres comme des pentes.
+          </p>
+        </Example>
+        <Example>
+          <p>On définit l'indice de masse corporel via la formule</p>
+          {tex`
+            B(m, h) = \frac m {h^2},
+          `}
+          <p>
+            où {tex`m`} est la masse en kilogrammes et {tex`h`} la hauteur en mètres.
+          </p>
+          <p>
+            Calculez les dérivées partielles en {tex`m = 64`} kg and {tex`h = 1.68`} m et
+            interprétez.
+          </p>
+        </Example>
+      </Slide>
+      <Slide title="Dérivées partielles implicites" cite={['stewart', 'p. 1004']}>
+        <Example>
+          <p>
+            Trouvez {tex`\frac {\partial z} {\partial x}`} et {tex`\frac {\partial z} {\partial y}`}
+            , où {tex`z`} est définie implicitement par l'équation
+          </p>
+          {tex`
+            x^3 + y^3 + z^3 + 6xyz + 4 = 0.
+          `}
+          <p>Ensuite, évaluez ces dérivées partielles au point {tex`(-1, 1, 2)`}.</p>
+        </Example>
       </Slide>
     </Slideshow>
   )
