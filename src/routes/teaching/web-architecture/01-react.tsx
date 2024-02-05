@@ -79,6 +79,9 @@ ${react.if(solve)`
 export default () => {
   return (
     <Slideshow meta={meta}>
+      <Slide title="Hello">
+        <Figure src="js-for-babies.png" alt="JS for babies" />
+      </Slide>
       <Slide title="Syllabus">
         <h3>Tentative syllabus (subject to change)</h3>
         <ol>
