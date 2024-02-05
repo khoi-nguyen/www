@@ -60,6 +60,9 @@ export default () => {
             Généraliser le <strong>théorème fondamental de l'analyse</strong>
           </li>
         </ul>
+        {tex`
+          \int_a^b f'(x) \dd x = f(b) - f(a)
+        `}
       </Slide>
       <Slide title="Fonctions de deux variables" cite={['stewart', 'p. 972']}>
         <Example>
