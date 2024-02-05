@@ -7,6 +7,20 @@ const meta: Metadata = {
 export default function () {
   return (
     <Slideshow meta={meta}>
+      <Slide title="Objectifs">
+        <ul>
+          <li>Esquisser le domaine d'une fonction à plusieurs variables</li>
+          <li>Tracer les courbes de niveau</li>
+          <li>Calculer des dérivées partielles</li>
+          <li>Interpréter les dérivées partielles</li>
+        </ul>
+        <Remark>
+          <p>
+            Nous sommes conscient que vous n'avez pas eu de théorie et que l'horaire n'est pas
+            idéal. Désolé.
+          </p>
+        </Remark>
+      </Slide>
       <Slide title="Exercice 14.1.15">
         <Exercise>
           <p>Trouvez et esquissez le domaine de la fonction</p>
@@ -74,11 +88,43 @@ export default function () {
             f(x, y) = x^y
           `}
         </Exercise>
+        <Exercise title="14.3.62">
+          <p>Calculez toutes les dérivées partielles secondes de la fonction</p>
+          {tex`
+            f(x, y) = \ln (x + 2y)
+          `}
+        </Exercise>
+      </Slide>
+      <Slide title="Interprétation des dérivées partielles">
+        <p>
+          Dérivée partielle = dérivée classique en se limitant dans une direction parallèle à un axe
+        </p>
+        <p>
+          Notation: {tex`f_x = \partial_x f`}, {tex`f_y = \partial_y f`}
+        </p>
+        <Geogebra id="qp39qpnd" />
       </Slide>
       <Slide title="Exercice 14.3.74">
         <Figure src="14.4.74.png" alt="Exercice de courbes de niveau" />
+        <Remark title="Piste de réflexions">
+          <ul>
+            <li>
+              Lorsque l'on se déplace dans la direction {tex`x`}, est-ce que {tex`f`} croît-elle ou
+              décroît-elle?
+            </li>
+          </ul>
+        </Remark>
       </Slide>
       <Slide title="Exercice 14.3.99">
+        <Example title="Exercice 14.3.47">
+          <p>
+            Utilisez la différentiation implicite pour trouver{' '}
+            {tex`\frac {\partial z} {\partial x}`} et {tex`\frac {\partial z} {\partial y}`}
+          </p>
+          {tex`
+            x^2 + 2y^2 + 3z^2 = 1
+          `}
+        </Example>
         <Exercise>
           <p>
             L'ellipsoïde {tex`4x^2 + 2y^2 + z^2 = 16`} intersecte le plan {tex`y = 2`} en une
