@@ -21,9 +21,45 @@ export default () => {
             <dd>GUERRIERI Rolando (R5G), JONAS-SZATANSKI Jacek (JSZ), NGUYEN Khoi (NGY)</dd>
           </dl>
           <Remark>
-            <p>Les séances d'exercices seront également présentes sur mon site</p>
+            <p>
+              Les séances d'exercices seront également présentes sur mon site. Nous nous baserons
+              sur le calculus, mais je ferai en sorte que tout soit compris dans les slides.
+            </p>
           </Remark>
         </div>
+      </Slide>
+      <Slide title="Motivations">
+        <p>
+          Deux interactions dominent à notre échelle: la <strong>gravitation</strong> et l'
+          <strong>électromagnétisme</strong>.
+        </p>
+        <Proposition title="Équations de Maxwell">
+          {tex`
+            \grad \cdot \vec E &= \frac {\rho} {\epsilon_0}\\
+            \grad \cdot \vec B &= 0\\
+            \grad \times \vec E &= -\partial_t \vec B\\
+            \grad \times \vec B &= \mu_0 (\vec J + \epsilon_0 \partial_t \vec E)
+          `}
+        </Proposition>
+        <ul>
+          <li>Lois en {tex`1/r^2`}</li>
+          <li>Unification électricité/magnétisme/lumière</li>
+          <li>Nécéssité d'unir l'espace et le temps (première théorie relativiste)</li>
+        </ul>
+      </Slide>
+      <Slide title="Objectifs du cours">
+        <ul>
+          <li>
+            Étendre la notion de <strong>dérivée</strong> à plusieurs variables
+          </li>
+          <li>
+            Étendre la notion d'<strong>intégrale</strong> à plusieurs variables, aux courbes, et
+            aux surfaces
+          </li>
+          <li>
+            Généraliser le <strong>théorème fondamental de l'analyse</strong>
+          </li>
+        </ul>
       </Slide>
       <Slide title="Fonctions de deux variables" cite={['stewart', 'p. 972']}>
         <Example>
