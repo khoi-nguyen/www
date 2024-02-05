@@ -8,6 +8,23 @@ const meta: Metadata = {
 export default () => {
   return (
     <Slideshow meta={meta}>
+      <Slide title="Informations pratiques" columns>
+        <Iframe src="/teaching/" />
+        <div>
+          <h3>Informations</h3>
+          <dl>
+            <dt>Slides</dt>
+            <dd>
+              <A href="/">https://nguyen.me.uk/teaching</A>
+            </dd>
+            <dt>Exercices</dt>
+            <dd>GUERRIERI Rolando (R5G), JONAS-SZATANSKI Jacek (JSZ), NGUYEN Khoi (NGY)</dd>
+          </dl>
+          <Remark>
+            <p>Les séances d'exercices seront également présentes sur mon site</p>
+          </Remark>
+        </div>
+      </Slide>
       <Slide title="Fonctions de deux variables" cite={['stewart', 'p. 972']}>
         <Example>
           <p>Pour chaque fonction, évaluez {tex`f(3, 2)`}, trouvez et esquissez le domaine</p>
@@ -48,9 +65,8 @@ export default () => {
           x = y = np.linspace(-2, 2, 400)
           X, Y = np.meshgrid(x, y)
           Z = - X * Y * np.exp(-X**2 - Y**2)
-          fig = plt.figure(figsize =(14, 9))
-          ax = plt.axes(projection ='3d')
-          ax.plot_surface(X, Y, Z)
+          fig, ax = plt.figure(), plt.axes(projection ='3d')
+          ax.plot_surface(X, Y, Z, cmap='viridis')
         `}
       </Slide>
       <Slide title="Graphes: exemples" cite={['stewart', 'pp. 975-976']}>
@@ -63,6 +79,17 @@ export default () => {
         <Example>
           <p>Esquissez le graphe de la fonction {tex`f(x) = 6 - 3x - 2y`}</p>
         </Example>
+        {py.jupyter`
+          import numpy as np
+          import matplotlib.pyplot as plt
+          x = y = np.linspace(-2, 2, 400)
+          X, Y = np.meshgrid(x, y)
+          Z = 6 - 3 * X - 2 * Y
+          fig, ax = plt.figure(), plt.axes(projection ='3d')
+          ax.plot_surface(X, Y, Z, cmap='viridis')
+        `}
+      </Slide>
+      <Slide title="Graphes: exemples partie II" cite={['stewart', 'pp. 975-976']}>
         <p>
           Certains exemples seront basés sur des courbes connues telles que les cercles ou les
           paraboles.
@@ -76,8 +103,18 @@ export default () => {
             `}
           </p>
         </Example>
+        {py.jupyter`
+          import numpy as np
+          import matplotlib.pyplot as plt
+          x = y = np.linspace(-2, 2, 400)
+          X, Y = np.meshgrid(x, y)
+          Z = np.sqrt(9 - X**2 - Y**2)
+          fig, ax = plt.figure(), plt.axes(projection ='3d')
+          ax.plot_surface(X, Y, Z, cmap='viridis')
+        `}
       </Slide>
       <Slide title="Courbes de niveau" cite={['stewart', 'pp. 977-978']}>
+        <Figure src="level-curves.png" alt="Courbes de niveau" />
         <Definition title="Courbes de niveau">
           <p>
             Les courbes de niveau d'une fonction {tex`f`} à <strong>deux variables</strong> sont les
@@ -85,6 +122,8 @@ export default () => {
             constante dans l'image de {tex`f`}.
           </p>
         </Definition>
+      </Slide>
+      <Slide title="Courbes de niveau avec Python">
         {py.jupyter`
           import numpy as np
           import matplotlib.pyplot as plt
@@ -92,6 +131,7 @@ export default () => {
           X, Y = np.meshgrid(x, y)
           Z = X**2 + Y**2
           plt.contour(X, Y, Z, levels=10)
+          plt.colorbar()
         `}
       </Slide>
       <Slide title="Courbes de niveau: exemples" cite={['stewart', 'p. 980']}>
@@ -101,24 +141,181 @@ export default () => {
             les valeurs {tex`k = -6, 0, 6, 12`}
           </p>
         </Example>
+        {py.jupyter`
+          import numpy as np
+          import matplotlib.pyplot as plt
+          x = y = np.linspace(-1, 1, 500)
+          X, Y = np.meshgrid(x, y)
+          Z = 6 - 3*X - 2*Y
+          plt.contour(X, Y, Z, levels=10)
+          plt.colorbar()
+        `}
+      </Slide>
+      <Slide title="Courbes de niveau: exemples" cite={['stewart', 'p. 980']}>
         <Example>
           <p>
             Esquissez les courbes de niveau de la fonction{' '}
             {tex`g(x, y) \defeq \sqrt{9 - x^2 - y^2}`} pour les valeurs {tex`k = 0, 1, 2, 3`}
           </p>
         </Example>
+        {py.jupyter`
+          import numpy as np
+          import matplotlib.pyplot as plt
+          x = y = np.linspace(-1, 1, 500)
+          X, Y = np.meshgrid(x, y)
+          Z = np.sqrt(9 - X**2 - Y**2)
+          plt.contour(X, Y, Z, levels=10)
+          plt.colorbar()
+        `}
+      </Slide>
+      <Slide title="Courbes de niveau: exemples" cite={['stewart', 'p. 980']}>
         <Example>
           <p>
             Esquissez les courbes de niveau de la fonction {tex`h(x, y) \defeq 4x^2 + y^2 + 1`} pour
             les valeurs {tex`k = 0, 1, 2, 3`}
           </p>
         </Example>
+        {py.jupyter`
+          import numpy as np
+          import matplotlib.pyplot as plt
+          x = y = np.linspace(-1, 1, 500)
+          X, Y = np.meshgrid(x, y)
+          Z = 4*X**2 + Y**2 + 1
+          plt.contour(X, Y, Z, levels=10)
+          plt.colorbar()
+        `}
       </Slide>
       <Slide title="Fonctions à trois variables ou plus" cite={['stewart', 'pp. 982-983']}>
         <p>
           Les idées vues jusqu'à présent s'étendent naturellement aux fonctions à trois variables ou
           plus (sauf que l'on parle de surfaces de niveau).
         </p>
+      </Slide>
+      <Slide title="Limites" cite={['stewart', 'p. 990']}>
+        <p>Nous utiliserons la notation</p>
+        {tex`
+          \lim_{(x, y) \to (a, b)} f(x, y) = L
+        `}
+        <p>
+          pour indiquer que les valeurs de {tex`f(x, y)`} approchent le nombre {tex`L`} lorsque{' '}
+          {tex`(x, y)`} approche {tex`(a, b)`} en restant dans le domaine de {tex`f`}.
+        </p>
+      </Slide>
+      <Slide title="Montrer la non-existence d'une limite" cite={['stewart', 'p. 991']}>
+        <p>
+          Essayez plusieurs "chemins". S'ils donnent des limites différentes, alors la limite
+          n'existe pas
+        </p>
+        <Example>
+          <p>Montrer que </p>
+          {tex`
+            \lim_{(x, y) \to (0, 0)} \frac {x^2 - y^2} {x^2 + y^2}
+          `}
+          <p>n'existe pas.</p>
+        </Example>
+        <Remark>
+          <p>Essayez les chemins en ligne droite</p>
+        </Remark>
+      </Slide>
+      <Slide title="Montrer la non-existence d'une limite" cite={['stewart', 'p. 992']}>
+        <Example>
+          <p>Les limites</p>
+          {tex`
+            \lim_{(x, y) \to (0, 0)} \frac {x y} {x^2 + y^2},
+            \quad
+            \lim_{(x, y) \to (0, 0)} \frac {x y^2} {x^2 + y^4},
+          `}
+        </Example>
+      </Slide>
+      <Slide title="Propriétés des limites" cite={['stewart', 'p. 993']}>
+        <Proposition>
+          {tex`
+            \lim_{(x, y) \to (a, b)} \left(f(x, y) \pm g(x, y)\right)
+            &=
+            \lim_{(x, y) \to (a, b)} f(x, y)
+            \pm
+            \lim_{(x, y) \to (a, b)} g(x, y)\\
+            \lim_{(x, y) \to (a, b)} \alpha f(x, y)
+            &=
+            \alpha \lim_{(x, y) \to (a, b)} f(x, y)\\
+            \lim_{(x, y) \to (a, b)} f(x, y) \cdot g(x, y)
+            &=
+            \lim_{(x, y) \to (a, b)} f(x, y)
+            \cdot
+            \lim_{(x, y) \to (a, b)} g(x, y)\\
+            \lim_{(x, y) \to (a, b)} \frac {f(x, y)} {g(x, y)}
+            &=
+            \frac {
+              \lim_{(x, y) \to (a, b)} f(x, y)
+            } {
+              \lim_{(x, y) \to (a, b)} g(x, y)
+            }
+          `}
+        </Proposition>
+        <p>à condition que le membre de droite ait du sens.</p>
+      </Slide>
+      <Slide title="Propriétés des limites: exemples" cite={['stewart', 'p. 994']}>
+        <Example>
+          <p>Évaluez les limites suivantes si elles existent:</p>
+          {tex`
+            \lim_{(x, y) \to (1, 2)} \left(x^2 y^3 - x^3 y^2 + 3x + 2y\right)\\
+            \lim_{(x, y) \to (-2, 3)} \frac {x^2 y + 1} {x^3 y^2 - 2x}\\
+            \lim_{(x, y) \to (0, 0)} \frac {3x^2 y} {x^2 + y^2}
+          `}
+        </Example>
+      </Slide>
+      <Slide title="Continuité" cite={['stewart', 'p. 995']}>
+        <Definition>
+          <p>
+            Une fonction {tex`f`} est <strong>continue</strong> en {tex`(a, b)`} si
+          </p>
+          {tex`
+            \lim_{(x, y) \to (a, b)} f(x, y) = f(a, b).
+          `}
+          <p>
+            Une fonction est continue sur un ensemble si elle est continue en tout point de cet
+            ensemble.
+          </p>
+        </Definition>
+      </Slide>
+      <Slide title="Exemples" cite={['stewart', 'pp. 996-997']}>
+        <Example>
+          <p>Sur quel ensemble la fonction</p>
+          {tex`
+            f(x, y) \defeq
+            \begin{cases}
+              \frac {x^2 - y^2} {x^2 + y^2} & \text{if}\ (x, y) \neq (0, 0)\\
+              0 & \text{if}\ (x, y) = (0, 0)\\
+            \end{cases}
+          `}
+          <p>est-elle continue?</p>
+        </Example>
+      </Slide>
+      <Slide title="Exemples" cite={['stewart', 'pp. 996-997']}>
+        <Example>
+          <p>Sur quel ensemble la fonction</p>
+          {tex`
+            f(x, y) \defeq
+            \begin{cases}
+              \frac {3x^2 y} {x^2 + y^2} & \text{if}\ (x, y) \neq (0, 0)\\
+              0 & \text{if}\ (x, y) = (0, 0)\\
+            \end{cases}
+          `}
+          <p>est-elle continue?</p>
+        </Example>
+      </Slide>
+      <Slide title="Exemples" cite={['stewart', 'pp. 996-997']}>
+        <Example>
+          <p>Sur quel ensemble les fonctions</p>
+          {tex`
+            h_1(x, y) \defeq e^{-(x^2 + y^2)},\quad
+            h_2(x, y) \defeq \arctan \frac y x
+          `}
+          <p>sont elles continues?</p>
+        </Example>
+      </Slide>
+      <Slide title="Exercices">
+        <Iframe src="/calculus/14.1-14.2.pdf" />
       </Slide>
       <Slide title="Dérivées partielles: introduction">
         <Idea>
@@ -204,6 +401,78 @@ export default () => {
             x^3 + y^3 + z^3 + 6xyz + 4 = 0.
           `}
           <p>Ensuite, évaluez ces dérivées partielles au point {tex`(-1, 1, 2)`}.</p>
+        </Example>
+      </Slide>
+      <Slide title="Dérivées d'ordre plus élevé" cite={['stewart', 'p. 1005']}>
+        <p>
+          On peut continuer le processus et calculer les dérivées partielles d'une dérivées
+          partielle.
+        </p>
+        {tex`
+          (f_x)_x \defeq \frac {\partial} {\partial x} \left(\frac {\partial f} {\partial x}\right)\\
+          (f_x)_y \defeq \frac {\partial} {\partial y} \left(\frac {\partial f} {\partial x}\right)\\
+          (f_y)_x \defeq \frac {\partial} {\partial x} \left(\frac {\partial f} {\partial y}\right)\\
+          (f_y)_y \defeq \frac {\partial} {\partial y} \left(\frac {\partial f} {\partial y}\right)\\
+        `}
+      </Slide>
+      <Slide title="Dérivées partielles secondes: exemple">
+        <Example>
+          <p>Trouvez les dérivées partielles de</p>
+          {tex`
+            f(x, y) \defeq x^3 + x^2 y^3 - 2y^2
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y = symbols("x y")
+          f = x**3 + x**2 * y**3 - 2*y**2
+          f.diff(x).diff(y)
+        `}
+      </Slide>
+      <Slide title="Théorème de Clairaut">
+        <p>
+          En général, les dérivées sont <strong>symétriques</strong>.
+        </p>
+        <Theorem>
+          <p>
+            S'il existe un un disque centré en {tex`(a, b)`} tel que {tex`f`} est défini sur ce
+            disque, et que les fonctions {tex`f_{xy}`} et {tex`f_{yx}`} sont continues sur ce
+            disque, alors
+          </p>
+          {tex`
+            \frac {\partial^2 f} {\partial x \partial y} =
+            \frac {\partial^2 f} {\partial y \partial x}
+          `}
+        </Theorem>
+      </Slide>
+      <Slide title="Équations aux dérivées partielles">
+        <Example>
+          <p>
+            Montrez que {tex`u(x, y) \defeq e^x \sin y`} satisfait l'
+            <strong>équation de Laplace</strong>
+          </p>
+          {tex`
+            \frac {\partial^2 u} {\partial x^2}
+            + \frac {\partial^2 u} {\partial y^2}
+            = 0
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y = symbols("x y")
+          u = exp(x) * sin(y)
+          u.diff(x, 2) + u.diff(y, 2)
+        `}
+        <Example>
+          <p>
+            Montrez que {tex`u(x, t) \defeq \sin(x - at)`} satisfait l'
+            <strong>équation d'onde</strong>
+          </p>
+          {tex`
+            \frac {\partial^2 u} {\partial t^2}
+            = a^2
+            \frac {\partial^2 u} {\partial x^2}
+          `}
         </Example>
       </Slide>
     </Slideshow>
