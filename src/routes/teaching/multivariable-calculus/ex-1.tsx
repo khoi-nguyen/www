@@ -16,7 +16,7 @@ export default function () {
         </ul>
         <Remark>
           <p>
-            Nous sommes conscient que vous n'avez pas eu de théorie et que l'horaire n'est pas
+            Nous sommes conscients que vous n'avez pas eu de théorie et que l'horaire n'est pas
             idéal. Désolé.
           </p>
         </Remark>
