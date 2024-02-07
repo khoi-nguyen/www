@@ -4,6 +4,8 @@ import { makeContext, BoardContext } from '~/stores/boards'
 interface SlideshowProps {
   children: JSX.Element | JSX.Element[]
   meta: Parameters<typeof Meta>[0]
+  autoSlide?: number
+  hideTitleSlide?: boolean
 }
 
 function getSlides(props: SlideshowProps) {
@@ -38,6 +40,8 @@ export default function Slideshow(props: SlideshowProps) {
       slideNumber: true,
       touch: false,
       transition: 'none',
+      autoSlide: props.autoSlide || false,
+      loop: props.autoSlide ? true : false,
     })
     deck.initialize()
     deck.addKeyBinding('38', () => {
@@ -71,12 +75,14 @@ export default function Slideshow(props: SlideshowProps) {
     <BoardContext.Provider value={context}>
       <div class="reveal">
         <div class="slides">
-          <section class="slide title-slide">
-            <div>
-              <Meta {...props.meta} />
-              {context.admin()}
-            </div>
-          </section>
+          <Show when={!props.hideTitleSlide}>
+            <section class="slide title-slide">
+              <div>
+                <Meta {...props.meta} />
+                {context.admin()}
+              </div>
+            </section>
+          </Show>
           <For each={slides}>
             {(slide, i) => (
               <section>
