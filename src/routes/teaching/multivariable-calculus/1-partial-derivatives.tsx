@@ -748,6 +748,9 @@ export default () => {
           (P1.dot(n) - d) / sqrt(n.dot(n))
         `}
       </Slide>
+      <Slide title="Exercises">
+        <Iframe src="/calculus/12.5-14.3.pdf" />
+      </Slide>
     </Slideshow>
   )
 }
