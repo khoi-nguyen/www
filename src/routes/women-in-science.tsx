@@ -6,7 +6,7 @@ const meta: Metadata = {
 
 export default function () {
   return (
-    <Slideshow meta={meta}>
+    <Slideshow meta={meta} autoSlide={30 * 1000} hideTitleSlide hideBoards>
       <Slide title="Journée internationale des femmes et des filles en science"></Slide>
       <Slide title="Emmy Noether" columns>
         <div class="is-4">
