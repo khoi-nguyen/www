@@ -6,6 +6,7 @@ interface SlideshowProps {
   meta: Parameters<typeof Meta>[0]
   autoSlide?: number
   hideTitleSlide?: boolean
+  hideBoards?: boolean
 }
 
 function getSlides(props: SlideshowProps) {
@@ -90,11 +91,13 @@ export default function Slideshow(props: SlideshowProps) {
                   {(j) => (
                     <section class="slide" ref={slideRef}>
                       {slide(j)}
-                      <Whiteboard
-                        container={slideRef}
-                        strokes={context.boards()[i()][j]}
-                        {...dimensions}
-                      />
+                      <Show when={!props.hideBoards}>
+                        <Whiteboard
+                          container={slideRef}
+                          strokes={context.boards()[i()][j]}
+                          {...dimensions}
+                        />
+                      </Show>
                     </section>
                   )}
                 </For>
