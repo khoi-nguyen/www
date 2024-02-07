@@ -76,7 +76,7 @@ export default function Slideshow(props: SlideshowProps) {
     <BoardContext.Provider value={context}>
       <div class="reveal">
         <div class="slides">
-          <Show when={!props.hideTitleSlide}>
+          <Show when={!props.hideTitleSlide} fallback={<Meta {...props.meta} hideHeader />}>
             <section class="slide title-slide">
               <div>
                 <Meta {...props.meta} />
