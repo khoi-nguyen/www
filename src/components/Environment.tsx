@@ -15,6 +15,7 @@ import { lang } from '~/lib/signals'
 
 interface SpecificEnvironmentProps {
   children?: JSX.Element
+  class?: string
   icon?: IconDefinition
   title?: string | (() => JSX.Element)
   pluralize?: boolean
@@ -22,7 +23,6 @@ interface SpecificEnvironmentProps {
 
 interface EnvironmentProps extends SpecificEnvironmentProps {
   name: string
-  class?: string
 }
 
 export function Environment(props: EnvironmentProps) {
