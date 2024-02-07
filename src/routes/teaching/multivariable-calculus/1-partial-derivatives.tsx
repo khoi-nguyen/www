@@ -514,6 +514,240 @@ export default () => {
           `}
         </Example>
       </Slide>
+      <Slide title="Rappels: équations de droites" cite={['stewart', 'p. 863']}>
+        <Geogebra id="F3vjkggB" height={450} />
+        <Definition title="Équation vectorielle">
+          {tex`
+            \vec r = 
+            \underbrace{\vec {r_0}}_{\substack{\text{point de}\\ \text{départ}}}
+            + t\underbrace{\vec v}_{\substack{\text{vecteur}\\ \text{directeur}}}
+          `}
+        </Definition>
+        <p>
+          En coordonnées cartésiennes, on obtient les <strong>équations paramétriques</strong>
+        </p>
+        {tex`
+          \begin{cases}
+            x &= x_0 + a t\\
+            y &= y_0 + b t\\
+            z &= y_0 + c t
+          \end{cases}
+        `}
+      </Slide>
+      <Slide title="Équations de droite: exemple">
+        <Example>
+          <p>
+            Trouvez une équation vectorielle et les équations paramétriques de la droite passant par{' '}
+            {tex`(5, 1, 3)`} et parallèle au vecteur {tex`\vec i + 4 \vec j - 2 \vec k`}.
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          t = Symbol("t")
+          r = Matrix([5, 1, 3]) + t * Matrix([1, 4, -2])
+          r.subs(t, 1)
+        `}
+      </Slide>
+      <Slide title="Équations cartésiennes">
+        {tex`
+          \begin{cases}
+            x &= x_0 + a t\\
+            y &= y_0 + b t\\
+            z &= y_0 + c t
+          \end{cases}
+        `}
+        <p>En isolant {tex`t`}, on obtient</p>
+        {tex`
+          t
+          = \boxed{\frac {x - x_0} a
+          = \frac {y - y_0} b
+          = \frac {z - z_0} c}.
+        `}
+        <p>
+          Ces équations sont appelées <strong>équations cartésiennes</strong>
+        </p>
+        <Remark>
+          <p>
+            Remarquez que l'encadré cache <strong>deux équations</strong>. En effet, une droite est
+            l'intersection de deux plans.
+          </p>
+        </Remark>
+      </Slide>
+      <Slide title="Droites: exemple">
+        <Example>
+          <p>
+            Trouver les équations paramétriques et cartésiennes de la droite qui passe par les
+            points {tex`A(2, 4, -3)`} et {tex`B(3, -1, 1)`}. Quand cette droite intercepte-t-elle le
+            plan {tex`xy`}?
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y, z, t = symbols("x y z t")
+          r = Matrix([x, y, z])
+          A = Matrix([2, 4, -3])
+          B = Matrix([3, -1, 1])
+          Eq(r, A + t * (B - A))
+        `}
+      </Slide>
+      <Slide title="Droites gauches: exemple">
+        <Example>
+          <p>Montrez que les lignes suivantes</p>
+          {tex`
+            \begin{cases}
+              x &= 1 + t\\
+              y &= -2 + 3t\\
+              z &= 4 - t
+            \end{cases}
+            \quad
+            \begin{cases}
+              x &= 2s\\
+              y &= 3 + s\\
+              z &= -3 + 4s
+            \end{cases}
+          `}
+          <p>sont gauches</p>
+        </Example>
+      </Slide>
+      <Slide title="Équation cartésienne d'un plan">
+        <p>
+          Dans l'espace à 3 dimensions, un plan est déterminé par <strong>un point</strong>{' '}
+          (déterminé par {tex`\vec r_0`}) et une <strong>direction normale</strong> {tex`\vec n`}.
+          L'équation cartésienne est donnée par
+        </p>
+        {tex`
+          \boxed{
+            \vec r \cdot \vec n = \vec r_0 \cdot \vec n
+          }
+        `}
+        <p>En coordonnées, cela donne:</p>
+        {tex`
+          a x + b y + cz = d
+          \qquad d = \vec r_0 \cdot \vec n,
+          \, \vec n = (a, b, c)
+        `}
+      </Slide>
+      <Slide title="Équations cartésiennes d'un plan: exemple">
+        <Example>
+          <p>
+            Trouvez l'équation du plan passant par {tex`(2, 4, -1)`} avec comme vecteur normal{' '}
+            {tex`\vec n = (2, 3, 4)`}. Trouvez les intersections avec les axes et esquissez le plan.
+          </p>
+        </Example>
+      </Slide>
+      <Slide title="Équations cartésiennes d'un plan: exemple àpd 3 points">
+        <Example>
+          <p>Trouvez l'équation du plan passant par les points</p>
+          {tex`
+            P(1, 3, 2), \quad Q(3, -1, 6) \quad R(5, 2, 0).
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          P = Matrix([1, 3, 2])
+          Q = Matrix([3, -1, 6])
+          R = Matrix([5, 2, 0])
+          r = Matrix([Symbol("x"), Symbol("y"), Symbol("z")])
+          n = (Q - P).cross(R - P)
+          Eq(r.dot(n), P.dot(n))
+        `}
+      </Slide>
+      <Slide title="Intersection droite plan: exemple">
+        <Example>
+          <p>Trouvez le point où s'intersectent la droite</p>
+          {tex`
+            \begin{cases}
+              x &= 2 + 3t\\
+              y &= -4t\\
+              z &= 5 + t
+            \end{cases}
+          `}
+          <p>et le plan d'équation {tex`4x + 5y - 2z = 18`}</p>
+        </Example>
+      </Slide>
+      <Slide title="Angle entre deux plans">
+        <ul>
+          <li>Deux plans sont parallèles si leurs vecteurs normaux sont parallèles</li>
+          <li>L'angle entre deux plans est l'angle entre leurs vecteurs normaux</li>
+        </ul>
+        <Geogebra id="EFHAFt54" />
+      </Slide>
+      <Slide title="Angle entre deux plans: exemple">
+        <Example>
+          <ol>
+            <li>
+              Trouvez l'angle entre les plans {tex`x + y + z = 1`} et {tex`x - 2y + 3z = 1`}
+            </li>
+            <li>Trouvez les équations cartésiennes de la ligne d'intersection</li>
+          </ol>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          n1 = Matrix([1, 1, 1])
+          n2 = Matrix([1, -2, 3])
+          norm = lambda v: sqrt(v.dot(v))
+          theta = acos( n1.dot(n2) / (norm(n1) * norm(n2)) )
+          n1.cross(n2)
+        `}
+      </Slide>
+      <Slide title="Distance entre un plan et un point">
+        <Question>
+          <p>
+            Quelle est la distance entre un point {tex`P_1(x_1, y_1, z_1)`} et le plan{' '}
+            {tex`a x + by + cz + d = 0`}?
+          </p>
+        </Question>
+        <Figure src="distance-point-plane.png" alt="Distance point/plan" />
+        {tex`
+          \text{distance}
+          &= \abs{
+            (\vec P_1 - \vec P_0) \cdot \frac {\vec n} {\norm n}
+          }\\
+          &= \frac {\abs{ \vec P_1 \cdot \vec n - \vec P_0 \cdot \vec n }} {\norm n}
+        `}
+      </Slide>
+      <Slide title="Distance entre un plan et un point: exemple">
+        <Example>
+          <p>Trouvez la distance entre les plans</p>
+          {tex`
+            10x + 2y - 2z = 5, \quad 5x + y - z = 1
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          P1 = Matrix([Rational(1, 2), 0, 0])
+          n = Matrix([5, 1, -1])
+          (P1.dot(n) - 1) / sqrt(n.dot(n))
+        `}
+      </Slide>
+      <Slide title="Distance entre deux droites gauches">
+        <Example>
+          <p>Trouvez la distance entre les droites</p>
+          {tex`
+            \begin{cases}
+              x &= 1 + t\\
+              y &= -2 + 3t\\
+              z &= 4 - t
+            \end{cases}
+            \quad
+            \begin{cases}
+              x &= 2s\\
+              y &= 3 + s\\
+              z &= -3 + 4s
+            \end{cases}
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          s, t = symbols("s t")
+          v1 = Matrix([1, 3, -1])
+          v2 = Matrix([2, 1, 4])
+          n = v1.cross(v2)
+          d = Matrix([2*s, 3 + s, -3 + 4*s]).subs(s, 0).dot(n)
+          P1 = Matrix([1 + t, -2 + 3*t, 4 - t]).subs(t, 0)
+          (P1.dot(n) - d) / sqrt(n.dot(n))
+        `}
+      </Slide>
     </Slideshow>
   )
 }
