@@ -13,7 +13,7 @@ export default function () {
           <Figure src="noether.jpg" alt="Emmy Noether" width={400}>
             <hgroup>
               <h3>Emmy Noether (1882-1935)</h3>
-              <p>Mathématicienne</p>
+              <p>Mathématicienne allemande</p>
             </hgroup>
             <p>
               Connue pour ses contributions en mathématiques et en physique mathématique, et en
@@ -37,7 +37,7 @@ export default function () {
               correspond une grandeur qui se conserve.
             </p>
           </Theorem>
-          <Corollary class="theorem">
+          <Corollary class="theorem" pluralize>
             <ul>
               <li>
                 L'invariance par translation dans le temps implique la{' '}
@@ -60,6 +60,29 @@ export default function () {
               </li>
             </ul>
           </Quote>
+        </div>
+      </Slide>
+      <Slide title="Stephanie Kwolek" columns>
+        <div class="is-5">
+          <Figure src="kwolek.jpg" alt="Stephanie Kwolek" width={450}>
+            <hgroup>
+              <h3>Stephanie Kwolek</h3>
+              <p>Chimiste américaine</p>
+            </hgroup>
+          </Figure>
+        </div>
+        <div class="is-7 is-vcentered">
+          <div>
+            <h3>Chimiste américaine</h3>
+            <p>
+              Inventrice de la fibre poly-paraphénylène téréphtalamide (PPD-T), mieux connue sous le
+              nom commercial de <strong>Kevlar</strong>.
+            </p>
+            <Figure src="kevlar.jpg" alt="kevlar" width={400} />
+            <p>
+              Stephanie Kwolek a remporté de nombreux prix pour son travail en chimie des polymères.
+            </p>
+          </div>
         </div>
       </Slide>
     </Slideshow>
