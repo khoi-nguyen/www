@@ -66,7 +66,7 @@ export default function () {
         <div class="is-5">
           <Figure src="kwolek.jpg" alt="Stephanie Kwolek" width={450}>
             <hgroup>
-              <h3>Stephanie Kwolek</h3>
+              <h3>Stephanie Kwolek (1923-2014)</h3>
               <p>Chimiste américaine</p>
             </hgroup>
           </Figure>
