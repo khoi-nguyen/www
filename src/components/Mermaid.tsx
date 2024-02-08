@@ -5,7 +5,6 @@ interface MermaidProps {
 }
 
 export default function Mermaid(props: MermaidProps) {
-  let element: HTMLDivElement
   const c = children(() => props.children)
   const [svg, setSvg] = createSignal('')
 
@@ -16,5 +15,5 @@ export default function Mermaid(props: MermaidProps) {
     setSvg(svg)
   })
 
-  return <div ref={element!} innerHTML={svg()} />
+  return <Html clickable={false} code={svg()} />
 }
