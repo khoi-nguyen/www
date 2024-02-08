@@ -1,5 +1,6 @@
 interface HtmlProps {
   code?: string
+  clickable?: boolean
   children?: JSX.Element
   onExecuted?: () => void
 }
@@ -35,8 +36,11 @@ const style = (code: string) => html.raw`
 `
 
 export default function Html(props: HtmlProps) {
+  props = mergeProps({ clickable: true }, props)
   const code = () => (props.children ? String(props.children) : String(props.code))
-  const iframe = (<iframe width="100%" class="clickable" />) as HTMLIFrameElement
+  const iframe = (
+    <iframe width="100%" classList={{ clickable: props.clickable }} />
+  ) as HTMLIFrameElement
 
   createEffect(() => {
     iframe.srcdoc = style(code())
