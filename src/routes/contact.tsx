@@ -24,6 +24,10 @@ function changeEvent(event: EventImpl) {
     'AW4C-T1-4MBA-A': 'Web Architecture (BA)',
     'AW4C-L1-4MBA-A': 'Web Architecture (BA, Labo)',
     'AW4L-L1-4MIN': 'Web Architecture (IN)',
+    'EM1C-T1-1BA-A': 'Outils maths A',
+    'EM1C-T1-1BA-B': 'Outils maths B',
+    'EM1C-X1-1BA-A': 'TP Outils maths A',
+    'EM1C-X1-1BA-B': 'TP Outils maths B',
   }
   if (title in titles) {
     title = titles[title as keyof typeof titles]
