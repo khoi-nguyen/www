@@ -24,13 +24,10 @@ export default () => (
       obtained my <Abbr key="PhD" /> from{' '}
       <a href="https://imperial.ac.uk">Imperial College London</a> in 2016. I specialized in
       Analysis and Differential Geometry, and was part of the effort to extend global
-      Pseudo-Differential Calculus to non-compact Lie Groups.
-    </p>
-    <p>
-      I started teaching in 2017, and got my teaching qualification from the{' '}
-      <a href="https://ox.ac.uk">University of Oxford</a> in 2019. Before becoming a lecturer, I
-      mostly worked as a Teacher of Mathematics in international schools such as{' '}
-      <a href="https://britishschool.be">The British School of Brussels</a> and{' '}
+      Pseudo-Differential Calculus to non-compact Lie Groups. I started teaching in 2017, and got my
+      teaching qualification from the <a href="https://ox.ac.uk">University of Oxford</a> in 2019.
+      Before becoming a lecturer, I mostly worked as a Teacher of Mathematics in international
+      schools such as <a href="https://britishschool.be">The British School of Brussels</a> and{' '}
       <a href="https://www.madrid-soto.kingscollegeschools.org/en">
         King's College, The British School of Madrid
       </a>
