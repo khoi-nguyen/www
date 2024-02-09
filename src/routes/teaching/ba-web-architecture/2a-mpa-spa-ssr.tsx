@@ -495,6 +495,19 @@ export default function () {
             server -->> app: Réponses (JSON)
         `}
       </Slide>
+      <Slide title="Hydration">
+        <p>
+          Chaque fois qu'on résoud un problème en frontend, on en crée un nouveau. Le{' '}
+          <Abbr key="SSR" /> crée le problème de l'<em>hydration</em>, une période durant laquelle
+          la page est affichée mais <em>pas interactive</em>.
+        </p>
+        <Figure src="hydration.png" alt="Le processus d'hydration" />
+        <p>
+          Ce problème n'est pas encore résolu de manière satisfaisante, bien qu'il existe des
+          projets prometteurs tels que <a href="https://qwik.dev">Qwik</a> ou{' '}
+          <a href="https://astro.build">Astro</a>
+        </p>
+      </Slide>
     </Slideshow>
   )
 }
