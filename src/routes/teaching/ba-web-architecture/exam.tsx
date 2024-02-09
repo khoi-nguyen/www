@@ -22,30 +22,30 @@ export default () => {
       </ul>
       <h2>
         <Abbr key="HTTP" />, <Abbr key="MPA" />, <Abbr key="SPA" />, <Abbr key="SSR" />
-        <ul>
-          <li>
-            Comment fonctionne l'
-            <Abbr key="HTTPS" />? Utilise un diagramme de séquence pour illustrer ta réponse.
-          </li>
-          <li>
-            Qu'est-ce qu'un cookie HTTP? Pourquoi sont-ils nécéssaires? Illustre avec un diagramme
-            de séquence leur fonctionnement.
-          </li>
-          <li>Avec un diagramme de séquence, illustre le fonctionnement d'un site statique.</li>
-          <li>
-            Avec un diagramme de séquence, illustre le fonctionnement d'une <Abbr key="MPA" />.
-          </li>
-          <li>
-            Avec un diagramme de séquence, illustre le fonctionnement d'une <Abbr key="SPA" />.
-          </li>
-          <li>
-            Quels sont les avantages et les inconvénients d'une <Abbr key="SPA" />?
-          </li>
-          <li>
-            Qu'est-ce que le <Abbr key="SSR" />?
-          </li>
-        </ul>
       </h2>
+      <ul>
+        <li>
+          Comment fonctionne l'
+          <Abbr key="HTTPS" />? Utilise un diagramme de séquence pour illustrer ta réponse.
+        </li>
+        <li>
+          Qu'est-ce qu'un cookie HTTP? Pourquoi sont-ils nécéssaires? Illustre avec un diagramme de
+          séquence leur fonctionnement.
+        </li>
+        <li>Avec un diagramme de séquence, illustre le fonctionnement d'un site statique.</li>
+        <li>
+          Avec un diagramme de séquence, illustre le fonctionnement d'une <Abbr key="MPA" />.
+        </li>
+        <li>
+          Avec un diagramme de séquence, illustre le fonctionnement d'une <Abbr key="SPA" />.
+        </li>
+        <li>
+          Quels sont les avantages et les inconvénients d'une <Abbr key="SPA" />?
+        </li>
+        <li>
+          Qu'est-ce que le <Abbr key="SSR" />?
+        </li>
+      </ul>
     </Page>
   )
 }
