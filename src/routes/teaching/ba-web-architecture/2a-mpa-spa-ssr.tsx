@@ -80,6 +80,89 @@ export default function () {
         </p>
         <Figure src="http-message.png" alt="Messages HTTP" />
       </Slide>
+      <Slide
+        title={() => (
+          <>
+            Méthodes <Abbr key="HTTP" />
+          </>
+        )}
+      >
+        <p>
+          Voici les principales méthodes <Abbr key="HTTP" />
+        </p>
+        <dl>
+          <dt>GET</dt>
+          <dd>Demande de récupération de données (par défaut)</dd>
+          <dt>POST</dt>
+          <dd>Envoi de données via un formulaire</dd>
+          <dt>DELETE</dt>
+          <dd>Demande de suppression</dd>
+          <dt>PATCH</dt>
+          <dd>Demande de modification partielles</dd>
+          <dt>PUT</dt>
+          <dd>Demande de modification</dd>
+        </dl>
+        <p>
+          Pour plus de détails, vous pouvez visiter la{' '}
+          <a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Methods">documentation</a>
+        </p>
+        <Remark>
+          <p>
+            Ceci est ce qui se passe en théorie. En pratique, le programmeur backend n'est pas
+            obligé d'honorer ces conventions.
+          </p>
+        </Remark>
+      </Slide>
+      <Slide title="Codes Réponse">
+        <ul>
+          <li>Réponses informatives (100-199)</li>
+          <li>Réponses de succès (200-299)</li>
+          <li>Messages de redirection (300-399)</li>
+          <li>Erreurs Client (400-499)</li>
+          <li>Erreurs serveur (500-599)</li>
+        </ul>
+        <Example pluralize>
+          <dl>
+            <dt>200 OK</dt>
+            <dd>La requête a réussi</dd>
+            <dt>403 Forbidden</dt>
+            <dd>Le client n'a pas les droits d'accès au contenu</dd>
+            <dt>404 Not Found</dt>
+            <dd>Le serveur n'a pas trouvé la ressource demandée</dd>
+          </dl>
+        </Example>
+        <p>
+          Pour plus d'information, consultez la{' '}
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">documentation</a>
+        </p>
+      </Slide>
+      <Slide title="Requêtes GET">
+        <Definition title="Requête GET">
+          <p>
+            Une requête GET est une demande faite par un client au serveur de consulter une
+            ressource à une <Abbr key="URL" /> donnée. Le serveur y répond ou renvoie une erreur.
+          </p>
+        </Definition>
+        <Example pluralize>
+          <ul>
+            <li>Consulter une page</li>
+            <li>Consulter une image</li>
+          </ul>
+        </Example>
+      </Slide>
+      <Slide title="Requêtes POST">
+        <Definition title="Requête POST">
+          <p>
+            Une requête POST est utilisée par un client pour <strong>envoyer</strong> des données
+            supplémentaires au serveur.
+          </p>
+        </Definition>
+        <Example pluralize>
+          <ul>
+            <li>Envoi de formulaire</li>
+          </ul>
+        </Example>
+      </Slide>
       <Slide title="Stateless">
         <Figure src="dory.png" alt="Dory">
           <p>
@@ -104,13 +187,67 @@ export default function () {
           L'idée des cookie est que le client rappelle au serveur qui il est à chaque requête parce
           que le serveur a oublié (une promenade en mer, une promenade en mer).
         </p>
-        <Figure src="http-cookie.png" alt="Cookie HTTP" />
-        <Remark>
+        <Definition title="Cookie">
           <p>
-            Généralement les cookies sont chiffrés par le serveur pour qu'ils soient plus difficiles
-            à falsifier.
+            Un cookie est un bloc de données créé par le serveur et utilisé pour les requêtes
+            suivantes jusqu'à son expiration.
           </p>
-        </Remark>
+        </Definition>
+        <Figure src="http-cookie.png" alt="Cookie HTTP" width={700} />
+      </Slide>
+      <Slide title="Cookies: diagramme de séquence">
+        {mermaid`
+          sequenceDiagram
+            participant client as Client
+            participant server as Serveur
+            client ->> server: Requête
+            server ->> client: Réponse + cookie
+            Note over client, server: Requêtes suivantes jusqu'à expiration
+            client ->> server: Requête + cookie
+            server ->> client: Réponse
+        `}
+      </Slide>
+      <Slide title="Cookies: Authentification">
+        <Question>
+          <p>
+            Comment implémenter l'authentification si le protocole est <em>stateless</em>?
+          </p>
+        </Question>
+        {mermaid`
+          sequenceDiagram
+            participant client as Client
+            participant server as Serveur
+            client ->> server: Requête POST avec login/pw
+            server ->> server: Vérification du login + génération d'un token
+            server ->> client: Réponse + cookie contenant le token
+            Note over client, server: Requêtes suivantes jusqu'à expiration du cookie
+            client ->> server: Requête + cookie contenant le token
+            server ->> server: Reconnaissance de l'utilisateur grâce au token
+            server ->> client: Réponse personnalisée
+        `}
+      </Slide>
+      <Slide title="Cookies: Tracking">
+        <p>
+          Le tracking est le business model du Web. Les géants du Web ont pratiquement votre
+          historique complet.
+        </p>
+        {mermaid`
+          sequenceDiagram
+            participant client as Client
+            participant server1 as Serveur Site 1
+            participant server2 as Serveur Site 2
+            participant advertiser as Advertiser
+            client ->> server1: GET /first-page
+            server1 ->> client: Réponse
+            client ->> advertiser: GET /advert
+            advertiser ->> advertiser: Génération token + début historique utilisateur
+            advertiser ->> client: Réponse + cookie avec token
+            Note over client, advertiser: Autre visite
+            client ->> server2: GET /second-page
+            server1 ->> client: Réponse
+            client ->> advertiser: GET /advert + cookie avec token
+            advertiser ->> advertiser: Reconnaissance utilisateur + complète historique
+        `}
       </Slide>
       <Slide title="Cryptographie asymétrique">
         <p>
@@ -154,33 +291,6 @@ export default function () {
             client ->> server: Requête + cookie (Encryptée deux fois)
             server ->> client: Réponse (encryptée une fois)
         `}
-      </Slide>
-      <Slide title="Requêtes GET">
-        <Definition title="Requête GET">
-          <p>
-            Une requête GET est une demande faite par un client au serveur de consulter une
-            ressource à une <Abbr key="URL" /> donnée. Le serveur y répond ou renvoie une erreur.
-          </p>
-        </Definition>
-        <Example pluralize>
-          <ul>
-            <li>Consulter une page</li>
-            <li>Consulter une image</li>
-          </ul>
-        </Example>
-      </Slide>
-      <Slide title="Requêtes POST">
-        <Definition title="Requête POST">
-          <p>
-            Une requête POST est utilisée par un client pour <strong>envoyer</strong> des données
-            supplémentaires au serveur.
-          </p>
-        </Definition>
-        <Example pluralize>
-          <ul>
-            <li>Envoi de formulaire</li>
-          </ul>
-        </Example>
       </Slide>
       <Slide title="Différentes architectures">
         <p>
