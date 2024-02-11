@@ -6,7 +6,7 @@ const meta: Metadata = {
 
 export default function () {
   return (
-    <Slideshow meta={meta} autoSlide={30 * 1000} hideTitleSlide hideBoards>
+    <Slideshow meta={meta} hideTitleSlide hideBoards>
       <Slide title="Journée internationale des femmes et des filles en science" columns>
         <div>
           <p>
@@ -102,6 +102,64 @@ export default function () {
               Stephanie Kwolek a remporté de nombreux prix pour son travail en chimie des polymères.
             </p>
           </div>
+        </div>
+      </Slide>
+      <Slide title="Ingrid Daubechies" columns>
+        <div class="is-5">
+          <Figure src="daubechies.jpg" alt="Ingrid Daubechies" height={900} />
+        </div>
+        <div class="is-7 is-vcentered">
+          <div>
+            <h2>Ingrid Daubechies (1954)</h2>
+            {tex`
+            [W_\psi] f(a, b) \defeq \frac 1 {\sqrt {\abs a}} \int_{-\infty}^{+\infty}
+            \overline {\psi\left(\frac {x - b} a\right)} f(x) \dd x
+          `}
+            <ul>
+              <li>Mathématicienne et physicienne belge</li>
+              <li>
+                Connue pour son travail sur les <strong>ondelettes</strong> et en{' '}
+                <strong>compression d'image</strong>
+              </li>
+              <li>
+                A donné son nom aux <strong>ondelettes Daubechies</strong>, utilisées dans le
+                standard JPEG 2000.
+              </li>
+              <li>A reçu de nombreux prix</li>
+            </ul>
+            <Figure src="daubeches-wavelets.png" alt="Ondelettes Daubechies" />
+          </div>
+        </div>
+      </Slide>
+      <Slide title="Ada Yonath" columns>
+        <div class="is-5">
+          <Figure src="yonath.jpg" alt="Ada Yonath" />
+        </div>
+        <div class="is-7 is-vcentered">
+          <div>
+            <h2>עדה יונת (Ada Yonath)</h2>
+            <ul>
+              <li>Cristallographe et biologiste moléculaire israélienne</li>
+              <li>Prix Nobel en Chimie (2009)</li>
+              <li>A identifié la structure moléculaire des ribosomes par cristallographie</li>
+              <li>
+                Ses travaux ont contribué àla création de nouveaux antibiotiques et à une meilleure
+                compréhension de leur mode de fonctionnement
+              </li>
+            </ul>
+          </div>
+        </div>
+      </Slide>
+      <Slide title="Katherine Johnson">
+        <div class="is-5">
+          <Figure src="johnson.jpg" alt="Katherine Johnson" />
+        </div>
+        <div class="is-7 is-vcentered">
+          <h1>Katherine Johnson (1918-2020)</h1>
+          <ul>
+            <li>Mathématicienne et ingénieure américaine</li>
+            <li>A contribué à différents programmes aérospatiaux de la NASA</li>
+          </ul>
         </div>
       </Slide>
     </Slideshow>
