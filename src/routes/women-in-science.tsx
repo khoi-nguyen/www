@@ -1,3 +1,5 @@
+import type paths from '~/images.json'
+
 const meta: Metadata = {
   title: 'Journée internationale des femmes et des filles de science',
   description: '',
@@ -150,18 +152,105 @@ export default function () {
           </div>
         </div>
       </Slide>
-      <Slide title="Katherine Johnson">
+      <Slide title="Katherine Johnson" columns>
         <div class="is-5">
           <Figure src="johnson.jpg" alt="Katherine Johnson" />
         </div>
         <div class="is-7 is-vcentered">
-          <h1>Katherine Johnson (1918-2020)</h1>
-          <ul>
-            <li>Mathématicienne et ingénieure américaine</li>
-            <li>A contribué à différents programmes aérospatiaux de la NASA</li>
-          </ul>
+          <div>
+            <h2>Katherine Johnson (1918-2020)</h2>
+            <ul>
+              <li>Mathématicienne et ingénieure américaine</li>
+              <li>A contribué à différents programmes aérospatiaux de la NASA tels que Mercury</li>
+            </ul>
+          </div>
         </div>
       </Slide>
+      <Slide title="Lisa Tzwu-Fang Su" columns>
+        <div class="is-5">
+          <Figure src="su.jpg" alt="Lisa Su" height={900} />
+        </div>
+        <div class="is-7 is-vcentered">
+          <div>
+            <h2>Lisa Tzwu-Fang Su / 蘇姿丰 (1969)</h2>
+            <ul>
+              <li>Ingénieure et cheffe d'entreprise américaine</li>
+              <li>
+                A contribué au développement de semi-conducteurs SOI (Silicon On Insulator), ainsi
+                qu'à la mise au point de puces semi-conductrices plus efficaces
+              </li>
+              <li>
+                Elle est PDG d'AMD depuis octobre 2014. On lui crédite de la renaissance de cette
+                entreprise qui fabrique des semi-conducteurs, microprocesseurs et cartes graphiques.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </Slide>
+      <CustomSlide name="Dina Katabi" src="katabi.jpg">
+        <h2>دينا قَتابي (Dina Katabi, 1970)</h2>
+        <ul>
+          <li>Informaticienne syrienne/américaine</li>
+          <li>Dirige le MIT Wireless Center et le group de recherche NETMIT</li>
+          <li>
+            Connue pour ses travaux dans la transformée de Fourier éparse, les réseaux WiFi et la
+            vision à rayons X
+          </li>
+        </ul>
+      </CustomSlide>
+      <CustomSlide name="Mae Carol Jemison" src="jemison.jpg">
+        <h2>Mae Carol Jemison (1956)</h2>
+        <ul>
+          <li>Ingénieure, médecin, astronaute américaine</li>
+          <li>Spécialiste de mission à bord de la navette spatiale Endeavour</li>
+          <li>Promouvoit la science, la technologie, et l'accès aux soins de santé</li>
+        </ul>
+      </CustomSlide>
+      <CustomSlide name="Claudine Hermann" src="hermann.jpg">
+        <h2>Claudine Hermann (1945-2021)</h2>
+        <ul>
+          <li>Physicienne française</li>
+          <li>
+            Première femme professeur des universités en France à l’École polytechnique en 1992
+          </li>
+          <li>Spécialiste de la physique des solides</li>
+          <li>A apporté une contribution majeure dans le domaine de la physique des particules</li>
+        </ul>
+      </CustomSlide>
+      <CustomSlide name="Vera Rubin" src="rubin.jpg">
+        <h2>Vera Rubin (1928-2016)</h2>
+        <ul>
+          <li>Astronome américaine</li>
+          <li>A travaillé sur les vitesses de rotation des éléments en périphérie des galaxies</li>
+          <li>
+            Elle constate notamment que les étoiles en périphérie de la galaxie d’Andromède ont une
+            vitesse de rotation bien plus grande que ce que ne le prévoit les lois de Newton, ce qui
+            a permis de démontrer l’existence de matière noire dans les galaxies.
+          </li>
+          <li>
+            Citation de Rubin: <em>Worldwilde, half of all brains are in women.</em>
+          </li>
+        </ul>
+      </CustomSlide>
     </Slideshow>
+  )
+}
+
+interface CustomSlideProps {
+  name: string
+  src: (typeof paths)[number]
+  children?: JSX.Element | JSX.Element[]
+}
+
+function CustomSlide(props: CustomSlideProps) {
+  return (
+    <Slide title={props.name} columns>
+      <div class="is-5">
+        <Figure src={props.src} alt={props.name} height={850} />
+      </div>
+      <div class="is-7 is-vcentered">
+        <div>{props.children}</div>
+      </div>
+    </Slide>
   )
 }
