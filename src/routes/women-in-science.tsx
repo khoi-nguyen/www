@@ -240,6 +240,61 @@ export default function () {
           </li>
         </ul>
       </CustomSlide>
+      <CustomSlide name="Daniela Rus" src="rus.jpg">
+        <h2>Daniela Rus (1963)</h2>
+        <ul>
+          <li>Roboticienne roumano-américaine</li>
+          <li>Directrice du laboratoire d'informatique et d'intelligence artificielle du MIT</li>
+          <li>Connue pour ses travaux sul les robots modulaires auto-reconfigurables</li>
+        </ul>
+      </CustomSlide>
+      <CustomSlide name="Cecilia Payne-Gaposchkin" src="payne.jpg">
+        <h2>Cecilia Payne-Gaposchkin (1900-1979)</h2>
+        <ul>
+          <li>Astronome anglo-américaine</li>
+          <li>N'a pas reçu de diplôme malgré avoir terminé ses études à Cambridge</li>
+          <li>
+            Une des premières à envisager que les étoiles soient composées majoritairement
+            d'hydrogène
+          </li>
+          <li>Se décrivait comme une 'rebelle contre le rôle féminin'</li>
+        </ul>
+      </CustomSlide>
+      <CustomSlide name="Tewhida Ben Sheikh" src="bencheikh.jpg">
+        <h2>توحيدة بن الشيخ (Tewhida Ben Sheikh, 1909-2010)</h2>
+        <ul>
+          <li>
+            Première femme musulmane du monde arabe à exercer comme médecin, pédiatre puis
+            gynécologue.
+          </li>
+          <li>
+            Elle contribue à la mise en place du planning familial tunisien au travers du service
+            qu'elle crée à l'hôpital Charles-Nicolle (à tunis) en 1963 puis au travers de la
+            clinique qu'elle ouvre en 1968.
+          </li>
+          <li>
+            Elle devient directrice du planning familial en 19704, se battant pour le droit à
+            l'avortement, légalisé en 1973. Vice-présidente du Croissant-Rouge tunisien.
+          </li>
+        </ul>
+      </CustomSlide>
+      <CustomSlide name="Edith Clarke" src="clarke.png">
+        <h2>Edith Clarke (1883-1959)</h2>
+        <ul>
+          <li>Ingénieure américaine</li>
+          <li>Connue pour la transformée de Clarke</li>
+        </ul>
+      </CustomSlide>
+      <CustomSlide name="Susan J. Eggers" src="eggers.jpg">
+        <h2>Susan Eggers</h2>
+        <ul>
+          <li>Spécialiste de l'architecture des ordinateurs</li>
+          <li>
+            Connue pour le développement d'une architecture permettant les calculs en parallèle
+          </li>
+          <li>Elle reçoit le prix Eckert-Mauchly en 2018</li>
+        </ul>
+      </CustomSlide>
     </Slideshow>
   )
 }
