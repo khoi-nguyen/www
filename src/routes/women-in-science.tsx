@@ -29,23 +29,18 @@ export default function () {
           </p>
         </div>
       </Slide>
-      <Slide title="Emmy Noether" columns>
-        <div class="is-4">
-          <Figure src="noether.jpg" alt="Emmy Noether" width={400}>
-            <hgroup>
-              <h3>Emmy Noether (1882-1935)</h3>
-              <p>Mathématicienne allemande</p>
-            </hgroup>
-            <p>
-              Connue pour ses contributions en mathématiques et en physique mathématique, et en
-              particulier pour le <strong>théorème de Noether</strong>, un monument de la physique
-              théorique.
-            </p>
-          </Figure>
-        </div>
-        <div class="is-8">
-          <Theorem title="Noether, 1918" class="example">
-            {tex`
+      <CustomSlide name="Emmy Noether" src="noether.jpg">
+        <hgroup>
+          <h2>Emmy Noether (1882-1935)</h2>
+          <p>Mathématicienne allemande</p>
+        </hgroup>
+        <p>
+          Connue pour ses contributions en mathématiques et en physique mathématique, et en
+          particulier pour le <strong>théorème de Noether</strong>, un monument de la physique
+          théorique.
+        </p>
+        <Theorem title="Noether, 1918" class="example">
+          {tex`
               \frac {\dd} {\dd s} \left( L(q_i(s), \dot {q_i} (s), t) \right) = 0
               \implies
               \frac {\dd} {\dd t} \left(
@@ -53,140 +48,95 @@ export default function () {
                 \left. \frac {\dd q_i(s)} {\dd s} \right|_{s = 0}
               \right) = 0
             `}
-            <p>
-              À toute transformation infinitésimale qui laisse invariante l'intégrale d'action
-              correspond une grandeur qui se conserve.
-            </p>
-          </Theorem>
-          <Corollary class="theorem" pluralize>
-            <ul>
-              <li>
-                L'invariance par translation dans le temps implique la{' '}
-                <strong>conservation de l'énergie</strong>
-              </li>
-              <li>
-                L'invariance par rotation dans l'espace implique la{' '}
-                <strong>conservation du moment cinétique</strong>
-              </li>
-              <li>
-                L'invariance par translation dans l'espace implique la{' '}
-                <strong>conservation de la quantité de mouvement</strong>
-              </li>
-            </ul>
-          </Corollary>
-          <Quote pluralize>
-            <ul>
-              <li>
-                <em>That theorem has been a guiding star to 20th and 21st century physics</em>
-              </li>
-            </ul>
-          </Quote>
-        </div>
-      </Slide>
-      <Slide title="Stephanie Kwolek" columns>
-        <div class="is-5">
-          <Figure src="kwolek.jpg" alt="Stephanie Kwolek" width={450}>
-            <hgroup>
-              <h3>Stephanie Kwolek (1923-2014)</h3>
-              <p>Chimiste américaine</p>
-            </hgroup>
-          </Figure>
-        </div>
-        <div class="is-7 is-vcentered">
-          <div>
-            <h3>Chimiste américaine</h3>
-            <p>
-              Inventrice de la fibre poly-paraphénylène téréphtalamide (PPD-T), mieux connue sous le
-              nom commercial de <strong>Kevlar</strong>.
-            </p>
-            <Figure src="kevlar.jpg" alt="kevlar" width={400} />
-            <p>
-              Stephanie Kwolek a remporté de nombreux prix pour son travail en chimie des polymères.
-            </p>
-          </div>
-        </div>
-      </Slide>
-      <Slide title="Ingrid Daubechies" columns>
-        <div class="is-5">
-          <Figure src="daubechies.jpg" alt="Ingrid Daubechies" height={900} />
-        </div>
-        <div class="is-7 is-vcentered">
-          <div>
-            <h2>Ingrid Daubechies (1954)</h2>
-            {tex`
+          <p>
+            À toute transformation infinitésimale qui laisse invariante l'intégrale d'action
+            correspond une grandeur qui se conserve.
+          </p>
+        </Theorem>
+        <Corollary class="theorem" pluralize>
+          <ul>
+            <li>
+              L'invariance par translation dans le temps implique la{' '}
+              <strong>conservation de l'énergie</strong>
+            </li>
+            <li>
+              L'invariance par rotation dans l'espace implique la{' '}
+              <strong>conservation du moment cinétique</strong>
+            </li>
+            <li>
+              L'invariance par translation dans l'espace implique la{' '}
+              <strong>conservation de la quantité de mouvement</strong>
+            </li>
+          </ul>
+        </Corollary>
+      </CustomSlide>
+      <CustomSlide name="Stephanie Kwolek" src="kwolek.jpg">
+        <hgroup>
+          <h2>Stephanie Kwolek</h2>
+          <p>Chimiste américaine</p>
+        </hgroup>
+        <p>
+          Inventrice de la fibre poly-paraphénylène téréphtalamide (PPD-T), mieux connue sous le nom
+          commercial de <strong>Kevlar</strong>.
+        </p>
+        <Figure src="kevlar.jpg" alt="kevlar" width={400} />
+        <p>
+          Stephanie Kwolek a remporté de nombreux prix pour son travail en chimie des polymères.
+        </p>
+      </CustomSlide>
+      <CustomSlide name="Ingrid Daubechies" src="daubechies.jpg">
+        <h2>Ingrid Daubechies (1954)</h2>
+        {tex`
             [W_\psi] f(a, b) \defeq \frac 1 {\sqrt {\abs a}} \int_{-\infty}^{+\infty}
             \overline {\psi\left(\frac {x - b} a\right)} f(x) \dd x
           `}
-            <ul>
-              <li>Mathématicienne et physicienne belge</li>
-              <li>
-                Connue pour son travail sur les <strong>ondelettes</strong> et en{' '}
-                <strong>compression d'image</strong>
-              </li>
-              <li>
-                A donné son nom aux <strong>ondelettes Daubechies</strong>, utilisées dans le
-                standard JPEG 2000.
-              </li>
-              <li>A reçu de nombreux prix</li>
-            </ul>
-            <Figure src="daubeches-wavelets.png" alt="Ondelettes Daubechies" />
-          </div>
-        </div>
-      </Slide>
-      <Slide title="Ada Yonath" columns>
-        <div class="is-5">
-          <Figure src="yonath.jpg" alt="Ada Yonath" />
-        </div>
-        <div class="is-7 is-vcentered">
-          <div>
-            <h2>עדה יונת (Ada Yonath)</h2>
-            <ul>
-              <li>Cristallographe et biologiste moléculaire israélienne</li>
-              <li>Prix Nobel en Chimie (2009)</li>
-              <li>A identifié la structure moléculaire des ribosomes par cristallographie</li>
-              <li>
-                Ses travaux ont contribué àla création de nouveaux antibiotiques et à une meilleure
-                compréhension de leur mode de fonctionnement
-              </li>
-            </ul>
-          </div>
-        </div>
-      </Slide>
-      <Slide title="Katherine Johnson" columns>
-        <div class="is-5">
-          <Figure src="johnson.jpg" alt="Katherine Johnson" height={900} />
-        </div>
-        <div class="is-7 is-vcentered">
-          <div>
-            <h2>Katherine Johnson (1918-2020)</h2>
-            <ul>
-              <li>Mathématicienne et ingénieure américaine</li>
-              <li>A contribué à différents programmes aérospatiaux de la NASA tels que Mercury</li>
-            </ul>
-          </div>
-        </div>
-      </Slide>
-      <Slide title="Lisa Tzwu-Fang Su" columns>
-        <div class="is-5">
-          <Figure src="su.jpg" alt="Lisa Su" height={900} />
-        </div>
-        <div class="is-7 is-vcentered">
-          <div>
-            <h2>Lisa Tzwu-Fang Su / 蘇姿丰 (1969)</h2>
-            <ul>
-              <li>Ingénieure et cheffe d'entreprise américaine</li>
-              <li>
-                A contribué au développement de semi-conducteurs SOI (Silicon On Insulator), ainsi
-                qu'à la mise au point de puces semi-conductrices plus efficaces
-              </li>
-              <li>
-                Elle est PDG d'AMD depuis octobre 2014. On lui crédite de la renaissance de cette
-                entreprise qui fabrique des semi-conducteurs, microprocesseurs et cartes graphiques.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </Slide>
+        <ul>
+          <li>Mathématicienne et physicienne belge</li>
+          <li>
+            Connue pour son travail sur les <strong>ondelettes</strong> et en{' '}
+            <strong>compression d'image</strong>
+          </li>
+          <li>
+            A donné son nom aux <strong>ondelettes Daubechies</strong>, utilisées dans le standard
+            JPEG 2000.
+          </li>
+          <li>A reçu de nombreux prix</li>
+        </ul>
+        <Figure src="daubeches-wavelets.png" alt="Ondelettes Daubechies" />
+      </CustomSlide>
+      <CustomSlide name="Ada Yonath" src="yonath.jpg">
+        <h2>עדה יונת (Ada Yonath)</h2>
+        <ul>
+          <li>Cristallographe et biologiste moléculaire israélienne</li>
+          <li>Prix Nobel en Chimie (2009)</li>
+          <li>A identifié la structure moléculaire des ribosomes par cristallographie</li>
+          <li>
+            Ses travaux ont contribué àla création de nouveaux antibiotiques et à une meilleure
+            compréhension de leur mode de fonctionnement
+          </li>
+        </ul>
+      </CustomSlide>
+      <CustomSlide name="Katherine Johnson" src="johnson.jpg">
+        <h2>Katherine Johnson (1918-2020)</h2>
+        <ul>
+          <li>Mathématicienne et ingénieure américaine</li>
+          <li>A contribué à différents programmes aérospatiaux de la NASA tels que Mercury</li>
+        </ul>
+      </CustomSlide>
+      <CustomSlide name="Lisa Tzwu-Fang Su" src="su.jpg">
+        <h2>Lisa Tzwu-Fang Su / 蘇姿丰 (1969)</h2>
+        <ul>
+          <li>Ingénieure et cheffe d'entreprise américaine</li>
+          <li>
+            A contribué au développement de semi-conducteurs SOI (Silicon On Insulator), ainsi qu'à
+            la mise au point de puces semi-conductrices plus efficaces
+          </li>
+          <li>
+            Elle est PDG d'AMD depuis octobre 2014. On lui crédite de la renaissance de cette
+            entreprise qui fabrique des semi-conducteurs, microprocesseurs et cartes graphiques.
+          </li>
+        </ul>
+      </CustomSlide>
       <CustomSlide name="Dina Katabi" src="katabi.jpg">
         <h2>دينا قَتابي (Dina Katabi, 1970)</h2>
         <ul>
