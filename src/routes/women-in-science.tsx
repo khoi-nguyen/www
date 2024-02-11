@@ -203,7 +203,15 @@ export default function () {
         <ul>
           <li>Ingénieure, médecin, astronaute américaine</li>
           <li>Spécialiste de mission à bord de la navette spatiale Endeavour</li>
-          <li>Promouvoit la science, la technologie, et l'accès aux soins de santé</li>
+          <li>Promouvoit la science et la technologie</li>
+          <li>
+            Utilise sa notoriété pour notamment dénoncer l'écart de qualité des soins de santé entre
+            les États-Unis et le tiers monde.
+          </li>
+          <li>
+            Déclaration de Jemison:{' '}
+            <em>Ne soyez jamais limité par l'imagination limitée des autres</em>
+          </li>
         </ul>
       </CustomSlide>
       <CustomSlide name="Claudine Hermann" src="hermann.jpg">
