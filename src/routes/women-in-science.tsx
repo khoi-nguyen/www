@@ -154,7 +154,7 @@ export default function () {
       </Slide>
       <Slide title="Katherine Johnson" columns>
         <div class="is-5">
-          <Figure src="johnson.jpg" alt="Katherine Johnson" />
+          <Figure src="johnson.jpg" alt="Katherine Johnson" height={900} />
         </div>
         <div class="is-7 is-vcentered">
           <div>
