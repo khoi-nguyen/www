@@ -208,7 +208,6 @@ export default function () {
         <h2>Cecilia Payne-Gaposchkin (1900-1979)</h2>
         <ul>
           <li>Astronome anglo-américaine</li>
-          <li>N'a pas reçu de diplôme malgré avoir terminé ses études à Cambridge</li>
           <li>
             Une des premières à envisager que les étoiles soient composées majoritairement
             d'hydrogène
