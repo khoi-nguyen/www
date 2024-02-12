@@ -117,7 +117,7 @@ export default function () {
           <li>Prix Nobel en Chimie (2009)</li>
           <li>A identifié la structure moléculaire des ribosomes par cristallographie</li>
           <li>
-            Ses travaux ont contribué àla création de nouveaux antibiotiques et à une meilleure
+            Ses travaux ont contribué à la création de nouveaux antibiotiques et à une meilleure
             compréhension de leur mode de fonctionnement
           </li>
         </ul>
