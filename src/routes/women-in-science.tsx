@@ -162,7 +162,7 @@ export default function () {
           <li>Promeut la science et la technologie</li>
           <li>
             Utilise sa notoriété pour notamment dénoncer l'écart de qualité des soins de santé entre
-            les États-Unis et le tiers monde.
+            les États-Unis et les pays moins développés.
           </li>
           <li>
             Déclaration de Jemison:{' '}
@@ -201,7 +201,7 @@ export default function () {
         <ul>
           <li>Roboticienne roumano-américaine</li>
           <li>Directrice du laboratoire d'informatique et d'intelligence artificielle du MIT</li>
-          <li>Connue pour ses travaux sul les robots modulaires auto-reconfigurables</li>
+          <li>Connue pour ses travaux sur les robots modulaires auto-reconfigurables</li>
         </ul>
       </CustomSlide>
       <CustomSlide name="Cecilia Payne-Gaposchkin" src="payne.jpg">
@@ -224,7 +224,7 @@ export default function () {
           </li>
           <li>
             Elle contribue à la mise en place du planning familial tunisien au travers du service
-            qu'elle crée à l'hôpital Charles-Nicolle (à tunis) en 1963 puis au travers de la
+            qu'elle crée à l'hôpital Charles-Nicolle (à Tunis) en 1963 puis au travers de la
             clinique qu'elle ouvre en 1968.
           </li>
           <li>
