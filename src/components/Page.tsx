@@ -9,6 +9,7 @@ import {
   faChalkboardTeacher,
   faEnvelope,
   faRightFromBracket,
+  faVenus,
 } from '@fortawesome/free-solid-svg-icons/index.js'
 
 interface PageProps {
@@ -42,6 +43,11 @@ export default function Page(props: PageProps) {
           <li>
             <A href="/teaching/">
               <Fa icon={faChalkboardTeacher} /> Teaching
+            </A>
+          </li>
+          <li>
+            <A href="/women-in-science">
+              <Fa icon={faVenus} /> Women in Science
             </A>
           </li>
         </ul>
