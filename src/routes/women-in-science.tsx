@@ -188,8 +188,8 @@ export default function () {
           <li>A travaillé sur les vitesses de rotation des éléments en périphérie des galaxies</li>
           <li>
             Elle constate notamment que les étoiles en périphérie de la galaxie d’Andromède ont une
-            vitesse de rotation bien plus grande que ce que ne le prévoient les lois de Newton, ce
-            qui a permis de démontrer l’existence de matière noire dans les galaxies.
+            vitesse de rotation bien plus grande que ce que ne prévoient les lois de Newton, ce qui
+            a permis de démontrer l’existence de matière noire dans les galaxies.
           </li>
           <li>
             Citation de Rubin: <em>Worldwide, half of all brains are in women.</em>
