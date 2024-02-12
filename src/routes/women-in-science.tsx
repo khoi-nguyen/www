@@ -228,7 +228,7 @@ export default function () {
             clinique qu'elle ouvre en 1968.
           </li>
           <li>
-            Elle devient directrice du planning familial en 19704, se battant pour le droit à
+            Elle devient directrice du planning familial en 1974, se battant pour le droit à
             l'avortement, légalisé en 1973. Vice-présidente du Croissant-Rouge tunisien.
           </li>
         </ul>
