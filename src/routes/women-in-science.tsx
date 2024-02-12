@@ -138,7 +138,7 @@ export default function () {
             la mise au point de puces semi-conductrices plus efficaces
           </li>
           <li>
-            Elle est PDG d'AMD depuis octobre 2014. On lui crédite de la renaissance de cette
+            Elle est PDG d'AMD depuis octobre 2014. On la crédite de la renaissance de cette
             entreprise qui fabrique des semi-conducteurs, microprocesseurs et cartes graphiques.
           </li>
         </ul>
@@ -147,7 +147,7 @@ export default function () {
         <h2>دينا قَتابي (Dina Katabi, 1970)</h2>
         <ul>
           <li>Informaticienne syrienne/américaine</li>
-          <li>Dirige le MIT Wireless Center et le group de recherche NETMIT</li>
+          <li>Dirige le MIT Wireless Center et le groupe de recherche NETMIT</li>
           <li>
             Connue pour ses travaux dans la transformée de Fourier éparse, les réseaux WiFi et la
             vision à rayons X
@@ -159,7 +159,7 @@ export default function () {
         <ul>
           <li>Ingénieure, médecin, astronaute américaine</li>
           <li>Spécialiste de mission à bord de la navette spatiale Endeavour</li>
-          <li>Promouvoit la science et la technologie</li>
+          <li>Promeut la science et la technologie</li>
           <li>
             Utilise sa notoriété pour notamment dénoncer l'écart de qualité des soins de santé entre
             les États-Unis et le tiers monde.
@@ -175,7 +175,7 @@ export default function () {
         <ul>
           <li>Physicienne française</li>
           <li>
-            Première femme professeur des universités en France à l’École polytechnique en 1992
+            Première femme professeure des universités en France à l’École polytechnique en 1992
           </li>
           <li>Spécialiste de la physique des solides</li>
           <li>A apporté une contribution majeure dans le domaine de la physique des particules</li>
@@ -188,11 +188,11 @@ export default function () {
           <li>A travaillé sur les vitesses de rotation des éléments en périphérie des galaxies</li>
           <li>
             Elle constate notamment que les étoiles en périphérie de la galaxie d’Andromède ont une
-            vitesse de rotation bien plus grande que ce que ne le prévoit les lois de Newton, ce qui
-            a permis de démontrer l’existence de matière noire dans les galaxies.
+            vitesse de rotation bien plus grande que ce que ne le prévoient les lois de Newton, ce
+            qui a permis de démontrer l’existence de matière noire dans les galaxies.
           </li>
           <li>
-            Citation de Rubin: <em>Worldwilde, half of all brains are in women.</em>
+            Citation de Rubin: <em>Worldwide, half of all brains are in women.</em>
           </li>
         </ul>
       </CustomSlide>
