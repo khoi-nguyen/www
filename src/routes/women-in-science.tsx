@@ -252,7 +252,7 @@ export default function () {
       </CustomSlide>
       <CustomSlide name="Katie Bouman" src="bouman.jpg">
         <Figure src="m87.jpg" alt="M87 Blackhole" height={400} />
-        <h2>Katie Boumann</h2>
+        <h2>Katie Boumann (1989-présent)</h2>
         <ul>
           <li>Ingénieure informaticienne américaine</li>
           <li>
