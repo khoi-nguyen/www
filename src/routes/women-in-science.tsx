@@ -71,6 +71,7 @@ export default function () {
         </Corollary>
       </CustomSlide>
       <CustomSlide name="Stephanie Kwolek" src="kwolek.jpg">
+        <Figure src="kevlar.jpg" alt="kevlar" width={400} />
         <hgroup>
           <h2>Stephanie Kwolek</h2>
           <p>Chimiste américaine</p>
@@ -79,17 +80,23 @@ export default function () {
           Inventrice de la fibre poly-paraphénylène téréphtalamide (PPD-T), mieux connue sous le nom
           commercial de <strong>Kevlar</strong>.
         </p>
-        <Figure src="kevlar.jpg" alt="kevlar" width={400} />
         <p>
           Stephanie Kwolek a remporté de nombreux prix pour son travail en chimie des polymères.
         </p>
       </CustomSlide>
       <CustomSlide name="Ingrid Daubechies" src="daubechies.jpg">
+        <div class="columns">
+          <div class="is-vcentered">
+            {tex`
+              [W_\psi] f(a, b) \defeq \frac 1 {\sqrt {\abs a}} \int_{-\infty}^{+\infty}
+              \overline {\psi\left(\frac {x - b} a\right)} f(x) \dd x
+            `}
+          </div>
+          <div>
+            <Figure src="daubeches-wavelets.png" alt="Ondelettes Daubechies" />
+          </div>
+        </div>
         <h2>Ingrid Daubechies (1954)</h2>
-        {tex`
-            [W_\psi] f(a, b) \defeq \frac 1 {\sqrt {\abs a}} \int_{-\infty}^{+\infty}
-            \overline {\psi\left(\frac {x - b} a\right)} f(x) \dd x
-          `}
         <ul>
           <li>Mathématicienne et physicienne belge</li>
           <li>
@@ -102,7 +109,6 @@ export default function () {
           </li>
           <li>A reçu de nombreux prix</li>
         </ul>
-        <Figure src="daubeches-wavelets.png" alt="Ondelettes Daubechies" />
       </CustomSlide>
       <CustomSlide name="Ada Yonath" src="yonath.jpg">
         <h2>עדה יונת (Ada Yonath)</h2>
@@ -262,7 +268,20 @@ function CustomSlide(props: CustomSlideProps) {
         <Figure src={props.src} alt={props.name} height={850} />
       </div>
       <div class="is-7 is-vcentered">
-        <div>{props.children}</div>
+        <div>
+          {props.children}
+          <img
+            src="/images/women-in-science-logo.png"
+            height={600}
+            style={{
+              position: 'absolute',
+              right: '0px',
+              bottom: '0px',
+              opacity: '0.5',
+              'z-index': -10,
+            }}
+          />
+        </div>
       </div>
     </Slide>
   )
