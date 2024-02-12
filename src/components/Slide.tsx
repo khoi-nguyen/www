@@ -32,6 +32,8 @@ function SlideTitle(props: SlideTitleProps) {
   const clock = setInterval(() => setTime(datetime()), 1000)
   onCleanup(() => clearInterval(clock))
 
+  const location = useLocation()
+
   return (
     <h1 class="columns">
       <div>
@@ -45,7 +47,9 @@ function SlideTitle(props: SlideTitleProps) {
           )}
         </Show>
       </div>
-      <div class="time is-narrow">{time()}</div>
+      <Show when={location.pathname !== '/women-in-science'}>
+        <div class="time is-narrow">{time()}</div>
+      </Show>
     </h1>
   )
 }
