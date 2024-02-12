@@ -1,7 +1,7 @@
 const meta: Metadata = {
   title: 'Dérivées partielles',
   subtitle: 'Chapitre 1',
-  description: '',
+  description: 'dérivées partielles, plan tangent, différentielle',
   lang: 'fr',
 }
 
