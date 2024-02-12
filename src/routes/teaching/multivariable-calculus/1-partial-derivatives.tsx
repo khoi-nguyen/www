@@ -751,6 +751,167 @@ export default () => {
       <Slide title="Exercises">
         <Iframe src="/calculus/12.5-14.3.pdf" />
       </Slide>
+      <Slide title="Cylindres">
+        <Definition title="Cylindre">
+          <p>
+            Un cylindre est une surface qui consiste en une famille de lignes parallèles qui passent
+            par une coube planaire.
+          </p>
+        </Definition>
+        <Example>
+          <ul>
+            <li>Esquisse la courbe {tex`z = x^2`}</li>
+            <li>
+              {tex`x^2 + y^2 = 1`}, {tex`y^2 + z^2 = 1`}
+            </li>
+          </ul>
+        </Example>
+        {py.plot`
+          x = y = np.linspace(-2, 2, 400)
+          X, Y = np.meshgrid(x, y)
+          Z = X**2
+          fig, ax = plt.figure(), plt.axes(projection ='3d')
+          ax.plot_surface(X, Y, Z, cmap='viridis')
+        `}
+      </Slide>
+      <Slide title="Quadriques">
+        <Definition>
+          <p>Une quadrique est le graphe d'une équation du second degré en {tex`x, y, z`}</p>
+        </Definition>
+      </Slide>
+      <Slide title="Esquisses de quadriques">
+        <Example>
+          <p>Esquissez les quadriques d'équation</p>
+          <ul>
+            <li>{tex`x^2 + \frac {y^2} 9 + \frac {z^2} 4 = 1`}</li>
+            <li>{tex`z = 4x^2 + y^2`}</li>
+            <li>{tex`z = y^2 - x^2`}</li>
+            <li>{tex`\frac {x^2} 4 + y^2 - \frac {z^2} 4 = 1`}</li>
+          </ul>
+        </Example>
+        {py.jupyter`
+          import matplotlib.pyplot as plt
+          import numpy as np
+          x = y = np.linspace(-2, 2, 400)
+          X, Y = np.meshgrid(x, y)
+          Z = 4*X**2 + Y**2
+          fig, ax = plt.figure(), plt.axes(projection ='3d')
+          ax.plot_surface(X, Y, Z, cmap='viridis')
+        `}
+      </Slide>
+      <Slide title="Quadriques">
+        <Figure src="quadrics.png" alt="Quadriques" />
+      </Slide>
+      <Slide title="Quadriques: exemples">
+        <Example>
+          <p>Identifie et esquisse les surfaces</p>
+          <ul>
+            <li>{tex`4x^2 - y^2 + 2z^2 + 4 = 0`}</li>
+            <li>{tex`x^2 + 2z^2 - 6x - y + 10 = 0`}</li>
+          </ul>
+        </Example>
+      </Slide>
+      <Slide title="Plan tangent">
+        <Recall>
+          <p>Pour une fonction à une variable, la tangente est donnée par l'équation</p>
+          {tex`
+            y - y_0 =
+            \left.\frac {\dd f} {\dd x}\right|_{x_0} (x - x_0)
+          `}
+        </Recall>
+        <Definition title="Plan tangent">
+          {tex`
+            z - z_0 =
+            \left.\frac {\partial f} {\partial x}\right|_{(x_0, y_0)} (x - x_0)
+            + \left.\frac {\partial f} {\partial y}\right|_{(x_0, y_0)} (y - y_0)
+          `}
+        </Definition>
+      </Slide>
+      <Slide title="Plan tangent: animation" split={false}>
+        <Geogebra id="fhyxcqps" width={1400} />
+      </Slide>
+      <Slide title="Plan tangent: exemple">
+        <Example>
+          <p>Trouvez le plan tangent de la paraboloïde elliptique {tex`z = 2x^2 + y^2`}</p>
+        </Example>
+        {py.jupyter`
+          import matplotlib.pyplot as plt
+          import numpy as np
+          x = y = np.linspace(-2, 2, 400)
+          X, Y = np.meshgrid(x, y)
+          Z = 2*X**2 + Y**2
+          fig, ax = plt.figure(), plt.axes(projection ='3d')
+          ax.plot_surface(X, Y, 2*X**2 + Y**2, cmap='viridis')
+          ax.plot_surface(X, Y, 4*X + 2*Y - 3, cmap='plasma')
+        `}
+      </Slide>
+      <Slide title="Approximation linéaire">
+        <p>On peut approximer une fonction autour d'un point par son plan tangent</p>
+        <Recall title="Plan tangent">
+          {tex`
+            z - z_0 =
+            \left.\frac {\partial f} {\partial x}\right|_{(x_0, y_0)} (x - x_0)
+            + \left.\frac {\partial f} {\partial y}\right|_{(x_0, y_0)} (y - y_0)
+          `}
+        </Recall>
+        {tex`
+          f(x, y) \approx
+          f(a, b) +
+          \left.\frac {\partial f} {\partial x}\right|_{(a, b)} (x - a)
+          + \left.\frac {\partial f} {\partial y}\right|_{(a, b)} (y - b)
+        `}
+      </Slide>
+      <Slide title="Différentiabilité">
+        {tex`
+          f(x, y) =
+            \begin{cases}
+              \frac {xy} {x^2 + y^2} & \text{si} \ (x, y) \neq (0, 0)\\
+              0 & \text{sinon}
+            \end{cases}
+        `}
+        <Figure src="non-differentiability.png" alt="Graphe de f" />
+        <p>
+          Les dérivées partielles sont nulles à l'origine mais la fonction n'a pas de plan tangent.
+          Ce cas n'apparaît pas lorsque les dérivées partielles existent et sont continues autour du
+          point.
+        </p>
+      </Slide>
+      <Slide title="La différentielle">
+        <Definition title="Différentielle">
+          {tex`
+            \dd f =
+            \frac {\partial f} {\partial x} \dd x +
+            \frac {\partial f} {\partial y} \dd y
+          `}
+        </Definition>
+        <Example>
+          <ul>
+            <li>Calculez la différentielle de {tex`f(x) = x^2 + 3xy - y^2`}</li>
+            <li>
+              Si {tex`x`} change de 2 à 2.05 et {tex`y`} change de 3 à {tex`2.96`}, comparez les
+              valeurs de {tex`\Delta z`} et {tex`\dd z`}
+            </li>
+          </ul>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y = symbols("x y")
+          f = x**2 + 3*x*y - y**2
+          dz = (f.diff(x)*0.05 + f.diff(y)*(-0.04)).subs({x: 2, y: 3})
+        `}
+      </Slide>
+      <Slide title="Différentielle: exemple">
+        <Definition>
+          <p>
+            The base radius and height of a right circular cone are measured as 10 cm and 25 cm,
+            respectively, with a possible error in measurement of as much as 0.1 cm in each. Use
+            differentials to estimate the maximum error in the calculated volume of the cone
+          </p>
+        </Definition>
+      </Slide>
+      <Slide title="Exercices">
+        <Iframe src="/calculus/12.6-14.4.pdf" />
+      </Slide>
     </Slideshow>
   )
 }
