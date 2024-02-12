@@ -250,6 +250,18 @@ export default function () {
           <li>Elle reçoit le prix Eckert-Mauchly en 2018</li>
         </ul>
       </CustomSlide>
+      <CustomSlide name="Katie Bouman" src="bouman.jpg">
+        <Figure src="m87.jpg" alt="M87 Blackhole" height={400} />
+        <h2>Katie Boumann</h2>
+        <ul>
+          <li>Ingénieure informaticienne américaine</li>
+          <li>
+            Membre de l’équipe EHT (Event Horizon Telescope), elle a dirigé le développement de
+            l’algorithme CHIRP, qui a permis d’analyser les données du EHT ayant fourni la première
+            photographie d’un trou noir (M87, 2019)
+          </li>
+        </ul>
+      </CustomSlide>
     </Slideshow>
   )
 }
