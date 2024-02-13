@@ -7,6 +7,28 @@ const meta: Metadata = {
 export default function () {
   return (
     <Slideshow meta={meta}>
+      <Slide title="Exercice 12.5.32">
+        <Exercise>
+          <p>Trouvez l'équation cartésienne du plan passant par</p>
+          {tex`
+            (2, 1, 2), \quad (3, -8, 6), \quad (-2, -3, 1)
+          `}
+        </Exercise>
+        <Recall>
+          {tex`
+            \vec r \cdot \underbrace{\vec n}_{\substack{\text{vect.}\\ \text{normal}}} =
+            \underbrace{\vec r_0}_{\text{point}} \cdot \vec n
+          `}
+        </Recall>
+        {py.jupyter`
+          from sympy import *
+          x, y, z = symbols("x y z")
+          A, B, C = Matrix([2, 1, 2]), Matrix([3, -8, 6]), Matrix([-2, -3, 1])
+          n = (B - A).cross(C - A)
+          eq = Eq(Matrix([x, y, z]).dot(n), A.dot(n))
+          simplify(eq)
+        `}
+      </Slide>
       <Slide title="Exercice 12.5.37">
         <Exercise>
           <p>
@@ -19,12 +41,9 @@ export default function () {
           `}
         </Exercise>
         <Recall>
-          <p>
-            Un plan est déterminé par un <strong>vecteur normal</strong> {tex`\vec n`} et un point{' '}
-            {tex`\vec r_0`}. L'équation cartésienne est ensuite donnée par
-          </p>
           {tex`
-            \vec r \cdot \vec n = \vec r_0 \cdot \vec n
+            \vec r \cdot \underbrace{\vec n}_{\substack{\text{vect.}\\ \text{normal}}} =
+            \underbrace{\vec r_0}_{\text{point}} \cdot \vec n
           `}
         </Recall>
         {py.jupyter`
@@ -108,6 +127,51 @@ export default function () {
             + \frac {\partial f} {\partial y} \dd y
           `}
         </Recall>
+        {py.jupyter`
+          dx, dy = 0.2, -0.1
+          df = 1 * dx + (-1) * dy
+          6 + df
+        `}
+      </Slide>
+      <Slide title="Exercice 14.4.26">
+        <Recall>
+          {tex`
+            df \defeq
+            \frac {\partial f} {\partial x} \dd x
+            + \frac {\partial f} {\partial y} \dd y
+          `}
+        </Recall>
+        <Exercise>
+          <p>Trouvez la différentielle de la fonction suivante</p>
+          {tex`
+            u = \sqrt{x^2 + 3y^2}
+          `}
+        </Exercise>
+        {py.jupyter`
+          from sympy import *
+          x, y, dx, dy = symbols("x y dx dy")
+          u = sqrt(x**2 + 3*y**2)
+          simplify(u.diff(x) * dx + u.diff(y) * dy)
+        `}
+      </Slide>
+      <Slide title="Exercice 14.4.37">
+        <Exercise>
+          <p>La tension {tex`T`} dans le fil d'un yoyo est</p>
+          {tex`
+            T = \frac {m g R} {2 r^2 + R^2},
+          `}
+          <p>
+            où {tex`m`} est la masse du yoyo, et {tex`g`} l'accélération dûe à la gravité. Utilisez
+            les différentielles pour estimer le changement de la tension si {tex`R`} est augmentée
+            de {tex`3`} à {tex`3.1`} et {tex`r`} de {tex`0,7`} cm à {tex`0.8cm`}
+          </p>
+        </Exercise>
+        {py.jupyter`
+          from sympy import *
+          m, g, r, R = symbols("m g r R")
+          T = (m * g * R) / (2 * r**2 + R**2)
+          (T.diff(R) * 0.1 + T.diff(r) * 0.1).subs({R: 3, r: 0.7})
+        `}
       </Slide>
     </Slideshow>
   )
