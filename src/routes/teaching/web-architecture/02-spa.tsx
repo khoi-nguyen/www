@@ -132,6 +132,19 @@ export default function () {
           <p>Your app should use React Router.</p>
         </Exercise>
       </Slide>
+      <Slide title="Tips">
+        <p>
+          Here are some tips for better <Abbr key="DX" />
+        </p>
+        <ul>
+          <li>Use prettier</li>
+          <li>Use eslint</li>
+          <li>Use TypeScript in strict mode</li>
+          <li>Your components should be small</li>
+          <li>Break down your code into ES modules, and organise them well into folders</li>
+          <li>Use unplugin-auto-import to avoid repetitive import statements</li>
+        </ul>
+      </Slide>
       <Slide title="A modern implementation of useEffect/useState">
         <p>
           We will implement a Signal-based version of React's hooks. Formally, It will be different
