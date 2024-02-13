@@ -1,5 +1,5 @@
 const meta: Metadata = {
-  title: 'Dérivées partielles - part II',
+  title: 'Dérivées partielles - partie II',
   subtitle: 'Chapitre 1',
   description: 'Règle de composition, gradient, optimisation',
   lang: 'fr',
