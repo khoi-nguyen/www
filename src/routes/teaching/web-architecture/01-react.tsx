@@ -1,6 +1,6 @@
 const meta: Metadata = {
-  title: 'Chapter 1: Single-Page Applications',
-  description: 'React, React-Router, Typescript',
+  title: 'Chapter 1: Components',
+  description: 'React, Typescript',
   lang: 'en',
   current: true,
 }
