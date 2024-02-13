@@ -78,8 +78,8 @@ export default function () {
           r = Matrix([x, y, z])
           r0 = r.subs(solve([r.dot(n1) - 1, r.dot(n2) - 3, z]))
           v = n1.cross(n2)
-          theta = acos(n1.dot(n2) / sqrt(n1.dot(n1) * n2.dot(n2)))
-          [Eq(r, r0 + t * v), theta.evalf()]
+          θ = acos(n1.dot(n2) / sqrt(n1.dot(n1) * n2.dot(n2)))
+          [Eq(r, r0 + t * v), θ.evalf()]
         `}
       </Slide>
       <Slide title="Exercice 12.5.78">
