@@ -51,7 +51,7 @@ export default function () {
           x, y, z = symbols("x y z")
           r0, r = Matrix([3, 1, 4]), Matrix([x, y, z])
           B = r.subs(solve([x + 2*y + 3*z - 1, 2*x - y + z + 3, x]))
-          v = Matrix([1, 2, 3]).cross(B - r0)
+          v = Matrix([1, 2, 3]).cross(Matrix([2, -1, 1])).cross(B - r0)
           eq = Eq(n.dot(Matrix([x, y, z])), n.dot(r0))
           simplify(eq)
         `}
