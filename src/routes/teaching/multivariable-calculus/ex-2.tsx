@@ -49,8 +49,9 @@ export default function () {
         {py.jupyter`
           from sympy import *
           x, y, z = symbols("x y z")
-          r0 = Matrix([3, 1, 4])
-          n = Matrix([1, 2, 3]).cross(Matrix([2, -1, 1]))
+          r0, r = Matrix([3, 1, 4]), Matrix([x, y, z])
+          B = r.subs(solve([x + 2*y + 3*z - 1, 2*x - y + z + 3, x]))
+          v = Matrix([1, 2, 3]).cross(B - r0)
           eq = Eq(n.dot(Matrix([x, y, z])), n.dot(r0))
           simplify(eq)
         `}
@@ -117,9 +118,9 @@ export default function () {
         <Exercise>
           <p>Si {tex`f`} est différentiable et que</p>
           {tex`
-            f(2, 5) = 6, \quad \partial_x f(2, 5) = 1, \quad \partial_y(2, 5) = -1
+            f(2, 5) = 6, \quad \partial_x f(2, 5) = 1, \quad \partial_y f(2, 5) = -1
           `}
-          <p>utilisez une approximation linéaire pour estimer {tex`f(2,2; 4.9)`}</p>
+          <p>utilisez une approximation linéaire pour estimer {tex`f(2,2; 4,9)`}</p>
         </Exercise>
         <Recall>
           {tex`
