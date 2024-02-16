@@ -193,9 +193,10 @@ export default function () {
       </Slide>
       <Slide title="Pistes d'amélioration">
         <ul>
-          <li>Messages privés entre utilisateurs</li>
-          <li>Améliorer l'interface</li>
+          <li>Afficher la date d'envoi du message</li>
           <li>Empêcher les messages vides, erreurs</li>
+          <li>Améliorer l'interface</li>
+          <li>Messages privés entre utilisateurs</li>
         </ul>
       </Slide>
     </Slideshow>
