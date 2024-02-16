@@ -179,7 +179,8 @@ export default function () {
           let messages = []
           onMount(function () {
             const socket = io({
-              path: 'https://nguyen.me.uk/api/messenger'
+              path: 'https://nguyen.me.uk/api/messenger',
+              transports: ['websocket'],
             })
             socket.on('message', (received) => {
               messages = [...messages, received]
@@ -209,7 +210,7 @@ function Chat() {
   const [name, setName] = createSignal('')
 
   onMount(() => {
-    const socket = io({ path: '/api/messenger' })
+    const socket = io({ path: '/api/messenger', transports: ['websocket'] })
 
     socket.on('message', (message: Message) => {
       setMessages([...messages, message])
