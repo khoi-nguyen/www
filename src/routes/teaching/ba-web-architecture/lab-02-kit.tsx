@@ -160,12 +160,12 @@ export default function () {
         <p>
           Normalement, un serveur ne fait que répondre aux requêtes du client. Pourtant, lorsque le
           serveur reçoit un message, il doit l'envoyer à tous les clients. Ceci se fait via les
-          Websockets.
+          sockets.
         </p>
         <Instruction>
           <ul>
             <li>
-              Installez socket-io: <code>npm install socket.io-client</code>
+              Installez socket.io: <code>npm install socket.io-client</code>
             </li>
             <li>
               Dans la partie <code>script</code> de votre code, insérez le code suivant:
@@ -206,9 +206,10 @@ function Chat() {
   const [messages, setMessages] = createStore<Message[]>([])
   const [message, setMessage] = createSignal('')
   const [name, setName] = createSignal('')
+  let div: HTMLElement
 
   onMount(() => {
-    const socket = io({ path: '/api/messenger' })
+    const socket = io('https://nguyen.me.uk', { path: '/api/messenger' })
 
     socket.on('message', (message: Message) => {
       setMessages([...messages, message])
@@ -217,7 +218,7 @@ function Chat() {
 
   function handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
-      fetch('/api/messenger', {
+      fetch('https://nguyen.me.uk/api/messenger', {
         method: 'POST',
         body: JSON.stringify({
           name: name(),
@@ -230,13 +231,15 @@ function Chat() {
 
   return (
     <>
-      <For each={messages}>
-        {(message) => (
-          <div class="block">
-            <strong>{message.name}</strong>: {message.message}
-          </div>
-        )}
-      </For>
+      <div ref={div} style={{ height: '800px', overflow: 'auto' }} class="clickable">
+        <For each={messages}>
+          {(message) => (
+            <div class="block">
+              <strong>{message.name}</strong>: {message.message}
+            </div>
+          )}
+        </For>
+      </div>
       <p class="columns">
         <input
           value={name()}
