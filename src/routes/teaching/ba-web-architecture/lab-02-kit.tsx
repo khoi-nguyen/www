@@ -156,35 +156,40 @@ export default function () {
           <Chat />
         </div>
       </Slide>
-      <Slide title="Application de messagerie: réception de message">
-        <p>
-          Normalement, un serveur ne fait que répondre aux requêtes du client. Pourtant, lorsque le
-          serveur reçoit un message, il doit l'envoyer à tous les clients. Ceci se fait via les
-          sockets.
-        </p>
-        <Instruction>
-          <ul>
-            <li>
-              Installez socket.io: <code>npm install socket.io-client</code>
-            </li>
-            <li>
-              Dans la partie <code>script</code> de votre code, insérez le code suivant:
-            </li>
-          </ul>
-        </Instruction>
-        {js.hl`
-          import { onMount } from 'svelte'
-          import { io } from 'socket.io-client'
-
-          let messages = []
-          onMount(function () {
-            const config = { path: '/api/messenger' };
-            const socket = io('https://nguyen.me.uk', config)
-            socket.on('message', (received) => {
-              messages = [...messages, received]
+      <Slide title="Application de messagerie: réception de message" columns>
+        <div>
+          <p>
+            Normalement, un serveur ne fait que répondre aux requêtes du client. Pourtant, lorsque
+            le serveur reçoit un message, il doit l'envoyer à tous les clients. Ceci se fait via les
+            sockets.
+          </p>
+          <Instruction>
+            <ul>
+              <li>
+                Installez socket.io: <code>npm install socket.io-client</code>
+              </li>
+              <li>
+                Dans la partie <code>script</code> de votre code, insérez le code suivant:
+              </li>
+            </ul>
+          </Instruction>
+          {js.hl`
+            import { onMount } from 'svelte'
+            import { io } from 'socket.io-client'
+          
+            let messages = []
+            onMount(function () {
+              const config = { path: '/api/messenger' };
+              const socket = io('https://nguyen.me.uk', config)
+              socket.on('message', (received) => {
+                messages = [...messages, received]
+              })
             })
-          })
-        `}
+          `}
+        </div>
+        <div>
+          <Chat />
+        </div>
       </Slide>
       <Slide title="Pistes d'amélioration">
         <ul>
