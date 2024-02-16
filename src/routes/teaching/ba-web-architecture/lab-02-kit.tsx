@@ -178,9 +178,8 @@ export default function () {
 
           let messages = []
           onMount(function () {
-            const socket = io({
-              path: 'https://nguyen.me.uk/api/messenger'
-            })
+            const config = { path: '/api/messenger' };
+            const socket = io('https://nguyen.me.uk', config)
             socket.on('message', (received) => {
               messages = [...messages, received]
             })
