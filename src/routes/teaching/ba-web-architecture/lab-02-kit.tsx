@@ -218,7 +218,6 @@ function Chat() {
 
   function handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
-      console.log('est')
       fetch('/api/messenger', {
         method: 'POST',
         body: JSON.stringify({
