@@ -179,8 +179,7 @@ export default function () {
           let messages = []
           onMount(function () {
             const socket = io({
-              path: 'https://nguyen.me.uk/api/messenger',
-              transports: ['websocket'],
+              path: 'https://nguyen.me.uk/api/messenger'
             })
             socket.on('message', (received) => {
               messages = [...messages, received]
@@ -210,7 +209,7 @@ function Chat() {
   const [name, setName] = createSignal('')
 
   onMount(() => {
-    const socket = io({ path: '/api/messenger', transports: ['websocket'] })
+    const socket = io({ path: '/api/messenger' })
 
     socket.on('message', (message: Message) => {
       setMessages([...messages, message])
@@ -219,11 +218,9 @@ function Chat() {
 
   function handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
+      console.log('est')
       fetch('/api/messenger', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({
           name: name(),
           message: message(),

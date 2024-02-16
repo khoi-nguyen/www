@@ -16,7 +16,7 @@ export interface ExtendedAPIEvent extends APIEvent {
 
 export const POST = async ({ httpServer, request }: ExtendedAPIEvent) => {
   if (!httpServer.io) {
-    httpServer.io = new Server(httpServer, { path: '/api/messenger', transports: ['websocket'] })
+    httpServer.io = new Server(httpServer, { path: '/api/messenger' })
   }
   httpServer.io!.emit('message', await request.json())
   return new Response()
