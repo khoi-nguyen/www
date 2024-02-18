@@ -3,6 +3,7 @@ const abbreviations = {
   BSc: 'Bachelor of Science',
   CAS: 'Computer Algebra System',
   CSS: 'Cascading Style Sheets',
+  CSR: 'Client-Side Rendering',
   CV: 'Curriculum Vitæ',
   DOM: 'Document Object Model',
   DX: 'Developer Experience',
