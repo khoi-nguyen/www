@@ -24,7 +24,7 @@ export default function () {
           </Figure>
           <h4>Cette semaine à l'ECAM</h4>
           <p>
-            Pour célébrer cette semaine, nous avons décider de mettre en avant certaines femmes qui
+            Pour célébrer cette semaine, nous avons décidé de mettre en avant certaines femmes qui
             ont changé l'histoire des sciences et technologies.
           </p>
         </div>
