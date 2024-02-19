@@ -15,6 +15,12 @@ export default () => {
       <div class="columns">
         <div>
           <h2>Practical information</h2>
+          <dl>
+            <dt>Project</dt>
+            <dd>
+              <A href="./project">Assessment criteria</A>
+            </dd>
+          </dl>
         </div>
         <div>
           <Calendar
