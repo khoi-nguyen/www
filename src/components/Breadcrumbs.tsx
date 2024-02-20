@@ -9,7 +9,7 @@ export default function Breadcrumbs() {
     return await Promise.all(
       parts.map(async (_, i) => {
         const path = '/' + parts.slice(0, i + 1).join('/')
-        const key: keyof typeof modules = [path, path + 'index', path + '/index', '/404']
+        const key: keyof typeof modules = [path, path + 'index', path + '/index', '/[...404]']
           .map((s) => `/src/routes${s}.json`)
           .filter((p) => Object.keys(modules).includes(p))[0]
         const meta = (await modules[key]()) as Parameters<typeof Meta>[0]
