@@ -265,6 +265,303 @@ export default () => {
       <Slide title="Exercises">
         <Iframe src="/calculus/14.5-14.6.pdf" />
       </Slide>
+      <Slide title="Maximum et minimum locaux">
+        <Definition title="Maximum local">
+          <p>
+            La fonction {tex`f(x, y)`} a un <strong>maximum local</strong> en {tex`(a, b)`} si
+          </p>
+          {tex`
+            f(x, y) \leq f(a, b)
+          `}
+          <p>autour de {tex`(a, b)`}.</p>
+        </Definition>
+        {py.plot`
+          x = y = np.linspace(-20, 20, 400)
+          X, Y = np.meshgrid(x, y)
+          Z = X**2 + Y**2 - X - Y
+          fig, ax = plt.figure(), plt.axes(projection ='3d')
+          ax.plot_surface(X, Y, Z)
+        `}
+      </Slide>
+      <Slide title="Théorème de Fermat">
+        <Theorem title="Théorème de Fermat">
+          <p>
+            Si {tex`f(x, y)`} est définie autour d'un minimum ou maximum local {tex`(a, b)`}, alors
+          </p>
+          {tex`
+            \grad f(a, b) = \vec 0.
+          `}
+        </Theorem>
+      </Slide>
+      <Slide title="Théorème de Fermat: exemple">
+        <Example>
+          <p>Trouvez le minimum de la fonction</p>
+          {tex`
+            f(x, y) \defeq x^2 + y^2 - 2x - 6y + 14
+          `}
+          <p>
+            grâce au Théorème de Fermat et vérifiez que c'est un minimum en complétant le carré.
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y = symbols("x y")
+          f = x**2 + y**2 - 2*x - 6*y + 14
+          solve([f.diff(x), f.diff(y)], [x, y])
+        `}
+        {py.plot`
+          x = y = np.linspace(-20, 20, 400)
+          X, Y = np.meshgrid(x, y)
+          Z = X**2 + Y**2 - 2*X - 6*Y + 14
+          fig, ax = plt.figure(), plt.axes(projection ='3d')
+          ax.plot_surface(X, Y, Z)
+        `}
+      </Slide>
+      <Slide title="Théorème de Fermat: deuxième exemple">
+        <Example>
+          <p>Trouvez les extrema de</p>
+          {tex`
+            f(x, y) \defeq y^2 - x^2
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y = symbols("x y")
+          f = y**2 - x**2
+          solve([f.diff(x), f.diff(y)], (x, y))
+        `}
+        {py.plot`
+          x = y = np.linspace(-20, 20, 400)
+          X, Y = np.meshgrid(x, y)
+          Z = Y**2 - X**2
+          fig, ax = plt.figure(), plt.axes(projection ='3d')
+          ax.plot_surface(X, Y, Z)
+        `}
+      </Slide>
+      <Slide title="Critère de la dérivée seconde">
+        <Recall>
+          <p>
+            Si {tex`f`} est définie et dérivable deux fois autour de {tex`a`} et{' '}
+          </p>
+          {tex`
+              \left.\frac {\partial^2 f} {\partial x^2}\right|_{x = a} > 0,
+            `}
+          <p>
+            alors {tex`f`} atteint un <strong>minimum local</strong> en {tex`a`}.
+          </p>
+        </Recall>
+        <Theorem>
+          <p>
+            Si {tex`f`} est définie et les dérivées partielles secondes sont continues autour de{' '}
+            {tex`(a, b)`} et que{' '}
+          </p>
+          {tex`
+              \left.\frac {\partial^2 f} {\partial \vec v^2}\right|_{x = a} > 0,
+              \quad \text{pour chaque vecteur } v \in \R^2
+            `}
+          <p>
+            alors {tex`f`} atteint un <strong>minimum local</strong> en {tex`(a, b)`}.
+          </p>
+        </Theorem>
+      </Slide>
+      <Slide title="Test de la dérivée seconde">
+        <Proposition>
+          <p>Les conditions suivantes sont équivalentes:</p>
+          <ul>
+            <li>
+              Pour chaque {tex`v \in \R^2`}
+              {tex`
+                \left.\frac {\partial^2 f} {\partial \vec v^2}\right|_{(x, y) = (a, b)} > 0,
+              `}
+            </li>
+            <li>
+              {tex`\partial^2_x f(a, b) > 0`} et
+              {tex`
+                \begin{vmatrix}
+                  \partial^2_x f(a, b) & \partial_x \partial_y f(a, b)\\
+                  \partial_y \partial_x f(a, b) & \partial^2_y f(a, b)\\
+                \end{vmatrix} > 0 \quad \text{et} \quad \partial^2_x f(a, b) > 0
+              `}
+            </li>
+          </ul>
+        </Proposition>
+        <Remark>
+          {tex`
+            \mathrm{Hess} f(a, b) \defeq
+            \begin{pmatrix}
+              \partial^2_x f(a, b) & \partial_x \partial_y f(a, b)\\
+              \partial_y \partial_x f(a, b) & \partial^2_y f(a, b)\\
+            \end{pmatrix}
+          `}
+        </Remark>
+      </Slide>
+      <Slide title="Critère de la dérivée seconde">
+        <Theorem>
+          <p>
+            Supposons que les dérivées secondes de {tex`f`} soient continues autour d'un point
+            critique {tex`(a, b).`}
+          </p>
+          <ul>
+            <li>
+              Si {tex`\det (\mathrm{Hess} f(a, b)) < 0`}, {tex`(a, b)`} n'est ni un max local, ni un
+              min local
+            </li>
+            <li>
+              Si {tex`\det (\mathrm{Hess} f(a, b)) > 0`} et {tex`\partial^2_x f(a, b) > 0`},{' '}
+              {tex`(a, b)`} est un <strong>minimum local</strong>
+            </li>
+            <li>
+              Si {tex`\det (\mathrm{Hess} f(a, b)) > 0`} et {tex`\partial^2_x f(a, b) < 0`},{' '}
+              {tex`(a, b)`} est un <strong>maximum local</strong>
+            </li>
+          </ul>
+        </Theorem>
+      </Slide>
+      <Slide title="Classification de points critiques: exemple">
+        <Example>
+          <p>Trouvez les extrema locaux et les points de selle de</p>
+          {tex`
+            f(x, y) \defeq x^4 + y^4 - 4xy + 1
+          `}
+        </Example>
+        <ol>
+          <li>
+            Calcul des points critiques
+            {py.jupyter`
+              from sympy import *
+              x, y = symbols("x y", real=True)
+              f = x**4 + y**4 - 4*x*y + 1
+              solve([f.diff(x), f.diff(y)], (x, y))
+            `}
+          </li>
+          <li>
+            Classification avec la dérivée seconde
+            {py.jupyter`
+              D = f.diff(x, 2)*f.diff(y, 2) - f.diff(x, y)**2
+              Tuple(f.diff(x, 2), D).subs({x: -1, y: -1})
+            `}
+          </li>
+        </ol>
+      </Slide>
+      <Slide title="Classification des points critiques: exemple">
+        <Example>
+          <p>Trouvez et classifiez les points critiques de la fonction</p>
+          {tex`
+            f(x, y) \defeq 10 x^2 y - 5 x^2 - 4 y^2 - x^4 - 2y^4
+          `}
+        </Example>
+        <ol>
+          <li>
+            Calcul des points critiques
+            {py.jupyter`
+              from sympy import *
+              x, y = symbols("x y", real=True)
+              f = 10*x**2*y - 5*x**2 - 4*y**2 - x**4 - 2*y**4
+              solve([f.diff(x), f.diff(y)], (x, y))
+            `}
+          </li>
+          <li>
+            Classification avec la dérivée seconde
+            {py.jupyter`
+              D = f.diff(x, 2)*f.diff(y, 2) - f.diff(x, y)**2
+              Tuple(f.diff(x, 2), D).subs({x: -1, y: -1})
+            `}
+          </li>
+        </ol>
+      </Slide>
+      <Slide title="Application: plus courte distance">
+        <Example>
+          <p>Trouvez la distance la plus courte entre le point {tex`(1, 0, -2)`} au plan </p>
+          {tex`
+            x + 2y + z = 4.
+          `}
+        </Example>
+        <ol>
+          <li>
+            Calcul des points critiques
+            {py.jupyter`
+              from sympy import *
+              x, y = symbols("x y", real=True)
+              z = 4 - x - 2*y
+              f = (x - 1)**2 + y**2 + (z + 2)**2
+              stationary = solve([f.diff(x), f.diff(y)], (x, y))
+            `}
+          </li>
+          <li>
+            Classification avec la dérivée seconde
+            {py.jupyter`
+              D = f.diff(x, 2)*f.diff(y, 2) - f.diff(x, y)**2
+              Tuple(f.diff(x, 2), D).subs(stationary)
+            `}
+          </li>
+          <li>
+            Calcul de la valeur maximale:
+            {py.jupyter`
+              f.subs(stationary)
+            `}
+          </li>
+        </ol>
+      </Slide>
+      <Slide title="Application: optimisation">
+        <Example>
+          <p>
+            Une boîte rectangulaire sans couvercle est faite à partir de 12 {tex`\text{m}^2`} de
+            carton. Trouvez le volume maximal d'une telle boîte.
+          </p>
+        </Example>
+        <ol>
+          <li>
+            Calcul des points critiques
+            {py.jupyter`
+              from sympy import *
+              x, y = symbols("x y")
+              V = x * y * (12 - x*y) / (2 * (x + y))
+              stationary = solve([V.diff(x), V.diff(y)])[1]
+            `}
+          </li>
+          <li>
+            Calcul de la valeur maximale
+            {py.jupyter`
+              V.subs(stationary)
+            `}
+          </li>
+        </ol>
+      </Slide>
+      <Slide title="Optimisation avec bords">
+        <Example>
+          <p>Trouvez la valeur maximale et minimale de</p>
+          {tex`
+            f(x, y) = x^2 - 2 x y + 2 y
+            \quad \text{sur} \,
+            D = \{(x, y) : 0 \leq x \leq 3, 0 \leq y \leq 2\}
+          `}
+        </Example>
+        <ol>
+          <li>
+            Trouvons les points critiques
+            {py.jupyter`
+              from sympy import *
+              x, y = symbols("x y")
+              f = x**2 - 2*x*y + 2*y
+              solve([f.diff(x), f.diff(y)])
+            `}
+          </li>
+          <li>
+            Optimisons sur les bords
+            {py.jupyter`
+              g = f.subs({y: 0})
+              solve(g.diff(x), x)
+            `}
+          </li>
+          <li>Comparer les valeurs</li>
+        </ol>
+      </Slide>
+      <Slide title="Optimisation" columns>
+        <Iframe src="/calculus/14.7.pdf" />
+        <div>
+          <p>Sélection: 44, 45, 53, 55</p>
+        </div>
+      </Slide>
     </Slideshow>
   )
 }
