@@ -149,6 +149,55 @@ export default function () {
           d'architecture est performant (grâce à la mise en cache) et scalable.
         </p>
       </Slide>
+      <Slide title={() => <Abbr key="CRUD" />}>
+        <p>Voici un exemple typique de requêtes et de leur effets.</p>
+        <dl>
+          <dt>GET /users/</dt>
+          <dd>Obtient la liste des utilisateurs</dd>
+          <dt>GET /users/1</dt>
+          <dd>Obtient les informations sur l'utilisateur 1</dd>
+          <dt>POST /users/</dt>
+          <dd>Crée un utilisateur avec le corps</dd>
+          <dt>POST /users/2</dt>
+          <dd>Modifie l'utilisateur 2 avec le corps</dd>
+          <dt>DELETE /users/1</dt>
+          <dd>Supprime l'utilisateur 1</dd>
+        </dl>
+        <Remark>
+          <p>
+            On parle souvent de <Abbr key="CRUD" /> pour désigner les opérations de création,
+            lecture, mise à jour, suppression.
+          </p>
+        </Remark>
+      </Slide>
+      <Slide title="REST: exemple d'implémentation">
+        <Example>
+          <p>
+            <Abbr key="API" /> qui permet de lire et modifier des utilisateurs, stockés en mémoire
+            vive. Dans la vie réelle, on implémenterait l'authentification et on utiliserait une
+            base de données.
+          </p>
+        </Example>
+        {js.hl`
+          import express from 'express';
+          const app = express();
+          app.use(express.urlencoded({ extended: true }));
+
+          const users = []
+
+          app.get("/users", function(req, res) {
+            res.json(users)
+          })
+
+          app.post("/users", function(req, res) {
+            users.push(req.body)
+            res.json(users)
+          })
+        `}
+        <Exercise>
+          <p>Rappelez-moi de continuer l'implémentation devant vous</p>
+        </Exercise>
+      </Slide>
       <Slide
         title={() => (
           <>
@@ -229,11 +278,6 @@ export default function () {
       </Slide>
       <Slide title="GraphQL: exemple" split={false}>
         <Iframe src="https://graphql-pokeapi.vercel.app/" />
-      </Slide>
-      <Slide title="GraphQL: remarques">
-        <ul>
-          <li>La mise en cache doit être implémentée</li>
-        </ul>
       </Slide>
       <Slide title="Persistence des données">
         <ul>
@@ -317,7 +361,121 @@ export default function () {
           `}
         </div>
       </Slide>
-      <Slide title="Avantages et inconvénients"></Slide>
+      <Slide title="Fonctionnement et Implémentation">
+        <ul>
+          <li>Pour simplifier, une classe par table</li>
+          <li>Une instance correspond à une entrée en DB</li>
+          <li>
+            Les tables correspondent à des classes qui héritent d'une classe mère (Model). La classe
+            contient au moins les informations propres à la table comme son nom et la clé primaire
+            {js.hl`
+              class User extends Model {
+                // Nom de la table
+                static table = "users";
+
+                // Clé primaire
+                static primary = ["id"];
+              }
+            `}
+          </li>
+          <li>
+            La classe mère <code>Model</code> implémente des méthodes pour générer et exécuter
+            quelques requêtes <Abbr key="SQL" /> typiques comme au slide précédent.
+            {js.hl`
+              class Model {
+                static async load(where) { }
+                async save() { }
+                // ...
+              }
+            `}
+          </li>
+        </ul>
+      </Slide>
+      <Slide
+        title={() => (
+          <>
+            Un <Abbr key="ORM" /> simple
+          </>
+        )}
+      >
+        <Github repo="khoi-nguyen/LW3L-orm" path="models/Model.js" lang="js" />
+      </Slide>
+      <Slide
+        title={() => (
+          <>
+            Todo app avec un <Abbr key="ORM" />
+          </>
+        )}
+      >
+        <Github repo="khoi-nguyen/LW3L-orm" path="server.js" lang="js" />
+      </Slide>
+      <Slide title="Design patterns">
+        <p>
+          Un thème clair du cours est de séparer l'application en morceaux composables. Ceci permet
+          une grande réutilisation pour servir des clients aux besoins différents (navigateur,
+          application mobile). Cela permet également une collaboration d'une équipe avec des bagages
+          techniques différents.
+        </p>
+        <ul>
+          <li>
+            Modèle (<Abbr key="ORM" />) pour manipuler les données
+          </li>
+          <li>
+            Morceler l'
+            <Abbr key="UI" /> en petits composants
+          </li>
+          <li>
+            Utiliser une <Abbr key="API" /> pour séparer les données du rendu
+          </li>
+        </ul>
+        <p>
+          On appelle cette idée la <strong>séparation des préoccupations</strong> (separation of
+          concerns).
+        </p>
+        <Remark>
+          <p>Les bonnes pratiques changent avec le temps:</p>
+          <ul>
+            <li>
+              Séparation des langages (<Abbr key="HTML" />, <Abbr key="CSS" />, etc.) {tex`\to`}{' '}
+              séparations des fonctionnalités (bouton, barre de navigation, etc.)
+            </li>
+            <li>
+              La séparation backend/frontend (frontière réseau) disparaît dans les projets en
+              JavaScript au profit d'une découpe par fonctionnalité.
+            </li>
+          </ul>
+        </Remark>
+      </Slide>
+      <Slide title="Design patterns en Web">
+        <ul>
+          <li>Composants et composition</li>
+          <li>
+            <Abbr key="MVC" />, MVVM, MVW
+          </li>
+          <li>Flux</li>
+          <li>
+            File-based routing (une <Abbr key="URL" />, un fichier)
+          </li>
+          <li>etc.</li>
+        </ul>
+      </Slide>
+      <Slide title="Exemple: Odoo">
+        <ul>
+          <li>
+            <Abbr key="ERP" />
+          </li>
+          <li>Projet avec un coeur open source</li>
+          <li>Écrit en Python/TypeScript</li>
+          <li>Architecture très modulaire</li>
+          <li>
+            <Abbr key="SPA" />
+          </li>
+          <li>Emploi de leur propre framework de composants (Owl)</li>
+          <li>
+            Emploi de leur propre <Abbr key="ORM" />
+          </li>
+        </ul>
+      </Slide>
     </Slideshow>
   )
 }
