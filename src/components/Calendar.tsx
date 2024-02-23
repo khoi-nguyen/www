@@ -33,7 +33,7 @@ export default (props: CalendarProps) => {
       initialView: props.initialView,
       locale: lang() === 'fr' ? frLocale : enLocale,
       events: {
-        url: 'https://calendar.ecam.be/ics/ngy',
+        url: 'https://calendar.ecam.be/sics/NGY?t=99c3d0028d08bcc3fcc74855d669e2c63e2cd814c1fb23525e1743152d7613f8',
         format: 'ics',
       },
       eventDidMount: function (info) {
