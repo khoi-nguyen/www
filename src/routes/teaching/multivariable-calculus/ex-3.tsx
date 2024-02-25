@@ -38,25 +38,25 @@ export default function () {
               {py.jupyter`
                 from sympy import *
                 x, y, z = symbols("x y z")
-                f = (x - 2)**2 + y**2 + (z + 3)**2
+                f = (x - 4)**2 + (y - 2)**2 + z**2
               `}
             </li>
             <li>
               Utiliser la contrainte pour obtenir une fonction en {tex`(x, y)`}
               {py.jupyter`
-                f.subs({z: sqrt(x**2 + y**2)})
+                f = f.subs({z: sqrt(x**2 + y**2)})
               `}
             </li>
             <li>
               Calcul du gradient
               {py.jupyter`
-                grad = Matrix([f.diff(x), f.diff(y), f.diff(z)])
+                grad = Matrix([f.diff(x), f.diff(y)])
               `}
             </li>
           </ol>
           <Remark>
             <p>
-              N'oubliez pas qu'il y a aussi la racine négative {tex`z = -\sqrt(x^2 - y^2)`}. Étant
+              N'oubliez pas qu'il y a aussi la racine négative {tex`z = -\sqrt{x^2 - y^2}`}. Étant
               donné que notre point est dans le plan {tex`xy`},
             </p>
           </Remark>
@@ -64,13 +64,15 @@ export default function () {
         <div>
           <ol start={4}>
             <li>
-              Trouvez le(s) point(s) critique(s)
+              Trouvez le(s) point(s) critique(s) {tex`\grad f = \vec 0`}
               {py.jupyter`
                 solve(grad)
               `}
             </li>
-            <li>Ce point-là ne peut être qu'un minimum. Pourquoi?</li>
-            <li>Trouvez l'autre solution par symétrie.</li>
+            <li>Ce point-là ne peut être que correspondre à un minimum. Pourquoi?</li>
+            <li>
+              Trouvez les coordonnées des <strong>deux points</strong>.
+            </li>
           </ol>
         </div>
       </Slide>
