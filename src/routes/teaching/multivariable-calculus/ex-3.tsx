@@ -8,7 +8,60 @@ export default function () {
   return (
     <Slideshow meta={meta}>
       <Slide title="14.5.34"></Slide>
-      <Slide title="14.6.54"></Slide>
+      <Slide title="14.6.54">
+        <Question>
+          <p>
+            A quel point sur l'ellipsoïde {tex`x^2 + y^2 + 2z^2 = 1`} le plan tangent est-il
+            parallèle au plan {tex`x + 2y + z = 1`}.
+          </p>
+        </Question>
+        <ul>
+          <li>
+            Voyez l'ellipsoïde comme une courbe de niveau de
+            {tex`
+              F(x, y, z) = x^2 + y^2 + 2z^2.
+            `}
+          </li>
+          <li>Rappelez-vous que le gradient est perpendiculaire aux courbes de niveau</li>
+          <li>Deux plans sont parallèles ssi leurs vecteurs normaux sont parallèles</li>
+        </ul>
+      </Slide>
+      <Slide title="14.6.54: Solution" columns>
+        <ol>
+          <li>
+            On cherche un point où la normale au plan tangent est parallèle à {tex`(1, 2, 1)`}
+          </li>
+          <li>
+            Soit {tex`F(x, y, z) \defeq x^2 + y^2 + 2z^2`}. Puisque l'ellipsoïde la courbe de niveau{' '}
+            {tex`1`}, sa normale a {tex`\grad F`} pour vecteur directeur
+            {py.jupyter`
+              from sympy import *
+              x, y, z = symbols("x y z")
+              F = x**2 + y**2 + 2 * z**2
+              grad = Matrix([F.diff(x), F.diff(y), F.diff(z)])
+            `}
+          </li>
+        </ol>
+        <ol>
+          <li>
+            On résoud {tex`\grad F = \lambda (1, 2, 1)`}
+            {py.jupyter`
+              l = Symbol("lambda")
+              r = Matrix([x, y, z])
+              sols = solve(Eq(grad, l * Matrix([1, 2, 1])), [x, y, z])
+              r = r.subs(sols)
+            `}
+          </li>
+          <li>
+            On s'assure que ce point est sur l'ellipse en vérifiant qu'on est sur la bonne courbe de
+            niveau
+            {py.jupyter`
+              lambdas = solve(Eq(F.subs(sols), 1), l)
+              r.subs({ l: lambdas[1] })
+            `}
+          </li>
+        </ol>
+      </Slide>
       <Slide title="14.7.43">
         {py.plot`
           x = y = np.linspace(-2, 2, 400)
