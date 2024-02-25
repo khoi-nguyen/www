@@ -7,7 +7,33 @@ const meta: Metadata = {
 export default function () {
   return (
     <Slideshow meta={meta}>
-      <Slide title="14.5.34"></Slide>
+      <Slide title="14.5.34">
+        <Question>
+          <p>En dérivant implicitement, trouvez {tex`\partial_x z, \partial_y z`}, où</p>
+          {tex`
+            yz + x \ln y = z^2
+          `}
+        </Question>
+      </Slide>
+      <Slide title="14.5.34: solution Python">
+        <ol>
+          <li>
+            Calcul de {tex`\partial_x z`}
+            {py.jupyter`
+              from sympy import *
+              x, y, z = symbols("x y z")
+              F = y * z + x * ln(y) - z**2
+              partial_x = - F.diff(x) / F.diff(z)
+            `}
+          </li>
+          <li>
+            Calcul de {tex`\partial_y z`}
+            {py.jupyter`
+              partial_y = - F.diff(y) / F.diff(z)
+            `}
+          </li>
+        </ol>
+      </Slide>
       <Slide title="14.6.54">
         <Question>
           <p>
