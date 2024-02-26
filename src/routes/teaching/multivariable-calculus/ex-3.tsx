@@ -121,7 +121,7 @@ export default function () {
               `}
             </li>
             <li>
-              Utiliser la contrainte pour obtenir une fonction en {tex`(x, y)`}
+              Utilisez la contrainte pour obtenir une fonction en {tex`(x, y)`}
               {py.jupyter`
                 f = f.subs({z: sqrt(x**2 + y**2)})
               `}
@@ -145,12 +145,16 @@ export default function () {
             <li>
               Trouvez le(s) point(s) critique(s) {tex`\grad f = \vec 0`}
               {py.jupyter`
-                solve(grad)
+                stationary = solve(grad)
               `}
             </li>
             <li>Ce point-là ne peut être que correspondre à un minimum. Pourquoi?</li>
             <li>
               Trouvez les coordonnées des <strong>deux points</strong>.
+              {py.jupyter`
+                z = sqrt(x**2 + y**2)
+                Tuple(Matrix([x, y, z]), Matrix([x, y, -z])).subs(stationary)
+              `}
             </li>
           </ol>
         </div>
@@ -216,10 +220,8 @@ export default function () {
           <li>
             Intégrale intérieure:
             {py.jupyter`
-              from sympy import *
-              x, y = symbols("x y")
               z = 2*x + 2*y + 10 - (2 - x - y)
-              inner = integrate(z, (y, x**2 - 1, 1 - x**2))
+              inner = expand(integrate(z, (y, x**2 - 1, 1 - x**2)))
             `}
           </li>
           <li>
