@@ -15,10 +15,20 @@ export default function () {
           `}
         </Question>
       </Slide>
-      <Slide title="14.5.34: solution Python">
+      <Slide title="14.5.34: solution Python" columns>
         <ol>
           <li>
-            Calcul de {tex`\partial_x z`}
+            Dérivez l'équation {tex`yz + x \ln y - z^2 = 0`} par rapport à {tex`x`}:
+            {py.jupyter`
+              from sympy import *
+              x, y = symbols("x y")
+              z = Function('z')(x)
+              F = y * z + x * ln(y) - z**2
+              Eq(F.diff(x), 0)
+            `}
+          </li>
+          <li>
+            Isolez {tex`\partial_x z`}
             {py.jupyter`
               from sympy import *
               x, y, z = symbols("x y z")
@@ -26,9 +36,24 @@ export default function () {
               partial_x = - F.diff(x) / F.diff(z)
             `}
           </li>
+        </ol>
+        <ol>
           <li>
-            Calcul de {tex`\partial_y z`}
+            Dérivez l'équation {tex`yz + x \ln y - z^2 = 0`} par rapport à {tex`y`}:
             {py.jupyter`
+              from sympy import *
+              x, y = symbols("x y")
+              z = Function('z')(y)
+              F = y * z + x * ln(y) - z**2
+              Eq(F.diff(y), 0)
+            `}
+          </li>
+          <li>
+            Isolez {tex`\partial_y z`}
+            {py.jupyter`
+              from sympy import *
+              x, y, z = symbols("x y z")
+              F = y * z + x * ln(y) - z**2
               partial_y = - F.diff(y) / F.diff(z)
             `}
           </li>
