@@ -160,7 +160,7 @@ export default function () {
           </ol>
           <Remark>
             <p>
-              N'oubliez pas qu'il y a aussi la racine négative {tex`z = -\sqrt{x^2 - y^2}`}. Étant
+              N'oubliez pas qu'il y a aussi la racine négative {tex`z = -\sqrt{x^2 + y^2}`}. Étant
               donné que notre point est dans le plan {tex`xy`},
             </p>
           </Remark>
@@ -195,7 +195,7 @@ export default function () {
         <h3>Indications</h3>
         <p>Le but est de calculer une intégrale du type</p>
         {tex`
-          \iint_D f(x) \dd x
+          \iint_D f(x, y) \dd A
         `}
         <ul>
           <li>
