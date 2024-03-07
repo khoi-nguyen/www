@@ -45,11 +45,6 @@ export default function Page(props: PageProps) {
               <Fa icon={faChalkboardTeacher} /> Teaching
             </A>
           </li>
-          <li>
-            <A href="/women-in-science">
-              <Fa icon={faVenus} /> Women in Science
-            </A>
-          </li>
         </ul>
       </nav>
       <Breadcrumbs />
