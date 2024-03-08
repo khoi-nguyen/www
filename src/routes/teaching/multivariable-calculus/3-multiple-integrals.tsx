@@ -446,6 +446,34 @@ export default function () {
           1/m * Matrix([M_y, M_x])
         `}
       </Slide>
+      <Slide title="Probabilité">
+        {tex`
+          \Pr((X, Y) \in D) = \iint_D \overbrace{
+            f(x, y)}^{\text{densité de probabilité}
+          } \dd A
+        `}
+        <Example>
+          <p>Sachant que la densité jointe de {tex`X, Y`} est donnée par</p>
+          {tex`
+            f(x, y) \defeq
+            \begin{cases}
+              C(x + 2y) & \text{si } 0 \leq x \leq 100, 0 \leq y \leq 10\\
+              0 & \text{sinon}
+            \end{cases}
+          `}{' '}
+          =
+          <p>
+            trouvez la valeur de {tex`C`} et {tex`\P(X \leq 7, Y \geq 2)`}
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y, C = symbols("x y C")
+          f = C * (x + 2*y)
+          f = f.subs(solve(Eq(integrate(f, (x, 0, 10), (y, 0, 10)), 1), dict=True)[0])
+          integrate(f, (y, 2, 10), (x, 0, 7))
+        `}
+      </Slide>
       <Slide title="Intégrales triples">
         <Example>
           {tex`
