@@ -568,6 +568,66 @@ export default function () {
           Matrix([M_yz / m, M_xz / m, M_xy / m])
         `}
       </Slide>
+      <Slide title="Coordonnées cylindriques">
+        {tex`
+          \underbrace{
+            \text{coord. cylindriques}
+          }_{(r, \theta, z)}
+          = \underbrace{
+            \text{coord. polaires en } (x, y)
+          }_{(r, \theta)}+ z
+        `}
+        {tex`
+          \begin{cases}
+            x &= r \cos \theta\\
+            y &= r \sin \theta\\
+            z &= z
+          \end{cases}
+          \qquad
+          \Leftrightarrow
+          \qquad
+          \begin{cases}
+            r^2 &= x^2 + y^2\\
+            \tan \theta &= \frac y x\\
+            z &= z
+          \end{cases}
+        `}
+      </Slide>
+      <Slide title="Intégration en cooronnées cylindriques">
+        <Example>
+          <p>
+            Un solide est contenu dans le cylindre {tex`x^2 + y^2 = 1`}, en-dessous du plan{' '}
+            {tex`z = 4`} et au-dessus du paraboloïde {tex`z = 1 - x^2 - y^2`}. La densité est
+            proportionnelle à la distance à l'axe du cylindre.
+          </p>
+        </Example>
+        {tex`
+          E = \left\{
+            (r, \theta, z) :
+            \theta \in [0, 2 \pi], r \in [0, 1], z \in [1 - r^2, 4]
+          \right\}
+        `}
+        {py.jupyter`
+          from sympy import *
+          r, theta, z, C = symbols("r theta z C")
+          m = integrate(C * r**2, (z, 1 - r**2, 4), (r, 0, 1), (theta, 0, 2*pi))
+        `}
+      </Slide>
+      <Slide title="Intégrale multiple: changement de coordonnées">
+        <Example>
+          <p>Calculez</p>
+          {tex`
+            \int_{-2}^2 \int_{-\sqrt{4 - x^2}}^{\sqrt{4 - x^2}} \int_{\sqrt{x^2 + y^2}}^2
+              x^2 + y^2
+            \dd z \dd y \dd x
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          r, theta, z = symbols("r theta z")
+          integrate(r**3, (z, r, 2), (r, 0, 2), (theta, 0, 2*pi))
+        `}
+      </Slide>
     </Slideshow>
   )
 }
