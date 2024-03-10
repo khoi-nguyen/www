@@ -253,7 +253,28 @@ export default function () {
       <Slide title="Exercices">
         <Iframe src="/calculus/15.2.pdf" />
       </Slide>
+      <Slide title="Coordonnées polaires">
+        {tex`
+          \begin{cases}
+            x &= r \cos \theta\\
+            y &= r \sin \theta
+          \end{cases}
+          \qquad \Longleftrightarrow \qquad
+          \begin{cases}
+            r &= \sqrt {x^2 + y^2}\\
+            \tan \theta &= \frac y x
+          \end{cases}
+        `}
+        <Question>
+          <p>Quand les coordonnées polaires sont-elles utiles?</p>
+        </Question>
+      </Slide>
       <Slide title="Intégrales doubles en coordonnées polaires">
+        <Recall title="Changement de variable">
+          {tex`
+            \int_a^b f(x) \dd x = \int_{t_a}^{t_b} f(x(t)) \frac {\dd x} {\dd t} \dd t
+          `}
+        </Recall>
         <Figure src="polar-coordinates.png" alt="Élément d'aire en coordonnées polaires" />
         <Proposition>
           {tex`
@@ -353,6 +374,9 @@ export default function () {
           r, theta = symbols("r theta")
           integrate(r**3, (r, 0, 2 * cos(theta)), (theta, -pi/2, pi/2))
         `}
+      </Slide>
+      <Slide title="Exercises">
+        <Iframe src="/calculus/15.3-15.4.pdf" />
       </Slide>
       <Slide title="Applications des intégrales doubles">
         <Definition title="Densité">
