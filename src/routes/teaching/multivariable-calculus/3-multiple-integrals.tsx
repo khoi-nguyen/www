@@ -652,6 +652,9 @@ export default function () {
           integrate(r**3, (z, r, 2), (r, 0, 2), (theta, 0, 2*pi))
         `}
       </Slide>
+      <Slide title="Exercises">
+        <Iframe src="/calculus/15.3-15.4.pdf" />
+      </Slide>
     </Slideshow>
   )
 }
