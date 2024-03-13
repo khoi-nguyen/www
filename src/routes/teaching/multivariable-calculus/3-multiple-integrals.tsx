@@ -622,7 +622,7 @@ export default function () {
           <p>
             Un solide est contenu dans le cylindre {tex`x^2 + y^2 = 1`}, en-dessous du plan{' '}
             {tex`z = 4`} et au-dessus du paraboloïde {tex`z = 1 - x^2 - y^2`}. La densité est
-            proportionnelle à la distance à l'axe du cylindre.
+            proportionnelle à la distance à l'axe du cylindre. Trouvez la masse.
           </p>
         </Example>
         {tex`
