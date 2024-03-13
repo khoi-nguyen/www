@@ -90,7 +90,7 @@ export default function () {
             Trouvez la masse d'une balle {tex`x^2 + y^2 + z^2 \leq a^2`} si la densité est
             proportionnelle à la distance à l'axe des {tex`z`}. Exprimez votre réponse en terme de
             {tex`
-              \int_0^a r^2 \sqrt{a - r^2}
+              \int_0^a r^2 \sqrt{a - r^2} \dd r
             `}
           </p>
         </Exercise>
