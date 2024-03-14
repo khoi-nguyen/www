@@ -165,7 +165,7 @@ export default function () {
               </li>
               <li>
                 Spécifiez le format de votre base de données en ajoutant ceci dans{' '}
-                <code>prisma/schema.prisma</code>
+                <code>prisma/schema.prisma</code>:
                 <pre>
                   {dedent`
                     model Task {
