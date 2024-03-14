@@ -145,6 +145,18 @@ export default function () {
         {js.hl`
           export const todos = []
         `}
+        <Remark>
+          <ul>
+            <li>
+              Pour récupérer les données d'un formulaire, utilisez{' '}
+              <code>await event.request.json()</code> si <code>event</code> est le nom du paramètre
+              de la fonction <code>POST</code>.
+            </li>
+            <li>
+              Pour l'id de la tâche, elle se récupère via <code>event.params.id</code>
+            </li>
+          </ul>
+        </Remark>
       </Slide>
       <Slide title="Persistence des données" columns>
         <div>
