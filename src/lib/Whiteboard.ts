@@ -238,8 +238,8 @@ export default class Whiteboard {
       this.canvas.addEventListener(touchEvent, (event: TouchEvent) => {
         this.canvas.dispatchEvent(
           new MouseEvent(mouseEvent, {
-            clientX: event.changedTouches[0].clientX,
-            clientY: event.changedTouches[0].clientY,
+            clientX: event.touches[0].clientX,
+            clientY: event.touches[0].clientY,
           }),
         )
       })
