@@ -233,13 +233,14 @@ export default class Whiteboard {
    * Convert touch events to mouse events
    */
   setUpTouchEvents(): void {
-    type TouchEventName = 'touchstart' | 'touchmove' | 'touchend' | 'touchcancel'
+    type TouchEventName = 'touchstart' | 'touchmove' | 'touchend'
     const convert = (touchEvent: TouchEventName, mouseEvent: string) => {
       this.canvas.addEventListener(touchEvent, (event: TouchEvent) => {
         if (event.targetTouches[0].radiusX === 0) {
           event.preventDefault()
           this.canvas.dispatchEvent(
             new MouseEvent(mouseEvent, {
+              button: 0,
               clientX: event.targetTouches[0].clientX,
               clientY: event.targetTouches[0].clientY,
             }),
@@ -249,7 +250,6 @@ export default class Whiteboard {
     }
     convert('touchstart', 'mousedown')
     convert('touchmove', 'mousemove')
-    convert('touchcancel', 'mouseup')
     convert('touchend', 'mouseup')
   }
 
