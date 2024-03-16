@@ -30,6 +30,7 @@ export default class Whiteboard {
   }
 
   public color: Color = '#255994'
+  public eraser: boolean = false
   public hasUnsavedChanges: boolean = false
   public lineWidth: number = 2
   public mode: BoardMode = 'draw'
@@ -176,8 +177,10 @@ export default class Whiteboard {
     const rightClick = event.button === 2
     if (leftClick || rightClick) {
       this.isActive = true
-      if (rightClick) {
+      if (rightClick || this.eraser) {
         this.mode = 'erase'
+      } else {
+        this.mode = 'draw'
       }
     }
   }
@@ -205,16 +208,12 @@ export default class Whiteboard {
 
   /**
    * Mouse up event listener
-   * @param event Mouse event
    */
-  onMouseUp(event: MouseEvent): void {
+  onMouseUp(): void {
     this.isActive = false
     if (this.mode === 'draw') {
       this.emit('addStroke', this.lastStroke)
       this.redraw()
-    }
-    if (event.button === 2) {
-      this.mode = 'draw'
     }
   }
 
