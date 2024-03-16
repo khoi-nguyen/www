@@ -2,6 +2,7 @@ import { faPython } from '@fortawesome/free-brands-svg-icons'
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons/index.js'
 import {
   faBroom,
+  faEraser,
   faFloppyDisk,
   faLock,
   faPen,
@@ -51,11 +52,17 @@ function PythonRepl() {
 export default function Toolbar(props: ToolbarProps) {
   const [color, setColor] = createSignal<string>(brushes[0][0])
   const [lineWidth, setLineWidth] = createSignal<number>(brushes[0][1])
+  const [eraser, setEraser] = createSignal(false)
   const changeBrush = (brush: Brush) => {
+    setEraser(false)
     setColor(brush[0])
     setLineWidth(brush[1])
     props.whiteboard.changeBrush(...brush)
   }
+
+  createEffect(() => {
+    props.whiteboard.eraser = eraser()
+  })
 
   return (
     <div class="toolbar">
@@ -66,7 +73,7 @@ export default function Toolbar(props: ToolbarProps) {
         {(brush) => (
           <button
             classList={{
-              current: color() === brush[0] && lineWidth() === brush[1],
+              current: color() === brush[0] && lineWidth() === brush[1] && !eraser(),
             }}
             onClick={() => changeBrush(brush)}
             style={{ color: brush[0] }}
@@ -75,6 +82,13 @@ export default function Toolbar(props: ToolbarProps) {
           </button>
         )}
       </For>
+      <button
+        classList={{ current: eraser() }}
+        class="is-secondary"
+        onClick={() => setEraser(!eraser())}
+      >
+        <Fa icon={faEraser} />
+      </button>
       <button class="is-secondary" onClick={() => props.whiteboard.clearBoard(true)}>
         <Fa icon={faBroom} />
       </button>
