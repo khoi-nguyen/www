@@ -236,7 +236,7 @@ export default class Whiteboard {
     type TouchEventName = 'touchstart' | 'touchmove' | 'touchend'
     const convert = (touchEvent: TouchEventName, mouseEvent: string) => {
       this.canvas.addEventListener(touchEvent, (event: TouchEvent) => {
-        if (event.targetTouches[0].radiusX === 0) {
+        if (event.targetTouches[0].radiusX === 0 || touchEvent === 'touchend') {
           event.preventDefault()
           this.canvas.dispatchEvent(
             new MouseEvent(mouseEvent, {
