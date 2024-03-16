@@ -655,6 +655,118 @@ export default function () {
       <Slide title="Exercises">
         <Iframe src="/calculus/15.3-15.4.pdf" />
       </Slide>
+      <Slide title="Coordonnées sphériques">
+        <Geogebra id="h9xS5ZZs" width={1000} />
+        {tex`
+            \begin{cases}
+              x &= \rho \sin \phi \cos \theta\\
+              x &= \rho \sin \phi \sin \theta\\
+              z &= \rho \cos \phi
+            \end{cases}
+          `}
+        {tex`
+            \rho^2 = x^2 + y^2 + z^2
+          `}
+      </Slide>
+      <Slide title="Convertir en coordonnées cartésiennes">
+        {tex`
+          \begin{cases}
+            x &= \rho \sin \phi \cos \theta\\
+            x &= \rho \sin \phi \sin \theta\\
+            z &= \rho \cos \phi
+          \end{cases}
+        `}
+        <Example>
+          <p>
+            Le point {tex`(2, \pi/4, \pi/3)`} est donné en coordonnées sphériques. Trouvez ses
+            coordonnées
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          rho, phi, theta = 2, pi / 4, pi / 3
+          x = rho * sin(phi) * cos(theta)
+          y = rho * sin(phi) * sin(theta)
+          z = rho * cos(theta)
+          Matrix([x, y, z])
+        `}
+      </Slide>
+      <Slide title="Convertir en coordonnées sphériques">
+        {tex`
+          \begin{cases}
+            x &= \rho \sin \phi \cos \theta\\
+            x &= \rho \sin \phi \sin \theta\\
+            z &= \rho \cos \phi
+          \end{cases}
+          \Longrightarrow
+          \begin{cases}
+            \rho^2 &= x^2 + y^2 + z^2\\
+            \cos \phi &= \frac z \rho\\
+            \cos \theta &= \frac x {\rho \sin \phi}
+          \end{cases}
+        `}
+        <Example>
+          <p>
+            Le point {tex`(0, 2 \sqrt 3, -2)`} est donné en coordinées cartésiennes. Trouvez les
+            coordonnées sphériques.
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y, z = 0, 2 * sqrt(3), -2
+          rho = sqrt(x**2 + y**2 + z**2)
+          phi = acos(z / rho)
+          theta = acos(x / (rho * sin(phi)))
+          Matrix([rho, theta, phi])
+        `}
+      </Slide>
+      <Slide title="Intégration en coordonnées sphériques">
+        {tex`
+          \boxed{
+            \dd V = \rho^2 \sin \phi \dd \rho \dd \theta \dd \phi
+          }
+        `}
+        <Example>
+          <p>Évaluez l'intégrale</p>
+          {tex`
+            \iiint_B e^{(x^2 + y^2 + z^2)^{3 / 2}} \dd V
+          `}
+          <p>où {tex`B`} est la boule unité</p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          rho, theta, phi = symbols("rho theta phi")
+          dV = rho**2 * sin(phi)
+          limits = [
+            (rho, 0, 1),
+            (theta, 0, 2*pi),
+            (phi, 0, pi)
+          ]
+          simplify(integrate(exp(rho ** 3) * dV, *limits))
+        `}
+      </Slide>
+      <Slide title="Intégration en coordonnées sphériques">
+        <Example>
+          <p>
+            Utilisez les coordonnées sphériques pour trouver le volume du solide au dessus du cône{' '}
+            {tex`z = \sqrt {x^2 + y^2}`} et en-dessous de la sphère {tex`x^2 + y^2 + z^2 = z`}
+          </p>
+        </Example>
+        <ul>
+          <li>Écrire les équations données en coordonnées sphériques</li>
+          <li>Écrire le domaine d'intégrations en coord. sphériques</li>
+        </ul>
+        {py.jupyter`
+          from sympy import *
+          rho, theta, phi = symbols("rho theta phi")
+          limits = [
+            (rho, 0, cos(phi)),
+            (phi, 0, pi/4),
+            (theta, 0, 2*pi),
+          ]
+          integrate(rho**2 * sin(phi), *limits)
+        `}
+      </Slide>
     </Slideshow>
   )
 }
