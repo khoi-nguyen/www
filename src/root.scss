@@ -39,6 +39,9 @@ button {
   background: transparent;
   border: 0;
 
+  &.current {
+    border: 1px solid $light;
+  }
   &.is-secondary {
     color: $grey;
     cursor: pointer;

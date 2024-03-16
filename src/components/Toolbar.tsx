@@ -65,7 +65,9 @@ export default function Toolbar(props: ToolbarProps) {
       <For each={brushes}>
         {(brush) => (
           <button
-            classList={{ 'is-secondary': color() !== brush[0] || lineWidth() !== brush[1] }}
+            classList={{
+              current: color() === brush[0] && lineWidth() === brush[1],
+            }}
             onClick={() => changeBrush(brush)}
             style={{ color: brush[0] }}
           >
