@@ -720,6 +720,83 @@ export default function () {
           Matrix([rho, theta, phi])
         `}
       </Slide>
+      <Slide title="Changement de variable">
+        <Recall>
+          {tex`
+            \int_a^b f(x) \dd x
+            = \int_\alpha^\beta f(x(t) \frac {\dd x} {\dd t} \dd t
+          `}
+        </Recall>
+        <p>
+          La formule est légèrement plus complexe à plusieurs variables:{' '}
+          {tex`\frac {\dd x} {\dd t}`} est remplacé par la valeur absolue du{' '}
+          <strong>déterminant de la matrice des dérivées partielles</strong>:
+        </p>
+        {tex`
+          \iint_R f(x, y) \dd A
+          = \iint_S f(x(u, v), y(u, v)
+          \begin{vmatrix}
+            \frac {\partial x} {\partial u} & \frac {\partial x} {\partial v}\\
+            \frac {\partial y} {\partial u} & \frac {\partial y} {\partial v}
+          \end{vmatrix}
+          \dd u \dd v
+        `}
+        <Remark>
+          <p>
+            Écrivons {tex`\vec r = (x, y)`} en dimension 2 et {tex`\vec r = (x, y, z)`} en dimension
+            3
+          </p>
+          <ul>
+            <li>
+              En dimension deux, on peut remplacer le déterminant par
+              {tex`
+                \abs{
+                  \frac {\partial \vec r} {\partial u}
+                  \times
+                  \frac {\partial \vec r} {\partial v}
+                }
+              `}
+            </li>
+            <li>
+              En dimension trois, on peut remplacer le déterminant par
+              {tex`
+                \abs{
+                  \frac {\partial \vec r} {\partial u}
+                  \cdot
+                  \left(
+                    \frac {\partial \vec r} {\partial v}
+                    \times
+                    \frac {\partial \vec r} {\partial w}
+                  \right)
+                }
+              `}
+            </li>
+          </ul>
+        </Remark>
+      </Slide>
+      <Slide title="Calcul des jacobiens">
+        <h3>Coordonnées polaires</h3>
+        {tex`
+          \dd A = r \dd r \dd \theta
+        `}
+        {py.jupyter`
+          from sympy import *
+          r, theta = Symbol("r", positive=True), Symbol("theta")
+          x, y = r * cos(theta), r * sin(theta)
+          R = Matrix([x, y, 0])
+          v = R.diff(r).cross(R.diff(theta))
+          simplify(sqrt(v.dot(v)))
+        `}
+        <h3>Coordonnées sphériques</h3>
+        {py.jupyter`
+          from sympy import *
+          r, theta, phi = Symbol("r", positive=True), Symbol("theta"), Symbol("phi")
+          x, y, z = r * sin(phi) * cos(theta), r * sin(phi) * sin(theta), r * cos(phi)
+          R = Matrix([x, y, z])
+          v = R.diff(r).dot(R.diff(phi).cross(R.diff(theta)))
+          simplify(abs(v))
+        `}
+      </Slide>
       <Slide title="Intégration en coordonnées sphériques">
         {tex`
           \boxed{
