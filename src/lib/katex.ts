@@ -22,7 +22,7 @@ const macros = () => ({
   '\\i': '\\mathrm{i}',
   '\\ip': '\\langle #1, #2 \\rangle',
   '\\mat': '\\mathsf{#1}',
-  '\\norm': '\\|#1\\|',
+  '\\norm': '\\left\\|#1\\right\\|',
   '\\range': '\\mathrm{im}\\,',
   '\\dist': '\\mathrm{dist}',
   '\\placeholder': '\\mathord{\\color{lightgray}\\bullet}',
