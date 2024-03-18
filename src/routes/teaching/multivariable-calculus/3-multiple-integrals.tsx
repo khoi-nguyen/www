@@ -844,6 +844,9 @@ export default function () {
           integrate(rho**2 * sin(phi), *limits)
         `}
       </Slide>
+      <Slide title="Exercices">
+        <Iframe src="/calculus/15.8.pdf" />
+      </Slide>
     </Slideshow>
   )
 }
