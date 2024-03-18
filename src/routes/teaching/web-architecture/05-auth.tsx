@@ -56,10 +56,20 @@ export default function () {
           }
         `}
       </Slide>
-      <Slide title="Session ID"></Slide>
+      <Slide title="Session ID">
+        <p>After a successful authentication, we need to create a cookie.</p>
+        <Question>
+          <p>How could we do that?</p>
+        </Question>
+      </Slide>
       <Slide title="OAuth">
         <a href="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbb375f63-bf06-4956-b3a3-914fd6aa2d91_1280x1664.jpeg">
           <Figure src="oauth.webp" alt="OAuth" height="" />
+        </a>
+      </Slide>
+      <Slide title="With Next.js">
+        <a href="https://nextjs.org/docs/app/building-your-application/authentication">
+          https://nextjs.org/docs/app/building-your-application/authentication
         </a>
       </Slide>
     </Slideshow>
