@@ -5,6 +5,86 @@ const meta: Metadata = {
   lang: 'en',
 }
 
+type Criterion = [number | string, string | JSX.Element]
+type Category = {
+  title: string
+  criteria: Criterion[]
+}
+
+function Grid() {
+  const categories: Category[] = [
+    {
+      title: 'Functional constraints',
+      criteria: [
+        ['1*', 'Behaves like a Single Page Application'],
+        [2, 'A good understanding of state, effects and life-cycle hooks'],
+        [2, 'All server actions can be performed via an API route'],
+        [1, 'Uses correctly implemented authentication'],
+        [3, 'Complexity of the project'],
+      ],
+    },
+    {
+      title: 'UX and UI',
+      criteria: [
+        [1, 'The application looks like a native app and not just like an "old" website'],
+        [1, 'The interface is attractive and easy to use'],
+        [1, 'Design is responsive and works on different screen sizes (smartphones, tablet, etc.)'],
+      ],
+    },
+    {
+      title: 'Code quality',
+      criteria: [
+        [1, 'Code is clearly written, variables have clear names'],
+        [1, 'Clear file structure and separation of concerns'],
+        [1, 'UI is broken down into components'],
+      ],
+    },
+    {
+      title: 'Accessibility',
+      criteria: [
+        ['1*', 'The first render happens on the server (for bots and SEO)'],
+        [1, 'The website is still functional without JavaScript'],
+        [1, 'Best practices for accessibility are implemented'],
+      ],
+    },
+    {
+      title: 'Security',
+      criteria: [
+        [1, "The client bundle doesn't leak crucial information"],
+        [
+          1,
+          "The code doesn't have any critical security issue (passwords are stored securely, etc.)",
+        ],
+      ],
+    },
+  ]
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Criterion</th>
+          <th>Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        {categories.map((category) => (
+          <>
+            <tr>
+              <th colspan={2}>{category.title}</th>
+            </tr>
+            {category.criteria.map((criterion) => (
+              <tr>
+                <td>{criterion[1]}</td>
+                <td>{criterion[0]}</td>
+              </tr>
+            ))}
+          </>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
 export default function () {
   return (
     <Page meta={meta}>
@@ -55,6 +135,8 @@ export default function () {
           </ul>
         </li>
       </ul>
+      <h3>Assessment grid</h3>
+      <Grid />
     </Page>
   )
 }
