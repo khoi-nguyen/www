@@ -116,6 +116,18 @@ export default function () {
           plt.contour(x, y, f, levels=30)
         `}
       </Slide>
+      <Slide title="Conservation de l'énergie">
+        <Theorem>
+          <p>
+            Si un point {tex`\vec x`} est soumis à une force {tex`\vec F = \grad f`}, alors la
+            quantité
+          </p>
+          {tex`
+            E(t) = \frac 1 2 m \norm {\frac {\dd x} {\dd t}}^2 - f(\vec x(t))
+          `}
+          <p>est constante.</p>
+        </Theorem>
+      </Slide>
     </Slideshow>
   )
 }
