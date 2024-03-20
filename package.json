@@ -19,7 +19,6 @@
     "@types/node": "^18.18.9",
     "@types/prismjs": "^1.26.3",
     "@types/reveal.js": "^4.4.6",
-    "@types/sharedworker": "^0.0.105",
     "concurrently": "^8.2.2",
     "esbuild": "^0.14.54",
     "husky": "^8.0.3",
