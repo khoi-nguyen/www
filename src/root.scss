@@ -10,6 +10,11 @@ $radius: 12px;
 @import 'normalize.css/normalize.css';
 @import '@fontsource/fira-sans/300.css';
 
+:fullscreen,
+::backdrop {
+  background-color: rgba(255, 255, 255, 0);
+}
+
 a {
   @extend .clickable;
   color: $link;

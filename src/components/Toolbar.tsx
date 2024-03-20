@@ -5,6 +5,7 @@ import {
   faEraser,
   faFloppyDisk,
   faLock,
+  faUpRightAndDownLeftFromCenter,
   faPen,
   faHighlighter,
 } from '@fortawesome/free-solid-svg-icons/index.js'
@@ -49,6 +50,12 @@ function PythonRepl() {
   )
 }
 
+function fullScreen() {
+  if (document.body) {
+    document.body.requestFullscreen()
+  }
+}
+
 export default function Toolbar(props: ToolbarProps) {
   const [color, setColor] = createSignal<string>(brushes[0][0])
   const [lineWidth, setLineWidth] = createSignal<number>(brushes[0][1])
@@ -91,6 +98,9 @@ export default function Toolbar(props: ToolbarProps) {
       </button>
       <button class="is-secondary" onClick={() => props.whiteboard.clearBoard(true)}>
         <Fa icon={faBroom} />
+      </button>
+      <button class="is-secondary" onClick={fullScreen}>
+        <Fa icon={faUpRightAndDownLeftFromCenter} />
       </button>
       <PythonRepl />
       <SavingState />
