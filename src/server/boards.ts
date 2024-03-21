@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash-es'
 import type { Stroke } from '~/lib/Whiteboard'
 import { readJSONFile, writeJSONFile } from '~/server/utils'
 
@@ -21,5 +22,16 @@ export async function writeBoard(
   data: { url: string; contents: Stroke[][][] },
   event: ServerFunctionEvent,
 ) {
-  await writeJSONFile(fileFromUrl(data.url), data.contents, event)
+  const stored = readJSONFile(fileFromUrl(data.url))
+  let changes = 0
+  for (let i = 0; i < stored.length; i++) {
+    if (!isEqual(stored[i], data.contents[i])) {
+      changes++
+    }
+  }
+  if (changes <= 1) {
+    await writeJSONFile(fileFromUrl(data.url), data.contents, event)
+  } else {
+    throw new Error('Your version of the boards seem too old. Try refreshing the page.')
+  }
 }
