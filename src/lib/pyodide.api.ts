@@ -9,17 +9,17 @@ const runPython = (code: string): Promise<MessageFromWorker> => {
       resolve({ output: '', uid, format: 'string' })
     }
 
-    const worker = new Worker(new URL('./pyodide.worker.ts', import.meta.url), {
+    const worker = new SharedWorker(new URL('./pyodide.worker.ts', import.meta.url), {
       type: 'module',
     })
 
     callbacks[uid] = resolve
-    worker.onmessage = (event: MessageEvent<MessageFromWorker>) => {
+    worker.port.onmessage = (event: MessageEvent<MessageFromWorker>) => {
       const resolve = callbacks[event.data.uid]
       delete callbacks[event.data.uid]
       resolve(event.data)
     }
-    worker.postMessage({ code, uid } as MessageToWorker)
+    worker.port.postMessage({ code, uid } as MessageToWorker)
   })
 }
 
