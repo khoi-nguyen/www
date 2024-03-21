@@ -7,6 +7,7 @@ import {
   faLock,
   faUpRightAndDownLeftFromCenter,
   faPen,
+  faPlus,
   faHighlighter,
 } from '@fortawesome/free-solid-svg-icons/index.js'
 import type Whiteboard from '~/lib/Whiteboard'
@@ -101,6 +102,23 @@ export default function Toolbar(props: ToolbarProps) {
       </button>
       <button class="is-secondary" onClick={fullScreen}>
         <Fa icon={faUpRightAndDownLeftFromCenter} />
+      </button>
+      <button
+        class="is-secondary"
+        onClick={() => {
+          if (document) {
+            document.dispatchEvent(
+              new KeyboardEvent('keydown', {
+                key: 'ArrowDown',
+                keyCode: 40,
+                which: 40,
+                code: 'ArrowDown',
+              }),
+            )
+          }
+        }}
+      >
+        <Fa icon={faPlus} />
       </button>
       <PythonRepl />
       <SavingState />
