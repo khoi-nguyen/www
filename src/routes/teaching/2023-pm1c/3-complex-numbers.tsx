@@ -10,8 +10,8 @@ export default () => {
       <Slide title="Nombres complexes: approche algébrique">
         <Definition title="Unité imaginaire">
           <p>
-            L'<strong>unité imaginaire</strong>, noté {tex`i`}, est un nombre tel que{' '}
-            {tex`i^2 = -1`}.
+            L'<strong>unité imaginaire</strong>, noté {tex`i`}, est un nombre tel que {tex`i^2 = 1`}
+            .
           </p>
         </Definition>
         {tex`
