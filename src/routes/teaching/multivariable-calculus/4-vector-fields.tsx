@@ -389,6 +389,313 @@ export default function () {
           f = f + integrate(F[2] - f.diff(z), z)
         `}
       </Slide>
+      <Slide title="Théorème de Green: introduction">
+        <Recall>
+          {tex`
+            \underbrace{\int_a^b f'(x) \dd x}_{\text{intérieur}} = \underbrace{f(b) - f(a)}_{\text{bord}}
+          `}
+        </Recall>
+        <Recall>
+          <li>
+            Si {tex`\vec F(x, y) = \grad f(x, y)`}, alors {tex`\partial_x F_2 = \partial_y F_1`} par
+            symétrie des dérivées secondes.
+          </li>
+          <li>
+            Sur une courbe {tex`C`} fermée
+            {tex`
+              \oint_C \vec F \cdot \dd \vec r = 0
+            `}
+          </li>
+        </Recall>
+      </Slide>
+      <Slide title="Un exemple du théorème de Green">
+        <Proposition title="Cas particulier du théorème de Green">
+          {tex`
+            \oint_{C} \vec F \cdot \dd \vec r
+            = \iint_{[a, b] \times [c, d]} \partial_x F_2 - \partial_y F_1 \dd A
+          `}
+          <p>
+            où {tex`C`} est le contour de {tex`[a, b] \times [c, d]`} parcouru dans le sens
+            anti-horloger.
+          </p>
+        </Proposition>
+        <Remark>
+          <p>
+            La notation {tex`\oint`} est une intégrale normale, elle souhaite simplement insister
+            que celle-ci se fait sur une courbe fermée dans le sens anti-horloger.
+          </p>
+        </Remark>
+      </Slide>
+      <Slide title="Green's Theorem">
+        <Theorem title="Green">
+          {tex`
+            \oint_C \vec F \cdot \vec r
+            = \iint_D \partial_x F_2 - \partial_y F_1 \dd A
+          `}
+        </Theorem>
+        En particulier, si {tex`F = (P, Q)`}
+        {tex`
+          \oint_C P \dd x + Q \dd y = \iint \frac {\partial Q} {\partial x} - \frac {\partial P} {\partial y} \dd A.
+        `}
+      </Slide>
+      <Slide title="Théorème de Green: exemple">
+        <Example>
+          <p>Évaluez l'intégrale</p>
+          {tex`
+            \oint_C x^4 \dd x + xy \dd y
+          `}
+          <p>
+            où {tex`C`} est le triangle dont les sommets sont {tex`(0, 0)`}, {tex`(1, 0)`} et{' '}
+            {tex`(0, 1)`}
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y = symbols("x y")
+          P, Q = x**4, x*y
+          integrate(Q.diff(x) - P.diff(y), (y, 0, 1 - x), (x, 0, 1))
+        `}
+      </Slide>
+      <Slide title="Théorème de Green: exemple">
+        <Example>
+          <p>Évaluez l'intégrale</p>
+          {tex`
+            \oint_C (3 y - e^{\sin x}) \dd x + (7x + \sqrt{x^4 + 1}) \dd y
+          `}
+          <p>
+            où {tex`C`} est le cercle d'équation {tex`x^2 + y^2 = 9`}.
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y = symbols("x y")
+          P, Q = 3*y - exp(sin(x)), 7*x + sqrt(y**4 + 1)
+          limits = [(y, -sqrt(9 - x**2), sqrt(9 - x**2)), (x, -3, 3)]
+          integrate(Q.diff(x) - P.diff(y), *limits)
+        `}
+      </Slide>
+      <Slide title="Calcul d'aire">
+        <Recall>
+          {tex`
+            \oint_C \vec F \cdot \vec r
+            = \iint_D \partial_x F_2 - \partial_y F_1 \dd A
+          `}
+        </Recall>
+        <p>Si {tex`\vec F = \partial_x F_2 - \partial_y F_1 = 1`}, alors</p>
+        {tex`
+          \oint_C \vec F \cdot \vec r
+          = \text{aire}(D)
+        `}
+      </Slide>
+      <Slide title="Area calculation">
+        <Example>
+          <p>Find the area enclosed by the ellipse</p>
+          {tex`
+            \frac {x^2} {a^2} + \frac {y^2} {b^2} = 1
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          a, b, t = symbols("a b t")
+          x, y = a * cos(t), b * sin(t)
+          integrate(x/2 * y.diff(t) - y/2 * x.diff(t), (t, 0, 2*pi))
+        `}
+      </Slide>
+      <Slide title="Théorème de Green sur une région non simple">
+        <Example>
+          <p>Évaluez</p>
+          {tex`
+            \oint_C y^2 \dd x + 3 x y \dd y,
+          `}
+          <p>
+            où {tex`C`} est la frontière de la région {tex`D`} telle que {tex`y \geq 0`} et{' '}
+            {tex`1 \leq x^2 + y^2 \leq 4`}
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y, r, theta = symbols("x y r theta")
+          P, Q = y**2, 3*x*y
+          integrand = (Q.diff(x) - P.diff(y))
+          polar = integrand.subs({x: r*cos(theta), y: r*sin(theta)}) * r
+          integrate(polar, (r, 1, 2), (theta, 0, pi))
+        `}
+      </Slide>
+      <Slide title="Nabla ou del">
+        <Definition>
+          {tex`
+            \del = \begin{pmatrix}
+              \frac {\partial} {\partial x} \\
+              \frac {\partial} {\partial y} \\
+              \frac {\partial} {\partial z} \\
+            \end{pmatrix}
+          `}
+        </Definition>
+        <Example>
+          <p>{tex`\grad f`} représente le gradient</p>
+        </Example>
+      </Slide>
+      <Slide title="Rotationnel">
+        <Definition>
+          {tex`
+            \rot \vec F
+            = \begin{pmatrix}
+              \partial_2 F_3 - \partial_3 F_2\\
+              \partial_3 F_1 - \partial_1 F_3\\
+              \partial_1 F_2 - \partial_2 F_1
+            \end{pmatrix}
+          `}
+        </Definition>
+      </Slide>
+      <Slide title="Rotationnel: exemple">
+        <Example>
+          {tex`
+            \vec F(x, y, z) = xz \vec i + xyz \vec j - y^2 \vec k
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          from sympy.vector import *
+          C, nabla = CoordSys3D(''), Del()
+          x, y, z, i, j, k = C.x, C.y, C.z, C.i, C.j, C.k
+          F = x*z*i + x*y*z*j - y**2*k
+          nabla.cross(F).doit()
+        `}
+      </Slide>
+      <Slide title="Rotationnel du gradient">
+        <Theorem>
+          {tex`
+            \rot (\grad f) = \vec 0
+          `}
+        </Theorem>
+        {py.jupyter`
+          from sympy import *
+          from sympy.vector import *
+          nabla = Del()
+          x, y, z = symbols("x y z")
+          f = Function("f")(x, y, z)
+          nabla.cross(gradient(f)).doit()
+        `}
+        <Corollary>
+          <p>
+            Si {tex`\vec F`} est conservatif, alors {tex`\curl \vec F = \vec 0`}.
+          </p>
+        </Corollary>
+      </Slide>
+      <Slide title="Exemple: champ non conservatif">
+        <Example>
+          <p>Montrez que le champ de vecteur</p>
+          {tex`
+            \vec F(x, y, z) = xz \vec i + xyz \vec j - y^2 \vec k
+          `}
+          <p>n'est pas conservatif.</p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          from sympy.vector import *
+          C, nabla = CoordSys3D(''), Del()
+          x, y, z, i, j, k = C.x, C.y, C.z, C.i, C.j, C.k
+          F = x*z*i + x*y*z*j - y**2*k
+          nabla.cross(F).doit()
+        `}
+      </Slide>
+      <Slide title="Champs conservatifs">
+        <Theorem>
+          <ul>
+            <li>
+              Si {tex`\vec F`} est conservatif, alors {tex`\rot \vec F = \vec 0.`}
+            </li>
+            <li>
+              Si {tex`\rot \vec F = \vec 0`} et le domaine n'a pas de trou, alors {tex`\vec F`} est
+              conservatif.
+            </li>
+          </ul>
+        </Theorem>
+        <Example>
+          <p>Montrez que</p>
+          {tex`
+            \vec F(x, y, z) = y^2 z^3 \vec i + 2xyz^3 \vec j + 3xy^2z^2 \vec k
+          `}
+          <p>est conservatif et trouvez un potentiel</p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          from sympy.vector import *
+          C, nabla = CoordSys3D(''), Del()
+          x, y, z, i, j, k = C.x, C.y, C.z, C.i, C.j, C.k
+          F = y**2*z**3*i + 2*x*y*z**3*j + 3*x*y**2*z**2*k
+          nabla.cross(F).doit()
+        `}
+      </Slide>
+      <Slide title="Divergence">
+        <Definition>
+          {tex`
+            \divergence \vec F = \partial_x F_1 + \partial_y F_2 + \partial_z F_3
+          `}
+        </Definition>
+        {py.jupyter`
+          from sympy import *
+          from sympy.vector import *
+          C, nabla = CoordSys3D(''), Del()
+          x, y, z, i, j, k = C.x, C.y, C.z, C.i, C.j, C.k
+          F = x*z*i + x*y*z*j - y**2*k
+          nabla.dot(F).doit()
+        `}
+      </Slide>
+      <Slide title="Divergence du rotationnel">
+        <Theorem>
+          {tex`
+            \divergence (\curl \vec F) = 0
+          `}
+        </Theorem>
+        {py.jupyter`
+          from sympy import *
+          from sympy.vector import *
+          C, nabla = CoordSys3D(''), Del()
+          x, y, z = symbols("x y z")
+          F1 = Function("F1")(x, y, z)
+          F2 = Function("F2")(x, y, z)
+          F3 = Function("F3")(x, y, z)
+          F = F1*C.i + F2*C.j + F3*C.k
+          nabla.dot(nabla.cross(F)).doit()
+        `}
+      </Slide>
+      <Slide title="Exemple">
+        <Example>
+          <p>Montrez que le champ de vecteur</p>
+          {tex`
+            \vec F(x, y, z) = x z \vec i + xyz \vec j - y^2 \vec k
+          `}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          from sympy.vector import *
+          C, nabla = CoordSys3D(''), Del()
+          x, y, z, i, j, k = C.x, C.y, C.z, C.i, C.j, C.k
+          F = x*z*i + x*y*z*j - y**2*k
+          nabla.dot(F).doit()
+        `}
+      </Slide>
+      <Slide title="Laplacien">
+        <Definition>
+          {tex`
+            \nabla^2 = \nabla \cdot \nabla
+          `}
+        </Definition>
+        {tex`
+          \nabla^2 f = 0 \quad \text{(Équation de Laplace)}
+        `}
+      </Slide>
+      <Slide title="Le théorème de Green revisité">
+        <Theorem>
+          {tex`
+            \oint_C \vec F \cdot \dd \vec r = \iint_D \curl \vec F \cdot \vec k \dd A
+          `}
+          {tex`
+            \oint_C \vec F \cdot \vec n \dd s = \iint_D \divergence \vec F(x, y) \dd A
+          `}
+        </Theorem>
+      </Slide>
     </Slideshow>
   )
 }
