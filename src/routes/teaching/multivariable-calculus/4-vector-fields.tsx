@@ -389,10 +389,35 @@ export default function () {
           f = f + integrate(F[2] - f.diff(z), z)
         `}
       </Slide>
+      <Slide title="Circulation sur un chemin fermé">
+        {tex`
+          \oint_C \vec F \cdot \dd \vec r:
+          \quad
+          \text{circulation sur une courbe } C \text{ fermée}
+        `}
+        <Remark>
+          <p>
+            Si {tex`\vec F`} est conservatif ({tex`\vec F = \grad f`}), alors
+          </p>
+          {tex`
+            \oint_C \vec F \cdot \dd r = 0.
+          `}
+        </Remark>
+        <ul>
+          <li>
+            Électrostatique: la circulation du champ électrique sur un chemin fermé est nulle.
+          </li>
+          <li>
+            La circulation du champ magnétique est proportionnelle au courant
+            <Figure src="magnetic-field.png" alt="Champ magnétique" />
+          </li>
+          <li>Plus tard: rotationnel = densité de circulation</li>
+        </ul>
+      </Slide>
       <Slide title="Théorème de Green: introduction">
         <Recall>
           {tex`
-            \underbrace{\int_a^b f'(x) \dd x}_{\text{intérieur}} = \underbrace{f(b) - f(a)}_{\text{bord}}
+            \underbrace{\int_a^b \overbrace{f'(x)}^{\text{local}} \dd x}_{\text{intérieur}} = \underbrace{f(b) - f(a)}_{\text{bord}}
           `}
         </Recall>
         <Recall>
@@ -460,7 +485,7 @@ export default function () {
         <Example>
           <p>Évaluez l'intégrale</p>
           {tex`
-            \oint_C (3 y - e^{\sin x}) \dd x + (7x + \sqrt{x^4 + 1}) \dd y
+            \oint_C (3 y - e^{\sin x}) \dd x + (7x + \sqrt{y^4 + 1}) \dd y
           `}
           <p>
             où {tex`C`} est le cercle d'équation {tex`x^2 + y^2 = 9`}.
