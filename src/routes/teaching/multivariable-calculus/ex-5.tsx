@@ -35,9 +35,9 @@ export default function () {
               \quad
               \dd s = \norm{\frac {\dd \vec r} {\dd t}} \dd t,
               \quad
-              \dd x = \frac {\dd \vec x} {\dd t} \dd t,
+              \dd x = \frac {\dd x} {\dd t} \dd t,
               \quad
-              \dd y = \frac {\dd \vec y} {\dd t} \dd t
+              \dd y = \frac {\dd y} {\dd t} \dd t
             `}
           </li>
         </ol>
@@ -59,7 +59,7 @@ export default function () {
           `}
           <ul>
             <li>
-              si {tex`C`} est le segment de {tex`(-3, -3)`}?
+              si {tex`C`} est le segment de {tex`(-3, -3)`} à {tex`(-3, 3)`}?
             </li>
             <li>si {tex`C`} est un cercle centré à l'origine dans le sens antihorloger?</li>
           </ul>
@@ -80,16 +80,51 @@ export default function () {
             ensuite calculez-là.
           </p>
         </Exercise>
+        <h3>Indications</h3>
+        <ul>
+          <li>
+            Regardez la résolution d'un{' '}
+            <a href="https://nguyen.me.uk/teaching/multivariable-calculus-b/4-vector-fields#/14">
+              exercice similaire fait au cours
+            </a>
+          </li>
+          <li>Des indications supplémentaires sont données au slide suivant</li>
+        </ul>
       </Slide>
-      <Slide title="16.2.28: solution en Python">
-        {py.jupyter`
-          from sympy import *
-          t = Symbol("t")
-          r = Matrix([t, 1 + t**2])
-          x, y = r[0], r[1]
-          F = 1 / sqrt(x**2 + y**2) * Matrix([x, y])
-          integrate(simplify(F.dot(r.diff(t))), (t, -1, 1))
-        `}
+      <Slide title="16.2.28: solution en Python" columns>
+        <ol>
+          <li>
+            <strong>Paramétrisation</strong>
+            {tex`
+              \vec r(t) = (\underbrace{t}_x, \underbrace{1 + t^2}_{y}),
+              \quad -1 \leq t \leq 1.
+            `}
+          </li>
+          <li>
+            <strong>Calcul de l'intégrand</strong>:
+            {tex`
+              \int_C \vec F \cdot \dd \vec r
+              = \int_a^b \underbrace{\vec F \cdot \frac {\dd \vec r} {\dd t}}_{\text{intégrand}} \dd t
+            `}
+          </li>
+        </ol>
+        <div>
+          <p>Changez le code pour obtenir les résultats intermédiaires dont vous avez besoin</p>
+          {py.jupyter`
+            from sympy import *
+            F = lambda x, y: 1 / sqrt(x**2 + y**2) * Matrix([x, y])
+
+            # Paramétrisation
+            t = Symbol("t")
+            r = Matrix([t, 1 + t**2])
+
+            # Calcul de l'intégrand
+            integrand = simplify(F(*r).dot(r.diff(t)))
+
+            # Résultat final
+            integrate(integrand, (t, -1, 1))
+          `}
+        </div>
       </Slide>
       <Slide title="16.2.39">
         <Remark>
