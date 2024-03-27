@@ -150,9 +150,8 @@ export default function () {
           from sympy import *
           t = Symbol("t")
           r = Matrix([t - sin(t), 1 - cos(t)])
-          x, y = r[0], r[1]
-          F = Matrix([x, y + 2])
-          integrate(F.dot(r.diff(t)), (t, 0, 2*pi))
+          F = lambda x, y: Matrix([x, y + 2])
+          integrate(F(*r).dot(r.diff(t)), (t, 0, 2*pi))
         `}
       </Slide>
       <Slide title="16.2.52">
@@ -171,6 +170,7 @@ export default function () {
             B = \frac {\mu_0 I} {2 \pi r}
           `}
         </Exercise>
+        <Figure src="magnetic-field.png" alt="Magnetic field" />
       </Slide>
       <Slide title="Théorème fondamental et champs conservatifs">
         <Theorem>
