@@ -128,7 +128,10 @@ export default function () {
       </Slide>
       <Slide title="16.2.39">
         <Remark>
-          <p>S'il y a pas assez de travail...</p>
+          <p>
+            S'il y a pas assez de travail, ou après la séance, si vous souhaitez faire une intégrale
+            curviligne en plus...
+          </p>
         </Remark>
         <Exercise>
           <p>Trouvez le travail effectué par la force</p>
