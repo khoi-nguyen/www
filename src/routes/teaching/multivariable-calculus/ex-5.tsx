@@ -44,7 +44,7 @@ export default function () {
       </Slide>
       <Slide title="16.2.17">
         <Exercise>
-          <p>Soit {tex`\vec F`} le champ de vecteur représenté ci-dessous. Que vaut</p>
+          <p>Soit {tex`\vec F`} le champ de vecteur représenté ci-dessous. Quel est le signe de</p>
           {tex`
             \int_C \vec F \cdot \dd \vec r
           `}
@@ -162,7 +162,7 @@ export default function () {
             l'axe du fil. La loi d'Ampère nous donne
           </p>
           {tex`
-            \oint_C \vec B \dot \dd \vec r = \mu_0 I
+            \oint_C \vec B \cdot \dd \vec r = \mu_0 I
           `}
           où {tex`I`} est le courant passant par une surface délimitée par {tex`C`}. Montrer que la
           norme du champ magnétique à une distance {tex`r`} du fil est donnée par
