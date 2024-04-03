@@ -21,6 +21,7 @@ const abbreviations = {
   JPEG: 'Joint Photographic Experts Group',
   JSON: 'JavaScript Object Notation',
   JSX: 'JavaScript Syntax Extension',
+  JWT: 'JSON Web Tokens',
   LTS: 'Long-term support',
   MASt: 'Master of Advanced Study',
   MP3: 'Moving Picture Experts Group Layer-3 Audio',
