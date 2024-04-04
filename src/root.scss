@@ -235,6 +235,11 @@ table {
   }
 }
 
+textarea {
+  @extend .clickable;
+  width: 100%;
+}
+
 pre,
 .editor pre[class*='language-'] {
   background: white;
