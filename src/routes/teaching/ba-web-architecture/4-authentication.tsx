@@ -467,6 +467,25 @@ export default function () {
         <h3>Avec salage</h3>
         <UserTable hash={true} salt={true} />
       </Slide>
+      <Slide title="Exemple: Bcrypt">
+        <h3>Hacher un mot de passe</h3>
+        {js.jupyter`
+          import bcrypt from 'bcryptjs'
+          const salt = bcrypt.genSaltSync(10)
+          const hash = bcrypt.hashSync('hello', salt)
+          alert(salt + ', ' + hash)
+        `}
+        <h3>Vérifier un mot de passe</h3>
+        {js.jupyter`
+          import bcrypt from 'bcryptjs'
+          const hashed = '$2a$10$bbKbGSuWgXdYYDsdW8jSgOxTMf/pHJx0UecGN2mKn6PMgXif3diKu'
+          if (bcrypt.compareSync('hello', hashed)) {
+            alert('Hello')
+          } else {
+            alert('The password is incorrect')
+          }
+        `}
+      </Slide>
       <Slide title="Authentification avec hachage salé">
         <ol>
           <li>L'utilisateur envoie son login et mot de passe</li>
