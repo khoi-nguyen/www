@@ -39,6 +39,7 @@ const abbreviations = {
   SOAP: 'Simple Object Access Protocol',
   SPA: 'Single Page Application',
   SQL: 'Structured Query Language',
+  SSO: 'Single sign-on',
   SSR: 'Server Side Rendering',
   UI: 'User Interface',
   URL: 'Uniform Resource Locator',
