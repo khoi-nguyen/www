@@ -226,7 +226,23 @@ function Base64() {
     <>
       <label>
         Chaîne:
-        <textarea value={input()} onInput={(e) => setInput(e.target.value)} />
+        <textarea value={input()} onInput={(e) => setInput(e.target.value)} class="mono" />
+      </label>
+      <pre>
+        <code class="clickable">{encoded()}</code>
+      </pre>
+    </>
+  )
+}
+
+function Base64Decode() {
+  const [input, setInput] = createSignal('')
+  const encoded = () => atob(input())
+  return (
+    <>
+      <label>
+        Base 64:
+        <textarea value={input()} onInput={(e) => setInput(e.target.value)} class="mono" />
       </label>
       <pre>
         <code>{encoded()}</code>
@@ -258,11 +274,11 @@ function SignedMessage() {
 
   return (
     <>
-      <textarea onInput={(e) => setMessage(e.target.value)} placeholder="Message">
+      <textarea onInput={(e) => setMessage(e.target.value)} placeholder="Message" class="mono">
         {message()}
       </textarea>
       <Button onClick={sign}>Signer le message</Button>
-      <textarea onInput={(e) => setMessage(e.target.value)} placeholder="Signature">
+      <textarea onInput={(e) => setMessage(e.target.value)} placeholder="Signature" class="mono">
         {signature()}
       </textarea>
       <Show when={message() && !correct()}>
@@ -292,7 +308,9 @@ function JWTSimplified(props: { secret?: string; message?: string }) {
   return (
     <>
       <h3>Message</h3>
-      <textarea onInput={(e) => setMessage(e.target.value)}>{message()}</textarea>
+      <textarea onInput={(e) => setMessage(e.target.value)} class="mono">
+        {message()}
+      </textarea>
       <h3>Token</h3>
       {tex`
         \underbrace{\text{${base64()}}}_{\text{message encodé en base 64}}
@@ -325,7 +343,12 @@ function CheckJWT(props: { secret?: string }) {
 
   return (
     <>
-      <textarea onInput={(e) => setToken(e.target.value)} value={token()} placeholder="Token" />
+      <textarea
+        onInput={(e) => setToken(e.target.value)}
+        value={token()}
+        placeholder="Token"
+        class="mono"
+      />
       <pre>{JSON.stringify(payload())}</pre>
       <Show when={token() && valid()}>
         <p style={{ color: 'green' }}>Signature valide</p>
@@ -487,6 +510,16 @@ export default function () {
         `}
       </Slide>
       <Slide title="Authentification avec hachage salé">
+        <h3>Enregistrement</h3>
+        <ol>
+          <li>L'utilisateur envoie son login et mot de passe</li>
+          <li>Le serveur génère un sel aléatoire</li>
+          <li>
+            Le serveur stocke login en clair, mais hache le mot de passe avec le sel. Il s'assure
+            que le sel est également stocké avec le hachage.
+          </li>
+        </ol>
+        <h3>Identification</h3>
         <ol>
           <li>L'utilisateur envoie son login et mot de passe</li>
           <li>
@@ -539,6 +572,7 @@ export default function () {
           Réponse: on encode du <Abbr key="JSON" /> en base 64.
         </p>
         <Base64 />
+        <Base64Decode />
       </Slide>
       <Slide title="Cookies: sécurité">
         <h3>Vol de cookies</h3>
@@ -547,6 +581,9 @@ export default function () {
           client. Obtenir le contenu de ce fichier d'une autre personne vous permettrait d'être
           connecté en tant que cette personne. D'un point de vue de sécurité, le cookie de session
           est un des points faibles de l'authentification.
+        </p>
+        <p>
+          <strong>Note à moi-même: démo</strong>
         </p>
         <h3>Falsification de cookies (MITM)</h3>
         <p>On peut changer les cookies manuellement (Developer Tools, Application, Cookies)</p>
