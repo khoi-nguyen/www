@@ -7,7 +7,7 @@ const meta: Metadata = {
 export default () => {
   return (
     <Page meta={meta}>
-      <p>Cette liste n'est pas définitive!</p>
+      <p>Cette liste sera définitive le jour du dernier cours théorique.</p>
       <h2>Architecture de composants</h2>
       <ul>
         <li>
