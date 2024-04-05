@@ -220,7 +220,7 @@ function CookieTampering() {
 }
 
 function Base64() {
-  const [input, setInput] = createSignal('')
+  const [input, setInput] = createSignal('{"name": "tuxie", "admin": false}')
   const encoded = () => btoa(input())
   return (
     <>
