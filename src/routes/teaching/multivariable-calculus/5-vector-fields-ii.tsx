@@ -258,10 +258,8 @@ export default function () {
           r = Matrix([x, y, 1 - x**2 - y**2])
           N = r.diff(x).cross(r.diff(y))
           limits = [(y, -sqrt(1-x**2), sqrt(1-x**2)), (x, -1, 1)]
-          I = integrate(F(*r).dot(N), *limits)
-          r = Matrix([x, y, 0])
-          N = r.diff(x).cross(r.diff(y))
-          I = I + integrate(F(*r).dot(N), *limits)
+          # We don't need to integrate at the bottom. Why?
+          integrate(F(*r).dot(N), *limits)
         `}
       </Slide>
     </Slideshow>
