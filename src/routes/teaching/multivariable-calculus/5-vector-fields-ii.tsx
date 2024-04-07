@@ -183,7 +183,6 @@ export default function () {
           integrate(y * dS, (x, 0, 1), (y, 0, 2))
         `}
       </Slide>
-      <Slide title="Décomposition en surfaces"></Slide>
       <Slide title="Surfaces orientées">
         <Figure src="orientation.png" alt="Orientation" />
         <p>L'intégrale de champ de vecteurs ne peut se faire que sur une surface orientée.</p>
