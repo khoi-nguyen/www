@@ -100,8 +100,8 @@ export default function () {
         {py.jupyter`
           from sympy import *
           x, y = symbols("x y")
-          f = Function("f")(x, y)
-          r = Matrix([x, y, f])
+          z = Function("z")(x, y)
+          r = Matrix([x, y, z])
           N = r.diff(x).cross(r.diff(y))
           sqrt(N.dot(N))
         `}
