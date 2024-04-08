@@ -33,6 +33,6 @@ export async function writeBoard(
     await writeJSONFile(fileFromUrl(data.url), data.contents, event)
   } else {
     await writeJSONFile(fileFromUrl(data.url), data.contents, event)
-    throw new Error('Your version of the boards seem too old. Try refreshing the page.')
+    // throw new Error('Your version of the boards seem too old. Try refreshing the page.')
   }
 }
