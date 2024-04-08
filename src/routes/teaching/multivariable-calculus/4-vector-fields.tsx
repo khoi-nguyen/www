@@ -691,6 +691,7 @@ export default function () {
           {tex`
             \vec F(x, y, z) = x z \vec i + xyz \vec j - y^2 \vec k
           `}
+          <p>ne peut être écrit comme un rotationnel.</p>
         </Example>
         {py.jupyter`
           from sympy import *
