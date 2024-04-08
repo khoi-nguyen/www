@@ -10,10 +10,10 @@ export function makeContext(slideCount: number) {
   // Saving
   const [saving, saveAction] = createServerAction$(writeBoard)
   const [state, setState] = createSignal<'unsaved' | 'saving' | 'saved'>('saved')
-  const save = async () => {
+  const save = async (forceWrite = false) => {
     if (admin() && state() === 'unsaved') {
       setState('saving')
-      await saveAction({ url, contents: boards() })
+      await saveAction({ url, contents: boards(), forceWrite })
       setState('saved')
     }
   }

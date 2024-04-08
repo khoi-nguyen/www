@@ -19,7 +19,7 @@ export function loadBoard(key: [string, string, number]) {
 }
 
 export async function writeBoard(
-  data: { url: string; contents: Stroke[][][] },
+  data: { url: string; contents: Stroke[][][]; forceWrite?: boolean },
   event: ServerFunctionEvent,
 ) {
   const stored = readJSONFile(fileFromUrl(data.url))
@@ -29,10 +29,9 @@ export async function writeBoard(
       changes++
     }
   }
-  if (changes <= 1) {
+  if (changes <= 1 || data.forceWrite) {
     await writeJSONFile(fileFromUrl(data.url), data.contents, event)
   } else {
-    await writeJSONFile(fileFromUrl(data.url), data.contents, event)
-    // throw new Error('Your version of the boards seem too old. Try refreshing the page.')
+    throw new Error('Your version of the boards seem too old. Try refreshing the page.')
   }
 }
