@@ -130,13 +130,16 @@ export default function Toolbar(props: ToolbarProps) {
 function SavingState() {
   const [admin] = useSession()
   const context = useBoards()
+  const forceSave = () => context.save(true)
   return (
     <Show when={admin()}>
       <Show when={context.state() === 'saving'}>
         <Spinner inline />
       </Show>
       <Show when={context.state() === 'unsaved'}>
-        <Fa icon={faFloppyDisk} />
+        <button onClick={forceSave}>
+          <Fa icon={faFloppyDisk} />
+        </button>
       </Show>
     </Show>
   )
