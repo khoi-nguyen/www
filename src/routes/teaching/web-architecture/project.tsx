@@ -19,7 +19,7 @@ function Grid() {
         ['1*', 'Behaves like a Single Page Application'],
         [2, 'A good understanding of state, effects and life-cycle hooks'],
         [2, 'All server actions can be performed via an API route'],
-        [1, 'Uses correctly implemented authentication'],
+        ['1* (merci Thibaut)', 'Uses correctly implemented authentication'],
         [3, 'Complexity of the project'],
       ],
     },
