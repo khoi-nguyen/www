@@ -8,6 +8,16 @@ export default function () {
   return (
     <Slideshow meta={meta}>
       <Slide title="16.4.18">
+        <Recall title="Théorème de Green">
+          {tex`
+            \oint_C \vec F \cdot \underbrace{\dd \vec r}_{\begin{pmatrix}\dd x \\ \dd y\end{pmatrix}}
+            = \iint_D \left(\partial_x F_2 - \partial_y F_1\right) \dd A
+          `}
+          <p>
+            Comparez le membre de droite à la condition nécéssaire d'existence de potentiel et au
+            rotationnel.
+          </p>
+        </Recall>
         <Exercise>
           <p>
             Une particule part de l'origine, se déplace le long de l'axe des {tex`x`} jusque{' '}
@@ -32,6 +42,60 @@ export default function () {
           curl = curl.subs({x: r*cos(theta), y: r*sin(theta)}) * r
           simplify(integrate(curl, (r, 0, 5), (theta, 0, pi/2)))
         `}
+      </Slide>
+      <Slide title="Nabla, divergence, rotationnel" columns>
+        <div>
+          <Definition title="Rotationnel">
+            {tex`
+              \underbrace{\vec{\nabla}}_{\text{nabla}}
+              \overbrace{\times}^{\text{pr. vect.}} \vec F
+            `}
+          </Definition>
+          {py.jupyter`
+            from sympy import *
+            from sympy.vector import *
+            C, nabla = CoordSys3D(''), Del()
+            x, y, z = symbols("x y z")
+            F1 = Function("F1")(x, y, z)
+            F2 = Function("F2")(x, y, z)
+            F3 = Function("F3")(x, y, z)
+            F = F1*C.i + F2*C.j + F3*C.k
+            nabla.cross(F)
+          `}
+          {tex`
+            \rot \vec F
+            = \begin{pmatrix}
+              \partial_2 F_3 - \partial_3 F_2\\
+              \partial_3 F_1 - \partial_1 F_3\\
+              \partial_1 F_2 - \partial_2 F_1
+            \end{pmatrix}
+          `}
+        </div>
+        <div>
+          <Definition title="Divergence">
+            {tex`
+              \underbrace{\vec{\nabla}}_{\text{nabla}}
+              \overbrace{\cdot}^{\text{pr. sc.}} \vec F
+            `}
+          </Definition>
+          {py.jupyter`
+            from sympy import *
+            from sympy.vector import *
+            C, nabla = CoordSys3D(''), Del()
+            x, y, z = symbols("x y z")
+            F1 = Function("F1")(x, y, z)
+            F2 = Function("F2")(x, y, z)
+            F3 = Function("F3")(x, y, z)
+            F = F1*C.i + F2*C.j + F3*C.k
+            nabla.dot(F)
+          `}
+          {tex`
+            \divergence \vec F
+            = \frac {\partial F_1} {\partial x}
+            + \frac {\partial F_2} {\partial y}
+            + \frac {\partial F_3} {\partial z}
+          `}
+        </div>
       </Slide>
       <Slide title="Interprétation de la divergence et du rotationnel" columns>
         <dl>
