@@ -142,6 +142,16 @@ export default function () {
         <Figure src="estimate-div-curl.png" alt="Exercice du calculus"></Figure>
       </Slide>
       <Slide title="16.5.{13, 17}">
+        <Recall>
+          {tex`
+            \vec F = \grad V
+            \quad \substack{\displaystyle \Longrightarrow \\ \displaystyle \underset{\text{simplement connexe}}{\Longleftarrow}} \quad
+            \curl \vec F = \vec 0\\
+            \vec F = \curl A
+            \quad \substack{\displaystyle \Longrightarrow \\ \displaystyle \underset{\text{simplement connexe}}{\Longleftarrow}} \quad
+            \divergence \vec F = 0\\
+          `}
+        </Recall>
         <Exercise>
           <p>Déterminer si le champ de vecteur est conservatif. Si oui, trouvez un potentiel</p>
           <ul>
@@ -175,10 +185,10 @@ export default function () {
         <Recall>
           {tex`
             \vec F = \grad V
-            \quad \Longleftrightarrow \quad
+            \quad \substack{\displaystyle \Longrightarrow \\ \displaystyle \underset{\text{simplement connexe}}{\Longleftarrow}} \quad
             \curl \vec F = \vec 0\\
             \vec F = \curl A
-            \quad \Longleftrightarrow \quad
+            \quad \substack{\displaystyle \Longrightarrow \\ \displaystyle \underset{\text{simplement connexe}}{\Longleftarrow}} \quad
             \divergence \vec F = 0\\
           `}
         </Recall>
