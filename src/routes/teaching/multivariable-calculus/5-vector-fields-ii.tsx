@@ -271,7 +271,9 @@ export default function () {
           integrate(F(*r).dot(N), *limits)
         `}
       </Slide>
-      <Slide title="Orientation induite sur le contour"></Slide>
+      <Slide title="Orientation induite sur le contour">
+        <Figure src="induced-orientation.png" alt="Orientation induite" />
+      </Slide>
       <Slide title="Théorème de Stokes">
         <Theorem>
           <p>
@@ -284,6 +286,11 @@ export default function () {
           `}
         </Theorem>
         <p>Si {tex`S`} est un parallélipipède, c'est le théorème de Green.</p>
+        <p>Si {tex`S_1, S_2`} sont deux surfaces avec le même contour, alors</p>
+        {tex`
+            \iint_{S_1} \curl \vec F \cdot \dd \vec S
+            = \iint_{S_2} \curl \vec F \cdot \dd \vec S
+        `}
       </Slide>
       <Slide title="Stokes: exemple">
         <Example>
