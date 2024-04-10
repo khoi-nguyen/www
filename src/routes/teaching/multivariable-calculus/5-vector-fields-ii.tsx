@@ -218,6 +218,10 @@ export default function () {
         {tex`
           \iint_S \vec F \cdot \dd \vec S = \iint_D \vec F \cdot \left(\frac {\partial \vec r} {\partial u} \times \frac {\partial \vec r} {\partial v}\right) \dd A
         `}
+        <p>En particulier, pour un graphe:</p>
+        {tex`
+          \iint_S \vec F \cdot \dd \vec S = \iint_D \vec F \cdot \left(-\frac {\partial z} {\partial x} \vec i - \frac {\partial z} {\partial y} \vec j + \vec k\right) \dd x \dd y
+        `}
       </Slide>
       <Slide title="Flux: exemple">
         <Example>
@@ -242,6 +246,11 @@ export default function () {
         `}
       </Slide>
       <Slide title="Flux à travers un graphe">
+        <Recall>
+          {tex`
+            \dd \vec S = -\frac {\partial z} {\partial x} \vec i - \frac{\partial z} {\partial y} \vec j + \vec k
+          `}
+        </Recall>
         <Example>
           {tex`
             \iint_S \vec F \cdot \dd \vec S,
@@ -260,6 +269,59 @@ export default function () {
           limits = [(y, -sqrt(1-x**2), sqrt(1-x**2)), (x, -1, 1)]
           # We don't need to integrate at the bottom. Why?
           integrate(F(*r).dot(N), *limits)
+        `}
+      </Slide>
+      <Slide title="Orientation induite sur le contour"></Slide>
+      <Slide title="Théorème de Stokes">
+        <Theorem>
+          <p>
+            Si {tex`S`} est gentille et orientée et sa frontière {tex`C`} est aussi gentille avec
+            l'orientation induite,
+          </p>
+          {tex`
+            \int_C \vec F \cdot \dd \vec r
+            = \iint_S \curl \vec F \cdot \dd \vec S
+          `}
+        </Theorem>
+        <p>Si {tex`S`} est un parallélipipède, c'est le théorème de Green.</p>
+      </Slide>
+      <Slide title="Stokes: exemple">
+        <Example>
+          {tex`
+            \int_C \vec F \cdot \dd \vec r,
+            \quad \vec F(x, y, z) = -y^2 \vec i + x \vec j + z^2 \vec k,
+          `}
+          <p>
+            où {tex`C`} est l'intersection entre le plan {tex`y + z = 2`} et le cylindre{' '}
+            {tex`x^2 + y^2 = 1`}, orienté dans le sens anti-horloger vu par le dessus.
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          from sympy.vector import *
+          C, nabla = CoordSys3D(''), Del()
+          x, y, z, i, j, k = C.x, C.y, C.z, C.i, C.j, C.k
+          F = -y**2*i + x*j + z**2*k
+          integrate(curl(F).dot(k), (y, -sqrt(1-x**2), sqrt(1-x**2)), (x, -1, 1))
+        `}
+      </Slide>
+      <Slide title="Stokes: exemple">
+        <Example>
+          {tex`
+            \iint_S \curl \vec F \cdot \dd \vec S,
+            \quad \vec F(x, y, z) = xz \vec i + yz \vec j + xy \vec k
+          `}
+          <p>
+            où {tex`S`} est la partie de la sphère {tex`x^2 + y^2 + z^2 = 4`} contenue dans le
+            cylindre {tex`x^2 + y^2 = 1`} et au-dessus du plan {tex`xy`}.
+          </p>
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          t = Symbol("t")
+          r = Matrix([cos(t), sin(t), sqrt(3)])
+          F = lambda x, y, z: Matrix([x*z, y*z, x*y])
+          integrate(F(*r).dot(r.diff(t)), (t, 0, 2*pi))
         `}
       </Slide>
     </Slideshow>
