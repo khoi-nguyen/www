@@ -163,6 +163,32 @@ export default function () {
         `}
       </Slide>
       <Slide title="16.5.19: Potentiel vecteur">
+        {tex`
+          \text{fonction}
+          \stackrel{\grad}{\longrightarrow}\
+          \text{champ}
+          \stackrel{\curl}{\longrightarrow}\
+          \text{champ}
+          \stackrel{\divergence}{\longrightarrow}\
+          \text{fonction}
+        `}
+        <Recall>
+          {tex`
+            \vec F = \grad V
+            \quad \Longleftrightarrow \quad
+            \curl \vec F = \vec 0\\
+            \vec F = \curl A
+            \quad \Longleftrightarrow \quad
+            \divergence \vec F = 0\\
+          `}
+        </Recall>
+        <ul>
+          <li>
+            les conditions {tex`\Longleftarrow`} ne sont vraies que si le domaine est en un morceau
+            et sans trous.
+          </li>
+          <li>Regardez les équations de Maxwell!</li>
+        </ul>
         <Exercise>
           <p>Existe-t-il un champ de vecteur {tex`G : \R^3 \to \R^3`} tel que</p>
           {tex`
