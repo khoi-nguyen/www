@@ -75,7 +75,7 @@ export default function () {
         </div>
       </Slide>
       <Slide title="Installation de Prisma">
-        <pre>
+        <pre class="clickable">
           {dedent`
             npm install prisma --save-dev
             npx prisma init --datasource-provider sqlite
@@ -86,7 +86,7 @@ export default function () {
         <p>
           Dans le fichier <code>prisma/schema.prisma</code>
         </p>
-        <pre>
+        <pre class="clickable">
           {dedent`
             model User {
               id        Int     @id @default(autoincrement())
