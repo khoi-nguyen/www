@@ -96,29 +96,33 @@ export default function () {
           `}
         </pre>
         <p>
-          Ensuite, lancez la commande <code>npx prisma migrate dev --name init</code>
+          Ensuite, lancez la commande{' '}
+          <code class="clickable">npx prisma migrate dev --name init</code>
         </p>
         <p>
-          Pour regarder les données en DB, utilisez la commande <code>npx prisma studio</code>
+          Pour regarder les données en DB, utilisez la commande{' '}
+          <code class="clickable">npx prisma studio</code>
         </p>
       </Slide>
       <Slide title="Inscription">
-        {js.hl`
-          import { PrismaClient } from '@prisma/client'
-          const prisma = new PrismaClient()
+        <div class="clickable">
+          {js.hl`
+            import { PrismaClient } from '@prisma/client'
+            const prisma = new PrismaClient()
 
-          export const actions = {
-            register: async (event) => {
-              const form = await event.request.formData();
-              await prisma.user.create({
-                data: {
-                  email: form.get('email'),
-                  password: form.get('password'),
-                }
-              })
+            export const actions = {
+              register: async (event) => {
+                const form = await event.request.formData();
+                await prisma.user.create({
+                  data: {
+                    email: form.get('email'),
+                    password: form.get('password'),
+                  }
+                })
+              }
             }
-          }
-        `}
+          `}
+        </div>
       </Slide>
       <Slide title="Hachage">
         <Remark>
