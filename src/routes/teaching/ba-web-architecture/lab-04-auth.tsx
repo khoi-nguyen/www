@@ -56,21 +56,23 @@ export default function () {
         <p>
           Dans <code>src/routes/login/+page.server.js</code>
         </p>
-        {js.hl`
-          import { fail } from '@sveltejs/kit'
+        <div class="clickable">
+          {js.hl`
+            import { fail } from '@sveltejs/kit'
 
-          /** @type {import('./$types').Actions} */
-          export const actions = {
-            login: async (event) => {
-              const form = await event.request.formData();
-              if (form.get('email') === 'admin@admin.com' && password === 'password') {
-                return { success: true }
-              } else {
-                return fail(400, { incorrect: true })
-              }
-            },
-          };
-        `}
+            /** @type {import('./$types').Actions} */
+            export const actions = {
+              login: async (event) => {
+                const form = await event.request.formData();
+                if (form.get('email') === 'admin@admin.com' && password === 'password') {
+                  return { success: true }
+                } else {
+                  return fail(400, { incorrect: true })
+                }
+              },
+            };
+          `}
+        </div>
       </Slide>
       <Slide title="Installation de Prisma">
         <pre>
