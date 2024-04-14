@@ -331,6 +331,96 @@ export default function () {
           integrate(F(*r).dot(r.diff(t)), (t, 0, 2*pi))
         `}
       </Slide>
+      <Slide title="Interprétation du rotationnel">
+        {tex`
+          \text{masse} &= \iint_S \underbrace{\rho(x, y, z)}_{\text{densité de masse}} \dd S\\
+          \text{charge} &= \iint_S \underbrace{\sigma(x, y, z)}_{\text{densité de charge}} \dd S\\
+          \text{circulation} &= \iint_S \underbrace{\curl \vec F \cdot \vec n}_? \dd S
+        `}
+        <Remark>
+          <p>Le rotationnel représente la densité de circulation</p>
+        </Remark>
+      </Slide>
+      <Slide title="Théorème de la divergence">
+        <Theorem title="Divergence (Ostrogradsky)">
+          <p>
+            Soit une région simple {tex`E`} dont la surface {tex`S`} est munie de l'orientation
+            extérieure.
+          </p>
+          {tex`
+            \iint_S \vec F \cdot \dd \vec S = \iiint_E \divergence \vec F \dd V
+          `}
+        </Theorem>
+        <p>Preuve lorsque {tex`E = [a_1, b_1] \times [a_2, b_2] \times [a_3, b_3]`}</p>
+        <Remark>
+          <p>Le théorème de la divergence généralise le théorème fondamental de l'analyse</p>
+          {tex`
+            \int_a^b f'(x) \dd x = f(b) - f(a)
+          `}
+        </Remark>
+      </Slide>
+      <Slide title="Exemple: calcul de flux">
+        <Exercise>
+          <p>
+            Trouvez le flux du champ {tex`\vec F(x, y, z) = z \vec i + y \vec j + x \vec k`} à
+            travers la sphère unité.
+          </p>
+        </Exercise>
+        {py.jupyter`
+          from sympy import *
+          x, y, z, r, theta, phi = symbols("x y z r theta phi")
+          F = Matrix([z, y, x])
+          div = F[0].diff(x) + F[1].diff(y) + F[2].diff(z)
+          spherical = { 
+            x: r*sin(phi)*cos(theta),
+            y: r*sin(phi)*sin(theta),
+            z: r*cos(phi)
+          }
+          div = div.subs(spherical) * r**2 * sin(phi)
+          integrate(div, (r, 0, 1), (phi, 0, pi), (theta, 0, 2*pi))
+        `}
+      </Slide>
+      <Slide title="Exemple: calcul de flux">
+        <Example>
+          {tex`
+            \vec F(x, y, z) = xy \vec i + (y^2 + e^{xz^2}) \vec j + \sin(x y) \vec k
+          `}
+          où {tex`S`} est la surface de la région {tex`E`} délimitée par {tex`z = 1 - x^2`},{' '}
+          {tex`z = 0`}, {tex`y = 0`} et {tex`y + z = 2`}
+        </Example>
+        {py.jupyter`
+          from sympy import *
+          x, y, z, r, theta, phi = symbols("x y z r theta phi")
+          F = Matrix([x*y, y**2 + exp(x*z**2), sin(x*y)])
+          div = F[0].diff(x) + F[1].diff(y) + F[2].diff(z)
+          integrate(div, (y, 0, 2-z), (z, 0, 1-x**2), (x, -1, 1))
+        `}
+      </Slide>
+      <Slide title="Théorème de Gauss">
+        <Theorem>
+          <p>Soit le champ donné par</p>
+          {tex`
+            \vec E = \frac {1} {4 \pi \epsilon_0} \frac Q {\norm x^3} \vec x
+          `}
+          <p>
+            Montrez que le flux ne dépend pas du choix de surface {tex`S`} contenant l'origine et
+            que
+          </p>
+          {tex`
+            \iint_S \vec E \cdot \dd \vec S = \frac Q {\epsilon 0}
+          `}
+        </Theorem>
+        <Remark>
+          <p>Ce théorème est également vrai pour le champ gravitationnel classique.</p>
+        </Remark>
+      </Slide>
+      <Slide title="Interprétation de la divergence">
+        {tex`
+          \text{masse} &= \iiint_V \underbrace{\rho(x, y, z)}_{\text{densité de masse}} \dd V\\
+          \text{charge} &= \iiint_V \underbrace{\sigma(x, y, z)}_{\text{densité de charge}} \dd V\\
+          \text{flux} &= \iiint_V \underbrace{\divergence \vec F(x, y, z)}_{?} \dd V
+        `}
+      </Slide>
     </Slideshow>
   )
 }
