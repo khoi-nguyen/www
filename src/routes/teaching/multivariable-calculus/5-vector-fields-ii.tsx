@@ -421,12 +421,24 @@ export default function () {
           \text{flux} &= \iiint_V \underbrace{\divergence \vec F(x, y, z)}_{?} \dd V
         `}
       </Slide>
-      <Slide title="Application: Maxwell dans le vide">
+      <Slide title="Rotationnel du rotationnel">
         <Proposition>
           {tex`
             \curl (\curl \vec A) = \grad (\divergence \vec A) - \nabla^2 \vec A
           `}
         </Proposition>
+        {py.jupyter`
+          from sympy import *
+          from sympy.vector import *
+          C, nabla = CoordSys3D(''), Del()
+          A1 = Function("A1")(C.x, C.y, C.z)
+          A2 = Function("A2")(C.x, C.y, C.z)
+          A3 = Function("A3")(C.x, C.y, C.z)
+          A = A1 * C.i + A2 * C.j + A3 * C.k
+          curl(curl(A)) - gradient(divergence(A)) + laplacian(A)
+        `}
+      </Slide>
+      <Slide title="Application: Maxwell dans le vide">
         <Exercise>
           {tex`
             \divergence \vec E = 0,\quad
