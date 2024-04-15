@@ -421,6 +421,32 @@ export default function () {
           \text{flux} &= \iiint_V \underbrace{\divergence \vec F(x, y, z)}_{?} \dd V
         `}
       </Slide>
+      <Slide title="Application: Maxwell dans le vide">
+        <Proposition>
+          {tex`
+            \curl (\curl \vec A) = \grad (\divergence \vec A) - \nabla^2 \vec A
+          `}
+        </Proposition>
+        <Exercise>
+          {tex`
+            \divergence \vec E = 0,\quad
+            \curl \vec E = -\frac {-\partial \vec B} {\partial t},\\
+            \divergence \vec B = 0,\quad
+            \curl \vec B = \mu_0 \epsilon_0 \frac {-\partial \vec E} {\partial t},\\
+          `}
+        </Exercise>
+        <p>Infos utiles:</p>
+        {tex`
+          \frac 1 {v^2} \frac {\partial^2 u} {\partial t^2} - \nabla^2 u = 0
+          \quad \text{Équation d'onde}
+        `}
+        {py.jupyter`
+          from math import sqrt
+          mu0 = 1.25663706212 * 10**(-6)
+          epsilon0 = 8.8541878128 * 10**(-12)
+          c = 1 / sqrt(mu0 * epsilon0)
+        `}
+      </Slide>
     </Slideshow>
   )
 }
