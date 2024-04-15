@@ -442,9 +442,9 @@ export default function () {
         <Exercise>
           {tex`
             \divergence \vec E = 0,\quad
-            \curl \vec E = -\frac {-\partial \vec B} {\partial t},\\
+            \curl \vec E = -\frac {\partial \vec B} {\partial t},\\
             \divergence \vec B = 0,\quad
-            \curl \vec B = \mu_0 \epsilon_0 \frac {-\partial \vec E} {\partial t},\\
+            \curl \vec B = \mu_0 \epsilon_0 \frac {\partial \vec E} {\partial t},\\
           `}
         </Exercise>
         <p>Infos utiles:</p>
