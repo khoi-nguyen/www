@@ -42,7 +42,7 @@ export default function () {
             <tr>
               <td>Élément de longueur/surface (graphe)</td>
               <td>{tex`\dd s = \sqrt {1 + \left(\frac {\dd y} {\dd x}\right)^2} \dd x`}</td>
-              <td>{tex`\dd S = \sqrt {1 + \left(\frac {\partial z} {\partial x}\right)^2 + \left(\frac {\partial z} {\partial y}\right)^2} \dd x`}</td>
+              <td>{tex`\dd S = \sqrt {1 + \left(\frac {\partial z} {\partial x}\right)^2 + \left(\frac {\partial z} {\partial y}\right)^2} \dd x \dd y`}</td>
             </tr>
             <tr>
               <td>Intégration de champs de vecteurs</td>
