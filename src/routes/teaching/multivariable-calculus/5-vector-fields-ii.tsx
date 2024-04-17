@@ -285,7 +285,7 @@ export default function () {
             = \iint_S \curl \vec F \cdot \dd \vec S
           `}
         </Theorem>
-        <p>Si {tex`S`} est un parallélipipède, c'est le théorème de Green.</p>
+        <p>Si {tex`S`} est un rectangle, c'est le théorème de Green.</p>
         <p>Si {tex`S_1, S_2`} sont deux surfaces avec le même contour, alors</p>
         {tex`
             \iint_{S_1} \curl \vec F \cdot \dd \vec S
