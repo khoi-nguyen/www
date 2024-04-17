@@ -440,12 +440,18 @@ export default function () {
       </Slide>
       <Slide title="Application: Maxwell dans le vide">
         <Exercise>
+          <p>Voici les équations de Maxwell.</p>
           {tex`
-            \divergence \vec E = 0,\quad
+            \divergence \vec E = \frac \rho {\epsilon_0},\quad
             \curl \vec E = -\frac {\partial \vec B} {\partial t},\\
             \divergence \vec B = 0,\quad
-            \curl \vec B = \mu_0 \epsilon_0 \frac {\partial \vec E} {\partial t},\\
+            \curl \vec B = \mu_0 \vec J + \mu_0 \epsilon_0 \frac {\partial \vec E} {\partial t},\\
           `}
+          <p>
+            En prenant le rotationnel des équations rotationnelles, montrez que dans le vide,{' '}
+            {tex`\vec E`} et {tex`\vec B`} vérifient l'équations d'une onde se déplaçant à la
+            vitesse de la lumière quel que soit le repère.
+          </p>
         </Exercise>
         <p>Infos utiles:</p>
         {tex`
