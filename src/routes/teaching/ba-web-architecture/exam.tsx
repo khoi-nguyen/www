@@ -111,6 +111,15 @@ export default () => {
         <li>Qu'est-ce qu'OAuth? Comment fonctionne-t-il? (Diagramme de séquence)</li>
         <li>Pourquoi OAuth nécéssite un code d'autorisation en plus d'un token?</li>
       </ul>
+      <h2>Authentification</h2>
+      <ul>
+        <li>
+          Pourquoi employer le TypeScript si celui si sera tout de même reconverti en JavaScript
+          plus tard?
+        </li>
+        <li>Pourquoi les tests unitaires sont utiles?</li>
+        <li>Quelle est la différence entre les tests unitaires, d'intégration et end-to-end?</li>
+      </ul>
     </Page>
   )
 }
