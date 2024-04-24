@@ -6,7 +6,7 @@ const meta: Metadata = {
 
 export default function () {
   return (
-    <Slideshow meta={meta} hideBoards={new Date('2024-04-26')}>
+    <Slideshow meta={meta} hideBoards={new Date('2024-04-25 16:00')}>
       <Slide title="Résumé de l'intégration sur les courbes et surfaces" split={false}>
         <table>
           <thead>
