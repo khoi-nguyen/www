@@ -59,6 +59,12 @@ export default function () {
             </tr>
           </tbody>
         </table>
+        <Remark>
+          <p>
+            Il est possible d'éviter les calculs parfois en utilisant la spécificité de la
+            situation.
+          </p>
+        </Remark>
       </Slide>
       <Slide title="16.7.23: Flux">
         <Recall title="Flux à travers un graphe">
@@ -161,6 +167,9 @@ export default function () {
             {tex`0 \leq x \leq 2`}.
           </p>
         </Exercise>
+        <Remark>
+          <p>Il est possible d'éviter tout calcul pour les vecteurs normaux. Réfléchissez.</p>
+        </Remark>
       </Slide>
       <Slide title="16.9.4: solution" columns>
         <div>
