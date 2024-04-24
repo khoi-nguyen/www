@@ -6,7 +6,7 @@ interface SlideshowProps {
   meta: Parameters<typeof Meta>[0]
   autoSlide?: number
   hideTitleSlide?: boolean
-  hideBoards?: boolean
+  hideBoards?: boolean | Date
 }
 
 function getSlides(props: SlideshowProps) {
@@ -72,6 +72,19 @@ export default function Slideshow(props: SlideshowProps) {
     }
   })
 
+  const showBoards = () => {
+    if (context.admin()) {
+      return true
+    }
+    if (props.hideBoards === true || props.hideBoards === false) {
+      return !props.hideBoards
+    }
+    if (props.hideBoards && new Date() > props.hideBoards) {
+      return true
+    }
+    return false
+  }
+
   return (
     <BoardContext.Provider value={context}>
       <div class="reveal">
@@ -91,7 +104,7 @@ export default function Slideshow(props: SlideshowProps) {
                   {(j) => (
                     <section class="slide" ref={slideRef}>
                       {slide(j)}
-                      <Show when={!props.hideBoards}>
+                      <Show when={context.admin() || !props.hideBoards}>
                         <Whiteboard
                           container={slideRef}
                           strokes={context.boards()[i()][j]}
