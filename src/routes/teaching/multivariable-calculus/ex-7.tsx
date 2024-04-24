@@ -168,7 +168,7 @@ export default function () {
           {py.jupyter`
             from sympy import *
             x, y, z = symbols("x y z")
-            F = Matrix([x**2, -y, z**2])
+            F = Matrix([x**2, -y, z])
             div = F[0].diff(x) + F[1].diff(y) + F[2].diff(z)
             limits = [
               (y, -sqrt(9 - z**2), sqrt(9 - z**2)),
@@ -183,7 +183,7 @@ export default function () {
           {py.jupyter`
             from sympy import *
             x, y, z, t = symbols("x y z t")
-            F = lambda x, y, z: Matrix([x**2, -y, z**2])
+            F = lambda x, y, z: Matrix([x**2, -y, z])
 
             # Surface latérale
             r = Matrix([x, 3*cos(t), 3*sin(t)])
