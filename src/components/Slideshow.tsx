@@ -73,7 +73,7 @@ export default function Slideshow(props: SlideshowProps) {
   })
 
   const showBoards = () => {
-    if (context.admin()) {
+    if (context.admin() || props.hideBoards === undefined) {
       return true
     }
     if (props.hideBoards === true || props.hideBoards === false) {
