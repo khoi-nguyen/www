@@ -58,7 +58,7 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
   return (
     <div class={'block poll ' + status()}>
       <Show when={props.fallback && status() !== 'pending'} fallback={props.children}>
-        {props.fallback}
+        <div onClick={() => setStatus('pending')}>{props.fallback}</div>
       </Show>
       <Show when={status() !== 'pending'}>
         {' '}
