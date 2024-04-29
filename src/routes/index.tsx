@@ -38,5 +38,6 @@ export default () => (
         <a href="https://www.linkedin.com/in/binh-khoi-nguyen/">LinkedIn</a>
       </li>
     </ul>
+    <Factorise expr="x^2 - 5x + 6" />
   </Page>
 )

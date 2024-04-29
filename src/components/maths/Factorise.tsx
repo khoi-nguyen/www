@@ -10,7 +10,7 @@ const query = graphql(`
 export default function Factorise(props: { expr: string }) {
   return (
     <Poll
-      id="test4"
+      id={`factorise-${btoa(props.expr)}`}
       mark={async (attempt) => {
         const { expression } = await request(query, { attempt, expr: props.expr })
         return expression.isFactorised && expression.isEqual
