@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     AutoImport({
       include: [/\.[tj]sx?$/],
-      dirs: ['./src/components'],
+      dirs: ['./src/components', './src/components/maths'],
       imports: [
         {
           '~/lib/literals': [
@@ -23,6 +23,7 @@ export default defineConfig({
           ],
           '~/stores/session': ['useSession'],
           '~/stores/boards': ['useBoards'],
+          '~/lib/request': ['request'],
           'solid-js': [
             'children',
             'createEffect',
@@ -40,6 +41,7 @@ export default defineConfig({
             'Suspense',
             'Switch',
           ],
+          '~/gql/gql': ['graphql'],
           'solid-js/store': ['createStore'],
           'solid-start': ['A', 'useLocation', 'useNavigate', 'useRouteData'],
           'solid-start/server': ['createServerAction$', 'createServerData$'],

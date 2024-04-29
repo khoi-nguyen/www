@@ -6,10 +6,13 @@
     "start": "solid-start start",
     "build": "make clean && make all && solid-start build",
     "server": "node dist/server/entry.mjs",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "devDependencies": {
     "@babel/standalone": "^7.23.6",
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/typescript": "4.0.6",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/babel__core": "^7.20.4",
     "@types/babel__standalone": "^7.1.7",
@@ -46,6 +49,8 @@
     "codejar": "^4.2.0",
     "country-flag-icons": "^1.5.7",
     "dedent-js": "^1.0.1",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
     "jose": "^5.2.3",
     "katex": "^0.16.9",
     "lodash-es": "^4.17.21",

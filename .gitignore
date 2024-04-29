@@ -34,3 +34,5 @@ src/images.json.d.ts
 
 # Metadata
 src/routes/**/*.json
+
+src/gql
