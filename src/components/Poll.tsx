@@ -115,7 +115,7 @@ export function MathPoll(props: PollProps) {
   let container: HTMLDivElement
   createEffect(() => {
     const field = new MathfieldElement()
-    field.style = 'min-width: 200px;'
+    field.style = 'min-width: 250px;'
     field.addEventListener('input', () => setValue(field.value))
     field.addEventListener('change', submit)
     container.appendChild(field)
