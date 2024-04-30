@@ -7,7 +7,7 @@ type PollAnswers<T> = { [key: string]: PollAnswer<T> }
 
 interface BasicPollProps<T> {
   children: JSX.Element | JSX.Element[] | string
-  fallback?: JSX.Element
+  fallback?: JSX.Element | Component<{}>
   id?: string
   mark: (value: T) => Promise<boolean> | boolean
   setValue: (newValue: T) => void
@@ -58,7 +58,9 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
   return (
     <div class={'block poll ' + status()}>
       <Show when={props.fallback && status() !== 'pending'} fallback={props.children}>
-        <div onClick={() => setStatus('pending')}>{props.fallback}</div>
+        <div onClick={() => setStatus('pending')}>
+          {typeof props.fallback === 'function' ? props.fallback({}) : props.fallback}
+        </div>
       </Show>
       <Show when={status() !== 'pending'}>
         {' '}
