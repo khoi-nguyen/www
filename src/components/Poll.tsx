@@ -57,18 +57,20 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
   })
 
   return (
-    <div class={'block poll ' + status()}>
-      <div style={{ display: status() === 'pending' ? undefined : 'none' }}>{props.children}</div>
+    <div class={'block poll ' + status()} style={{ display: 'flex', 'flex-direction': 'row' }}>
       <Show when={props.fallback && status() !== 'pending'}>
         <div onClick={() => setStatus('pending')}>
           {typeof props.fallback === 'function' ? props.fallback({}) : props.fallback}
         </div>
       </Show>
-      <Show when={status() !== 'pending'}>
-        {' '}
-        <Fa icon={status() === 'correct' ? faCheck : faXmark} />
-      </Show>
-      <Show when={admin()}>{props.showAnswers && props.showAnswers(answers)}</Show>
+      <div>
+        <div style={{ display: status() === 'pending' ? 'flex' : 'none' }}>{props.children}</div>
+        <Show when={status() !== 'pending'}>
+          {' '}
+          <Fa icon={status() === 'correct' ? faCheck : faXmark} />
+        </Show>
+        <Show when={admin()}>{props.showAnswers && props.showAnswers(answers)}</Show>
+      </div>
     </div>
   )
 }
@@ -112,6 +114,7 @@ export function MathPoll(props: PollProps) {
   let container: HTMLDivElement
   createEffect(() => {
     const field = new MathfieldElement()
+    field.style = 'min-width: 200px;'
     field.addEventListener('input', () => setValue(field.value))
     container.appendChild(field)
   })
