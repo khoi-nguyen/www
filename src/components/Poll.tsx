@@ -21,6 +21,17 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
   const [answers, setAnswers] = createStore<PollAnswers<T>>({})
   const [admin] = useSession()
   const [status, setStatus] = createSignal<'pending' | 'correct' | 'incorrect'>('pending')
+  const total = () => Object.keys(answers).length
+  const correct = () => {
+    let correct = 0
+    for (const user in answers) {
+      if (answers[user].correct) {
+        correct += 1
+      }
+    }
+    return correct
+  }
+  const progress = () => correct() / (total() || 1)
   createEffect(
     on(
       () => props.value,
@@ -51,26 +62,35 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
     }
     if (props.id && admin()) {
       socket.on('poll-answer-received', (data: PollAnswer<T>) => {
-        setAnswers(data.userId, data)
+        if (data.pollId === props.id) {
+          setAnswers(data.userId, data)
+        }
       })
     }
   })
 
   return (
-    <div class={'block poll ' + status()} style={{ display: 'flex', 'flex-direction': 'row' }}>
-      <Show when={props.fallback && status() !== 'pending'}>
-        <div onClick={() => setStatus('pending')}>
-          {typeof props.fallback === 'function' ? props.fallback({}) : props.fallback}
-        </div>
-      </Show>
-      <div>
-        <div style={{ display: status() === 'pending' ? 'flex' : 'none' }}>{props.children}</div>
-        <Show when={status() !== 'pending'}>
-          {' '}
-          <Fa icon={status() === 'correct' ? faCheck : faXmark} />
+    <div class="block">
+      <div class={'poll ' + status()} style={{ display: 'flex', 'flex-direction': 'row' }}>
+        <Show when={props.fallback && status() !== 'pending'}>
+          <div onClick={() => setStatus('pending')}>
+            {typeof props.fallback === 'function' ? props.fallback({}) : props.fallback}
+          </div>
         </Show>
-        <Show when={admin()}>{props.showAnswers && props.showAnswers(answers)}</Show>
+        <div>
+          <div style={{ display: status() === 'pending' ? 'flex' : 'none' }}>{props.children}</div>
+          <Show when={status() !== 'pending'}>
+            {' '}
+            <Fa icon={status() === 'correct' ? faCheck : faXmark} />
+          </Show>
+        </div>
       </div>
+      <Show when={admin()}>{props.showAnswers && props.showAnswers(answers)}</Show>
+      <Show when={admin() && !props.showAnswers}>
+        <progress value={progress()} low={0.5} high={0.8}>
+          {correct}/{total}
+        </progress>
+      </Show>
     </div>
   )
 }
