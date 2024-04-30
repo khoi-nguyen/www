@@ -1,4 +1,5 @@
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons/index.js'
+import { MathfieldElement } from 'mathlive'
 import { io } from 'socket.io-client'
 import { userId } from '~/lib/uid'
 import type { PollAnswer } from '~/routes/api/poll'
@@ -57,7 +58,8 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
 
   return (
     <div class={'block poll ' + status()}>
-      <Show when={props.fallback && status() !== 'pending'} fallback={props.children}>
+      <div style={{ display: status() === 'pending' ? undefined : 'none' }}>{props.children}</div>
+      <Show when={props.fallback && status() !== 'pending'}>
         <div onClick={() => setStatus('pending')}>
           {typeof props.fallback === 'function' ? props.fallback({}) : props.fallback}
         </div>
@@ -97,6 +99,35 @@ export default function Poll(props: PollProps) {
         fallback={value()}
       >
         <input type="text" value={value()} onInput={handleInput} />
+        <input type="submit" onClick={() => setSubmittedValue(value())} />
+      </BasicPoll>
+    </>
+  )
+}
+
+export function MathPoll(props: PollProps) {
+  const [value, setValue] = createSignal('')
+  const [submittedValue, setSubmittedValue] = createSignal('')
+
+  let container: HTMLDivElement
+  createEffect(() => {
+    const field = new MathfieldElement()
+    field.addEventListener('input', () => setValue(field.value))
+    container.appendChild(field)
+  })
+
+  return (
+    <>
+      {props.children}
+      <BasicPoll
+        id={props.id}
+        mark={props.mark}
+        value={submittedValue()}
+        setValue={setValue}
+        showAnswers={props.showAnswers}
+        fallback={() => <Maths tex={value()} />}
+      >
+        <div ref={container!} />
         <input type="submit" onClick={() => setSubmittedValue(value())} />
       </BasicPoll>
     </>

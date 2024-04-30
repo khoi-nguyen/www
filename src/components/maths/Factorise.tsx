@@ -9,7 +9,7 @@ const query = graphql(`
 
 export default function Factorise(props: { expr: string }) {
   return (
-    <Poll
+    <MathPoll
       id={`factorise-${btoa(props.expr)}`}
       mark={async (attempt) => {
         const { expression } = await request(query, { attempt, expr: props.expr })
@@ -17,6 +17,6 @@ export default function Factorise(props: { expr: string }) {
       }}
     >
       Factorise <Maths tex={props.expr} />
-    </Poll>
+    </MathPoll>
   )
 }
