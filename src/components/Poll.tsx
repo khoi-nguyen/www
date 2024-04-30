@@ -110,12 +110,14 @@ export default function Poll(props: PollProps) {
 export function MathPoll(props: PollProps) {
   const [value, setValue] = createSignal('')
   const [submittedValue, setSubmittedValue] = createSignal('')
+  const submit = () => setSubmittedValue(value())
 
   let container: HTMLDivElement
   createEffect(() => {
     const field = new MathfieldElement()
     field.style = 'min-width: 200px;'
     field.addEventListener('input', () => setValue(field.value))
+    field.addEventListener('change', submit)
     container.appendChild(field)
   })
 
@@ -131,7 +133,7 @@ export function MathPoll(props: PollProps) {
         fallback={() => <Maths tex={value()} />}
       >
         <div ref={container!} />
-        <input type="submit" onClick={() => setSubmittedValue(value())} />
+        <input type="submit" onClick={submit} />
       </BasicPoll>
     </>
   )
