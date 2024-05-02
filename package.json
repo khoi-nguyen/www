@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "concurrently 'make watch' 'solid-start dev'",
     "start": "solid-start start",
-    "build": "make clean && make all && solid-start build",
+    "build": "make clean && make all && npm run codegen && solid-start build",
     "server": "node dist/server/entry.mjs",
     "prepare": "husky install",
     "codegen": "graphql-codegen --config codegen.ts"
