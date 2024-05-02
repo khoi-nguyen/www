@@ -1,5 +1,4 @@
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons/index.js'
-import { MathfieldElement } from 'mathlive'
 import { io } from 'socket.io-client'
 import { userId } from '~/lib/uid'
 import type { PollAnswer } from '~/routes/api/poll'
@@ -133,8 +132,9 @@ export function MathPoll(props: PollProps) {
   const submit = () => setSubmittedValue(value())
 
   let container: HTMLDivElement
-  createEffect(() => {
-    const field = new MathfieldElement()
+  createEffect(async () => {
+    const mathlive = await import('mathlive')
+    const field = new mathlive.MathfieldElement()
     field.style = 'min-width: 250px;'
     field.addEventListener('input', () => setValue(field.value))
     field.addEventListener('change', submit)
