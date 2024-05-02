@@ -7,16 +7,41 @@ const query = graphql(`
   }
 `)
 
-export default function Factorise(props: { expr: string }) {
+const generateQuery = graphql(`
+  query GenerateFactorisation {
+    generate {
+      factorisation {
+        expanded {
+          expr
+        }
+      }
+    }
+  }
+`)
+
+export default function Factorise(props: { expr?: string }) {
+  const [expr, setExpr] = createSignal(props.expr || '')
+
+  const generate = async () => {
+    const { generate } = await request(generateQuery, {})
+    setExpr(generate.factorisation.expanded.expr)
+  }
+
+  onMount(() => {
+    if (!expr()) {
+      generate()
+    }
+  })
+
   return (
     <MathPoll
-      id={`factorise-${btoa(props.expr)}`}
+      id={`factorise-${btoa(expr())}`}
       mark={async (attempt) => {
-        const { expression } = await request(query, { attempt, expr: props.expr })
+        const { expression } = await request(query, { attempt, expr: expr() })
         return expression.isFactorised && expression.isEqual
       }}
     >
-      Factorise <Maths tex={props.expr} />
+      Factorise <Maths tex={expr()} />
     </MathPoll>
   )
 }
