@@ -52,7 +52,7 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
     ),
   )
 
-  onMount(async () => {
+  createEffect(async () => {
     const storedValue = localStorage.getItem('poll-' + props.id)
     if (storedValue !== null) {
       const value = JSON.parse(storedValue) as T
