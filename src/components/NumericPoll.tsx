@@ -10,6 +10,7 @@ const query = graphql(`
 
 interface NumericalPollProps extends Omit<MathPollProps, 'mark'> {
   answer: string
+  readOnly?: boolean
 }
 
 export default function NumericalPoll(props: NumericalPollProps) {
@@ -30,7 +31,12 @@ export default function NumericalPoll(props: NumericalPollProps) {
         showAnswers={props.showAnswers}
         fallback={() => <Maths tex={value()} />}
       >
-        <MathField onChange={submit} onInput={setValue} defaultValue={props.defaultValue} />
+        <MathField
+          onChange={submit}
+          onInput={setValue}
+          defaultValue={props.defaultValue}
+          readOnly={props.readOnly}
+        />
       </BasicPoll>
     </>
   )

@@ -25,12 +25,12 @@ export default function MathField(props: MathFieldProps) {
     field.style = 'min-width: 250px;'
     if (props.onInput) {
       field.addEventListener('input', (event: Event) => {
-        props.onInput!((event.target as MathfieldElement).value)
+        props.onInput!((event.target as MathfieldElement).getValue('latex-without-placeholders'))
       })
     }
     if (props.onChange) {
       field.addEventListener('change', (event: Event) => {
-        props.onChange!((event.target as MathfieldElement).value)
+        props.onChange!((event.target as MathfieldElement).getValue('latex-without-placeholders'))
       })
     }
     container.appendChild(field)
