@@ -79,7 +79,7 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
         <div>
           <div style={{ display: status() === 'pending' ? 'flex' : 'none' }}>{props.children}</div>
           <Show when={status() !== 'pending'}>
-            {' '}
+            &nbsp;
             <Fa icon={status() === 'correct' ? faCheck : faXmark} />
           </Show>
         </div>
