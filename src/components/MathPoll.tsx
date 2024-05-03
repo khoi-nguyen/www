@@ -1,6 +1,10 @@
 import type { PollProps } from './Poll'
 
-export default function MathPoll(props: PollProps) {
+interface MathPollProps extends PollProps {
+  defaultValue: string
+}
+
+export default function MathPoll(props: MathPollProps) {
   const [value, setValue] = createSignal('')
   const [submittedValue, setSubmittedValue] = createSignal('')
   const submit = () => setSubmittedValue(value())
@@ -15,7 +19,8 @@ export default function MathPoll(props: PollProps) {
         showAnswers={props.showAnswers}
         fallback={() => <Maths tex={value()} />}
       >
-        <MathField onChange={submit} onInput={setValue} />
+        <MathField onChange={submit} onInput={setValue} defaultValue={props.defaultValue} />
+        {value()}
       </BasicPoll>
     </>
   )

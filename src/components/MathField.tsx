@@ -5,7 +5,6 @@ interface MathFieldProps {
   onChange?: (newValue?: string) => void
   onInput?: (newValue?: string) => void
   readOnly?: boolean
-  value?: string
 }
 
 export default function MathField(props: MathFieldProps) {
@@ -16,7 +15,7 @@ export default function MathField(props: MathFieldProps) {
     if (!field) {
       const mathlive = await import('mathlive')
       field = new mathlive.MathfieldElement({})
-      field.value = props.value || ''
+      field.value = props.defaultValue || ''
       field.readOnly = props.readOnly || false
     }
   }
@@ -39,8 +38,8 @@ export default function MathField(props: MathFieldProps) {
 
   createEffect(async () => {
     await setup()
-    if (props.value) {
-      field.value = props.value
+    if (props.defaultValue) {
+      field.value = props.defaultValue
     }
   })
 
