@@ -1,7 +1,7 @@
 import type { PollProps } from './Poll'
 
-interface MathPollProps extends PollProps {
-  defaultValue: string
+export interface MathPollProps extends PollProps {
+  defaultValue?: string
 }
 
 export default function MathPoll(props: MathPollProps) {

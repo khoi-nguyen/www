@@ -23,16 +23,16 @@ export default function MathField(props: MathFieldProps) {
   createEffect(async () => {
     await setup()
     field.style = 'min-width: 250px;'
-    field.addEventListener('input', () => {
-      if (props.onInput) {
-        props.onInput(field.value)
-      }
-    })
-    field.addEventListener('change', () => {
-      if (props.onChange) {
-        props.onChange(field.value)
-      }
-    })
+    if (props.onInput) {
+      field.addEventListener('input', (event: Event) => {
+        props.onInput!((event.target as MathfieldElement).value)
+      })
+    }
+    if (props.onChange) {
+      field.addEventListener('change', (event: Event) => {
+        props.onChange!((event.target as MathfieldElement).value)
+      })
+    }
     container.appendChild(field)
   })
 
