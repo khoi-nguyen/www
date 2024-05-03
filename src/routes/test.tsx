@@ -13,6 +13,7 @@ export default function () {
         id="standard-form-0.03"
         answer="0.03"
         defaultValue="\placeholder[mantissa]{} \times 10^{\placeholder[power]{}}"
+        standardForm
         readOnly
       />
       <Factorise />
