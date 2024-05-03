@@ -20,7 +20,6 @@ export default function MathPoll(props: MathPollProps) {
         fallback={() => <Maths tex={value()} />}
       >
         <MathField onChange={submit} onInput={setValue} defaultValue={props.defaultValue} />
-        {value()}
       </BasicPoll>
     </>
   )
