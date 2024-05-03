@@ -30,7 +30,7 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
     }
     return correct
   }
-  const progress = () => correct() / (total() || 1)
+  const progress = () => (total() ? correct() / total() : undefined)
   createEffect(
     on(
       () => props.value,
@@ -86,9 +86,7 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
       </div>
       <Show when={admin()}>{props.showAnswers && props.showAnswers(answers)}</Show>
       <Show when={admin() && !props.showAnswers}>
-        <progress value={progress()} low={0.5} high={0.8}>
-          {correct}/{total}
-        </progress>
+        <progress value={progress()} /> {correct()}/{total()}
       </Show>
     </div>
   )
