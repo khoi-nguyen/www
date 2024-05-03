@@ -18,6 +18,7 @@ export default function () {
       />
       <Factorise />
       <Differentiate expr="x^2 - 5x + 6" />
+      <Differentiate expr="x^2 - 5x + 6y" var="y" />
       <Differentiate expr={'\\sin(4x^2+3x)'} />
       <Differentiate expr={'e^x'} />
     </Page>
