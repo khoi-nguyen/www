@@ -137,6 +137,20 @@ export default function () {
       </ul>
       <h3>Assessment grid</h3>
       <Grid />
+      <h3>Exam questions</h3>
+      <ul>
+        <li>Why do we use JavaScript frameworks?</li>
+        <li>Why do we use TypeScript?</li>
+        <li>
+          How does React work? What is the Virtual <Abbr key="DOM" />? What is <Abbr key="JSX" />?
+        </li>
+        <li>
+          What is <Abbr key="SSR" />? Why do we use a meta-framework like Next.js?
+        </li>
+        <li>
+          How does authentication work? Why do we need to salt and hash passwords, or sign cookies?
+        </li>
+      </ul>
     </Page>
   )
 }
