@@ -4,7 +4,7 @@ const query = graphql(`
   query CheckEquality($attempt: MathExpression!, $answer: MathExpression!) {
     expression(expr: $attempt) {
       isEqual(expr: $answer)
-      isStandardForm
+      isScientificNotation
     }
   }
 `)
@@ -26,7 +26,7 @@ export default function NumericalPoll(props: NumericalPollProps) {
         id={props.id}
         mark={async (attempt: string) => {
           const { expression } = await request(query, { attempt, answer: props.answer })
-          return expression.isEqual && (!props.standardForm || expression.isStandardForm)
+          return expression.isEqual && (!props.standardForm || expression.isScientificNotation)
         }}
         value={submittedValue()}
         setValue={setValue}

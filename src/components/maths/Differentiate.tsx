@@ -1,7 +1,7 @@
 const query = graphql(`
   query Differentiate($attempt: MathExpression!, $var: MathExpression!, $expr: MathExpression!) {
     expression(expr: $expr) {
-      derivative(var: $var) {
+      diff(var: $var) {
         isEqual(expr: $attempt)
       }
     }
@@ -18,7 +18,7 @@ export default function Differentiate(props: { expr: string; var?: string }) {
           expr: props.expr,
           var: props.var || 'x',
         })
-        return expression.derivative.isEqual
+        return expression.diff.isEqual
       }}
     >
       Differentiate <Maths tex={props.expr} />

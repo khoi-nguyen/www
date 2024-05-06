@@ -2,7 +2,7 @@ const query = graphql(`
   query Factorise($attempt: MathExpression!, $expr: MathExpression!) {
     expression(expr: $attempt) {
       isEqual(expr: $expr)
-      isFactorised
+      isFactored
     }
   }
 `)
@@ -10,8 +10,8 @@ const query = graphql(`
 const generateQuery = graphql(`
   query GenerateFactorisation {
     generate {
-      factorisation {
-        expanded {
+      factorization {
+        expand {
           expr
         }
       }
@@ -24,7 +24,7 @@ export default function Factorise(props: { expr?: string }) {
 
   const generate = async () => {
     const { generate } = await request(generateQuery, {})
-    setExpr(generate.factorisation.expanded.expr)
+    setExpr(generate.factorization.expand.expr)
   }
 
   onMount(() => {
@@ -38,7 +38,7 @@ export default function Factorise(props: { expr?: string }) {
       id={`factorise-${btoa(expr())}`}
       mark={async (attempt) => {
         const { expression } = await request(query, { attempt, expr: expr() })
-        return expression.isFactorised && expression.isEqual
+        return expression.isFactored && expression.isEqual
       }}
     >
       Factorise <Maths tex={expr()} />
