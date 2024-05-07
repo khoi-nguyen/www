@@ -53,9 +53,18 @@ export default class Whiteboard {
       if (lastPoint[0] == point[0] && lastPoint[1] == point[1]) {
         return
       }
+      this.ctx.moveTo(lastPoint[0], lastPoint[1])
+      this.ctx.lineTo(point[0], point[1])
+      this.ctx.stroke()
+    } else {
+      this.ctx.beginPath()
+      this.ctx.fillStyle = this.lastStroke.color
+      this.ctx.strokeStyle = this.lastStroke.color
+      this.ctx.lineCap = 'round'
+      this.ctx.lineJoin = 'round'
+      this.ctx.lineWidth = this.lastStroke.lineWidth
     }
     this.lastStroke.points.push(point)
-    this.drawStroke(this.lastStroke)
   }
 
   changeBrush(color: Color, lineWidth: number) {
