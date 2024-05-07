@@ -53,7 +53,6 @@ export default class Whiteboard {
       if (lastPoint[0] == point[0] && lastPoint[1] == point[1]) {
         return
       }
-      this.ctx.moveTo(lastPoint[0], lastPoint[1])
       this.ctx.lineTo(point[0], point[1])
       this.ctx.stroke()
     } else {
