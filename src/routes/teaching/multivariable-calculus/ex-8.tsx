@@ -6,7 +6,7 @@ const meta: Metadata = {
 
 export default function () {
   return (
-    <Slideshow meta={meta} hideBoards={new Date('2024-04-25 16:00')}>
+    <Slideshow meta={meta} hideBoards={new Date('2024-05-16 16:00')}>
       <Slide title="Optimisation">
         <Exercise>
           <p>Trouvez le minimum local de la fonction</p>
