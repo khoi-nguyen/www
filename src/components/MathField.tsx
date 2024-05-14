@@ -15,6 +15,7 @@ export default function MathField(props: MathFieldProps) {
     if (!field) {
       const mathlive = await import('mathlive')
       field = new mathlive.MathfieldElement({})
+      field.className = 'clickable'
       field.value = props.defaultValue || ''
       field.readOnly = props.readOnly || false
     }
