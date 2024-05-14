@@ -72,7 +72,7 @@ export function BasicPoll<T>(props: BasicPollProps<T>) {
     <div class="block">
       <div class={'poll ' + status()} style={{ display: 'flex', 'flex-direction': 'row' }}>
         <Show when={props.fallback && status() !== 'pending'}>
-          <div onClick={() => setStatus('pending')}>
+          <div class="clickable" onClick={() => setStatus('pending')}>
             {typeof props.fallback === 'function' ? props.fallback({}) : props.fallback}
           </div>
         </Show>
