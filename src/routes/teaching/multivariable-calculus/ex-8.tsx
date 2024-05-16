@@ -100,11 +100,11 @@ export default function () {
           u, v = symbols("u v")
           x, y, z, i, j, k = C.x, C.y, C.z, C.i, C.j, C.k
           r = u*i + 2*v*j + v*k
-          F = lambda x, y, z: z**2*i + 2*x*y*j + 4*y**2*k
+          F = z**2*i + 2*x*y*j + 4*y**2*k
           N = r.diff(u).cross(r.diff(v))
-          integrand = F(r.dot(i), r.dot(j), r.dot(k)).dot(N)
+          integrand = curl(F).subs({x: r.dot(i), y: r.dot(j), z: r.dot(k)}).dot(N)
         `}
-        <NumericPoll id="calculus-16.8.17" answer={String.raw`\frac{29}{3}`}>
+        <NumericPoll id="calculus-16.8.17" answer="3">
           <p>Que vaut la réponse finale?</p>
         </NumericPoll>
       </Slide>
