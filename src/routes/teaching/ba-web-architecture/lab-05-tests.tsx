@@ -46,7 +46,12 @@ export default function () {
       </Slide>
       <Slide title="Exercice">
         <Instruction pluralize>
-          <p>Écrivez un test end-to-end qui teste votre écran de login</p>
+          <ul>
+            <li>Écrivez un test end-to-end qui teste votre écran de login</li>
+            <li>
+              Ecrivez un code qui cherche sur Amazon le nom et le prix d'ordinateurs portables
+            </li>
+          </ul>
         </Instruction>
       </Slide>
     </Slideshow>
